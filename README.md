@@ -9,7 +9,7 @@ Application to be awesome
 * [Team](#team)
 * [Management tool](#management-tools)
 * [Setup the project](#setup-the-project)
-* [Serve the application](#serve-the-applications)
+* [Serve the application](#serve-the-application)
 
 
 ### Client Details
