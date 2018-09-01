@@ -6,15 +6,10 @@ Application to be awesome
 
 * [Client Details](#client-details)
 * [Environment URLS](#environment-urls)
-* [Da Team](#team)
-* [Management resources](#management-resources)
+* [Team](#team)
+* [Management tool](#management-tools)
 * [Setup the project](#setup-the-project)
-* [Running the stack for development](#running-the-stack-for-development)
-* [Stop the project](#stop-the-project)
-* [Restoring the database](#restoring-the-database)
-* [Debugging](#debugging)
-* [Running specs](#running-specs)
-* [Checking code for potential issues](#checking-code-for-potential-issues)
+* [Serve the application](#serve-the-applications)
 
 
 ### Client Details
