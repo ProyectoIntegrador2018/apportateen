@@ -67,6 +67,7 @@ $ git clone https://github.com/ProyectoIntegrador2018/apportateen.git
 
 ```
 cd apportateen
+cd apportateen
 ng serve --open
 ```
 
