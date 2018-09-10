@@ -63,11 +63,11 @@ $ git clone https://github.com/ProyectoIntegrador2018/apportateen.git
 
 ### Serve the application
 
-1. Go to the project directory and launch the application: 
+1. Go to the project directory, install dependencies and launch the application: 
 
 ```
-cd apportateen
-cd apportateen
+cd apportateen/apportateen_app
+npm install
 ng serve --open
 ```
 
