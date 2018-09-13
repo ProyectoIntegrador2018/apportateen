@@ -1,6 +1,6 @@
 # ApportaTeen
 
-This porject consist on a web platform for ApportaTeen, where they will manage all the information of the event and participants.
+This project consist on a web platform for ApportaTeen, where they will manage all the information of the event and participants.
 
 ## Table of contents
 
