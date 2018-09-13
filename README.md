@@ -1,6 +1,6 @@
 # ApportaTeen
 
-Application to be awesome
+This porject consist on a web platform for ApportaTeen, where they will manage all the information of the event and participants.
 
 ## Table of contents
 
@@ -40,7 +40,7 @@ You should ask for access to this tools if you don't have it already:
 
 * [Github repo](https://github.com/ProyectoIntegrador2018/apportateen)
 * [Backlog](https://docs.google.com/document/d/1VrD6q7z3sr_nNzeSrYWXCyfuEPh0Yz-tjYvb0573hRA/edit?usp=sharing)
-* [Firebase](https://console.firebase.google.com)
+* [Heroku](TBD)
 * [Documentation](https://docs.google.com/document/d/1lyQvN8jqlc2UtqYgUsuG1r2eXLr7EXPhyKpIRXoXXGQ/edit?usp=sharing)
 
 ## Development
