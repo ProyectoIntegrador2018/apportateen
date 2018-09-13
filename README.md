@@ -66,7 +66,7 @@ $ git clone https://github.com/ProyectoIntegrador2018/apportateen.git
 
 Intall [Heroku](https://devcenter.heroku.com/articles/heroku-cli) if you haven't installed it yet.
 
-Create a Heroku account if you don't have one already.
+[Create a Heroku account](https://signup.heroku.com) if you don't have one already.
 
 1. Log in to your Heroku account on the command shell, with your email and password of your account.
 
