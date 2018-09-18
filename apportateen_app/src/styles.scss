@@ -1,5 +1,6 @@
 @import '~styles-variables.scss';
 
+
 * {
 
   &:active,
@@ -21,8 +22,29 @@ nav a {
   color: #fff !important;
 }
 
+app-root {
+  min-height: 100%;
+  display: block;
+}
+
+app-layout {
+  min-height: 100vh;
+  display: block;
+  position: relative;
+}
+
 $theme-colors: ("primary": $main-light,
 );
 
 @import "~bootstrap/scss/bootstrap.scss";
+
+//more than 576 px
+//@include media-breakpoint-up(sm) {}
+//less than 576 px
+//@include media-breakpoint-down(xs) { }
+//only small devices 
+//@include media-breakpoint-only(xs) { }
+//targeting the same screen size range would be:
+//@include media-breakpoint-between(md, xl){} 
+
 @import "~font-awesome/css/font-awesome.css";
