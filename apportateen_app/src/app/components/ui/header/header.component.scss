@@ -1,5 +1,28 @@
 @import '~styles-variables.scss';
+$theme-colors: ("primary": $main-light,
+);
+
+@import "~bootstrap/scss/bootstrap.scss";
 
 .navbar {
   background-color: $main-dark;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+
+}
+
+
+@include media-breakpoint-down(lg) {
+
+  li {
+    text-align: center;
+  }
+
+  #ingresar {
+    width: 100%;
+
+    a {
+      width: 100%;
+    }
+  }
+
 }
