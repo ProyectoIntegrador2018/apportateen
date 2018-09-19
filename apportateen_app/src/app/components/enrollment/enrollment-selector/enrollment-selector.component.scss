@@ -1,0 +1,52 @@
+@import '~styles-variables.scss';
+@import "~bootstrap/scss/bootstrap.scss";
+
+//more than 576 px
+//@include media-breakpoint-up(sm) {}
+//less than 576 px
+//@include media-breakpoint-down(xs) { }
+
+#wrapper {
+  min-height: 300px;
+  width: 100%;
+  padding-bottom: 80px;
+
+  >div {
+    margin: 25px;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .buttonWrapper {
+    display: block;
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  #wrapper {
+    >div {
+      margin: 20px 0 0;
+    }
+  }
+}
+
+#loginWrapper {
+  margin: 16px;
+}
+
+.tabLink {
+  width: 50%;
+  background-color: $main-dark;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  font-size: 17px;
+}
+
+.selected {
+  border-bottom: 4px solid $main-light;
+}
