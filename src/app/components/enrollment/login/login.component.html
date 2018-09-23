@@ -2,14 +2,14 @@
   <div class="col-12">
     <div class="form-group">
       <label for="txtCorreo">Correo electrónico</label>
-      <input type="email" class="form-control" id="txtCorreo" placeholder="Introduzca su correo">
+      <input type="email" class="form-control" id="txtCorreo" [(ngModel)]="email" placeholder="Introduzca su correo">
     </div>
   </div>
   <div class="col-12">
     <div class="form-group">
       <label for="txtPassword">Contraseña</label>
-      <input type="password" class="form-control" id="txtPassword" placeholder="Introduzca su contraseña">
+      <input type="password" class="form-control" id="txtPassword" [(ngModel)]="password" placeholder="Introduzca su contraseña">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary btn-block">Iniciar sesión</button>
+  <button type="submit" (click)="login()" class="btn btn-primary btn-block">Iniciar sesión</button>
 </div>
