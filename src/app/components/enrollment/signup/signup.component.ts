@@ -10,8 +10,6 @@ import { User } from '../../../models/user.model';
 })
 
 export class SignupComponent {
-    nombre: string;
-    correo: string;
     password: string;
     passwordConf: string;
     fecha_nacimiento: string;
@@ -20,13 +18,14 @@ export class SignupComponent {
 
     signup() {
         //missing field validation
-        this.usuario.nombre = this.nombre;
-        this.usuario.correo = this.correo;
         this.usuario.fecha_nacimiento = '01-05-1996';
-        this.firebaseAuth.auth.createUserWithEmailAndPassword(this.correo, this.password).
+        this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
             then(user => {
                 this.usuario.user_id = user.user.uid;
                 this.api.createUser(this.usuario).subscribe(result => console.log(result));
+            })
+            .catch(error => {
+                console.log(error.message);
             })
     }
 }
