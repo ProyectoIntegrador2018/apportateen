@@ -2,32 +2,32 @@
   <div class="col-12">
     <div class="form-group">
       <label for="txtName">Nombre completo</label>
-      <input type="text" class="form-control" id="txtName" placeholder="Ej: Juan Pérez">
+      <input type="text" class="form-control" id="txtName" [(ngModel)]="usuario.nombre" placeholder="Ej: Juan Pérez">
     </div>
   </div>
   <div class="col-12">
     <div class="form-group">
       <label for="txtFecha">Fecha de nacimiento</label>
-      <input type="date" class="form-control" id="txtFecha">
+      <input type="date" class="form-control" [(ngModel)]="fecha_nacimiento" id="txtFecha">
     </div>
   </div>
   <div class="col-12">
     <div class="form-group">
       <label for="txtCorreoSignup">Correo electrónico</label>
-      <input type="email" class="form-control" id="txtCorreoSignup" placeholder="Introduzca su correo">
+      <input type="email" class="form-control" id="txtCorreoSignup" [(ngModel)]="usuario.correo" placeholder="Introduzca su correo">
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group" style="padding-right: 8px;">
       <label for="txtPasswordSignup">Contraseña</label>
-      <input type="password" class="form-control" id="txtPasswordSignup">
+      <input type="password" class="form-control" [(ngModel)]="password" id="txtPasswordSignup">
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
       <label for="txtPasswordValSignup">Confirme su contraseña</label>
-      <input type="password" class="form-control" id="txtPasswordValSignup">
+      <input type="password" class="form-control" [(ngModel)]="passwordConf" id="txtPasswordValSignup">
     </div>
   </div>
-  <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+  <button type="submit" (click)="signup()" class="btn btn-primary btn-block">Registrarse</button>
 </div>

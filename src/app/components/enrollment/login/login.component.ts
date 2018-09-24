@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 
 @Component({
     selector: 'login',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-    constructor() { }
+    email: string;
+    password: string;
+    constructor(private firebaseAuth: AngularFireAuth) { }
 
     ngOnInit() {
+    }
+
+    login() {
+        this.firebaseAuth.auth.signInWithEmailAndPassword(this.email, this.password).
+            then(value => {
+                console.log(value);
+            }).catch(err => {
+                console.log('imposible iniciar sesión')
+            })
     }
 
 }
