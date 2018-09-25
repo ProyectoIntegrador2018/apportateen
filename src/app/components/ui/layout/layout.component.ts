@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-layout',
@@ -6,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit {
-
-    constructor() { }
+    route: string;
+    constructor(loc: Location, private _router: Router) {
+        this._router.events.subscribe((val) => {
+            if (loc.path() != '') {
+                this.route = loc.path();
+            }
+        });
+    }
 
     ngOnInit() {
     }
-
 }
