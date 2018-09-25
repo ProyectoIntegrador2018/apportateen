@@ -38,6 +38,21 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  // API: GET /api/sponsors
+  public getAllSponsors(): Observable<User[]> {
+    return this.http
+      .get<User[]>(API_URL + '/api/sponsors')
+      .catch(this.handleError);
+  }
+
+  // API: POST /api/sponsors
+  public createSponsor(user: User): Observable<User> {
+    console.log('api user', user)
+    return this.http
+      .post<User>(`${API_URL}/api/sponsors?nombre=${user.nombre}&correo=${user.correo}`, user)
+      .catch(this.handleError);
+  }
+
 
 
   private handleError(error: Response | any) {
