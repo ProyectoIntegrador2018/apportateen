@@ -32,6 +32,10 @@ app-layout {
   position: relative;
 }
 
+mat-icon {
+  font-family: 'Material Icons' !important;
+}
+
 $theme-colors: ("primary": $main-light,
 );
 
