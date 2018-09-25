@@ -1,0 +1,55 @@
+@import '~styles-variables.scss';
+
+
+* {
+  color: #fff;
+}
+
+.admin-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+mat-sidenav {
+  width: 200px;
+  background-color: $main;
+}
+
+mat-toolbar {
+  background-color: $main-dark;
+}
+
+button {
+  background: transparent;
+  border: none;
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.is-mobile .toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+h3.app-name {
+  margin-left: 8px;
+}
+
+.sidenav-container {
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+}
+
+mat-sidenav-content {
+  margin-left: 200px;
+}
