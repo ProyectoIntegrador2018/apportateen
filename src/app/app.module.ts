@@ -14,6 +14,7 @@ import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
+import { UserModule } from './components/user/user.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MAT_DATE_LOCALE } from '@angular/material';
     BrowserAnimationsModule,
     UiModule,
     EnrollmentModule,
-    AdminModule
+    AdminModule,
+    UserModule
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
