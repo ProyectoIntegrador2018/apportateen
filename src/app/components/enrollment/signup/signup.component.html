@@ -1,33 +1,32 @@
 <div class="row no-gutters">
-  <div class="col-12">
-    <div class="form-group">
-      <label for="txtName">Nombre completo</label>
-      <input type="text" class="form-control" id="txtName" [(ngModel)]="usuario.nombre" placeholder="Ej: Juan Pérez">
-    </div>
-  </div>
-  <div class="col-12">
-    <div class="form-group">
-      <label for="txtFecha">Fecha de nacimiento</label>
-      <input type="date" class="form-control" [(ngModel)]="fecha_nacimiento" id="txtFecha">
-    </div>
-  </div>
-  <div class="col-12">
-    <div class="form-group">
-      <label for="txtCorreoSignup">Correo electrónico</label>
-      <input type="email" class="form-control" id="txtCorreoSignup" [(ngModel)]="usuario.correo" placeholder="Introduzca su correo">
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group" style="padding-right: 8px;">
-      <label for="txtPasswordSignup">Contraseña</label>
-      <input type="password" class="form-control" [(ngModel)]="password" id="txtPasswordSignup">
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="form-group">
-      <label for="txtPasswordValSignup">Confirme su contraseña</label>
-      <input type="password" class="form-control" [(ngModel)]="passwordConf" id="txtPasswordValSignup">
-    </div>
-  </div>
+  <mat-form-field class="col-md-6" style="padding-right: 8px;">
+    <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre">
+  </mat-form-field>
+  <mat-form-field class="col-md-6">
+    <input matInput placeholder="Apellido" [(ngModel)]="usuario.apellido">
+  </mat-form-field>
+  <mat-form-field class="col-md-6" style="padding-right: 8px;">
+    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="fecha_nacimiento">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker touchUi #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field class="col-12">
+    <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico" [formControl]="emailFormControl"
+      [errorStateMatcher]="matcher">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Por favor introduzca una dirección de correo válida
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      El correo es <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="col-md-6" style="padding-right: 8px;">
+    <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
+  <mat-form-field class="col-md-6">
+    <input matInput placeholder="Confirmar contraseña" [(ngModel)]="passwordConf" [type]="hideConf ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
   <button type="submit" (click)="signup()" class="btn btn-primary btn-block">Registrarse</button>
 </div>

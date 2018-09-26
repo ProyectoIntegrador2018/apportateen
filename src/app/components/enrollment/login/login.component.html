@@ -1,15 +1,10 @@
 <div class="row no-gutters">
-  <div class="col-12">
-    <div class="form-group">
-      <label for="txtCorreo">Correo electrónico</label>
-      <input type="email" class="form-control" id="txtCorreo" [(ngModel)]="email" placeholder="Introduzca su correo">
-    </div>
-  </div>
-  <div class="col-12">
-    <div class="form-group">
-      <label for="txtPassword">Contraseña</label>
-      <input type="password" class="form-control" id="txtPassword" [(ngModel)]="password" placeholder="Introduzca su contraseña">
-    </div>
-  </div>
+  <mat-form-field class="col-md-12">
+    <input matInput placeholder="Correo electrónico" [(ngModel)]="email">
+  </mat-form-field>
+  <mat-form-field class="col-md-12">
+    <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+  </mat-form-field>
   <button type="submit" (click)="login()" class="btn btn-primary btn-block">Iniciar sesión</button>
 </div>
