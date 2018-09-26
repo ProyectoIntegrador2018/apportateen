@@ -1,9 +1,11 @@
 @import '~styles-variables.scss';
 
 
-* {
-  color: #fff;
+.toolbar {
+   color: #fff; 
 }
+
+
 
 .admin-container {
   display: flex;
@@ -18,6 +20,7 @@
 mat-sidenav {
   width: 200px;
   background-color: $main;
+  color: #fff
 }
 
 mat-toolbar {
