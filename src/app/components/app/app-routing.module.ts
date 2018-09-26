@@ -5,6 +5,9 @@ import { EnrollmentComponent } from '../enrollment/enrollment-selector/enrollmen
 import { MainComponent } from '../admin/main/main.component';
 import { ConvocatoriasComponent } from '../admin/convocatorias/convocatorias.component';
 import { SedesComponent } from '../admin/sedes/sedes.component';
+import { MainUserComponent } from '../user/main-user/main-user.component';
+import { InscripcionComponent } from '../user/inscripcion/inscripcion.component';
+
 
 const routes: Routes = [
     { path: '', redirectTo: '/inicio', pathMatch: 'full' },
@@ -15,6 +18,12 @@ const routes: Routes = [
         children: [
             { path: 'convocatorias', component: ConvocatoriasComponent },
             { path: 'sedes', component: SedesComponent }
+        ]
+    },
+    {
+        path: 'usuario', component: MainUserComponent,
+        children: [
+            { path: 'inscripcion', component: InscripcionComponent },
         ]
     }
 ]
