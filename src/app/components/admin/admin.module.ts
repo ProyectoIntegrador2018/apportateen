@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule } from '@angular/material'
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule,  } from '@angular/material'
 import { ConvocatoriasComponent } from './convocatorias/convocatorias.component';
 import { SedesComponent } from './sedes/sedes.component';
 
@@ -17,7 +17,9 @@ import { SedesComponent } from './sedes/sedes.component';
         MatIconModule,
         MatToolbarModule,
         MatListModule,
-        MatSlideToggleModule
+        MatSlideToggleModule,
+        MatButtonModule,
+        MatInputModule
     ],
     declarations: [MainComponent, ConvocatoriasComponent, SedesComponent],
     exports: [MainComponent]

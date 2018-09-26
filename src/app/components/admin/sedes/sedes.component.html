@@ -1,7 +1,57 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-8">
-      Sedes
+
+    <div class="col-sm sedes">
+      <div class="row">
+          <h3>Sedes</h3>
+          <button mat-icon-button color="primary">
+              <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
+          </button>
+      </div>
+
+      <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action active">Tec</a>
+          <a href="#" class="list-group-item list-group-item-action">UANL</a>
+          <a href="#" class="list-group-item list-group-item-action">Udem</a>
+        </div>
+    </div>
+
+    <div class="col-sm detail con">
+      <div>
+          <h3>Nueva sede: </h3>
+      </div>
+      <div>
+          <mat-form-field>
+              <input matInput placeholder="Nombre">
+          </mat-form-field>
+      </div>
+      <div>
+          <mat-form-field>
+              <textarea matInput placeholder="Descripción"></textarea>
+            </mat-form-field>
+      </div>
+      
+      <div>
+        <button mat-raised-button color="warn">Eliminar</button>
+        <button mat-raised-button color="primary">Guardar</button>
+      </div>
+      <div>
+        <button mat-stroked-button color="primary">Cancelar</button>
+        <button mat-raised-button color="primary">Crear</button>
+      </div>
+      
+    </div>
+
+    <div class="col-sm talleres">
+      Talleres:
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Apps avanzadas</li>
+        <li class="list-group-item">Apps básicas</li>
+        <li class="list-group-item">Programación competitva</li>
+        <li class="list-group-item">Robótica básica</li>
+      </ul>
     </div>
 
   </div>
+</div>
+
