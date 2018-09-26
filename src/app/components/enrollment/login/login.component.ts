@@ -10,6 +10,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class LoginComponent implements OnInit {
     email: string;
     password: string;
+    hide = true;
+
     constructor(private firebaseAuth: AngularFireAuth) { }
 
     ngOnInit() {

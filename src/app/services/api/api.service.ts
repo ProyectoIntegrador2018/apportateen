@@ -34,7 +34,7 @@ export class ApiService {
   public createUser(user: User): Observable<User> {
     console.log('api user', user)
     return this.http
-      .post<User>(`${API_URL}/api/users?user_id=${user.user_id}&nombre=${user.nombre}&correo=${user.correo}&fecha_nacimiento=${user.fecha_nacimiento}`, user)
+      .post<User>(`${API_URL}/api/users?user_id=${user.user_id}&nombre=${user.nombre}&apellido=${user.apellido}correo=${user.correo}&fecha_nacimiento=${user.fecha_nacimiento}`, user)
       .catch(this.handleError);
   }
 

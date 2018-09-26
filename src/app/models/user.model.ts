@@ -6,5 +6,4 @@ export class User {
     fecha_nacimiento: string = '';
     telefono: string = '';
     curp: string = '';
-    guardian_id: string = '';
 }
