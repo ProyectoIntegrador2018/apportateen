@@ -39,6 +39,14 @@ mat-icon {
 $theme-colors: ("primary": $main-light,
 );
 
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.mat-list-item {
+  color: #fff !important;
+}
+
 @import "~bootstrap/scss/bootstrap.scss";
 
 //more than 576 px
