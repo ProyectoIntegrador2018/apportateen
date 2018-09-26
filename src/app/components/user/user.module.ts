@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MainUserComponent } from './main-user/main-user.component'
 import { FormsModule } from '@angular/forms';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonToggleModule } from '@angular/material';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
 
 
@@ -16,7 +16,8 @@ import { InscripcionComponent } from './inscripcion/inscripcion.component';
     MatSidenavModule,
     MatIconModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatButtonToggleModule
   ],
   declarations: [MainUserComponent, InscripcionComponent],
     exports: [MainUserComponent]
