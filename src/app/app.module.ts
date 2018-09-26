@@ -13,6 +13,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
+import { UserModule } from './components/user/user.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AdminModule } from './components/admin/admin.module';
     BrowserAnimationsModule,
     UiModule,
     EnrollmentModule,
-    AdminModule
+    AdminModule,
+    UserModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
