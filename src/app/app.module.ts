@@ -15,6 +15,7 @@ import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { UserModule } from './components/user/user.module';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
