@@ -10,7 +10,7 @@
       </div>
 
       <div class="list-group">
-          <a *ngFor="let s of sedes" (click)="select(s)" class="list-group-item list-group-item-action">{{s.nombre}}</a>
+          <a *ngFor="let s of sedes" [ngClass]="{'active': s.selected}" (click)="select(s)" class="list-group-item list-group-item-action">{{s.nombre}}</a>
         </div>
     </div>
 
@@ -30,12 +30,12 @@
       </div>
       
       <div *ngIf="!newSede">
-        <button mat-raised-button color="warn">Eliminar</button>
-        <button mat-raised-button color="primary">Guardar</button>
+        <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
+        <button mat-raised-button color="primary" (click)="cancel()">Guardar</button>
       </div>
       <div *ngIf="newSede">
         <button mat-stroked-button color="primary" (click)="cancel()">Cancelar</button>
-        <button mat-raised-button color="primary">Crear</button>
+        <button mat-raised-button color="primary" (click)="create()">Crear</button>
       </div>
       
     </div>

@@ -33,33 +33,59 @@ export class SedesComponent implements OnInit {
       this.sedes.push(sede2);
       this.sedes.push(sede3);
       this.selectedSede = sede1;
+
+      this.autoSelect();
   }
 
   add() {
       this.newSede = new Sede();
       this.selectedSede = this.newSede;
+      this.cleanSelection();
   }
 
   delete(){
-
+    let index = this.sedes.indexOf(this.selectedSede);
+    this.sedes.splice(index,1);
+    this.autoSelect();
   }
 
   save(){
-
+    // WS
   }
 
   cancel() {
     this.newSede = null;
+    this.autoSelect();
   }
 
   create(){
-
+    // WS
+    // if success
+    this.sedes.push(this.selectedSede);
+    this.selectedSede.selected = true;
+    this.newSede = null;
   }
 
   select(sede: Sede){
+    this.cleanSelection();
+    sede.selected = true;
     this.selectedSede = sede;
   }
 
+  // Helpers
+
+  cleanSelection(){
+    this.sedes.forEach(s => {
+        s.selected = false;
+    });
+  }
+
+  autoSelect(){
+    if (this.sedes.length != 0) {
+        this.sedes[0].selected = true;
+        this.selectedSede = this.sedes[0];
+    }
+  }
   
 
 
