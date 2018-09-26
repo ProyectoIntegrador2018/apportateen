@@ -4,7 +4,7 @@
     <div class="col-sm sedes">
       <div class="row">
           <h3>Sedes</h3>
-          <button mat-icon-button color="primary">
+          <button mat-icon-button color="primary" (click)="add()">
               <mat-icon aria-label="Example icon-button with a heart icon">add_circle</mat-icon>
           </button>
       </div>
@@ -22,21 +22,21 @@
       </div>
       <div>
           <mat-form-field>
-              <input matInput placeholder="Nombre">
+              <input matInput placeholder="Nombre" [(ngModel)]="selectedSede.nombre">
           </mat-form-field>
       </div>
       <div>
           <mat-form-field>
-              <textarea matInput placeholder="Descripción"></textarea>
+              <textarea matInput placeholder="Descripción" [(ngModel)]="selectedSede.descripcion"></textarea>
             </mat-form-field>
       </div>
       
-      <div>
+      <div *ngIf="!newSede">
         <button mat-raised-button color="warn">Eliminar</button>
         <button mat-raised-button color="primary">Guardar</button>
       </div>
-      <div>
-        <button mat-stroked-button color="primary">Cancelar</button>
+      <div *ngIf="newSede">
+        <button mat-stroked-button color="primary" (click)="cancel()">Cancelar</button>
         <button mat-raised-button color="primary">Crear</button>
       </div>
       
