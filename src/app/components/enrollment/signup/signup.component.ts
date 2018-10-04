@@ -41,7 +41,7 @@ export class SignupComponent {
         //missing field validation        
         this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
             then(user => {
-                this.usuario.user_id = user.user.uid;
+                this.usuario.id = user.user.uid;
                 this.api.createUser(this.usuario).subscribe(result => console.log(result));
             })
             .catch(error => {
