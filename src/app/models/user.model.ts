@@ -1,5 +1,5 @@
 export class User {
-    user_id: string = '';
+    id: string = '';
     nombre: string = '';
     apellido: string = '';
     correo: string = '';
