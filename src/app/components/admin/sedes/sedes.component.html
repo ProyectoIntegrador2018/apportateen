@@ -1,20 +1,18 @@
 <div class="container-fluid">
   <div class="row">
-
-    <div class="col-sm sedes">
-      <div class="row">
-        <h3>Sedes</h3>
-        <button mat-icon-button color="primary" (click)="add()">
-          <mat-icon aria-label="add_sede">add_circle</mat-icon>
-        </button>
-      </div>
-
+    <h3>Sedes</h3>
+    <button mat-icon-button color="primary" (click)="add()">
+      <mat-icon aria-label="add_sede">add_circle</mat-icon>
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-md-4 sedes">
       <div class="list-group">
         <a *ngFor="let s of sedes" [class.active]="s == selectedSede" (click)="select(s)" class="list-group-item list-group-item-action">{{s.nombre}}</a>
       </div>
     </div>
 
-    <div class="col-sm detail con">
+    <div class="col-md-4 detail con">
       <div>
         <h5>{{ newSede ? 'Nueva sede:' : ' '}} </h5>
       </div>
@@ -25,13 +23,13 @@
       </div>
       <div>
         <mat-form-field>
-          <textarea matInput placeholder="Descripción" [(ngModel)]="selectedSede.descripcion"></textarea>
+          <textarea matInput placeholder="Descripción" [(ngModel)]="selectedSede.direccion"></textarea>
         </mat-form-field>
       </div>
 
       <div *ngIf="!newSede">
         <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
-        <button mat-raised-button color="primary" (click)="cancel()">Guardar</button>
+        <button mat-raised-button color="primary" (click)="save()">Guardar</button>
       </div>
       <div *ngIf="newSede">
         <button mat-stroked-button color="primary" (click)="cancel()">Cancelar</button>
@@ -40,15 +38,11 @@
 
     </div>
 
-    <div class="col-sm talleres">
+    <div class="col-md-4 talleres">
       Talleres:
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">Apps avanzadas</li>
-        <li class="list-group-item">Apps básicas</li>
-        <li class="list-group-item">Programación competitva</li>
-        <li class="list-group-item">Robótica básica</li>
+        <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
       </ul>
     </div>
-
   </div>
 </div>

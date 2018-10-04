@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sede } from '../../../models/sede.model';
+import { ApiService } from '../../../services/api/api.service';
 
 @Component({
   selector: 'sedes',
@@ -10,31 +11,20 @@ import { Sede } from '../../../models/sede.model';
 export class SedesComponent implements OnInit {
 
   newSede: Sede;
-  selectedSede: Sede;
-  sedes: Array<Sede> = [];
+  selectedSede;
+  sedes;
 
-  constructor() { }
+  constructor(private api: ApiService) {
+    this.sedes = [];
+    this.selectedSede = {};
+  }
 
   ngOnInit() {
-    let sede1 = new Sede();
-    sede1.sede_id = "1";
-    sede1.nombre = "Sede 1";
-    sede1.descripcion = "Descripcion sede 1";
-    let sede2 = new Sede();
-    sede2.sede_id = "2";
-    sede2.nombre = "Sede 2";
-    sede2.descripcion = "Descripcion sede 2";
-    let sede3 = new Sede();
-    sede3.sede_id = "3";
-    sede3.nombre = "Sede 3";
-    sede3.descripcion = "Descripcion sede 3";
-
-    this.sedes.push(sede1);
-    this.sedes.push(sede2);
-    this.sedes.push(sede3);
-    this.selectedSede = sede1;
-
-    this.autoSelect();
+    this.api.getAllSedes().subscribe(result => {
+      this.sedes = result;
+      console.log(this.sedes);
+      this.autoSelect();
+    });
   }
 
   add() {
@@ -45,11 +35,12 @@ export class SedesComponent implements OnInit {
   delete() {
     let index = this.sedes.indexOf(this.selectedSede);
     this.sedes.splice(index, 1);
+    this.api.removeSede(this.selectedSede.id).subscribe(result => console.log(result));
     this.autoSelect();
   }
 
   save() {
-    // WS
+    this.api.updateSede(this.selectedSede).subscribe(result => console.log(result));
   }
 
   cancel() {
@@ -58,10 +49,9 @@ export class SedesComponent implements OnInit {
   }
 
   create() {
-    // WS
-    // if success
     this.sedes.push(this.selectedSede);
     this.newSede = null;
+    this.api.createSede(this.selectedSede).subscribe(result => console.log(result));
   }
 
   select(sede: Sede) {
