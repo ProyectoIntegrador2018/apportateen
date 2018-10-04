@@ -1,5 +1,8 @@
+import { Taller } from "./taller.model";
+
 export class Sede {
-    sede_id: string = '';
+    id: number = 0;
     nombre: string = '';
-    descripcion: string = '';
+    direccion: string = '';
+    talleres: Taller[] = [];
 }
