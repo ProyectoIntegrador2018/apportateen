@@ -1,0 +1,17 @@
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/mixins/_breakpoints.scss";
+
+@include media-breakpoint-down(xs) {
+  .reduced {
+    margin-top: 16px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+textarea {
+  height: 150px;
+}

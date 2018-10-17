@@ -47,6 +47,10 @@ $theme-colors: ("primary": $main-light,
   z-index: 100 !important;
 }
 
+.mat-sidenav {
+  z-index: 101 !important;
+}
+
 .mat-drawer-container {
   background: #fff;
 }

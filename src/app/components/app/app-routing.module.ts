@@ -7,6 +7,10 @@ import { ConvocatoriasComponent } from '../admin/convocatorias/convocatorias.com
 import { SedesComponent } from '../admin/sedes/sedes.component';
 import { MainUserComponent } from '../user/main-user/main-user.component';
 import { InscripcionComponent } from '../user/inscripcion/inscripcion.component';
+import { TalleresComponent } from '../admin/talleres/talleres.component';
+import { CategoriasComponent } from '../admin/categorias/categorias.component';
+import { PatrocinadoresComponent } from '../admin/patrocinadores/patrocinadores.component';
+import { AvisosComponent } from '../admin/avisos/avisos.component';
 
 
 const routes: Routes = [
@@ -16,8 +20,13 @@ const routes: Routes = [
     {
         path: 'admin', component: MainComponent,
         children: [
+            { path: '', redirectTo: 'inicio', pathMatch: 'full' },
             { path: 'convocatorias', component: ConvocatoriasComponent },
-            { path: 'sedes', component: SedesComponent }
+            { path: 'sedes', component: SedesComponent },
+            { path: 'talleres', component: TalleresComponent },
+            { path: 'categorias', component: CategoriasComponent },
+            { path: 'patrocinadores', component: PatrocinadoresComponent },
+            { path: 'inicio', component: AvisosComponent }
         ]
     },
     {

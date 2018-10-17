@@ -10,9 +10,13 @@
     <mat-sidenav #snav [mode]="'over'" [disableClose]="!mobileQuery.matches" [opened]="!mobileQuery.matches"
       [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a mat-list-item routerLink=".">Inicio</a>
+        <a mat-list-item routerLink="inicio">Inicio</a>
         <a mat-list-item routerLink="convocatorias">Convocatorias</a>
         <a mat-list-item routerLink="sedes">Sedes</a>
+        <a mat-list-item routerLink="categorias">Categorías</a>
+        <a mat-list-item routerLink="talleres">Talleres</a>
+        <a mat-list-item routerLink="patrocinadores">Patrocinadores</a>
+
       </mat-nav-list>
     </mat-sidenav>
 
