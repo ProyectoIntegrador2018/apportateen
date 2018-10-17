@@ -10,6 +10,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
 import { Tutor } from '../../models/tutor.model';
 import { Sede } from '../../models/sede.model';
+import { Aviso } from '../../models/aviso.model';
+import { Taller } from '../../models/taller.model';
 const API_URL = environment.apiUrl;
 
 @Injectable({
@@ -34,9 +36,9 @@ export class ApiService {
   }
 
   // API: POST /users
-  public createUser(user: User): Observable<User> {
+  public createUser(user: User): Observable<any> {
     return this.http
-      .post<User>(`${API_URL}/users`, user)
+      .post<any>(`${API_URL}/users`, user)
       .catch(this.handleError);
   }
 
@@ -48,9 +50,9 @@ export class ApiService {
   }
 
   // API: POST /sponsors
-  public createSponsor(sponsor: Sponsor): Observable<Sponsor> {
+  public createSponsor(sponsor: Sponsor): Observable<any> {
     return this.http
-      .post<Sponsor>(`${API_URL}/sponsors`, sponsor)
+      .post<any>(`${API_URL}/sponsors`, sponsor)
       .catch(this.handleError);
   }
 
@@ -70,25 +72,62 @@ export class ApiService {
 
 
   // API: POST /sedes
-  public createSede(sede: Sede): Observable<Sede> {
+  public createSede(sede: Sede): Observable<any> {
     return this.http
-      .post<Sede>(`${API_URL}/sedes`, sede)
+      .post<any>(`${API_URL}/sedes`, sede)
       .catch(this.handleError);
   }
 
   // API: PUT /sedes/:id
-  public updateSede(sede: Sede): Observable<Sede> {
+  public updateSede(sede: Sede): Observable<any> {
     return this.http
-      .put<Sede>(`${API_URL}/sedes/${sede.id}`, sede)
+      .put<any>(`${API_URL}/sedes/${sede.id}`, sede)
       .catch(this.handleError);
   }
 
   //API: DELETE /sedes/:id
-  public removeSede(id: number): Observable<Sede> {
+  public removeSede(id: number): Observable<any> {
     return this.http
-      .delete<Sede>(`${API_URL}/sedes/${id}`)
+      .delete<any>(`${API_URL}/sedes/${id}`)
       .catch(this.handleError);
   }
+
+  // API: GET /avisos
+  public getAllAvisos(): Observable<Aviso[]> {
+    return this.http
+      .get<Aviso[]>(API_URL + '/avisos')
+      .catch(this.handleError);
+  }
+
+  // API: POST /avisos
+  public createAviso(aviso: Aviso): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/avisos`, aviso)
+      .catch(this.handleError);
+  }
+
+  // API: PUT /avisos/:id
+  public updateAviso(aviso: Aviso): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/avisos/${aviso.id}`, aviso)
+      .catch(this.handleError);
+  }
+
+  //API: DELETE /avisos/:id
+  public removeAviso(id: number): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/avisos/${id}`)
+      .catch(this.handleError);
+  }
+
+  // API: GET /talleres
+  public getAllTalleres(): Observable<Taller[]> {
+    return this.http
+      .get<Taller[]>(API_URL + '/talleres')
+      .catch(this.handleError);
+  }
+
+
 
   private handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
