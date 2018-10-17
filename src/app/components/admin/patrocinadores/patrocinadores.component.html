@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <h3>Patrocinadores</h3>
+    <button mat-icon-button color="primary" (click)="add()">
+      <mat-icon aria-label="add_sede">add_circle</mat-icon>
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-md-4 sedes">
+      <div class="list-group">
+        <a *ngFor="let s of sedes" [class.active]="s == selectedSede" (click)="select(s)" class="list-group-item list-group-item-action">{{s.nombre}}</a>
+      </div>
+    </div>
+
+    <div class="col-md-4 detail con">
+      <div>
+        <h5>{{ newSede ? 'Nueva sede:' : ' '}} </h5>
+      </div>
+      <div>
+        <mat-form-field>
+          <input matInput placeholder="Nombre" [(ngModel)]="selectedSede.nombre">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <textarea matInput placeholder="Descripción" [(ngModel)]="selectedSede.direccion"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="!newSede">
+        <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
+        <button mat-raised-button color="primary" (click)="save()">Guardar</button>
+      </div>
+      <div *ngIf="newSede">
+        <button mat-stroked-button color="primary" (click)="cancel()">Cancelar</button>
+        <button mat-raised-button color="primary" (click)="create()">Crear</button>
+      </div>
+
+    </div>
+
+    <div class="col-md-4 talleres">
+      Talleres:
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
