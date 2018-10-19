@@ -32,11 +32,28 @@ export class SignupComponent {
     ]);
 
     matcher = new MyErrorStateMatcher();
-    constructor(private firebaseAuth: AngularFireAuth, private api: ApiService) { }
+    constructor(private firebaseAuth: AngularFireAuth, private api: ApiService) { 
+        this.password ="";
+        this.passwordConf="";
+    }
+
+    dateReg = /^\d{2}([./-])\d{2}\1\d{4}$/
+
+    validate() {
+        this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
+        //todo: give user feedback when passwords don't match
+        if (this.usuario.correo.trim().length== 0 || this.usuario.nombre.trim().length== 0 || this.usuario.apellido.trim().length== 0 || this.password.trim().length== 0 || this.passwordConf.trim().length== 0 || !this.usuario.fecha_nacimiento.match(this.dateReg) || this.usuario.fecha_nacimiento=="31-12-1969" || this.password != this.passwordConf){
+            console.log("Aun hay campos incorrectos");  
+        }
+        else{
+            this.signup();
+        }
+        
+    }
 
     signup() {
 
-        this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
+        
         console.log(this.usuario);
         //missing field validation        
         this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).

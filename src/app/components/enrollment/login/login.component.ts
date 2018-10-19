@@ -12,9 +12,21 @@ export class LoginComponent implements OnInit {
     password: string;
     hide = true;
 
-    constructor(private firebaseAuth: AngularFireAuth) { }
+    constructor(private firebaseAuth: AngularFireAuth) { 
+        this.email="";
+        this.password="";
+    }
 
     ngOnInit() {
+    }
+
+    validate(){
+        if(this.email.trim().length== 0 || this.password.trim().length== 0){
+            console.log("Aun hay campos incorrectos");  
+        }
+        else{
+            this.login();
+        }
     }
 
     login() {

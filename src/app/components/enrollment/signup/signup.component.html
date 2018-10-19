@@ -1,32 +1,34 @@
 <div class="row no-gutters">
-  <mat-form-field class="col-md-6" style="padding-right: 8px;">
-    <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre">
-  </mat-form-field>
-  <mat-form-field class="col-md-6">
-    <input matInput placeholder="Apellido" [(ngModel)]="usuario.apellido">
-  </mat-form-field>
-  <mat-form-field class="col-md-6" style="padding-right: 8px;">
-    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="fecha_nacimiento">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker touchUi #picker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field class="col-12">
-    <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico" [formControl]="emailFormControl"
-      [errorStateMatcher]="matcher">
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Por favor introduzca una dirección de correo válida
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      El correo es <strong>requerido</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="col-md-6" style="padding-right: 8px;">
-    <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-  </mat-form-field>
-  <mat-form-field class="col-md-6">
-    <input matInput placeholder="Confirmar contraseña" [(ngModel)]="passwordConf" [type]="hideConf ? 'password' : 'text'">
-    <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
-  </mat-form-field>
-  <button type="submit" (click)="signup()" class="btn btn-primary btn-block">Registrarse</button>
+
+    <mat-form-field class="col-md-6" style="padding-right: 8px;">
+        <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre" required>
+    </mat-form-field>
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Apellido" [(ngModel)]="usuario.apellido" required>
+    </mat-form-field>
+    <mat-form-field class="col-md-6" style="padding-right: 8px;">
+        <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="fecha_nacimiento" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="col-12">
+        <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico" [formControl]="emailFormControl" [errorStateMatcher]="matcher" required>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Por favor introduzca una dirección de correo válida
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+            El correo es <strong>requerido</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="col-md-6" style="padding-right: 8px;">
+        <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Confirmar contraseña" [(ngModel)]="passwordConf" [type]="hideConf ? 'password' : 'text'" required>
+        <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
+    </mat-form-field>
+
+    <button type="submit" (click)="validate()" class="btn btn-primary btn-block">Registrarse</button>
+
 </div>
