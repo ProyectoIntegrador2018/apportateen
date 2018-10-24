@@ -39,21 +39,22 @@ export class SignupComponent {
 
     dateReg = /^\d{2}([./-])\d{2}\1\d{4}$/
 
-    validate() {
-        this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
+    validate():boolean {
+        
         //todo: give user feedback when passwords don't match
-        if (this.usuario.correo.trim().length== 0 || this.usuario.nombre.trim().length== 0 || this.usuario.apellido.trim().length== 0 || this.password.trim().length== 0 || this.passwordConf.trim().length== 0 || !this.usuario.fecha_nacimiento.match(this.dateReg) || this.usuario.fecha_nacimiento=="31-12-1969" || this.password != this.passwordConf){
+        if (this.usuario.correo.trim().length== 0 || this.usuario.nombre.trim().length== 0 || this.usuario.apellido.trim().length== 0 || this.password.trim().length== 0 || this.passwordConf.trim().length== 0 || !this.usuario.fecha_nacimiento.match(this.dateReg) || this.usuario.fecha_nacimiento=="31-12-1969" || this.password != this.passwordConf || this.password.length < 6){
             console.log("Aun hay campos incorrectos");  
+            return false;
         }
         else{
-            this.signup();
+            return true;
         }
         
     }
 
     signup() {
 
-        
+        this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
         console.log(this.usuario);
         //missing field validation        
         this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).

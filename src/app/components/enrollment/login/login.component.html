@@ -6,5 +6,5 @@
         <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" required>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
-    <button type="submit" (click)="validate()" class="btn btn-primary btn-block">Iniciar sesión</button>
+    <button type="submit" (click)="login()" class="btn btn-primary btn-block">Iniciar sesión</button>
 </div>
