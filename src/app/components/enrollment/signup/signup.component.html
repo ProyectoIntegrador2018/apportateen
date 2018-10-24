@@ -28,5 +28,8 @@
     <input matInput placeholder="Confirmar contraseña" [(ngModel)]="passwordConf" [type]="hideConf ? 'password' : 'text'">
     <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
-  <button type="submit" (click)="signup()" class="btn btn-primary btn-block">Registrarse</button>
+  <button type="submit" (click)="signup()" class="btn btn-primary btn-block" [disabled]="loading">
+    <span *ngIf="!loading">Registrarse</span>
+    <mat-spinner *ngIf="loading" [diameter]="24" style="margin:auto"></mat-spinner>
+  </button>
 </div>
