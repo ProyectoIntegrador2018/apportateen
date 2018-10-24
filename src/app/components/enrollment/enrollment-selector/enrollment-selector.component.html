@@ -1,12 +1,12 @@
 <div id="wrapper" class="row no-gutters justify-content-md-center">
   <div class="col-md-4">
     <div class="buttonWrapper">
-      <button class="tabLink" [ngClass]="{'selected': !isLoginSelected}" (click)="isLoginSelected = false">Registrarse</button>
       <button class="tabLink" [ngClass]="{'selected': isLoginSelected}" (click)="isLoginSelected = true">Iniciar sesión</button>
+      <button class="tabLink" [ngClass]="{'selected': !isLoginSelected}" (click)="isLoginSelected = false">Registrarse</button>
     </div>
     <div id="loginWrapper">
-      <signup [hidden]="isLoginSelected"></signup>
       <login [hidden]="!isLoginSelected"></login>
+      <signup [hidden]="isLoginSelected"></signup>
     </div>
   </div>
 </div>
