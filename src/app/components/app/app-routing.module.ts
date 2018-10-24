@@ -11,14 +11,23 @@ import { TalleresComponent } from '../admin/talleres/talleres.component';
 import { CategoriasComponent } from '../admin/categorias/categorias.component';
 import { PatrocinadoresComponent } from '../admin/patrocinadores/patrocinadores.component';
 import { AvisosComponent } from '../admin/avisos/avisos.component';
+import { NgxPermissionsGuard } from 'ngx-permissions';
 
 
 const routes: Routes = [
     { path: '', redirectTo: '/inicio', pathMatch: 'full' },
     { path: 'inicio', component: HomeComponent },
-    { path: 'ingresar', component: EnrollmentComponent },
     {
-        path: 'admin', component: MainComponent,
+        path: 'ingresar', component: EnrollmentComponent
+    },
+    {
+        path: 'admin', component: MainComponent, canActivate: [NgxPermissionsGuard],
+        data: {
+            permissions: {
+                only: 'ADMIN',
+                redirectTo: 'inicio'
+            }
+        },
         children: [
             { path: '', redirectTo: 'inicio', pathMatch: 'full' },
             { path: 'convocatorias', component: ConvocatoriasComponent },
@@ -30,7 +39,13 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'usuario', component: MainUserComponent,
+        path: 'usuario', component: MainUserComponent, canActivate: [NgxPermissionsGuard],
+        data: {
+            permissions: {
+                only: 'USER',
+                redirectTo: 'inicio'
+            }
+        },
         children: [
             { path: 'inscripcion', component: InscripcionComponent },
         ]
