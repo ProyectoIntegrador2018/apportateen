@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ApiService } from 'app/services/api/api.service';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
     email: string;
     password: string;
     hide = true;
@@ -24,9 +24,8 @@ export class LoginComponent implements OnInit {
         private permissionsService: NgxPermissionsService,
         public snackBar: MatSnackBar) {
         this.loading = false;
-    }
-
-    ngOnInit() {
+        this.email = "";
+        this.password = "";
     }
 
     login() {

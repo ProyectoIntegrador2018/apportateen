@@ -35,8 +35,10 @@ export class SignupComponent {
         Validators.email,
     ]);
     loading: boolean;
-
+    dateReg = /^\d{2}([./-])\d{2}\1\d{4}$/;
     matcher = new MyErrorStateMatcher();
+
+
     constructor(private firebaseAuth: AngularFireAuth,
         private api: ApiService,
         private permissionsService: NgxPermissionsService,
@@ -44,36 +46,54 @@ export class SignupComponent {
         public router: Router,
         public snackBar: MatSnackBar) {
         this.loading = false;
+        this.password = "";
+        this.passwordConf = "";
+    }
+
+    validate(): boolean {
+        if (this.usuario.correo.trim().length == 0 || this.usuario.nombre.trim().length == 0 ||
+            this.usuario.apellido.trim().length == 0 || this.password.trim().length == 0 ||
+            this.passwordConf.trim().length == 0 || !this.usuario.fecha_nacimiento.match(this.dateReg) ||
+            this.usuario.fecha_nacimiento == "31-12-1969" || this.password != this.passwordConf ||
+            this.password.length < 6) {
+            return false;
+        }
+        return true;
     }
 
     signup() {
-        this.loading = true;
         this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
-        console.log(this.usuario);
-        //missing field validation        
-        this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
-            then(user => {
-                this.usuario.id = user.user.uid;
-                this.api.createUser(this.usuario).subscribe(result => {
-                    this.api.getUserById(this.usuario.id).subscribe(userResult => {
-                        const perm = ["USER"];
-                        this.storage.set('@user:data', userResult);
-                        this.permissionsService.loadPermissions(perm);
-                        this.router.navigate(['usuario']);
+        if (this.validate()) {
+            this.loading = true;
+            this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
+                then(user => {
+                    this.usuario.id = user.user.uid;
+                    this.api.createUser(this.usuario).subscribe(result => {
+                        this.api.getUserById(this.usuario.id).subscribe(userResult => {
+                            const perm = ["USER"];
+                            this.storage.set('@user:data', userResult);
+                            this.permissionsService.loadPermissions(perm);
+                            this.router.navigate(['usuario']);
+                            this.loading = false;
+                        })
+                    }, error => {
+                        this.firebaseAuth.auth.signOut();
+                        this.snackBar.open(error.error, '', {
+                            duration: 2400,
+                        });
                         this.loading = false;
-                    })
-                }, error => {
-                    this.firebaseAuth.auth.signOut();
-                    this.snackBar.open(error.error, '', {
-                        duration: 2400,
                     });
+                })
+                .catch(error => {
                     this.loading = false;
-                });
-            })
-            .catch(error => {
-                this.loading = false;
-                console.log(error.message);
-            })
+                    console.log(error.message);
+                })
+        }
+        else {
+            this.snackBar.open('Revise que todos los campos estén correctos.', '', {
+                duration: 2000,
+            });
+        }
     }
 
     formatDate(date) {
