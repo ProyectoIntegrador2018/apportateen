@@ -15,6 +15,7 @@ import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
 import { UserModule } from './components/user/user.module';
+import { NgxPermissionsModule } from 'ngx-permissions';
 import 'hammerjs';
 
 @NgModule({
@@ -25,6 +26,7 @@ import 'hammerjs';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxPermissionsModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     FormsModule,

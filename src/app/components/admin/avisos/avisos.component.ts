@@ -55,8 +55,7 @@ export class AvisosComponent implements OnInit {
       if (result) {
         this.api.removeAviso(aviso.id).subscribe(res => {
           if (res.status == 'success') {
-            this.obtenerAvisos();
-            this.selectedAviso = new Aviso();
+            this.resetInputs();
           }
           this.snackBar.open(res.message, '', {
             duration: 900,

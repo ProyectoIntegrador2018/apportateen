@@ -1,10 +1,13 @@
 <div class="row no-gutters">
   <mat-form-field class="col-md-12">
-    <input matInput placeholder="Correo electrónico" [(ngModel)]="email">
+    <input matInput placeholder="Correo electrónico" [(ngModel)]="email" required>
   </mat-form-field>
   <mat-form-field class="col-md-12">
-    <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'">
+    <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" required>
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
   </mat-form-field>
-  <button type="submit" (click)="login()" class="btn btn-primary btn-block">Iniciar sesión</button>
+  <button type="submit" (click)="login()" class="btn btn-primary btn-block" [disabled]="loading">
+    <span *ngIf="!loading">Iniciar sesión</span>
+    <mat-spinner *ngIf="loading" [diameter]="24" style="margin:auto"></mat-spinner>
+  </button>
 </div>

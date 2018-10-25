@@ -6,4 +6,5 @@ export class User {
     fecha_nacimiento: string = '';
     telefono: string = '';
     curp: string = '';
+    isAdmin: boolean = false;
 }
