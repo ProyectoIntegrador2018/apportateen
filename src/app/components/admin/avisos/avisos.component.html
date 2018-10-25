@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <h3>Avisos</h3>
+  </div>
+  <div class="row justify-content-between">
+    <div class="col-md-5">
+      <form>
+        <mat-form-field>
+          <mat-select placeholder="Enviar mensaje a:" [(value)]="publico">
+            <mat-option value="general">Todos los talleres</mat-option>
+            <mat-option value="especifico">Taller específico</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="publico == 'especifico'">
+          <mat-select placeholder="Selecciona el taller" [(ngModel)]="selectedAviso.idtaller" name="tallerselect">
+            <mat-option *ngFor="let taller of talleres" [value]="taller.id">{{taller.nombre}} - {{taller.sede}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Título de aviso</mat-label>
+          <input matInput [(ngModel)]="selectedAviso.titulo" name="titulo">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Mensaje del aviso</mat-label>
+          <textarea matInput [(ngModel)]="selectedAviso.mensaje" name="mensaje"></textarea>
+        </mat-form-field>
+        <button mat-raised-button class="pull-right" color="warn" (click)="resetInputs()">Cancelar</button>
+        <button mat-raised-button class="pull-right" color="primary" (click)="publicar()" style="margin-right:12px;">{{editMode?'Guardar':'Publicar'}}</button>
+      </form>
+    </div>
+    <div class="col-md-6 reduced">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let aviso of avisos">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{aviso.titulo}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{aviso.taller}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>{{aviso.mensaje}}</p>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="editar(aviso)">Editar</button>
+            <button mat-button color="warn" (click)="eliminar(aviso)">Eliminar</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </div>
+  </div>
+</div>

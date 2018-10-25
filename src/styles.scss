@@ -1,5 +1,5 @@
 @import '~styles-variables.scss';
-
+@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 * {
 
@@ -38,6 +38,26 @@ mat-icon {
 
 $theme-colors: ("primary": $main-light,
 );
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.mat-drawer-content {
+  z-index: 100 !important;
+}
+
+.mat-sidenav {
+  z-index: 101 !important;
+}
+
+.mat-drawer-container {
+  background: #fff;
+}
+
+.mat-list-item {
+  color: #fff !important;
+}
 
 @import "~bootstrap/scss/bootstrap.scss";
 

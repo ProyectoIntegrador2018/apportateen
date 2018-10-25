@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class EnrollmentComponent {
-    isLoginSelected: boolean = false;
+    isLoginSelected: boolean = true;
 }

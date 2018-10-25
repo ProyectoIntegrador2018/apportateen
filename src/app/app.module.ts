@@ -13,6 +13,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
+import { MAT_DATE_LOCALE } from '@angular/material';
+import { UserModule } from './components/user/user.module';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -22,15 +26,19 @@ import { AdminModule } from './components/admin/admin.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    NgxPermissionsModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     FormsModule,
     BrowserAnimationsModule,
     UiModule,
     EnrollmentModule,
-    AdminModule
+    AdminModule,
+    UserModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, {
+    provide: MAT_DATE_LOCALE, useValue: 'es-MX'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

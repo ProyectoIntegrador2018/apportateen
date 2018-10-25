@@ -3,12 +3,12 @@ import { Sede } from '../../../models/sede.model';
 import { ApiService } from '../../../services/api/api.service';
 
 @Component({
-  selector: 'sedes',
-  templateUrl: './sedes.component.html',
-  styleUrls: ['./sedes.component.scss']
+  selector: 'talleres',
+  templateUrl: './talleres.component.html',
+  styleUrls: ['./talleres.component.scss']
 })
 
-export class SedesComponent implements OnInit {
+export class TalleresComponent implements OnInit {
 
   newSede: Sede;
   selectedSede;
