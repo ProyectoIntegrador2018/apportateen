@@ -59,6 +59,11 @@ $theme-colors: ("primary": $main-light,
   color: #fff !important;
 }
 
+.mat-list-item:hover {
+  text-decoration: none !important;
+}
+
+
 @import "~bootstrap/scss/bootstrap.scss";
 
 //more than 576 px
