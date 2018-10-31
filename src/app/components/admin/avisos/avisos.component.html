@@ -14,7 +14,7 @@
 
         <mat-form-field *ngIf="publico == 'especifico'">
           <mat-select placeholder="Selecciona el taller" [(ngModel)]="selectedAviso.idtaller" name="tallerselect">
-            <mat-option *ngFor="let taller of talleres" [value]="taller.id">{{taller.nombre}} - {{taller.sede}}</mat-option>
+            <mat-option *ngFor="let taller of talleres" [value]="taller.id">{{taller.nombre}} - {{taller.sedeDesc}}</mat-option>
           </mat-select>
         </mat-form-field>
 
