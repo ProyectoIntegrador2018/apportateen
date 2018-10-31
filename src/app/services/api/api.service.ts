@@ -12,6 +12,7 @@ import { Tutor } from '../../models/tutor.model';
 import { Sede } from '../../models/sede.model';
 import { Aviso } from '../../models/aviso.model';
 import { Taller } from '../../models/taller.model';
+import { Categoria } from 'app/models/categoria.model';
 const API_URL = environment.apiUrl;
 
 @Injectable({
@@ -124,6 +125,34 @@ export class ApiService {
   public getAllTalleres(): Observable<Taller[]> {
     return this.http
       .get<Taller[]>(API_URL + '/talleres')
+      .catch(this.handleError);
+  }
+
+  // API: GET /categorias
+  public getAllCategorias(): Observable<Categoria[]> {
+    return this.http
+      .get<Categoria[]>(API_URL + '/categorias')
+      .catch(this.handleError);
+  }
+
+  // API: POST /categorias
+  public createCategoria(categoria: Categoria): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/categorias`, categoria)
+      .catch(this.handleError);
+  }
+
+  // API: PUT /categorias/:id
+  public updateCategoria(categoria: Categoria): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/categorias/${categoria.id}`, categoria)
+      .catch(this.handleError);
+  }
+
+  //API: DELETE /categorias/:id
+  public removeCategoria(id: number): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/categorias/${id}`)
       .catch(this.handleError);
   }
 
