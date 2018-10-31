@@ -128,6 +128,27 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  // API: POST /talleres
+  public createTaller(taller: Taller): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/talleres`, taller)
+      .catch(this.handleError);
+  }
+
+  // API: PUT /talleres/:id
+  public updateTaller(taller: Taller): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/talleres/${taller.id}`, taller)
+      .catch(this.handleError);
+  }
+
+  //API: DELETE /talleres/:id
+  public removeTaller(id: number): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/talleres/${id}`)
+      .catch(this.handleError);
+  }
+
   // API: GET /categorias
   public getAllCategorias(): Observable<Categoria[]> {
     return this.http
