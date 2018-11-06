@@ -32,7 +32,7 @@ export class ApiService {
   // API: GET /users/:id
   public getUserById(user_id: string): Observable<User> {
     return this.http
-      .get<User>(API_URL + '/users/' + user_id)
+      .get<User>(`${API_URL}/users/${user_id}`)
       .catch(this.handleError);
   }
 
@@ -40,6 +40,13 @@ export class ApiService {
   public createUser(user: User): Observable<any> {
     return this.http
       .post<any>(`${API_URL}/users`, user)
+      .catch(this.handleError);
+  }
+
+  // API: PUT /users/:id
+  public updateUser(user: User): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/users/${user.id}`, user)
       .catch(this.handleError);
   }
 
@@ -97,6 +104,13 @@ export class ApiService {
   public getAllAvisos(): Observable<Aviso[]> {
     return this.http
       .get<Aviso[]>(API_URL + '/avisos')
+      .catch(this.handleError);
+  }
+
+  // API: GET /avisos/:id
+  public getAvisosByTaller(id: number): Observable<Aviso[]> {
+    return this.http
+      .get<Aviso[]>(`${API_URL}/avisos/${id}`)
       .catch(this.handleError);
   }
 
