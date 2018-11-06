@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+      <h3>Avisos</h3>
+
+      <div class="card-columns">
+        <mat-card *ngFor="let a of avisos">
+          <mat-card-header>
+            <mat-card-title>{{a.titulo}}</mat-card-title>
+            <mat-card-subtitle>{{a.taller}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>
+              {{a.mensaje}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <h3>Pendientes</h3>
+    </div>
+  </div>
+</div>

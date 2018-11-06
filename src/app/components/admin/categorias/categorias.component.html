@@ -32,19 +32,14 @@
           </mat-form-field>
         </div>
       </div>
-      <!--<div>
-        <mat-form-field>
-          <textarea matInput placeholder="Descripción" [(ngModel)]="selectedSede.direccion"></textarea>
-        </mat-form-field>
-      </div>-->
 
       <div *ngIf="!newCat">
         <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
         <button mat-raised-button class="pull-right" color="primary" (click)="save()" style="margin-right:12px;">Guardar</button>
       </div>
       <div *ngIf="newCat">
-        <button mat-stroked-button color="primary" (click)="cancel()">Cancelar</button>
-        <button mat-raised-button color="primary" (click)="create()" style="margin-right:12px;">Crear</button>
+        <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
+        <button mat-raised-button class="pull-right" color="primary" (click)="create()" style="margin-right:12px;">Crear</button>
       </div>
 
     </div>

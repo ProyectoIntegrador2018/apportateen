@@ -12,6 +12,7 @@ import { CategoriasComponent } from '../admin/categorias/categorias.component';
 import { PatrocinadoresComponent } from '../admin/patrocinadores/patrocinadores.component';
 import { AvisosComponent } from '../admin/avisos/avisos.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
+import { AvisosUserComponent } from '../user/avisos/avisos.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,8 @@ const routes: Routes = [
             }
         },
         children: [
+            { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+            { path: 'inicio', component: AvisosUserComponent },
             { path: 'inscripcion', component: InscripcionComponent },
         ]
     }

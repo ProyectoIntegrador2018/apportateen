@@ -7,4 +7,7 @@ export class User {
     telefono: string = '';
     curp: string = '';
     isAdmin: boolean = false;
+    idtaller: number = 0;
+    idcategoria: number = 0;
+    categoria: string = '';
 }
