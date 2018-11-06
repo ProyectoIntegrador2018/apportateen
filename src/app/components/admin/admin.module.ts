@@ -39,10 +39,8 @@ import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.c
         TalleresComponent,
         CategoriasComponent,
         PatrocinadoresComponent,
-        AvisosComponent,
-        ConfirmationDialog
+        AvisosComponent
     ],
-    exports: [MainComponent],
-    entryComponents: [ConfirmationDialog]
+    exports: [MainComponent]
 })
 export class AdminModule { }
