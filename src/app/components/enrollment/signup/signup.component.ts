@@ -54,8 +54,7 @@ export class SignupComponent {
         if (this.usuario.correo.trim().length == 0 || this.usuario.nombre.trim().length == 0 ||
             this.usuario.apellido.trim().length == 0 || this.password.trim().length == 0 ||
             this.passwordConf.trim().length == 0 || !this.usuario.fecha_nacimiento.match(this.dateReg) ||
-            this.usuario.fecha_nacimiento == "31-12-1969" || this.password != this.passwordConf ||
-            this.password.length < 6) {
+            this.usuario.fecha_nacimiento == "31-12-1969" || this.password != this.passwordConf ) {
             return false;
         }
         return true;
@@ -64,7 +63,8 @@ export class SignupComponent {
     signup() {
         this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
         if (this.validate()) {
-            this.loading = true;
+            if (this.password.length >= 6) {
+                this.loading = true;
             this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
                 then(user => {
                     this.usuario.id = user.user.uid;
@@ -88,6 +88,12 @@ export class SignupComponent {
                     this.loading = false;
                     console.log(error.message);
                 })
+            }else{
+                this.snackBar.open('La contraseña debe ser mayor a 5 caracteres', '', {
+                    duration: 2000,
+                });
+            }
+            
         }
         else {
             this.snackBar.open('Revise que todos los campos estén correctos.', '', {
