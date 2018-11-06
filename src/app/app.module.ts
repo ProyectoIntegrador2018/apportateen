@@ -14,7 +14,9 @@ import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
 import { MAT_DATE_LOCALE } from '@angular/material';
+import {MatCardModule} from '@angular/material/card';
 import { UserModule } from './components/user/user.module';
+import {MatListModule} from '@angular/material/list';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import 'hammerjs';
 
@@ -34,7 +36,9 @@ import 'hammerjs';
     UiModule,
     EnrollmentModule,
     AdminModule,
-    UserModule
+    UserModule,
+    MatCardModule,
+    MatListModule
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'

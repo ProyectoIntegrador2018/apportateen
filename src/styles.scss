@@ -1,71 +1,70 @@
 @import '~styles-variables.scss';
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-
 * {
-
-  &:active,
-  :focus {
-    outline: none !important;
-  }
+    &:active,
+     :focus {
+        outline: none !important;
+    }
 }
 
 body,
 html {
-  margin: 0;
-  padding: 0;
-  min-height: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
 }
 
 .btn-primary,
 nav a {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 app-root {
-  min-height: 100%;
-  display: block;
+    min-height: 100%;
+    display: block;
 }
 
 app-layout {
-  min-height: 100vh;
-  display: block;
-  position: relative;
+    min-height: 100vh;
+    display: block;
+    position: relative;
 }
 
 mat-icon {
-  font-family: 'Material Icons' !important;
+    font-family: 'Material Icons' !important;
 }
 
-$theme-colors: ("primary": $main-light,
-);
-
+$theme-colors: ("primary": $main-light, );
 .mat-drawer-backdrop.mat-drawer-shown {
-  background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .mat-drawer-content {
-  z-index: 100 !important;
+    z-index: 100 !important;
 }
 
 .mat-sidenav {
-  z-index: 101 !important;
+    z-index: 101 !important;
 }
 
 .mat-drawer-container {
-  background: #fff;
+    background: #fff;
 }
 
 .mat-list-item {
-  color: #fff !important;
+    color: #fff !important;
 }
 
 .mat-list-item:hover {
-  text-decoration: none !important;
+    text-decoration: none !important;
 }
 
+.container-fluid {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
 
 @import "~bootstrap/scss/bootstrap.scss";
-
 //more than 576 px
 //@include media-breakpoint-up(sm) {}
 //less than 576 px
@@ -74,5 +73,4 @@ $theme-colors: ("primary": $main-light,
 //@include media-breakpoint-only(xs) { }
 //targeting the same screen size range would be:
 //@include media-breakpoint-between(md, xl){} 
-
 @import "~font-awesome/css/font-awesome.css";
