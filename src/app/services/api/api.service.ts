@@ -191,6 +191,20 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  // API: GET /convocatorias
+  public getEstatusConvocatorias(): Observable<any> {
+    return this.http
+      .get<any>(`${API_URL}/convocatorias`)
+      .catch(this.handleError);
+  }
+
+  // API: PUT /convocatorias  -> No id needed as there's only one instance
+  public updateConvocatorias(cambio: any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/convocatorias`, cambio)
+      .catch(this.handleError);
+  }
+
 
 
   private handleError(error: Response | any) {
