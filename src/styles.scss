@@ -36,8 +36,7 @@ mat-icon {
   font-family: 'Material Icons' !important;
 }
 
-$theme-colors: ("primary": $main-light,
-);
+$theme-colors: ("primary": $main-light, );
 
 .mat-drawer-backdrop.mat-drawer-shown {
   background-color: rgba(0, 0, 0, 0);
@@ -63,9 +62,16 @@ $theme-colors: ("primary": $main-light,
   text-decoration: none !important;
 }
 
+.container-fluid {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+.lpadfix {
+  padding-left: 15px;
+}
 
 @import "~bootstrap/scss/bootstrap.scss";
-
 //more than 576 px
 //@include media-breakpoint-up(sm) {}
 //less than 576 px
@@ -74,5 +80,4 @@ $theme-colors: ("primary": $main-light,
 //@include media-breakpoint-only(xs) { }
 //targeting the same screen size range would be:
 //@include media-breakpoint-between(md, xl){} 
-
 @import "~font-awesome/css/font-awesome.css";
