@@ -13,6 +13,7 @@ import { PatrocinadoresComponent } from './patrocinadores/patrocinadores.compone
 import { AvisosComponent } from './avisos/avisos.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
+import { CorreosComponent } from './correos/correos.component';
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.c
         TalleresComponent,
         CategoriasComponent,
         PatrocinadoresComponent,
-        AvisosComponent
+        AvisosComponent,
+        CorreosComponent
     ],
     exports: [MainComponent]
 })
