@@ -248,12 +248,12 @@
                                 <p class="sponsor-h4"><b>Registra tus datos y nosotros te contactaremos!</b></p>
                                 <form class="sponsor-form">
                                     <mat-form-field class="sponsor-full-width">
-                                        <input matInput placeholder="Nombre/Nombre de la organización">
+                                        <input matInput [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}" placeholder=" Nombre/Nombre de la organización ">
                                     </mat-form-field>
-                                    <mat-form-field class="sponsor-full-width">
-                                        <input matInput type="email" placeholder="Correo">
+                                    <mat-form-field class="sponsor-full-width ">
+                                        <input matInput type="email " [(ngModel)]="email " [ngModelOptions]="{standalone: true}" placeholder="Correo">
                                     </mat-form-field>
-                                    <div class="sponsor-submit"><button mat-button type="submit" class="sponsor-submit-button">Enviar</button></div>
+                                    <div class="sponsor-submit"><button mat-button type="submit" (click)="register()" class="sponsor-submit-button">Enviar</button></div>
 
                                 </form>
                             </div>
