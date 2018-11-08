@@ -9,7 +9,41 @@
     height: 40px;
 }
 
+.resize-sponsor {
+    display: block;
+    margin: auto;
+    width: auto;
+    /* you can use % */
+    height: 200px;
+}
+
 html {}
+
+.sponsor-h4 {
+    float: left !important;
+    margin-left: 0 !important;
+    margin-right: auto !important;
+    text-align: left !important;
+}
+
+.sponsor-submit-button {
+    float: right;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right !important;
+}
+
+.sponsor-submit-button {
+    background: #805acb !important;
+    color: white !important;
+    text-align: center !important;
+}
+
+.sponsor-submit-button:hover {
+    background: #b388ff !important;
+    color: white !important;
+    text-align: center !important;
+}
 
 .sponsor-form {
     min-width: 150px;
