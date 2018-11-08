@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <h3>Correos</h3>
+  </div>
+  <div class="row justify-content-between">
+    <div class="col-md-5">
+      <form>
+        <mat-form-field>
+          <mat-select placeholder="Enviar correo a:" [(value)]="publico">
+            <mat-option value="general">Todos los talleres</mat-option>
+            <mat-option value="especifico">Taller específico</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="publico == 'especifico'">
+          <mat-select placeholder="Selecciona el taller" [(ngModel)]="idtaller" name="tallerselect">
+            <mat-option *ngFor="let taller of talleres" [value]="taller.id">{{taller.nombre}} - {{taller.sedeDesc}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button class="pull-right" color="primary" (click)="publicar()" style="margin-right:12px;">Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>

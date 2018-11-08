@@ -205,7 +205,12 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-
+   // API: GET /talleres/:id
+   public getCorreosByTallerId(id: number): Observable<any[]> {
+    return this.http
+      .get<any[]>(`${API_URL}/talleres/${id}`)
+      .catch(this.handleError);
+  }
 
   private handleError(error: Response | any) {
     console.error('ApiService::handleError', error);
