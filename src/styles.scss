@@ -64,6 +64,10 @@ $theme-colors: ("primary": $main-light, );
     padding-left: 0 !important;
 }
 
+.lpadfix {
+    padding-left: 15px;
+}
+
 @import "~bootstrap/scss/bootstrap.scss";
 //more than 576 px
 //@include media-breakpoint-up(sm) {}

@@ -13,17 +13,21 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
-import { MAT_DATE_LOCALE } from '@angular/material';
-import {MatCardModule} from '@angular/material/card';
+import { MAT_DATE_LOCALE, MatButtonModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { UserModule } from './components/user/user.module';
-import {MatListModule} from '@angular/material/list';
+import { MatListModule } from '@angular/material/list';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import 'hammerjs';
+import { ConfirmationDialog } from './components/confirmation-dialog/confirmation-dialog.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ConfirmationDialog
   ],
   imports: [
     BrowserModule,
@@ -37,12 +41,15 @@ import 'hammerjs';
     EnrollmentModule,
     AdminModule,
     UserModule,
+    MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatInputModule
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialog]
 })
 export class AppModule { }
