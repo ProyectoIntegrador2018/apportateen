@@ -35,7 +35,7 @@ export class CorreosComponent implements OnInit {
   }
 
   publicar() {
-    if (true) {
+    if (this.checkInputs()) {
       const dialogRef = this.dialog.open(ConfirmationDialog, {
         disableClose: true
       });
@@ -58,11 +58,11 @@ export class CorreosComponent implements OnInit {
         }
       });
 
-    } /*else {
+    } else {
       this.snackBar.open('Revise que todos los campos sean correctos.', '', {
         duration: 1600
       })
-  }*/
+  }
   }
 
   resetInputs() {
@@ -72,6 +72,10 @@ export class CorreosComponent implements OnInit {
   checkInputs(): boolean {
     if (this.publico == '') {
       return false;
+    }
+
+    if (this.publico == 'especifico'){
+      return (this.idtaller > 0);
     }
 
     return true;
