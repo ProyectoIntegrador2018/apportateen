@@ -10,8 +10,9 @@ import { SedesComponent } from './sedes/sedes.component';
 import { TalleresComponent } from './talleres/talleres.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { PatrocinadoresComponent } from './patrocinadores/patrocinadores.component';
-import { AvisosComponent, ConfirmationDialog } from './avisos/avisos.component';
+import { AvisosComponent } from './avisos/avisos.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
     imports: [
@@ -38,10 +39,8 @@ import { StorageServiceModule } from 'angular-webstorage-service';
         TalleresComponent,
         CategoriasComponent,
         PatrocinadoresComponent,
-        AvisosComponent,
-        ConfirmationDialog
+        AvisosComponent
     ],
-    exports: [MainComponent],
-    entryComponents: [ConfirmationDialog]
+    exports: [MainComponent]
 })
 export class AdminModule { }

@@ -8,41 +8,41 @@
   <div class="row">
     <div class="col-md-4 sedes">
       <div class="list-group">
-        <a *ngFor="let s of sedes" [class.active]="s == selectedSede" (click)="select(s)" class="list-group-item list-group-item-action">{{s.nombre}}</a>
+        <a *ngFor="let t of talleres" [class.active]="t.id == selectedTaller.id" (click)="select(t)" class="list-group-item list-group-item-action">{{t.nombre}}
+          - {{t.sedeDesc}}</a>
       </div>
     </div>
 
     <div class="col-md-4 detail con">
-      <div>
-        <h5>{{ newSede ? 'Nueva sede:' : ' '}} </h5>
+      <h5>{{ newTaller ? 'Nuevo taller:' : ' '}} </h5>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="selectedTaller.nombre" name="nombreTaller">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput [(ngModel)]="selectedTaller.descripcion"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Sede" [(ngModel)]="selectedTaller.sede" name="sedeselect">
+          <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
+          <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div *ngIf="!newTaller">
+        <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
+        <button mat-raised-button class="pull-right" color="primary" (click)="save()" style="margin-right:12px;">Guardar</button>
       </div>
-      <div>
-        <mat-form-field>
-          <input matInput placeholder="Nombre" [(ngModel)]="selectedSede.nombre">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field>
-          <textarea matInput placeholder="Descripción" [(ngModel)]="selectedSede.direccion"></textarea>
-        </mat-form-field>
+      <div *ngIf="newTaller">
+        <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
+        <button mat-raised-button class="pull-right" color="primary" (click)="create()" style="margin-right:12px;">Crear</button>
       </div>
 
-      <div *ngIf="!newSede">
-        <button mat-raised-button color="warn" (click)="delete()">Eliminar</button>
-        <button mat-raised-button color="primary" (click)="save()">Guardar</button>
-      </div>
-      <div *ngIf="newSede">
-        <button mat-stroked-button color="primary" (click)="cancel()">Cancelar</button>
-        <button mat-raised-button color="primary" (click)="create()">Crear</button>
-      </div>
-
-    </div>
-
-    <div class="col-md-4 talleres">
-      Talleres:
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
-      </ul>
     </div>
   </div>
 </div>

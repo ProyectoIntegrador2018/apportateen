@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Sede } from '../../../models/sede.model';
 import { ApiService } from '../../../services/api/api.service';
+import { Categoria } from 'app/models/categoria.model';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
+import { Taller } from 'app/models/taller.model';
 
 @Component({
   selector: 'talleres',
@@ -10,60 +14,110 @@ import { ApiService } from '../../../services/api/api.service';
 
 export class TalleresComponent implements OnInit {
 
-  newSede: Sede;
-  selectedSede;
+  newTaller: Taller;
+  selectedTaller;
+  talleres;
   sedes;
+  categorias;
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+    this.talleres = [];
+    this.selectedTaller = {};
     this.sedes = [];
-    this.selectedSede = {};
+    this.categorias = [];
   }
 
   ngOnInit() {
-    this.api.getAllSedes().subscribe(result => {
-      this.sedes = result;
-      console.log(this.sedes);
+    this.obtenerTalleres();
+  }
+
+  obtenerTalleres() {
+    this.api.getAllTalleres().subscribe(result => {
+      this.talleres = result[0];
+      this.sedes = result[1];
+      this.categorias = result[2];
       this.autoSelect();
     });
   }
 
   add() {
-    this.newSede = new Sede();
-    this.selectedSede = this.newSede;
+    this.newTaller = new Taller();
+    this.selectedTaller = this.newTaller;
   }
 
   delete() {
-    let index = this.sedes.indexOf(this.selectedSede);
-    this.sedes.splice(index, 1);
-    this.api.removeSede(this.selectedSede.id).subscribe(result => console.log(result));
-    this.autoSelect();
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller ${this.selectedTaller.nombre}. ¿Desea continuar?`;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
+          if (res.status == 'success') {
+            this.snackBar.open(res.message, '', {
+              duration: 900,
+            });
+            this.obtenerTalleres();
+          }
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 1500,
+          });
+        });
+      }
+    });
   }
 
   save() {
-    this.api.updateSede(this.selectedSede).subscribe(result => console.log(result));
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller ${this.selectedTaller.nombre}. ¿Desea continuar?`;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.api.updateTaller(this.selectedTaller).subscribe(res => {
+          this.snackBar.open(res.message, '', {
+            duration: 1000
+          });
+          this.obtenerTalleres();
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 1000
+          });
+        });
+      }
+    });
   }
 
   cancel() {
-    this.newSede = null;
+    this.newTaller = null;
     this.autoSelect();
   }
 
   create() {
-    this.sedes.push(this.selectedSede);
-    this.newSede = null;
-    this.api.createSede(this.selectedSede).subscribe(result => console.log(result));
+    this.newTaller = null;
+    this.api.createTaller(this.selectedTaller).subscribe(result => {
+      if (result.status == 'success') {
+        this.snackBar.open(result.message, '', {
+          duration: 1500,
+        });
+        this.obtenerTalleres();
+      }
+    }, error => {
+      this.snackBar.open(error.error, '', {
+        duration: 1500,
+      });
+    })
   }
 
-  select(sede: Sede) {
-    this.selectedSede = sede;
+  select(taller: Taller) {
+    this.selectedTaller = Object.assign({}, taller);
   }
 
   autoSelect() {
-    if (this.sedes.length != 0) {
-      this.selectedSede = this.sedes[0];
+    if (this.talleres.length != 0) {
+      this.selectedTaller = Object.assign({}, this.talleres[0]);
     }
   }
-
-
 
 }

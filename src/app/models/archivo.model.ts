@@ -1,4 +1,4 @@
-export class Archivos {
+export class Archivo {
     id: string = '';
     user_id: string = '';
     clave: string = '';

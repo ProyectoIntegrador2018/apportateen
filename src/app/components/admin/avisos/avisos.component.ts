@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api/api.service';
 import { Aviso } from '../../../models/aviso.model';
-import { MatDialog, MatDialogRef, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'avisos',
@@ -42,7 +43,7 @@ export class AvisosComponent implements OnInit {
 
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
-      this.talleres = result;
+      this.talleres = result[0];
     })
   }
 
@@ -130,19 +131,3 @@ export class AvisosComponent implements OnInit {
   }
 }
 
-@Component({
-  selector: 'confirm-dialog',
-  template: `<h1 mat-dialog-title>Confirmación</h1>
-  <div mat-dialog-content>
-    <p>{{mensajeConfirmacion}}</p>
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button (click)="dialogRef.close(false)" color="primary">No, cancelar</button>
-    <button mat-button (click)="dialogRef.close(true)" color="warn" cdkFocusInitial>Sí, continuar</button>
-  </div>`
-})
-export class ConfirmationDialog {
-  public mensajeConfirmacion: string;
-  constructor(
-    public dialogRef: MatDialogRef<ConfirmationDialog>) { }
-}
