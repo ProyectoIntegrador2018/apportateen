@@ -11,19 +11,19 @@ import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmat
 })
 
 export class CorreosComponent implements OnInit {
-  
+
   talleres;
 
   publico: string;
   idtaller = 0;
 
-  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {  
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {
     this.talleres = [];
     this.publico = '';
   }
 
   ngOnInit() {
-    
+
     this.obtenerTalleres();
   }
 
@@ -35,39 +35,34 @@ export class CorreosComponent implements OnInit {
   }
 
   publicar() {
-    
-    if (true) {
-        const dialogRef = this.dialog.open(ConfirmationDialog, {
-          disableClose: true
-        });
-        dialogRef.componentInstance.mensajeConfirmacion = `Sera le redirigirá a su cliente de correo predeterminado. ¿Desea continuar?`;
+    if (this.checkInputs()) {
+      const dialogRef = this.dialog.open(ConfirmationDialog, {
+        disableClose: true
+      });
+      dialogRef.componentInstance.mensajeConfirmacion = `Sera le redirigirá a su cliente de correo predeterminado. ¿Desea continuar?`;
 
-        dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-            if (this.publico == 'general') {
-              this.idtaller = 0;
-            }
-
-            this.api.getCorreosByTallerId(this.idtaller).subscribe(res => {
-              // Parsear correos a mailto
-              var correos = res.join(',');
-              this.resetInputs();
-              window.location.href = `mailto:?bcc=${correos}`;
-            }, error => {
-              this.snackBar.open(error.error, '', {
-                duration: 1800
-              });
-            });
-            
-
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          if (this.publico == 'general') {
+            this.idtaller = 0;
           }
-        });
-      
+          this.api.getCorreosByTallerId(this.idtaller).subscribe(res => {
+            var correos = res.join(',');
+            this.resetInputs();
+            window.location.href = `mailto:?bcc=${correos}`;
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 1800
+            });
+          });
+        }
+      });
+
     } else {
       this.snackBar.open('Revise que todos los campos sean correctos.', '', {
         duration: 1600
       })
-    }
+  }
   }
 
   resetInputs() {
@@ -78,7 +73,11 @@ export class CorreosComponent implements OnInit {
     if (this.publico == '') {
       return false;
     }
-    
+
+    if (this.publico == 'especifico'){
+      return (this.idtaller > 0);
+    }
+
     return true;
   }
 }
