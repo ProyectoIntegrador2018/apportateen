@@ -39,7 +39,7 @@ export class CorreosComponent implements OnInit {
       const dialogRef = this.dialog.open(ConfirmationDialog, {
         disableClose: true
       });
-      dialogRef.componentInstance.mensajeConfirmacion = `Sera le redirigirá a su cliente de correo predeterminado. ¿Desea continuar?`;
+      dialogRef.componentInstance.mensajeConfirmacion = `Se le redirigirá a su cliente de correo predeterminado para enviar el correo. ¿Desea continuar?`;
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {

@@ -109,7 +109,8 @@
               <h3 class="mt-0">Importante</h3>
               <ol>
                 <li>No es necesario tener experiencia previa desarrollando apps o programando, sólo ganas de
-                  participar.</li>
+                  participar.
+                </li>
                 <li>Es para niñas, niños y jóvenes independientemente de la escuela y de las habilidades previas. </li>
                 <li>No se necesita un equipo para participar. </li>
                 <li>No es necesario contar con computadora para participar.</li>
@@ -255,6 +256,30 @@
           </div>
 
           <!--Todo Quieres ser patrocinador?-->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <h4 class="sponsor-h4">¿Quieres ser patrocinador?</h4>
+                <br>
+                <p class="sponsor-h4"><b>Registra tus datos y nosotros te contactaremos!</b></p>
+                <form class="sponsor-form">
+                  <mat-form-field class="sponsor-full-width">
+                    <input matInput [(ngModel)]="nombre" [ngModelOptions]="{standalone: true}" placeholder=" Nombre/Nombre de la organización ">
+                  </mat-form-field>
+                  <mat-form-field class="sponsor-full-width ">
+                    <input matInput type="email " [(ngModel)]="email " [ngModelOptions]="{standalone: true}"
+                      placeholder="Correo">
+                  </mat-form-field>
+                  <div class="sponsor-submit"><button mat-button type="submit" (click)="register()" class="sponsor-submit-button">Enviar</button></div>
+
+                </form>
+              </div>
+              <div class="col-md-6 col-sm-12">
+                <div width="150" height="150" class=""><img class="img-fluid resize-sponsor pt-5 mt-5" src="../../../assets/img/sponsors/handshake1.png"></div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
