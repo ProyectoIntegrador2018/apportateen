@@ -27,7 +27,7 @@ const routes: Routes = [
         data: {
             permissions: {
                 only: 'ADMIN',
-                redirectTo: 'inicio'
+                redirectTo: 'ingresar'
             }
         },
         children: [
@@ -46,7 +46,7 @@ const routes: Routes = [
         data: {
             permissions: {
                 only: 'USER',
-                redirectTo: 'inicio'
+                redirectTo: 'ingresar'
             }
         },
         children: [
