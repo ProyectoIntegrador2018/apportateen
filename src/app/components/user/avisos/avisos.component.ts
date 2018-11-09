@@ -10,9 +10,11 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 export class AvisosUserComponent {
     avisos;
+    loading;
     constructor(private api: ApiService,
         @Inject(LOCAL_STORAGE) private storage: WebStorageService) {
         this.avisos = [];
+        this.loading = null;
     }
 
     ngOnInit() {
@@ -24,6 +26,7 @@ export class AvisosUserComponent {
         this.api.getUserById(userStorage.id).subscribe(user => {
             this.storage.set('@user:data', user);
             this.api.getAvisosByTaller(user.idtaller).subscribe(result => {
+                this.loading = false;
                 this.avisos = result;
             })
         })

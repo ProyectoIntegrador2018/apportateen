@@ -2,8 +2,7 @@
   <div class="row">
     <div class="col-md-10">
       <h3>Avisos</h3>
-
-      <div class="card-columns">
+      <div class="card-columns" *ngIf="avisos.length > 0 && loading != null">
         <mat-card *ngFor="let a of avisos">
           <mat-card-header>
             <mat-card-title>{{a.titulo}}</mat-card-title>
@@ -15,6 +14,10 @@
             </p>
           </mat-card-content>
         </mat-card>
+      </div>
+      <div *ngIf="avisos.length < 1 && loading != null">
+        <h1>Sin Avisos</h1>
+        <p>Por el momento no hay avisos. Revisa nuevamente más tarde.</p>
       </div>
     </div>
     <div class="col-md-2">

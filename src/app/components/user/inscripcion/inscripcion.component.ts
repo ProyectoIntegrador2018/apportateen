@@ -13,6 +13,7 @@ import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmat
   styleUrls: ['./inscripcion.component.scss']
 })
 export class InscripcionComponent implements OnInit {
+  estatus: boolean;
   user: User = new User();
   tallerActual;
   talleres;
@@ -26,6 +27,7 @@ export class InscripcionComponent implements OnInit {
     this.talleres = [];
     this.sedes = [];
     this.tallerActual = '';
+    this.estatus = null;
   }
 
   ngOnInit() {
@@ -34,12 +36,18 @@ export class InscripcionComponent implements OnInit {
   }
 
   cargarSedes() {
-    this.api.getAllSedes().subscribe(result => {
-      this.sedes = result;
-      if (this.user.idtaller != 0) {
-        this.obtenerTallerActual();
+    this.api.getEstatusConvocatorias().subscribe(status => {
+      this.estatus = status.estatus;
+      if (this.estatus) {
+        this.api.getAllSedes().subscribe(result => {
+          this.sedes = result;
+          if (this.user.idtaller != 0) {
+            this.obtenerTallerActual();
+          }
+        })
       }
     })
+
   }
 
   seleccionarSede(event: any) {

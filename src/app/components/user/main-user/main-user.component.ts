@@ -1,5 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { NgxPermissionsService } from 'ngx-permissions';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'user',
@@ -12,14 +16,26 @@ export class MainUserComponent implements OnDestroy {
 
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
-      this.mobileQuery = media.matchMedia('(max-width: 600px)');
-      this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-      this.mobileQuery.addListener(this._mobileQueryListener);
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher,
+    private fireAuth: AngularFireAuth,
+    public router: Router,
+    @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+    private permissionsService: NgxPermissionsService) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnDestroy(): void {
-      this.mobileQuery.removeListener(this._mobileQueryListener);
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  logout() {
+    this.fireAuth.auth.signOut().then(() => {
+      this.storage.remove('@user:data');
+      this.permissionsService.flushPermissions();
+      this.router.navigate(['ingresar']);
+    })
   }
 
 

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MainUserComponent } from './main-user/main-user.component'
 import { FormsModule } from '@angular/forms';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonToggleModule, MatCardModule, MatInkBar, MatInputModule, MatButtonModule, MatSelectModule, MatOptionModule, MatDialogModule, MatSnackBarModule, MatTooltipModule } from '@angular/material';
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatButtonToggleModule, MatCardModule, MatInkBar, MatInputModule, MatButtonModule, MatSelectModule, MatOptionModule, MatDialogModule, MatSnackBarModule, MatTooltipModule, MatMenuModule } from '@angular/material';
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
 import { AvisosUserComponent } from './avisos/avisos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,7 +27,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatOptionModule,
     MatDialogModule,
     MatSnackBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule
+
   ],
   declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent],
   exports: [MainUserComponent],
