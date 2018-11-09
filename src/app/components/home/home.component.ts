@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { log } from 'util';
+import { ApiService } from '../../services/api/api.service';
+import { Sponsor } from '../../models/sponsor.model';
 
 @Component({
     selector: 'inicio',
@@ -8,13 +10,12 @@ import { log } from 'util';
     styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent { 
+export class HomeComponent {
     nombre: string;
     email: string;
+    sponsor: Sponsor = new Sponsor();
 
-    constructor(public snackBar: MatSnackBar) {
-        this.nombre = "";
-        this.email = "";
+    constructor(public snackBar: MatSnackBar, private api: ApiService) {
     }
 
     validateEmail(e) {
@@ -23,19 +24,25 @@ export class HomeComponent {
     }
 
     validate(): boolean {
-        if (this.nombre.trim().length == 0 || this.email.trim().length == 0 || !this.validateEmail(this.email)) {
+        if (this.sponsor.nombre.trim().length == 0 || this.sponsor.correo.trim().length == 0 || !this.validateEmail(this.sponsor.correo)) {
             return false;
         }
         return true;
     }
-    register(){
-        if(this.validate()){
-            console.log("registra");
-            
-        } else{
-            console.log("no registra");
+    register() {
+        if (this.validate()) {
+            this.api.createSponsor(this.sponsor).subscribe(res => {
+                this.snackBar.open(res.message, '', {
+                    duration: 1400,
+                });
+            }, error => {
+                this.snackBar.open(error.error, '', {
+                    duration: 1400,
+                });
+            })
+        } else {
             this.snackBar.open('Revise que ambos campos estén correctos', '', {
-                duration: 2000,
+                duration: 1400,
             });
         }
 
