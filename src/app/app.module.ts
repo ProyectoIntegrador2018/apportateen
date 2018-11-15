@@ -21,7 +21,8 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import 'hammerjs';
 import { ConfirmationDialog } from './components/confirmation-dialog/confirmation-dialog.component';
 import {MatInputModule} from '@angular/material/input';
-
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import {MatInputModule} from '@angular/material/input';
     MatButtonModule,
     MatCardModule,
     MatListModule,
-    MatInputModule
+    MatInputModule,
+    MatStepperModule,
+    MatSelectModule
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
