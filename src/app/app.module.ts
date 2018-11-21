@@ -23,6 +23,7 @@ import { ConfirmationDialog } from './components/confirmation-dialog/confirmatio
 import {MatInputModule} from '@angular/material/input';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSelectModule} from '@angular/material/select';
+import {NgxPageScrollModule} from 'ngx-page-scroll';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatListModule,
     MatInputModule,
     MatStepperModule,
-    MatSelectModule
+    MatSelectModule,
+    NgxPageScrollModule
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
