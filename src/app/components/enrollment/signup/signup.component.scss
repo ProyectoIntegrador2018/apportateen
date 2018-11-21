@@ -1,0 +1,8 @@
+@import '~styles-variables.scss';
+@import "~bootstrap/scss/bootstrap.scss";
+
+@include media-breakpoint-down(xs) {
+  .step-header {
+    display: none;
+  }
+}
