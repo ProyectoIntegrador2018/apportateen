@@ -51,7 +51,7 @@ export class AvisosComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el aviso ${aviso.titulo}. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el aviso seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.removeAviso(aviso.id).subscribe(res => {
@@ -78,7 +78,7 @@ export class AvisosComponent implements OnInit {
         const dialogRef = this.dialog.open(ConfirmationDialog, {
           disableClose: true
         });
-        dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el aviso ${this.selectedAviso.titulo}. ¿Desea continuar?`;
+        dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el aviso seleccionado. ¿Desea continuar?`;
         if (this.publico == 'general') {
           this.selectedAviso.idtaller = 0;
         }

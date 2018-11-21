@@ -41,7 +41,7 @@ export class SedesComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la sede ${this.selectedSede.nombre}. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la sede seleccionada. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.removeSede(this.selectedSede.id).subscribe(res => {
@@ -68,7 +68,7 @@ export class SedesComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la sede ${this.selectedSede.nombre}. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la sede seleccionada. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.updateSede(this.selectedSede).subscribe(res => {
@@ -108,6 +108,7 @@ export class SedesComponent implements OnInit {
 
   select(sede: Sede) {
     this.selectedSede = Object.assign({}, sede);
+    this.newSede = null;
   }
 
   autoSelect() {

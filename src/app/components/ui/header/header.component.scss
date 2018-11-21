@@ -27,76 +27,84 @@ $theme-colors: ("primary": $main-light,
 
 }*/
 
-
 @import '~styles-variables.scss';
 @import "~bootstrap/scss/bootstrap.scss";
-
-
 .toolbar,
 mat-icon {
-  color: #fff;
+    color: #fff;
 }
 
 .admin-container {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+a {
+    color: #ffff;
+    font-size: 0.8em;
+}
+
+a:hover {
+    color: #ffff;
+    text-decoration: none;
 }
 
 mat-sidenav {
-  width: 200px;
-  background-color: $main;
-  color: #fff
+    width: 200px;
+    background-color: $main;
+    color: #fff
 }
 
 mat-toolbar {
-  background-color: $main-dark;
+    background-color: $main-dark;
 }
 
 button {
-  background: transparent;
-  border: none;
-
-  :hover {
-    cursor: pointer;
-  }
+    background: transparent;
+    border: none;
+     :hover {
+        cursor: pointer;
+    }
 }
 
 .is-mobile .toolbar {
-  position: fixed;
-  z-index: 2;
+    position: fixed;
+    z-index: 2;
 }
 
 h3.app-name {
-  margin-left: 8px;
-  margin-bottom: 0 !important;
+    margin-left: 8px;
+    margin-bottom: 0 !important;
 }
 
 .sidenav-container {
-  flex: 1;
+    flex: 1;
 }
 
 .is-mobile .sidenav-container {
-  flex: 1 0 auto;
+    flex: 1 0 auto;
 }
 
 mat-sidenav-content {
-  margin-left: 200px;
-  padding: 20px;
+    margin-left: 200px;
+    padding: 20px;
 }
 
-
 @include media-breakpoint-down(xs) {
-  mat-sidenav-content {
-    margin-left: 0;
-    padding: 12px;
-  }
+    mat-sidenav-content {
+        margin-left: 0;
+        padding: 12px;
+    }
+    .ml-3 {
+        display: none;
+    }
 }
 
 .remaining-space {
-  flex: 1 1 auto;
+    flex: 1 1 auto;
 }
