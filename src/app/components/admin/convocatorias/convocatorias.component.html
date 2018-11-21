@@ -1,10 +1,7 @@
 <div class="container-fluid">
+  <h3>Convocatoria</h3>
   <div>
-    <div class="col-8">
-      <h3>Convocatorias</h3>
-
-    </div>
-    <mat-slide-toggle [disabled]="disabled" [checked]="estatus" color="primary" (toggleChange)="alternar()">Convocatorias
-      {{estatus? 'habilitadas' : 'inhabilitadas'}}</mat-slide-toggle>
+    <mat-slide-toggle [disabled]="disabled" [checked]="estatus" color="primary" (toggleChange)="alternar()">Convocatoria
+      {{estatus? 'habilitada' : 'inhabilitada'}}</mat-slide-toggle>
   </div>
 </div>

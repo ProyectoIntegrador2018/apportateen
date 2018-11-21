@@ -44,6 +44,7 @@ button {
 
 h3.app-name {
   margin-left: 8px;
+  margin-bottom: 0 !important;
 }
 
 .sidenav-container {
@@ -65,4 +66,8 @@ mat-sidenav-content {
     margin-left: 0;
     padding: 12px;
   }
+}
+
+.remaining-space {
+  flex: 1 1 auto;
 }

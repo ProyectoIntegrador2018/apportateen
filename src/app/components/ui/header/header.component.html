@@ -1,25 +1,30 @@
 <div class="admin-container">
-  <mat-toolbar color="primary" class="toolbar">
-    <a class="navbar-brand" href="#">
-      <img src="../../../../assets/img/logo.png" height="50" class="d-inline-block align-top" alt="">
-    </a>
-    <span class="remaining-space"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-toolbar color="primary" class="toolbar">
+        <a class="navbar-brand" routerLink="inicio">
+            <img src="../../../../assets/img/logo.png" height="50" class="d-inline-block align-top" alt="">
+        </a>
+        <a pageScroll class="ml-3 mr-3" href="#QueEs">¿Qué es ApportaTeen?</a>
+        <a pageScroll class="ml-3 mr-3" href="#Reqs">Convocatoria</a>
+        <a pageScroll class="ml-3 mr-3" href="#Pats">Patrocinadores</a>
+        <a pageScroll class="ml-3 mr-3" href="#Calendar">Calendario</a>
+
+        <span class="remaining-space"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
-      <button routerLink="/ingresar" mat-menu-item *ngIf="!user">
+        <mat-menu #menu="matMenu">
+            <button routerLink="/ingresar" mat-menu-item *ngIf="!user">
         <mat-icon>exit_to_app</mat-icon>
         <span>Ingresar</span>
       </button>
-      <button mat-menu-item *ngIf="user" (click)="userRedirect()">
+            <button mat-menu-item *ngIf="user" (click)="userRedirect()">
         <mat-icon>build</mat-icon>
         <span>Preferencias</span>
       </button>
-      <button mat-menu-item *ngIf="user" (click)="logout()">
+            <button mat-menu-item *ngIf="user" (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Cerrar sesión</span>
       </button>
-    </mat-menu>
-  </mat-toolbar>
+        </mat-menu>
+    </mat-toolbar>
 </div>

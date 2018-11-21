@@ -49,7 +49,7 @@ export class TalleresComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller ${this.selectedTaller.nombre}. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
@@ -72,7 +72,7 @@ export class TalleresComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller ${this.selectedTaller.nombre}. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.updateTaller(this.selectedTaller).subscribe(res => {
@@ -112,6 +112,7 @@ export class TalleresComponent implements OnInit {
 
   select(taller: Taller) {
     this.selectedTaller = Object.assign({}, taller);
+    this.newTaller = null;
   }
 
   autoSelect() {

@@ -14,10 +14,16 @@ import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
 import { MAT_DATE_LOCALE, MatButtonModule } from '@angular/material';
+import { MatCardModule } from '@angular/material/card';
 import { UserModule } from './components/user/user.module';
+import { MatListModule } from '@angular/material/list';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import 'hammerjs';
 import { ConfirmationDialog } from './components/confirmation-dialog/confirmation-dialog.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatSelectModule} from '@angular/material/select';
+import {NgxPageScrollModule} from 'ngx-page-scroll';
 
 @NgModule({
   declarations: [
@@ -37,7 +43,13 @@ import { ConfirmationDialog } from './components/confirmation-dialog/confirmatio
     EnrollmentModule,
     AdminModule,
     UserModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
+    MatInputModule,
+    MatStepperModule,
+    MatSelectModule,
+    NgxPageScrollModule
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'

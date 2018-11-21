@@ -42,7 +42,7 @@ export class CategoriasComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la categoría ${this.selectedCat.nombre}. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la categoría seleccionada. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.removeCategoria(this.selectedCat.id).subscribe(res => {
@@ -69,7 +69,7 @@ export class CategoriasComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la categoría ${this.selectedCat.nombre}. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la categoría seleccionada. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.updateCategoria(this.selectedCat).subscribe(res => {
@@ -109,6 +109,7 @@ export class CategoriasComponent implements OnInit {
 
   select(categoria: Categoria) {
     this.selectedCat = Object.assign({}, categoria);
+    this.newCat = null;
   }
 
   autoSelect() {

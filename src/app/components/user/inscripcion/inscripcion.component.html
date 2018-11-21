@@ -1,18 +1,19 @@
 <div class="container-fluid">
   <h3>Talleres</h3>
-  <div class="row justify-content-start">
+  <div class="row justify-content-start" *ngIf="estatus">
     <div class="col-md-3">
       <mat-form-field>
-        <mat-select placeholder="Selecciona la sede" (selectionChange)="seleccionarSede($event)" name="sedeselect">
+        <mat-select [disabled]="sedes.length < 1" placeholder="Selecciona la sede" (selectionChange)="seleccionarSede($event)"
+          name="sedeselect">
           <mat-option *ngFor="let sede of sedes" [value]="sede.id">{{sede.nombre}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-    <div class="col-md-3 d-flex align-items-center">
+    <div class="col-md-4 d-flex align-items-center">
       <p style="margin: 0;"> Inscripción actual: <b>{{tallerActual? tallerActual: 'Sin inscripción'}}</b> </p>
     </div>
   </div>
-  <div class="card-columns">
+  <div class="card-columns" *ngIf="estatus">
     <mat-card *ngFor="let taller of selectedSede.talleres">
       <mat-card-header>
         <mat-card-title>{{taller.nombre}}</mat-card-title>
@@ -30,11 +31,17 @@
       </mat-card-actions>
     </mat-card>
   </div>
-  <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1">
+  <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus">
     <h1>Sin talleres</h1>
     <p>Por el momento no existen talleres de tu categoría en esta sede.</p>
     <button mat-flat-button matTooltipPosition="after" matTooltip="La categoría es asignada de manera automática por el sistema según tu edad. Actualmente perteneces a la categoría {{user.categoria}}.">
       Más información
     </button>
+  </div>
+
+  <div *ngIf="!estatus && estatus != null">
+    <h1>Convocatoria inhabilitada</h1>
+    <p>¡Ups! El período de inscripción a los talleres no ha comenzado o ya concluyó.</p>
+    <p>Puedes revisar las fechas de convocatoria en la página principal de ApportaTeen.</p>
   </div>
 </div>

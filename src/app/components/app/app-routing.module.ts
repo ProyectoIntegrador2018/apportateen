@@ -13,6 +13,7 @@ import { PatrocinadoresComponent } from '../admin/patrocinadores/patrocinadores.
 import { AvisosComponent } from '../admin/avisos/avisos.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { AvisosUserComponent } from '../user/avisos/avisos.component';
+import { CorreosComponent } from '../admin/correos/correos.component';
 
 
 const routes: Routes = [
@@ -26,7 +27,7 @@ const routes: Routes = [
         data: {
             permissions: {
                 only: 'ADMIN',
-                redirectTo: 'inicio'
+                redirectTo: 'ingresar'
             }
         },
         children: [
@@ -36,7 +37,8 @@ const routes: Routes = [
             { path: 'talleres', component: TalleresComponent },
             { path: 'categorias', component: CategoriasComponent },
             { path: 'patrocinadores', component: PatrocinadoresComponent },
-            { path: 'inicio', component: AvisosComponent }
+            { path: 'inicio', component: AvisosComponent },
+            { path: 'correos', component: CorreosComponent }
         ]
     },
     {
@@ -44,7 +46,7 @@ const routes: Routes = [
         data: {
             permissions: {
                 only: 'USER',
-                redirectTo: 'inicio'
+                redirectTo: 'ingresar'
             }
         },
         children: [
