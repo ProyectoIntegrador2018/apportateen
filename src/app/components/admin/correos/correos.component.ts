@@ -48,7 +48,6 @@ export class CorreosComponent implements OnInit {
           }
           this.api.getCorreosByTallerId(this.idtaller).subscribe(res => {
             var correos = res.join(',');
-            this.resetInputs();
             window.location.href = `mailto:?bcc=${correos}`;
           }, error => {
             this.snackBar.open(error.error, '', {
@@ -62,7 +61,7 @@ export class CorreosComponent implements OnInit {
       this.snackBar.open('Revise que todos los campos sean correctos.', '', {
         duration: 1600
       })
-  }
+    }
   }
 
   resetInputs() {
@@ -74,7 +73,7 @@ export class CorreosComponent implements OnInit {
       return false;
     }
 
-    if (this.publico == 'especifico'){
+    if (this.publico == 'especifico') {
       return (this.idtaller > 0);
     }
 
