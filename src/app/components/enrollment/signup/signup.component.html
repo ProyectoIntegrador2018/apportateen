@@ -24,22 +24,22 @@
             required>
         </mat-form-field>
         <mat-form-field class="col-md-6" style="padding-right: 8px;">
-          <mat-select placeholder="Sexo" [(ngModel)]="usuario.sex" formControlName="sexCtrl" required>
+          <mat-select placeholder="Sexo" [(ngModel)]="usuario.sexo" formControlName="sexCtrl" required>
             <mat-option *ngFor="let sex of sexs" [value]="sex.value">
               {{sex.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field class="col-md-6" style="padding-right: 8px;">
-          <input matInput placeholder="Nombre del tutor" [(ngModel)]="tutor.nombre" formControlName="nameTutCtrl"
+          <input matInput placeholder="Nombre del tutor" [(ngModel)]="usuario.tutor_nombre" formControlName="nameTutCtrl"
             required>
         </mat-form-field>
         <mat-form-field class="col-md-6" style="padding-right: 8px;">
-          <input matInput type="number" placeholder="Teléfono del tutor" [(ngModel)]="tutor.telefono" formControlName="telTutCtrl"
-            required>
+          <input matInput type="number" placeholder="Teléfono del tutor" [(ngModel)]="usuario.tutor_telefono"
+            formControlName="telTutCtrl" required>
         </mat-form-field>
         <mat-form-field class="col-12">
-          <input matInput [(ngModel)]="tutor.correo" type="email" placeholder="Correo electrónico del tutor"
+          <input matInput [(ngModel)]="usuario.tutor_correo" type="email" placeholder="Correo electrónico del tutor"
             formControlName="emailTutCtrl" required>
         </mat-form-field>
       </div>

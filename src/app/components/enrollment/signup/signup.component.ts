@@ -21,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export interface Select {
     value: string;
     viewValue: string;
-  }
+}
 
 
 @Component({
@@ -47,77 +47,77 @@ export class SignupComponent implements OnInit {
     emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     matcher = new MyErrorStateMatcher();
     sexs: Select[] = [
-        {value: 'Masculino', viewValue: 'Masculino'},
-        {value: 'Femenino', viewValue: 'Femenino'}
-      ];
+        { value: 'Masculino', viewValue: 'Masculino' },
+        { value: 'Femenino', viewValue: 'Femenino' }
+    ];
 
-      sTypes: Select[] = [
-        {value: 'Pública', viewValue: 'Pública'},
-        {value: 'Privada', viewValue: 'Privada'}
-      ];
+    sTypes: Select[] = [
+        { value: 'Pública', viewValue: 'Pública' },
+        { value: 'Privada', viewValue: 'Privada' }
+    ];
 
-      siNo: Select[] = [
-        {value: 'Si', viewValue: 'Si'},
-        {value: 'No', viewValue: 'No'}
-      ];
+    siNo: Select[] = [
+        { value: 'Si', viewValue: 'Si' },
+        { value: 'No', viewValue: 'No' }
+    ];
 
-      grades: Select[] = [
-        {value: '1ro prepa', viewValue: '1er año de prepa'},
-        {value: '2do prepa', viewValue: '2do año de prepa'},
-        {value: '3ro prepa', viewValue: '3er año de prepa'},
-        {value: '1ro secundaria', viewValue: '1er año de secundaria'},
-        {value: '2do secundaria', viewValue: '2do año de secundaria'},
-        {value: '3ro secundaria', viewValue: '3er año de secundaria'}
-      ];
+    grades: Select[] = [
+        { value: '1ro prepa', viewValue: '1er año de prepa' },
+        { value: '2do prepa', viewValue: '2do año de prepa' },
+        { value: '3ro prepa', viewValue: '3er año de prepa' },
+        { value: '1ro secundaria', viewValue: '1er año de secundaria' },
+        { value: '2do secundaria', viewValue: '2do año de secundaria' },
+        { value: '3ro secundaria', viewValue: '3er año de secundaria' }
+    ];
 
     isLinear = true;
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
-  thirdFormGroup: FormGroup;
+    firstFormGroup: FormGroup;
+    secondFormGroup: FormGroup;
+    thirdFormGroup: FormGroup;
 
-  constructor(private firebaseAuth: AngularFireAuth,
-    private api: ApiService,
-    private permissionsService: NgxPermissionsService,
-    @Inject(LOCAL_STORAGE) private storage: WebStorageService,
-    public router: Router,
-    public snackBar: MatSnackBar,
-    private _formBuilder: FormBuilder) {
-    this.loading = false;
-    this.password = "";
-    this.passwordConf = "";
-}
+    constructor(private firebaseAuth: AngularFireAuth,
+        private api: ApiService,
+        private permissionsService: NgxPermissionsService,
+        @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+        public router: Router,
+        public snackBar: MatSnackBar,
+        private _formBuilder: FormBuilder) {
+        this.loading = false;
+        this.password = "";
+        this.passwordConf = "";
+    }
 
-  ngOnInit() {
-    this.firstFormGroup = this._formBuilder.group({
-      nameCtrl: ['', Validators.required],
-      lastNameCtrl: ['', Validators.required],
-      dateCtrl: ['', Validators.required],
-      curpCtrl: ['', Validators.required],
-      telCtrl: ['', Validators.required],
-      sexCtrl: ['', Validators.required],
-      nameTutCtrl: ['', Validators.required],
-      telTutCtrl: ['', Validators.required],
-      emailTutCtrl: ['', Validators.required]
-    });
-    console.log(this.usuario.nombre);
-    
-    this.secondFormGroup = this._formBuilder.group({
-      nameSchoolCtrl: ['', Validators.required],
-      typeSchoolCtrl: ['', Validators.required],
-      gradeCtrl: ['', Validators.required]
-    });
+    ngOnInit() {
+        this.firstFormGroup = this._formBuilder.group({
+            nameCtrl: ['', Validators.required],
+            lastNameCtrl: ['', Validators.required],
+            dateCtrl: ['', Validators.required],
+            curpCtrl: ['', Validators.required],
+            telCtrl: ['', Validators.required],
+            sexCtrl: ['', Validators.required],
+            nameTutCtrl: ['', Validators.required],
+            telTutCtrl: ['', Validators.required],
+            emailTutCtrl: ['', Validators.required]
+        });
+        console.log(this.usuario.nombre);
 
-    this.thirdFormGroup = this._formBuilder.group({
-        expCtrl: ['', Validators.required],
-        exAlumnoCtrl: ['', Validators.required],
-        becaCtrl: ['', Validators.required],
-        refCtrl: ['', Validators.required],
-        expDetalleCtrl: ['', Validators.required]
-      });
-  }
+        this.secondFormGroup = this._formBuilder.group({
+            nameSchoolCtrl: ['', Validators.required],
+            typeSchoolCtrl: ['', Validators.required],
+            gradeCtrl: ['', Validators.required]
+        });
+
+        this.thirdFormGroup = this._formBuilder.group({
+            expCtrl: ['', Validators.required],
+            exAlumnoCtrl: ['', Validators.required],
+            becaCtrl: ['', Validators.required],
+            refCtrl: ['', Validators.required],
+            expDetalleCtrl: ['', Validators.required]
+        });
+    }
 
 
-    
+
 
     validate(): boolean {
         if (this.usuario.correo.trim().length == 0 || this.usuario.nombre.trim().length == 0 ||
@@ -130,46 +130,45 @@ export class SignupComponent implements OnInit {
     }
 
     signup() {
-        this.usuario.tutor = this.tutor;
         this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
         if (this.validate()) {
-            if(this.tutor.correo.match(this.emailReg)){
+            if (this.usuario.tutor_correo.match(this.emailReg)) {
                 if (this.password.length >= 6) {
                     this.loading = true;
-                this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
-                    then(user => {
-                        this.usuario.id = user.user.uid;
-                        this.api.createUser(this.usuario).subscribe(result => {
-                            this.api.getUserById(this.usuario.id).subscribe(userResult => {
-                                const perm = ["USER"];
-                                this.storage.set('@user:data', userResult);
-                                this.permissionsService.loadPermissions(perm);
-                                this.router.navigate(['usuario']);
+                    this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
+                        then(user => {
+                            this.usuario.id = user.user.uid;
+                            this.api.createUser(this.usuario).subscribe(result => {
+                                this.api.getUserById(this.usuario.id).subscribe(userResult => {
+                                    const perm = ["USER"];
+                                    this.storage.set('@user:data', userResult);
+                                    this.permissionsService.loadPermissions(perm);
+                                    this.router.navigate(['usuario']);
+                                    this.loading = false;
+                                })
+                            }, error => {
+                                this.firebaseAuth.auth.signOut();
+                                this.snackBar.open(error.error, '', {
+                                    duration: 2400,
+                                });
                                 this.loading = false;
-                            })
-                        }, error => {
-                            this.firebaseAuth.auth.signOut();
-                            this.snackBar.open(error.error, '', {
-                                duration: 2400,
                             });
+                        })
+                        .catch(error => {
                             this.loading = false;
-                        });
-                    })
-                    .catch(error => {
-                        this.loading = false;
-                        console.log(error.message);
-                    })
-                }else{
+                            console.log(error.message);
+                        })
+                } else {
                     this.snackBar.open('La contraseña debe ser mayor a 5 caracteres', '', {
                         duration: 2000,
                     });
                 }
-            } else{
+            } else {
                 this.snackBar.open('La dirección de correo del tutor no es valida', '', {
                     duration: 2000,
                 });
             }
-             
+
         }
         else {
             this.snackBar.open('Revise que todos los campos estén correctos.', '', {

@@ -1,6 +1,17 @@
 @import '~styles-variables.scss';
 @import "~bootstrap/scss/bootstrap.scss";
 
+.btn-primary {
+  background-color: #A191C4;
+  border-color: #A191C4;
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #8c78b7;
+  border-color: #8570b2;
+}
+
 @include media-breakpoint-down(xs) {
   .step-header {
     display: none;

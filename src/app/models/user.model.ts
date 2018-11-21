@@ -8,12 +8,14 @@ export class User {
     fecha_nacimiento: string = '';
     telefono: string = '';
     curp: string = '';
-    sex: string = '';
+    sexo: string = '';
     isAdmin: boolean = false;
     idtaller: number = 0;
     idcategoria: number = 0;
     categoria: string = '';
-    tutor: Tutor = new Tutor();
+    tutor_nombre: string = '';
+    tutor_telefono: string = '';
+    tutor_correo: string = '';
     nombreEscuela: string = '';
     tipoEscuela: string = '';
     gradoEscuela: string = '';
