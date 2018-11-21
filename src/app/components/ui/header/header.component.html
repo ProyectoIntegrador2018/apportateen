@@ -3,10 +3,14 @@
         <a class="navbar-brand" routerLink="inicio">
             <img src="../../../../assets/img/logo.png" height="50" class="d-inline-block align-top" alt="">
         </a>
-        <a pageScroll class="ml-3 mr-3" href="#QueEs">¿Qué es ApportaTeen?</a>
-        <a pageScroll class="ml-3 mr-3" href="#Reqs">Convocatoria</a>
-        <a pageScroll class="ml-3 mr-3" href="#Pats">Patrocinadores</a>
-        <a pageScroll class="ml-3 mr-3" href="#Calendar">Calendario</a>
+
+        <div *ngIf="router.url === '/inicio'">
+            <a pageScroll class="ml-3 mr-3" href="#QueEs">¿Qué es ApportaTeen?</a>
+            <a pageScroll class="ml-3 mr-3" href="#Reqs">Convocatoria</a>
+            <a pageScroll class="ml-3 mr-3" href="#Pats">Patrocinadores</a>
+            <a pageScroll class="ml-3 mr-3" href="#Calendar">Calendario</a>
+        </div>
+
 
         <span class="remaining-space"></span>
         <button mat-icon-button [matMenuTriggerFor]="menu">
