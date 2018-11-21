@@ -9,9 +9,10 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule, MatButtonModule } from '@angular/material';
+import { MatNativeDateModule, MatIconModule, MatProgressSpinnerModule, MatSnackBarModule, MatButtonModule, MatStepperModule } from '@angular/material';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     imports: [
@@ -27,7 +28,9 @@ import { NgxPermissionsModule } from 'ngx-permissions';
         StorageServiceModule,
         MatProgressSpinnerModule,
         MatSnackBarModule,
-        MatButtonModule
+        MatButtonModule,
+        MatStepperModule,
+        MatSelectModule
     ],
     providers: [ApiService],
     declarations: [EnrollmentComponent, LoginComponent, SignupComponent],

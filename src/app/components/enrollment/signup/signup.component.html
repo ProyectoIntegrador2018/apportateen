@@ -1,36 +1,185 @@
-<div class="row no-gutters">
-  <mat-form-field class="col-md-6" style="padding-right: 8px;">
-    <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre" required>
-  </mat-form-field>
-  <mat-form-field class="col-md-6">
-    <input matInput placeholder="Apellido" [(ngModel)]="usuario.apellido" required>
-  </mat-form-field>
-  <mat-form-field class="col-md-6" style="padding-right: 8px;">
-    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="fecha_nacimiento" required>
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker touchUi #picker></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field class="col-12">
-    <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico" [formControl]="emailFormControl"
-      [errorStateMatcher]="matcher">
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Por favor introduzca una dirección de correo válida
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      El correo es <strong>requerido</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="col-md-6" style="padding-right: 8px;">
-    <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" required>
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-  </mat-form-field>
-  <mat-form-field class="col-md-6">
-    <input matInput placeholder="Confirmar contraseña" [(ngModel)]="passwordConf" [type]="hideConf ? 'password' : 'text'"
-      required>
-    <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
-  </mat-form-field>
-  <button type="submit" (click)="signup()" class="btn btn-primary btn-block" [disabled]="loading">
-    <span *ngIf="!loading">Registrarse</span>
-    <mat-spinner *ngIf="loading" [diameter]="24" style="margin:auto"></mat-spinner>
-  </button>
-</div>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Personal</ng-template>
+            <div class="row no-gutters">
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre" formControlName="nameCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput placeholder="Apellido" [(ngModel)]="usuario.apellido" formControlName="lastNameCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="fecha_nacimiento" formControlName="dateCtrl" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput placeholder="Curp" [(ngModel)]="usuario.curp" formControlName="curpCtrl" required>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput type="number" placeholder="Teléfono" [(ngModel)]="usuario.telefono" formControlName="telCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <mat-select placeholder="Sexo" [(ngModel)]="usuario.sex" formControlName="sexCtrl" required>
+                        <mat-option *ngFor="let sex of sexs" [value]="sex.value">
+                            {{sex.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput placeholder="Nombre del tutor" [(ngModel)]="tutor.nombre" formControlName="nameTutCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput type="number" placeholder="Teléfono del tutor" [(ngModel)]="tutor.telefono" formControlName="telTutCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-12">
+                    <input matInput [(ngModel)]="tutor.correo" type="email" placeholder="Correo electrónico del tutor" formControlName="emailTutCtrl" required>
+                </mat-form-field>
+            </div>
+
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Estudios</ng-template>
+            <div class="row no-gutters">
+                <mat-form-field class="col-md-12" style="padding-right: 8px;">
+                    <input matInput placeholder="Nombre de la escuela" [(ngModel)]="usuario.nombreEscuela" formControlName="nameSchoolCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <mat-select placeholder="Tipo de la escuela" [(ngModel)]="usuario.tipoEscuela" formControlName="typeSchoolCtrl" required>
+                        <mat-option *ngFor="let type of sTypes" [value]="type.value">
+                            {{type.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <mat-select placeholder="Grado" [(ngModel)]="usuario.gradoEscuela" formControlName="gradeCtrl" required>
+                        <mat-option *ngFor="let grade of grades" [value]="grade.value">
+                            {{grade.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+            <ng-template matStepLabel>Experiencia</ng-template>
+            <div class="row no-gutters" style="display: inline-block">
+                ¿Has tomado alguna clase de programación, desarrollo de video juegos o apps, o de robótica antes?<br>
+                <mat-form-field style="padding-right: 8px;">
+                    <mat-select placeholder="Si/No" [(ngModel)]="usuario.experiencia" formControlName="expCtrl" required>
+                        <mat-option *ngFor="let op of siNo" [value]="op.value">
+                            {{op.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br> ¿Participaste en alguna edición anterior de ApportaTeen?<br>
+                <mat-form-field style="padding-right: 8px;">
+                    <mat-select placeholder="Si/No" [(ngModel)]="usuario.exAlumno" formControlName="exAlumnoCtrl" required>
+                        <mat-option *ngFor="let op of siNo" [value]="op.value">
+                            {{op.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br> ¿Requieres beca?<br>
+                <mat-form-field style="padding-right: 8px;">
+                    <mat-select placeholder="Si/No" [(ngModel)]="usuario.beca" formControlName="becaCtrl" required>
+                        <mat-option *ngFor="let op of siNo" [value]="op.value">
+                            {{op.viewValue}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br> Especifica qué clases has tomado y cuánto tiempo has tomado esa clase. Si sabes programar indica el lenguaje. (Especificar si es que no tienes experiencia) <br>
+                <mat-form-field class="col-md-12">
+                    <textarea matInput [(ngModel)]="usuario.expDetalle" placeholder="Experiencia" formControlName="expDetalleCtrl" required></textarea>
+                </mat-form-field>
+                <br> ¿Cómo te enteraste de este evento? <br>
+                <mat-form-field class="col-md-12">
+                    <textarea matInput [(ngModel)]="usuario.referencia" placeholder="Referencia" formControlName="refCtrl" required></textarea>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Finalizar</ng-template>
+        <div class="row no-gutters">
+            <mat-form-field class="col-12">
+                <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                    Por favor introduzca una dirección de correo válida
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                    El correo es <strong>requerido</strong>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" required>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="col-md-6">
+                <input matInput placeholder="Confirmar contraseña" [(ngModel)]="passwordConf" [type]="hideConf ? 'password' : 'text'" required>
+                <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+        </div>
+        <div>
+            <button type="submit" (click)="signup()" class="btn btn-primary btn-block" [disabled]="loading">
+                <span *ngIf="!loading">Registrarse</span>
+                <mat-spinner *ngIf="loading" [diameter]="24" style="margin:auto"></mat-spinner>
+              </button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
+
+
+
+<!--
+  <div class="row no-gutters">
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput placeholder="Nombre" [(ngModel)]="usuario.nombre" formControlName="firstCtrl" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput placeholder="Apellido" [(ngModel)]="usuario.apellido" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput [matDatepicker]="picker" placeholder="Fecha de nacimiento" [(ngModel)]="fecha_nacimiento" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker touchUi #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="col-12">
+                    <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Por favor introduzca una dirección de correo válida
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        El correo es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6" style="padding-right: 8px;">
+                    <input matInput placeholder="Contraseña" [(ngModel)]="password" [type]="hide ? 'password' : 'text'" required>
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput placeholder="Confirmar contraseña" [(ngModel)]="passwordConf" [type]="hideConf ? 'password' : 'text'" required>
+                    <mat-icon matSuffix (click)="hideConf = !hideConf">{{hideConf ? 'visibility' : 'visibility_off'}}</mat-icon>
+                </mat-form-field>
+                <button type="submit" (click)="signup()" class="btn btn-primary btn-block" [disabled]="loading">
+              <span *ngIf="!loading">Registrarse</span>
+              <mat-spinner *ngIf="loading" [diameter]="24" style="margin:auto"></mat-spinner>
+            </button>
+            </div>
+-->
