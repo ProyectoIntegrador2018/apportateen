@@ -11,9 +11,33 @@
                     </p>
                     <p class="hero-cta is-revealing" style="text-align:center;"><a class="button button-secondary button-shadow" routerLink="/ingresar">INGRESAR
               AHORA</a></p>
-                    <div class="hero-media">
-                        <img class="img-fluid rounded" src="../../../assets/img/main.jpg" alt="main">
+                    <div id="carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#carousel" data-slide-to="0" (click)="clickFirstSlide()" [className]="first ? 'active' : ''"></li>
+                            <li data-target="#carousel" data-slide-to="1" (click)="clickSecondSlide()" [className]="second  ? 'active' : ''"></li>
+                            <li data-target="#carousel" data-slide-to="2" (click)="clickThirdSlide()" [className]="third  ? 'active' : ''"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div [className]="first  ? 'carousel-item active' : 'carousel-item'">
+                                <img class="d-block w-100 carousel-img" src="../../../assets/img/main.jpg" alt="First slide">
+                            </div>
+                            <div [className]="second  ? 'carousel-item active' : 'carousel-item'">
+                                <img class="d-block w-100 carousel-img" src="../../../assets/img/main2.jpg" alt="Second slide">
+                            </div>
+                            <div [className]="third  ? 'carousel-item active' : 'carousel-item'">
+                                <img class="d-block w-100 carousel-img" src="../../../assets/img/main4.jpg" alt="Third slide">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" (click)="prev()" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" (click)="next()" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
+
                 </div>
             </div>
         </section>

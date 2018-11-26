@@ -64,6 +64,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  //API: DELETE /sponsors/:id
+  public removeSponsor(id: number): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/sponsors/${id}`)
+      .catch(this.handleError);
+  }
+
   // API: GET /guardians/:id
   public getGuardianByChildId(user_id: string): Observable<Tutor> {
     return this.http
@@ -205,8 +212,8 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-   // API: GET /talleres/:id
-   public getCorreosByTallerId(id: number): Observable<any[]> {
+  // API: GET /talleres/:id
+  public getCorreosByTallerId(id: number): Observable<any[]> {
     return this.http
       .get<any[]>(`${API_URL}/talleres/${id}`)
       .catch(this.handleError);

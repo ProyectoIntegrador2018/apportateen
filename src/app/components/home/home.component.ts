@@ -13,9 +13,67 @@ import { Sponsor } from '../../models/sponsor.model';
 export class HomeComponent {
     nombre: string;
     email: string;
+    first: boolean;
+    second: boolean;
+    third: boolean;
     sponsor: Sponsor = new Sponsor();
 
     constructor(public snackBar: MatSnackBar, private api: ApiService) {
+        this.first = true;
+        this.second = false;
+        this.third = false;
+    }
+
+    clickFirstSlide(){
+        this.first = true;
+        this.second = false;
+        this.third = false;
+    }
+
+    clickSecondSlide(){
+        this.first = false;
+        this.second = true;
+        this.third = false;
+    }
+
+    clickThirdSlide(){
+        this.first = false;
+        this.second = false;
+        this.third = true;
+    }
+
+    next(){
+        if(this.first){
+            this.first = false;
+            this.second = true;
+            this.third = false;
+        } else if(this.second){
+            this.first = false;
+            this.second = false;
+            this.third = true;
+        } else if (this.third){
+            this.first = true;
+            this.second = false;
+            this.third = false;
+        }
+        
+    }
+
+    prev(){
+        if(this.first){
+            this.first = false;
+            this.second = false;
+            this.third = true;
+            
+        } else if(this.second){
+            this.first = true;
+            this.second = false;
+            this.third = false;
+        } else if(this.third){
+            this.first = false;
+            this.second = true;
+            this.third = false;
+        }
     }
 
     validateEmail(e) {

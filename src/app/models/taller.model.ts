@@ -5,4 +5,5 @@ export class Taller {
     sede: number = 0;
     categoria: number = 0;
     sedeDesc: string = '';
+    cupo: number = 0;
 }
