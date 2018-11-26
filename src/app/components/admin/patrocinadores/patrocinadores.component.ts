@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Sede } from '../../../models/sede.model';
 import { ApiService } from '../../../services/api/api.service';
-
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 @Component({
   selector: 'patrocinadores',
   templateUrl: './patrocinadores.component.html',
@@ -9,61 +9,41 @@ import { ApiService } from '../../../services/api/api.service';
 })
 
 export class PatrocinadoresComponent implements OnInit {
+  displayedColumns: string[] = ['position', 'name', 'email', 'actions'];
+  sponsors;
 
-  newSede: Sede;
-  selectedSede;
-  sedes;
-
-  constructor(private api: ApiService) {
-    this.sedes = [];
-    this.selectedSede = {};
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+    this.sponsors = [];
   }
 
   ngOnInit() {
-    this.api.getAllSedes().subscribe(result => {
-      this.sedes = result;
-      console.log(this.sedes);
-      this.autoSelect();
+    this.obtenerPatrocinadores();
+  }
+
+  obtenerPatrocinadores() {
+    this.api.getAllSponsors().subscribe(result => {
+      this.sponsors = result;
     });
   }
 
-  add() {
-    this.newSede = new Sede();
-    this.selectedSede = this.newSede;
+  eliminar(id: number) {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el patrocinador seleccionado. ¿Desea continuar?`;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.api.removeSponsor(id).subscribe(res => {
+          this.obtenerPatrocinadores();
+          this.snackBar.open(res.message, '', {
+            duration: 900,
+          });
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        });
+      }
+    });
   }
-
-  delete() {
-    let index = this.sedes.indexOf(this.selectedSede);
-    this.sedes.splice(index, 1);
-    this.api.removeSede(this.selectedSede.id).subscribe(result => console.log(result));
-    this.autoSelect();
-  }
-
-  save() {
-    this.api.updateSede(this.selectedSede).subscribe(result => console.log(result));
-  }
-
-  cancel() {
-    this.newSede = null;
-    this.autoSelect();
-  }
-
-  create() {
-    this.sedes.push(this.selectedSede);
-    this.newSede = null;
-    this.api.createSede(this.selectedSede).subscribe(result => console.log(result));
-  }
-
-  select(sede: Sede) {
-    this.selectedSede = sede;
-  }
-
-  autoSelect() {
-    if (this.sedes.length != 0) {
-      this.selectedSede = this.sedes[0];
-    }
-  }
-
-
-
 }
