@@ -6,4 +6,5 @@ export class Taller {
     categoria: number = 0;
     sedeDesc: string = '';
     cupo: number = 0;
+    inscritos: number = 0;
 }
