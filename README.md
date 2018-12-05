@@ -1,5 +1,7 @@
 # ApportaTeen
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/5e63cc3f6395ad812ea1/maintainability)](https://codeclimate.com/github/ProyectoIntegrador2018/apportateen/maintainability)
+
 This project consist on a web platform for ApportaTeen, where they will manage all the information of the event and participants.
 
 ## Table of contents
