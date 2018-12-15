@@ -33,12 +33,10 @@ export class UsuariosComponent implements OnInit {
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
-      console.log(this.talleres);
     });
   }
 
   seleccionarTaller(event: any) {
     this.selected = this.users.filter(x => x.idtaller === event.value);
-    console.log(this.selected);
   }
 }
