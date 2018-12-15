@@ -14,6 +14,7 @@ import { AvisosComponent } from './avisos/avisos.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
 import { CorreosComponent } from './correos/correos.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import { CorreosComponent } from './correos/correos.component';
         CategoriasComponent,
         PatrocinadoresComponent,
         AvisosComponent,
-        CorreosComponent
+        CorreosComponent,
+        UsuariosComponent
     ],
     exports: [MainComponent]
 })

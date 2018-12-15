@@ -14,6 +14,7 @@ import { AvisosComponent } from '../admin/avisos/avisos.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
 import { AvisosUserComponent } from '../user/avisos/avisos.component';
 import { CorreosComponent } from '../admin/correos/correos.component';
+import { UsuariosComponent } from '../admin/usuarios/usuarios.component';
 
 
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
             { path: 'categorias', component: CategoriasComponent },
             { path: 'patrocinadores', component: PatrocinadoresComponent },
             { path: 'inicio', component: AvisosComponent },
-            { path: 'correos', component: CorreosComponent }
+            { path: 'correos', component: CorreosComponent },
+            { path: 'usuarios', component: UsuariosComponent }
         ]
     },
     {

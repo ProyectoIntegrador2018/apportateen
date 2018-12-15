@@ -20,10 +20,10 @@ import { MatListModule } from '@angular/material/list';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import 'hammerjs';
 import { ConfirmationDialog } from './components/confirmation-dialog/confirmation-dialog.component';
-import {MatInputModule} from '@angular/material/input';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatSelectModule} from '@angular/material/select';
-import {NgxPageScrollModule} from 'ngx-page-scroll';
+import { MatInputModule } from '@angular/material/input';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 @NgModule({
   declarations: [
