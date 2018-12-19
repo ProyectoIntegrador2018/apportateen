@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../services/api/api.service';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import {ExcelService} from '../../../services/excel.service';
+import { log } from 'util';
+
 @Component({
   selector: 'usuarios',
   templateUrl: './usuarios.component.html',
@@ -12,11 +15,13 @@ export class UsuariosComponent implements OnInit {
   users: any;
   talleres: any;
   selected: any;
+  taller: string;
 
-  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private excelService:ExcelService) {
     this.users = [];
     this.talleres = [];
     this.selected = [];
+    this.taller="";
   }
 
   ngOnInit() {
@@ -36,7 +41,20 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
+  getNombreTaller(id){
+    this.talleres.forEach(t => {
+      if(t.id === id){
+        this.taller = t.nombre + "-" + t.sedeDesc;
+      }
+    });
+  }
+  
   seleccionarTaller(event: any) {
     this.selected = this.users.filter(x => x.idtaller === event.value);
+    this.getNombreTaller(event.value)
+  }
+
+  exportAsXLSX():void {
+      this.excelService.exportAsExcelFile(this.selected, this.taller);
   }
 }

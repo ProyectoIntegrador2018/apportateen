@@ -24,6 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { ExcelService } from './services/excel.service';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
-  }],
+  }, ExcelService],
   bootstrap: [AppComponent],
   entryComponents: [ConfirmationDialog]
 })
