@@ -17,9 +17,7 @@ export class AppComponent implements OnInit {
     private permissionsService: NgxPermissionsService) {
     afAuth.authState.subscribe(auth => {
       if (auth) {
-        console.log('logged in');
       } else {
-        console.log('not logged in');
       }
     });
   }
@@ -31,7 +29,6 @@ export class AppComponent implements OnInit {
         let user = this.storage.get('@user:data');
         if (user) {
           perm = user.isAdmin ? ["ADMIN"] : ["USER"];
-          console.log('loading permissions', perm);
           this.permissionsService.loadPermissions(perm);
         }
       }

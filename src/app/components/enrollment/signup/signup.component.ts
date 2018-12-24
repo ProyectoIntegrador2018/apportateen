@@ -99,7 +99,6 @@ export class SignupComponent implements OnInit {
             telTutCtrl: ['', Validators.required],
             emailTutCtrl: ['', Validators.required]
         });
-        console.log(this.usuario.nombre);
 
         this.secondFormGroup = this._formBuilder.group({
             nameSchoolCtrl: ['', Validators.required],
@@ -156,7 +155,6 @@ export class SignupComponent implements OnInit {
                         })
                         .catch(error => {
                             this.loading = false;
-                            console.log(error.message);
                         })
                 } else {
                     this.snackBar.open('La contraseña debe ser mayor a 5 caracteres', '', {

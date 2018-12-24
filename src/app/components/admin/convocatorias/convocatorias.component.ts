@@ -26,7 +26,6 @@ export class ConvocatoriasComponent {
         this.api.getEstatusConvocatorias().subscribe(result => {
             this.disabled = false;
             this.estatus = result.estatus;
-            console.log(result);
         })
     }
 
@@ -50,7 +49,6 @@ export class ConvocatoriasComponent {
                         duration: 1400
                     });
                 }, error => {
-                    console.log(this.estatus);
                     this.snackBar.open(error.error, '', {
                         duration: 900
                     });
