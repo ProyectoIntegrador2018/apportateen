@@ -18,6 +18,7 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Name               | Email                       | Role           |
 | ------------------ | --------------------------- | -------------- |
 | Sonia Tijerina     | sonia.tijerina@csoftmty.org | Product Owner  |
+| Silvia Ramirez     | iliana.ramirez@csoftmty.org | Product Owner  |
 
 
 ### Environment URLS
