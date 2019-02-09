@@ -26,7 +26,7 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 * **Production** - [TBD](TBD)
 * **Development** - [TBD](TBD)
 
-### Team
+### Team version 1.0
 
 | Name           | Email             | Role        |
 | -------------- | ----------------- | ----------- |
@@ -34,6 +34,16 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Iram Díaz Reyes | idr.diaz96@gmail.com | Development |
 | Luis Felipe Salazar | sv.luisfelipe@gmail.com | Development |
 | Carlos Eduardo Serret Heredia | carloserret@gmail.com | Development |
+
+
+### Team version 2.0
+
+| Name           | Email             | Role        |
+| -------------- | ----------------- | ----------- |
+| Carmelo Ramirez | jcarmelo37@gmail.com | Scrum Master |
+| Maria Paula Anastas | mpanastas8@gmail.com | Development |
+| Barabara Brina | bmbrina9@gmail.com | Product Owner |
+| David Martinez de Silva | dmtzds@gmail.com | Development |
 
 ### Management tools
 
