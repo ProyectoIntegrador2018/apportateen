@@ -1,31 +1,32 @@
 ---
-name: Issue template
-about: Know the characteristics an issue should include.
-title: 
-labels: 
-assignees: 
+name: Historia de Usuario Template
+about: Description of the interaction that the user has with a certain functionality
+  of the application.
+title: HISTORIA USUARIO
+labels: HISTORIA USUARIO
+assignees: ''
 
 ---
 
-## Descripción
+## DESCRIPCION
 Descripción de la historia de usuario.
 
 -------------------------------------------------------------------------------------------------------
 
-## Criterios de aceptación
+## CRITERIOS DE ACEPTACION
 Criterios de aceptación en cuanto a la historia de usuario.
 
 -------------------------------------------------------------------------------------------------------
 
-## Conversación/Comentarios
+## DETALLES IMPORTANTES NO-FUNCIONALES
 Comentarios a considerarse para el desarrollo de la historia de usuario.
 
 -------------------------------------------------------------------------------------------------------
 
-## Puntos de complejidad
-Puntos de complejidad del 1-5 donde 1 es fácil y 5 es difícil
+## PRIORIDAD
+1 (Menor Prioridad) - (Mayor Prioridad)
 
 -------------------------------------------------------------------------------------------------------
 
-## Lista de tareas
+## ToDo
 Tareas necesarias para el desarrollo de la historia de usuario.
