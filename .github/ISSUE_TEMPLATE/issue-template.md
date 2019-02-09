@@ -1,9 +1,9 @@
 ---
 name: Issue template
 about: Know the characteristics an issue should include.
-title: 
-labels: 
-assignees: 
+title: ''
+labels: ''
+assignees: ''
 
 ---
 

@@ -2,7 +2,7 @@
 name: Tareas Tecnicas
 about: Descripcion de una tarea tecninca que se debe realizar.
 title: TareaTecn
-labels: ''
+labels: ToDo
 assignees: ''
 
 ---
