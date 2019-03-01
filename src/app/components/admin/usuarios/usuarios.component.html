@@ -1,18 +1,25 @@
 <div class="container-fluid">
-    <h3>Usuarios por taller</h3>
-    <div class="row justify-content-start col-md-3">
+    <div class="col-md-12 row justify-content-center">
+        <h3>Lista Usuarios Registrados</h3>
+    </div>
+    <div class="row justify-content-start col-md-3 pull-right">
         <mat-form-field>
             <mat-select placeholder="Selecciona el taller" (selectionChange)="seleccionarTaller($event)" name="tallerselect">
+                <mat-option [value]="0">Todos los Usuarios</mat-option>
                 <mat-option *ngFor="let t of talleres" [value]="t.id">{{t.nombre}} - {{t.sedeDesc}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>
     <div *ngIf="selected.length > 0">
-        <table mat-table [dataSource]="selected" class="mat-elevation-z8 col-12">
-
+        <table mat-table [dataSource]="selected" class="mat-elevation-z8 col-12" class=" table table-striped table-hover"> 
             <ng-container matColumnDef="position">
                 <th mat-header-cell *matHeaderCellDef> No. </th>
                 <td mat-cell *matCellDef="let user; let i=index"> {{i+1}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef> ID Usuario </th>
+                <td mat-cell *matCellDef="let user"> {{user.id}} </td>
             </ng-container>
 
             <ng-container matColumnDef="name">
@@ -25,21 +32,6 @@
                 <td mat-cell *matCellDef="let user"> {{user.correo}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="phone">
-                <th mat-header-cell *matHeaderCellDef> Teléfono </th>
-                <td mat-cell *matCellDef="let user"> {{user.telefono}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="birth">
-                <th mat-header-cell *matHeaderCellDef> Nacimiento </th>
-                <td mat-cell *matCellDef="let user"> {{user.fecha_nacimiento}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="curp">
-                <th mat-header-cell *matHeaderCellDef> CURP </th>
-                <td mat-cell *matCellDef="let user"> {{user.curp}} </td>
-            </ng-container>
-
             <ng-container matColumnDef="school">
                 <th mat-header-cell *matHeaderCellDef> Escuela </th>
                 <td mat-cell *matCellDef="let user"> {{user.escuela}} </td>
@@ -49,15 +41,19 @@
                 <th mat-header-cell *matHeaderCellDef> Grado </th>
                 <td mat-cell *matCellDef="let user"> {{user.escuela_grado}} </td>
             </ng-container>
+            
+            <!--<ng-container matColumnDef="editar">
+                <th mat-header-cell *matHeaderCellDef>Editar</th>
+                <td mat-cell *matCellDef="let user">
+                    <button type="button" class="btn btn-success" (click)="openDetalle(user)">Edit</button>
+                </td>
+            </ng-container>-->
 
-            <ng-container matColumnDef="tut-name">
-                <th mat-header-cell *matHeaderCellDef> Tutor </th>
-                <td mat-cell *matCellDef="let user"> {{user.tutor_nombre}} </td>
-            </ng-container>
-
-            <ng-container matColumnDef="tut-mail">
-                <th mat-header-cell *matHeaderCellDef> Correo Tutor </th>
-                <td mat-cell *matCellDef="let user"> {{user.tutor_correo}} </td>
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>Delete</th>
+                <td mat-cell *matCellDef="let user" (click)="$event.stopPropagation()">
+                    <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+                </td>
             </ng-container>
 
             <!--<ng-container matColumnDef="actions">
@@ -65,8 +61,8 @@
         <td mat-cell *matCellDef="let user"> <button mat-button color="primary" (click)="eliminar(sponsor.id)">Borrar</button>
         </td>
       </ng-container>-->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" class="thead-dark"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDetalle(row)"></tr>
 
         </table>
 
@@ -74,8 +70,8 @@
 
 
 
-    <div *ngIf="selected.length < 1; else elseBlock">
-        <h4>Sin usuarios inscritos</h4>
+    <div *ngIf="selected.length < 1; else elseBlock" class="col-md-12 justify-content-center d-flex">
+        <h4>No existen usuarios registrados en este taller.</h4>
     </div>
     <ng-template #elseBlock><button mat-button (click)="exportAsXLSX()" color="primary">Descargar</button></ng-template>
 </div>

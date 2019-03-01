@@ -36,17 +36,38 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  // API: GET /users/:correo
+  public getUserByEmail(user_email: string): Observable<User> {
+    return this.http
+    .get<User>(`${API_URL}/users/${user_email}`)
+    .catch(this.handleError);
+  }
+
   // API: POST /users
-  public createUser(user: User): Observable<any> {
+  public createUserTaller(user: User): Observable<any> {
     return this.http
       .post<any>(`${API_URL}/users`, user)
       .catch(this.handleError);
   }
 
-  // API: PUT /users/:id
+  // API: PUT /users/:id TALLER
   public updateUser(user: User): Observable<any> {
     return this.http
       .put<any>(`${API_URL}/users/${user.id}`, user)
+      .catch(this.handleError);
+  }
+
+  //API: PUT /users/complete/:id
+  public updateUserCompelte(user : User): Observable<any> {
+    return this.http
+    .put<any>(`${API_URL}/users/complete/${user.id}`, user)
+    .catch(this.handleError);
+  }
+
+  //API: DELETE /sponsors/:id
+  public removeUser(id: number): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/users/delete/${id}`)
       .catch(this.handleError);
   }
 

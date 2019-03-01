@@ -1,3 +1,8 @@
     mat-form-field {
       width: 100%;
     }
+
+    mat-header-cell {
+      display:flex;
+      text-align: center !important;
+     }

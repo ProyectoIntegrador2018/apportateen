@@ -16,12 +16,14 @@ export class User {
     tutor_nombre: string = '';
     tutor_telefono: string = '';
     tutor_correo: string = '';
-    nombreEscuela: string = '';
-    tipoEscuela: string = '';
-    gradoEscuela: string = '';
+    escuela: string = '';
+    escuela_tipo: string = '';
+    escuela_grado: string = '';
     experiencia: string = '';
-    expDetalle: string = '';
+    detalle_exp: string = '';
     exAlumno: string = '';
     beca: string = '';
     referencia: string = '';
+    num_Edi: string = "";
+    ha_participado: string = "";
 }
