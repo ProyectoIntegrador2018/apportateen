@@ -50,8 +50,8 @@
   </section>
   <section class="home__participation" id="Reqs">
     <p class="home__activities__title">Convocatoria</p>
-    <div class="home__participation__requirements" (click)="rstatus=!rstatus" [ngClass]="rstatus ? 'open' : ''">
-      <div class="details-container">
+    <div class="home__participation__requirements">
+      <div class="details-container" (click)="rstatus=!rstatus" [ngClass]="rstatus ? '' : 'open'">
         <p class="subtitle">Requisitos</p>
         <button>
           <img src="../../../../assets/img/down-arrow.svg">
@@ -69,8 +69,8 @@
         </ol>
       </div>
     </div>
-    <div class="home__participation__details" (click)="status=!status" [ngClass]="status ? 'open' : ''">
-      <div class="details-container">
+    <div class="home__participation__details">
+      <div class="details-container" (click)="status=!status" [ngClass]="status ? '' : 'open'">
         <p class="subtitle">Importante</p>
         <button>
           <img src="../../../../assets/img/down-arrow.svg">

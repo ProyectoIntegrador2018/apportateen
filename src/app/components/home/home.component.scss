@@ -136,6 +136,7 @@
 
   &__participation {
     .details-container {
+      cursor: pointer;
       display: flex;
       justify-content: space-between;
       margin: 0 auto;
@@ -143,7 +144,6 @@
     }
 
     .subtitle {
-      cursor: pointer;
       display: inline-block;
       font-size: 50px;
       font-weight: bold;
@@ -175,12 +175,8 @@
 
       &--bg {
         background-color: $color-gray;
-        height: 0;
-        opacity: 0;
-        padding: 0;
-        -webkit-transition: opacity 600ms, visibility 600ms;
-        transition: opacity 600ms, visibility 600ms;
-        visibility: hidden;
+        display: none;
+        padding: 30px 0;
         width: 100%;
       }
 
@@ -191,16 +187,13 @@
 
     &__details,
     &__requirements {
-      &.open {
+      .open {
         img {
           transform: rotate(0deg) !important;
         }
 
-        .list--bg {
-          height: auto;
-          opacity: 1;
-          padding: 30px 0;
-          visibility: visible;
+        & ~ .list--bg {
+          display: block;
         }
       }
     }
