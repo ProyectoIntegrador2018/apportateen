@@ -18,7 +18,7 @@
     </div>
     </div>
   </section>
-  <section class="home__about">
+  <section class="home__about" id="QueEs">
     <h1>¿Qué es Aportateen?</h1>
     <p>Axt@Teen es un programa intensivo para promover entre estudiantes de México ,desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
   </section>
@@ -35,7 +35,7 @@
         necesidad que quieren resolver por medio de la tecnología aprendida.</p>
       </div>
     </div>
-    <div class="row">
+    <div class="row mobile-arrangement">
       <div class="col-6 text-container">
         <p class="home__activities__text right">Cada uno de los talleres de preparación, serán llevados a cabo por expertos en educación y en tecnología, desarrollando
         así la creatividad en los participantes, quienes aprenden, se divierten, innovan, conviven, y logran convertir sus ideas
@@ -48,7 +48,7 @@
       </div>
     </div>
   </section>
-  <section class="home__participation">
+  <section class="home__participation" id="Reqs">
     <p class="home__activities__title">Convocatoria</p>
     <div class="home__participation__requirements" (click)="rstatus=!rstatus" [ngClass]="rstatus ? 'open' : ''">
       <div class="details-container">
@@ -86,7 +86,7 @@
       </div>
     </div>
   </section>
-  <section class="home__sponsors">
+  <section class="home__sponsors" id="Pats">
     <div class="home__sponsors__list">
       <div class="row">
         <div class="col-6 home__sponsors__title">
@@ -130,7 +130,7 @@
       <p class="form__title">¿Quieres ser patrocinador?</p>
       <p class="form__subtitle">¡Registra tus datos y nosotros te contactaremos!</p>
       <form class="form">
-        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder=" Nombre/Nombre de la organización">
+        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre">
         <input type="email" [(ngModel)]="sponsor.correo" [ngModelOptions]="{standalone: true}" placeholder="Correo">
         <div class="action text-center">
           <button (click)="register()">Enviar</button>

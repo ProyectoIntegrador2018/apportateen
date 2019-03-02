@@ -20,10 +20,6 @@ html {
     min-height: 100%;
 }
 
-.btn-primary,
-nav a {
-    color: #fff !important;
-}
 
 app-root {
     min-height: 100%;
@@ -73,6 +69,11 @@ $theme-colors: ("primary": $main-light, );
 .lpadfix {
     padding-left: 15px;
 }
+
+.hidden {
+    display: none;
+}
+
 @import "~bootstrap/scss/bootstrap.scss";
 //more than 576 px
 //@include media-breakpoint-up(sm) {}

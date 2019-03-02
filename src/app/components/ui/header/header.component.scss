@@ -1,50 +1,71 @@
-
 @import '~styles-variables.scss';
-@import "~bootstrap/scss/bootstrap.scss";
 
 .header {
-    background: rgba(95, 95, 95, 0.57);
+  background: rgba(95, 95, 95, 0.57);
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  &__content {
+    align-items: center;
     display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 1;
+    padding: 10px 0 10px 20px;
+  }
 
-    &__content {
-      align-items: center;
-      display: flex;
-      padding: 10px 0 10px 20px;
+  &__logo {
+    height: 50px;
+    width: 35px;
+  }
+
+  &__link,
+  a {
+    color: $color-white;
+    font-size: 18px;
+    letter-spacing: 0;
+
+    &:hover {
+      color: $color-blue;
+      text-decoration: none;
     }
 
-    &__logo {
-      height: 50px;
-      width: 35px;
+    & + & {
+      margin-left: 25px;
     }
+  }
+}
 
-    &__link {
-      color: $color-white;
-      font-size: 18px;
-      letter-spacing: 0;
-
-      &:hover {
-        color: $color-blue;
-        text-decoration: none;
-      }
-
-      & + & {
-          margin-left: 25px;
-      }
-    }
+a + button {
+  margin-left: 15px;
 }
 
 button {
   background: $color-blue;
   border: none;
   color: $color-white;
-  padding: 25px 30px;
+  font-weight: 18px;
+  padding: 30px;
 
   &:hover {
     background: darken($color-blue, 10%);
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .header {
+    &__content {
+      padding: 0 0 0 20px;
+    }
+
+    .navigation {
+      display: none;
+    }
+
+    button {
+      padding: 20px 30px;
+    }
+  }
+}
+

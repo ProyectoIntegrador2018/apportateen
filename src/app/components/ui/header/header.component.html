@@ -5,13 +5,20 @@
         </a>
 
         <div class="navigation" *ngIf="router.url === '/inicio'">
-        <a pageScroll class="header__link" href="#QueEs">¿Qué es ApportaTeen?</a>
-        <a pageScroll class="header__link" href="#Reqs">Convocatoria</a>
-        <a pageScroll class="header__link" href="#Pats">Patrocinadores</a>
-        <a pageScroll class="header__link" href="#Calendar">Calendario</a>
+            <a pageScroll class="header__link" href="#QueEs">¿Qué es ApportaTeen?</a>
+            <a pageScroll class="header__link" href="#Reqs">Convocatoria</a>
+            <a pageScroll class="header__link" href="#Pats">Patrocinadores</a>
+            <a pageScroll class="header__link hidden" href="#Calendar">Calendario</a>
         </div>
     </div>
-    <button routerLink="/ingresar" *ngIf="!user">
-        Ingresar
-    </button>
+
+    <div>
+        <button routerLink="/ingresar" *ngIf="!user">
+            Ingresar
+        </button>
+        <a class="header__link" *ngIf="user" (click)="userRedirect()">Preferencias</a>
+        <button *ngIf="user" (click)="logout()">
+            Cerrar sesión
+        </button>
+    </div>
 </div>
