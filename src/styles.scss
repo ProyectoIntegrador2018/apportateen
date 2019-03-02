@@ -1,10 +1,16 @@
 @import '~styles-variables.scss';
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+
 * {
     &:active,
      :focus {
         outline: none !important;
     }
+}
+
+body {
+    font-family: $base-font !important;
+    font-weight: 400;
 }
 
 body,
@@ -67,7 +73,6 @@ $theme-colors: ("primary": $main-light, );
 .lpadfix {
     padding-left: 15px;
 }
-
 @import "~bootstrap/scss/bootstrap.scss";
 //more than 576 px
 //@include media-breakpoint-up(sm) {}
