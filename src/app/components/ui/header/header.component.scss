@@ -42,7 +42,7 @@ a + button {
 }
 
 button {
-  background: $color-blue;
+  background-color: $color-blue;
   border: none;
   color: $color-white;
   font-weight: 18px;
@@ -50,6 +50,10 @@ button {
 
   &:hover {
     background: darken($color-blue, 10%);
+  }
+
+  &.logout {
+    background-color: $color-red;
   }
 }
 

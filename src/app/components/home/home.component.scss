@@ -210,13 +210,13 @@
     margin-top: 70px;
 
     &__title {
+      align-items: center;
       color: $color-white;
+      display: flex;
       font-size: 40px;
       font-weight: bold;
-      letter-spacing: 1.69px;
-      display: flex;
-      align-items: center;
       justify-content: center;
+      letter-spacing: 1.69px;
     }
 
     &__list {
@@ -227,19 +227,19 @@
       .sponsors {
         display: flex;
         flex-wrap: wrap;
-        padding: 0;
         justify-content: flex-end;
+        padding: 0;
       }
 
       .sponsor-container {
+        align-items: center;
         background-color: $color-white;
+        display: flex;
+        height: 150px;
+        justify-content: center;
+        margin: 20px 20px 0 20px;
         padding: 20px;
         width: 280px;
-        height: 150px;
-        margin: 20px 20px 0 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
         &:nth-child(1),
         &:nth-child(2) {
@@ -261,9 +261,9 @@
       padding: 50px 0;
 
       .form {
-        width: 60%;
         margin: 0 auto;
         padding-top: 40px;
+        width: 60%;
 
         &__title {
           font-size: 50px;
@@ -281,11 +281,11 @@
         input {
           border: none;
           border-bottom: 1px solid $border-color;
-          width: 100%;
           display: block;
-          padding: 10px;
           font-size: 18px;
           font-weight: 300;
+          padding: 10px;
+          width: 100%;
 
           &::placeholder {
             color: $placeholder-color;
@@ -298,15 +298,15 @@
 
         button {
           background-color: $color-blue;
+          border: none;
+          border-radius: 3px;
           color: $color-white;
           display: inline-block;
           font-size: 21px;
           font-weight: 300;
-          text-align: center;
-          padding: 10px 50px;
-          border: none;
-          border-radius: 3px;
           letter-spacing: 0.47px;
+          padding: 10px 50px;
+          text-align: center;
 
           &:hover {
             background: darken($color-blue, 10%);
@@ -331,8 +331,8 @@
 
     .col-4,
     .col-6 {
-      max-width: 100%;
       flex: unset;
+      max-width: 100%;
       width: 100%;
     }
 
@@ -356,9 +356,9 @@
       margin-top: 30px;
       
       &__title {
-        padding-left: 0;
-        margin-top: 30px;
         justify-content: center;
+        margin-top: 30px;
+        padding-left: 0;
       }
 
       .sponsors {
@@ -366,9 +366,9 @@
       }
 
       .sponsor-container {
+        height: 200px;
         margin: 15px 0 0 0;
         width: 95%;
-        height: 200px;
 
         &:nth-child(1),
         &:nth-child(2) {

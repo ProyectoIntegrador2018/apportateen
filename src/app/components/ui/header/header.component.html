@@ -17,7 +17,7 @@
             Ingresar
         </button>
         <a class="header__link" *ngIf="user" (click)="userRedirect()">Preferencias</a>
-        <button *ngIf="user" (click)="logout()">
+        <button *ngIf="user" (click)="logout()" class="logout">
             Cerrar sesión
         </button>
     </div>
