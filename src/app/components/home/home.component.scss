@@ -313,6 +313,7 @@
   }
 }
 
+/* Phones */
 @media only screen and (max-width: 600px) {
   .home {
     &__hero {
@@ -378,6 +379,59 @@
 
       &__title {
         font-size: 46px;
+      }
+    }
+  }
+}
+
+/* Tablet */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .home {
+    &__about {
+      p {
+        width: 90%;
+      }
+    }
+
+    &__activities {
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .text-container {
+        padding: 25px 0;
+      }
+    }
+
+    &__sponsors {
+      &__title {
+        margin: 30px 0;
+      }
+
+      &__list {
+        padding-bottom: 30px;
+      }
+
+      .sponsors {
+        justify-content: center;
+      }
+
+      .sponsor-container {
+        &:nth-child(1),
+        &:nth-child(2) {
+          margin-top: 20px;
+        }
+      }
+
+      .row {
+        display: block;
+      }
+
+      .col-6 {
+        flex: unset;
+        max-width: 100%;
+        width: 100%;
       }
     }
   }
