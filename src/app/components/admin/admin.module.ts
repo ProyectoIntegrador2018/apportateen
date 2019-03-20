@@ -17,6 +17,8 @@ import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.c
 import { CorreosComponent } from './correos/correos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { UsuariosDetalleComponent } from './usuarios/usuarios-detalle/usuarios-detalle.component';
+import { DocumentosComponent } from './documentos/documentos.component';
+import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
     imports: [
@@ -37,7 +39,8 @@ import { UsuariosDetalleComponent } from './usuarios/usuarios-detalle/usuarios-d
         StorageServiceModule,
         MatMenuModule,
         MatTableModule,
-        MatStepperModule
+        MatStepperModule,
+        AngularFireStorageModule
     ],
     declarations: [MainComponent,
         ConvocatoriasComponent,
@@ -48,7 +51,8 @@ import { UsuariosDetalleComponent } from './usuarios/usuarios-detalle/usuarios-d
         AvisosComponent,
         CorreosComponent,
         UsuariosComponent,
-        UsuariosDetalleComponent
+        UsuariosDetalleComponent,
+        DocumentosComponent
     ],
     exports: [MainComponent]
 })

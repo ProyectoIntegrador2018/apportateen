@@ -28,6 +28,11 @@
         <a mat-list-item routerLink="patrocinadores">Patrocinadores</a>
         <a mat-list-item routerLink="usuarios">Usuarios</a>
         <a mat-list-item routerLink="correos">Correos</a>
+        <a mat-list-item [matMenuTriggerFor]="menu2">Documentos</a>
+        <mat-menu #menu2="matMenu" yPosition="below" [overlapTrigger]="false">
+          <button mat-menu-item routerLink="documentos">Documentos Administrador</button>
+          <button mat-menu-item routerLink="documentos">Documentos Usuario</button>
+        </mat-menu>
       </mat-nav-list>
     </mat-sidenav>
 

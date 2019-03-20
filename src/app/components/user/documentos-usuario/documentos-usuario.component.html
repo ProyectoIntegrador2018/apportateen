@@ -1,0 +1,64 @@
+<div class="container-fluid">
+  <h2><strong>Documentos Axt@Teen</strong></h2>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h5><strong>Documentos a Imprimir</strong></h5>
+      <p>Estos son los documentos que se deben de imprimir y subir a la plataforma de Axt@Teen.</p>
+      <div class="list-group">
+        <div class="input-group mb-3" *ngFor="let archivo of listaArchivosImprimir">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="{{archivo.nombre}}" disabled>
+            <div class="input-group-append">
+              <a href="{{archivo.url}}" class="btn btn-info">Abrir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h5><strong>Subir Documento</strong></h5>
+      <form>
+        <div class="form-group">
+          <label for="nombreArchivoInput"><strong>Nombre Archivo:</strong></label>
+          <input type="text" class="form-control" id="nombreArchivoInput" placeholder="Ingresar Nombre del Archivo" [(ngModel)]="nombreArchivo"  [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="archivoInput" (change)="getArchivo($event)">\
+                <label class="custom-file-label" for="archivoInput">Seleccionar Archivo</label>
+              </div>
+              <div class="input-group-append">
+                <button class="btn btn-success" type="button" (click)="uploadDB()">Subir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="col-md-12">
+      <h6><strong>Mis Documentos Subidos:</strong></h6>
+      <div class="list-group" *ngIf="listaArchivoUsuario.length > 0; else elseBlock">
+        <div class="input-group mb-3" *ngFor="let archivo of listaArchivoUsuario">
+          <input type="text" class="form-control" placeholder="{{archivo.nombre}}" disabled>
+          <div class="input-group-append">
+            <a href="{{archivo.url}}" class="btn btn-success">Abrir</a>
+            <button class="btn btn-danger" type="button" (click)= deleteArchivo(archivo.archivo_path)>Borrar</button>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #elseBlock><h5>No se han subido documentos.</h5></ng-template>
+    </div>
+  </div>
+  
+</div>

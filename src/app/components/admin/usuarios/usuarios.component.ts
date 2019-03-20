@@ -15,7 +15,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 
 export class UsuariosComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'id','name', 'email','school', 'grade', 'delete'];
+  displayedColumns: string[] = ['position', 'id_Axt@Teen','name', 'email','school', 'grade', 'delete'];
   users: any;
   talleres: any;
   selected: any;
@@ -84,7 +84,7 @@ export class UsuariosComponent implements OnInit {
               this.fetchDB();
             }
           }, error => {
-            this.snackBar.open(error.erro,'', {
+            this.snackBar.open(error.error,'', {
               duration: 1500,
             });
           });
@@ -94,7 +94,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   exportAsXLSX():void {
-      this.excelService.exportAsExcelFile(this.selected, this.taller);
+      this.excelService.exportAsExcelFile(this.selected, "Usuarios ApportaTeen");
   }
 
   openDetalle(row, usuario) {

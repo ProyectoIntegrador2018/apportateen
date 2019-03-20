@@ -15,6 +15,8 @@ import { NgxPermissionsGuard } from 'ngx-permissions';
 import { AvisosUserComponent } from '../user/avisos/avisos.component';
 import { CorreosComponent } from '../admin/correos/correos.component';
 import { UsuariosComponent } from '../admin/usuarios/usuarios.component';
+import { DocumentosComponent } from '../admin/documentos/documentos.component';
+import { DocumentosUsuarioComponent } from '../user/documentos-usuario/documentos-usuario.component';
 
 
 const routes: Routes = [
@@ -40,7 +42,8 @@ const routes: Routes = [
             { path: 'patrocinadores', component: PatrocinadoresComponent },
             { path: 'inicio', component: AvisosComponent },
             { path: 'correos', component: CorreosComponent },
-            { path: 'usuarios', component: UsuariosComponent }
+            { path: 'usuarios', component: UsuariosComponent },
+            { path: 'documentos', component: DocumentosComponent}
         ]
     },
     {
@@ -55,6 +58,7 @@ const routes: Routes = [
             { path: '', redirectTo: 'inicio', pathMatch: 'full' },
             { path: 'inicio', component: AvisosUserComponent },
             { path: 'inscripcion', component: InscripcionComponent },
+            { path : 'documentos', component: DocumentosUsuarioComponent}
         ]
     }
 ]

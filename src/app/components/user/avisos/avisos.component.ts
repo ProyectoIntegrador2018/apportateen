@@ -1,6 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { User } from 'app/models/user.model';
+import { MatDialog } from '@angular/material';
+import { InscripcionComponent } from '../inscripcion/inscripcion.component';
+import {Router, Routes} from "@angular/router";
+import { AvisoInscripcionTallerComponent } from './aviso-inscripcion-taller/aviso-inscripcion-taller.component';
 
 @Component({
     selector: 'avisos',
@@ -11,16 +16,29 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 export class AvisosUserComponent {
     avisos;
     loading;
+    user: User = new User();
+
     constructor(private api: ApiService,
-        @Inject(LOCAL_STORAGE) private storage: WebStorageService) {
+        @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+        public dialog: MatDialog,
+        private router : Router) {
         this.avisos = [];
         this.loading = null;
     }
 
     ngOnInit() {
         this.cargarAvisos();
+        this.user = this.storage.get('@user:data');
     }
 
+    ngAfterViewInit() {
+        setTimeout(() => {
+            if(this.user.idtaller == 0) {
+            //this.cargarDialogoTaller();
+            this.cargarDialogoAvisoTaller();
+            }
+        });
+    }
     cargarAvisos() {
         let userStorage = this.storage.get('@user:data');
         this.api.getUserById(userStorage.id).subscribe(user => {
@@ -30,5 +48,14 @@ export class AvisosUserComponent {
                 this.avisos = result;
             })
         })
+    }
+
+    cargarDialogoAvisoTaller() {
+        let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
+            width: '800px'
+        });
+        dialogDetalle.afterClosed().subscribe(result => {
+            this.router.navigate(['usuario/inscripcion']);
+        });
     }
 }

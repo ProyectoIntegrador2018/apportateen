@@ -17,9 +17,9 @@
                 <td mat-cell *matCellDef="let user; let i=index"> {{i+1}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> ID Usuario </th>
-                <td mat-cell *matCellDef="let user"> {{user.id}} </td>
+            <ng-container matColumnDef="id_Axt@Teen">
+                <th mat-header-cell *matHeaderCellDef> ID Usuario Axt@Teen </th>
+                <td mat-cell *matCellDef="let user"> {{user.id_axtuser}} </td>
             </ng-container>
 
             <ng-container matColumnDef="name">
@@ -52,7 +52,7 @@
             <ng-container matColumnDef="delete">
                 <th mat-header-cell *matHeaderCellDef>Delete</th>
                 <td mat-cell *matCellDef="let user" (click)="$event.stopPropagation()">
-                    <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+                    <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Borrar</button>
                 </td>
             </ng-container>
 

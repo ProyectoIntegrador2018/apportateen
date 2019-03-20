@@ -10,6 +10,9 @@
             <a pageScroll class="header__link" href="#Pats">Patrocinadores</a>
             <a pageScroll class="header__link hidden" href="#Calendar">Calendario</a>
         </div>
+        <div class="navigation" *ngIf="router.url === '/ingresar'">
+            <a routerLink="/inicio">Página Prinicipal</a>
+        </div>
     </div>
 
     <div>

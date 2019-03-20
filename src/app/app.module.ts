@@ -26,6 +26,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { ExcelService } from './services/excel.service';
 import { UsuariosDetalleComponent } from './components/admin/usuarios/usuarios-detalle/usuarios-detalle.component';
+import { Aviso } from './models/aviso.model';
+import { AvisoInscripcionTallerComponent } from './components/user/avisos/aviso-inscripcion-taller/aviso-inscripcion-taller.component';
+import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -51,12 +54,13 @@ import { UsuariosDetalleComponent } from './components/admin/usuarios/usuarios-d
     MatInputModule,
     MatStepperModule,
     MatSelectModule,
-    NgxPageScrollModule
+    NgxPageScrollModule,
+    AngularFireStorageModule
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
   }, ExcelService],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialog, UsuariosDetalleComponent]
+  entryComponents: [ConfirmationDialog, UsuariosDetalleComponent, AvisoInscripcionTallerComponent]
 })
 export class AppModule { }

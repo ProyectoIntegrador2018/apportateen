@@ -4,8 +4,13 @@ import { Sede } from 'app/models/sede.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { User } from 'app/models/user.model';
 import { Taller } from 'app/models/taller.model';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
+import { TalleresComponent } from 'app/components/admin/talleres/talleres.component';
+
+export interface DialogData{
+
+}
 
 @Component({
   selector: 'app-inscripcion',
@@ -91,9 +96,13 @@ export class InscripcionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.user.idtaller = taller.id;
+        console.log(taller);
+        this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
+        console.log(this.user.id_axtuser);
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
-          this.obtenerTallerActual();
+          this.obtenerTallerActual()
+          this.cargarSedes();
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });

@@ -26,4 +26,5 @@ export class User {
     referencia: string = '';
     num_Edi: string = "";
     ha_participado: string = "";
+    id_axtuser : string = "";
 }

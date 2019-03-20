@@ -13,6 +13,7 @@ import { Sede } from '../../models/sede.model';
 import { Aviso } from '../../models/aviso.model';
 import { Taller } from '../../models/taller.model';
 import { Categoria } from 'app/models/categoria.model';
+import { Archivo } from 'app/models/archivo.model';
 const API_URL = environment.apiUrl;
 
 @Injectable({
@@ -238,6 +239,41 @@ export class ApiService {
     return this.http
       .get<any[]>(`${API_URL}/talleres/${id}`)
       .catch(this.handleError);
+  }
+
+  //API: POST /archivos
+  public createArchivoAdmn(archivo : Archivo): Observable<any>{
+    return this.http
+    .post<any>(`${API_URL}/archivos`, archivo)
+    .catch(this.handleError);
+  }
+
+  //API: GET /archivos
+  public getAllArchivosAdmn(): Observable<any[]> {
+    return this.http
+    .get<any[]>(`${API_URL}/archivos`)
+    .catch(this.handleError);
+  }
+
+  //API: GET /archivos/:id
+  public getAllArchivosById(id : string): Observable<any[]> {
+    return this.http
+    .get<any[]>(`${API_URL}/archivos/user/${id}`)
+    .catch(this.handleError);
+  }
+
+   //API: GET /archivos/:id
+   public getArchivosAdminByUser(id : string): Observable<any[]> {
+    return this.http
+    .get<any[]>(`${API_URL}/archivos/admin/user_files/${id}`)
+    .catch(this.handleError);
+  }
+
+  //API: DELETE /delete/:id
+  public deleteArchivoAdmn(id: string): Observable<any> {
+    return this.http
+    .delete<any>(`${API_URL}/archivos/delete/${id}`)
+    .catch(this.handleError);
   }
 
   private handleError(error: Response | any) {

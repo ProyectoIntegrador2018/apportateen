@@ -8,6 +8,8 @@ import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatBu
 import { InscripcionComponent } from './inscripcion/inscripcion.component';
 import { AvisosUserComponent } from './avisos/avisos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AvisoInscripcionTallerComponent } from './avisos/aviso-inscripcion-taller/aviso-inscripcion-taller.component';
+import { DocumentosUsuarioComponent } from './documentos-usuario/documentos-usuario.component';
 
 
 @NgModule({
@@ -31,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatMenuModule
 
   ],
-  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent],
+  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent],
   exports: [MainUserComponent],
 })
 export class UserModule { }
