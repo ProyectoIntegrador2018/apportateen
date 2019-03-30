@@ -270,7 +270,7 @@
           letter-spacing: 0.76px;
         }
 
-        input {
+        .custom-input {
           border: none;
           border-bottom: 1px solid $border-color;
           display: block;
@@ -347,7 +347,7 @@
 
     &__sponsors {
       margin-top: 30px;
-      
+
       &__title {
         justify-content: center;
         margin-top: 30px;

@@ -1,51 +1,49 @@
-<div class="container-fluid">
-  <h3>Talleres</h3>
-  <div class="row justify-content-start" *ngIf="estatus">
-    <div class="col-md-3">
+<div class="container-fluid register">
+  <div class="container">
+    <h3 class="register__title">Sede</h3>
+    <div class="register__actions" *ngIf="estatus">
       <mat-form-field>
-        <mat-select [disabled]="sedes.length < 1" placeholder="Selecciona la sede" (selectionChange)="seleccionarSede($event)"
-          name="sedeselect">
+        <mat-select [disabled]="sedes.length < 1" placeholder="Selecciona la Sede"
+          (selectionChange)="seleccionarSede($event)" name="sedeselect">
           <mat-option *ngFor="let sede of sedes" [value]="sede.id">{{sede.nombre}}</mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-    <div class="col-md-4 d-flex align-items-center">
       <p style="margin: 0;"> Inscripción actual: <b>{{tallerActual? tallerActual: 'Sin inscripción'}}</b> </p>
     </div>
-  </div>
-  <div class="card-columns" *ngIf="estatus">
-    <mat-card *ngFor="let taller of selectedSede.talleres">
-      <mat-card-header>
-        <mat-card-title>{{taller.nombre}}</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <p>
-          {{taller.descripcion}}
-        </p>
-      </mat-card-content>
-      <mat-card-actions style="text-align:right;">
-        <button mat-button mat-stroked-button color="primary" *ngIf="!(taller.id == user.idtaller) && taller.inscritos < taller.cupo"
-          (click)="inscripcion(taller)">Inscribirme</button>
-        <button mat-button mat-raised-button color="primary" *ngIf="taller.id == user.idtaller && taller.inscritos < taller.cupo"
-          (click)="quitarInscripcion()">Inscrito
-          <mat-icon>done</mat-icon>
-        </button>
-        <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
-          lleno</button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-  <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus">
-    <h1>Sin talleres</h1>
-    <p>Por el momento no existen talleres de tu categoría en esta sede.</p>
-    <button mat-flat-button matTooltipPosition="after" matTooltip="La categoría es asignada de manera automática por el sistema según tu edad. Actualmente perteneces a la categoría {{user.categoria}}.">
-      Más información
-    </button>
-  </div>
+    <div class="items" *ngIf="estatus">
+      <div class="register__item" *ngFor="let taller of selectedSede.talleres">
+        <img src="../../../../assets/img/block-1.png">
+        <div class="text-container">
+          <h3 class="title">{{taller.nombre}}</h3>
+          <p class="desc">{{taller.descripcion}}</p>
+          <div>
+            <button mat-button mat-stroked-button class="btn-primary"
+              *ngIf="!(taller.id == user.idtaller) && taller.inscritos < taller.cupo"
+              (click)="inscripcion(taller)">Inscribirme</button>
+            <button mat-button mat-raised-button class="btn-primary"
+              *ngIf="taller.id == user.idtaller && taller.inscritos < taller.cupo"
+              (click)="quitarInscripcion()">Inscrito
+              <mat-icon>done</mat-icon>
+            </button>
+            <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
+              lleno</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus">
+      <h1>Sin talleres</h1>
+      <p>Por el momento no existen talleres de tu categoría en esta sede.</p>
+      <button class="btn-primary" mat-flat-button matTooltipPosition="after"
+        matTooltip="La categoría es asignada de manera automática por el sistema según tu edad. Actualmente perteneces a la categoría {{user.categoria}}.">
+        Más información
+      </button>
+    </div>
 
-  <div *ngIf="!estatus && estatus != null">
-    <h1>Convocatoria inhabilitada</h1>
-    <p>¡Ups! El período de inscripción a los talleres no ha comenzado o ya concluyó.</p>
-    <p>Puedes revisar las fechas de convocatoria en la página principal de ApportaTeen.</p>
+    <div *ngIf="!estatus && estatus != null">
+      <h1>Convocatoria inhabilitada</h1>
+      <p>¡Ups! El período de inscripción a los talleres no ha comenzado o ya concluyó.</p>
+      <p>Puedes revisar las fechas de convocatoria en la página principal de ApportaTeen.</p>
+    </div>
   </div>
 </div>
