@@ -1,73 +1,123 @@
 @import '~styles-variables.scss';
 @import "~bootstrap/scss/bootstrap.scss";
 
-
-.toolbar {
-  color: #fff;
-}
-
-
-
-.admin-container {
+.header {
+  background: rgba(95, 95, 95, 0.57);
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  z-index: 1;
+
+  .navbar {
+    padding: 0 0 0 1rem;
+    width: 100%;
+
+    &-collapse {
+      justify-content: space-between;
+    }
+
+    &-toggler {
+      padding: 0;
+
+      &:hover {
+        background-color: transparent
+      }
+    }
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    padding: 10px 0 10px 20px;
+  }
+
+  &__logo {
+    height: 50px;
+    width: 35px;
+  }
+
+  &__link,
+  a {
+    color: $color-white;
+    font-size: 18px;
+    letter-spacing: 0;
+
+    &:hover {
+      color: $color-blue;
+      text-decoration: none;
+    }
+
+    &+& {
+      margin-left: 25px;
+    }
+  }
 }
 
-mat-sidenav {
-  width: 200px;
-  background-color: $main;
-  color: #fff
-}
-
-mat-toolbar {
-  background-color: $main-dark;
+a+button {
+  margin-left: 15px;
 }
 
 button {
-  background: transparent;
+  background-color: $color-blue;
   border: none;
+  color: $color-white;
+  font-weight: 18px;
+  padding: 30px;
 
-  :hover {
-    cursor: pointer;
+  &:hover {
+    background: darken($color-blue, 10%);
+  }
+
+  &.logout {
+    background-color: $color-red;
   }
 }
 
-.is-mobile .toolbar {
-  position: fixed;
-  z-index: 2;
-}
+.user-container {
+  .hero {
+    align-items: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 95vh;
+    justify-content: center;
 
-h3.app-name {
-  margin-left: 8px;
-  margin-bottom: 0 !important;
-}
-
-.sidenav-container {
-  flex: 1;
-}
-
-.is-mobile .sidenav-container {
-  flex: 1 0 auto;
-}
-
-mat-sidenav-content {
-  margin-left: 200px;
-  padding: 20px;
-}
-
-
-@include media-breakpoint-down(xs) {
-  mat-sidenav-content {
-    margin-left: 0;
-    padding: 12px;
+    &__title {
+      color: $color-white;
+      font-size: 50px;
+      font-weight: bold;
+      letter-spacing: 1.69px;
+      text-align: center;
+    }
   }
 }
 
-.remaining-space {
-  flex: 1 1 auto;
+/* Phone */
+@media only screen and (max-width: 600px) {
+  .header {
+    &__link,
+    a {
+      margin-top: 10px;
+
+      & + & {
+        margin-left: 0;
+      }
+    }
+
+    .logout {
+      margin-top: 10px;
+      padding: 15px 30px;
+    }
+  }
+
+  .user-container {
+    .hero {
+      &__title {
+        font-size: 42px;
+      }
+    }
+  }
 }

@@ -1,24 +1,15 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
-      <h3>Avisos</h3>
-      <div class="card-columns" *ngIf="avisos.length > 0 && loading != null">
-        <mat-card *ngFor="let a of avisos">
-          <mat-card-header>
-            <mat-card-title>{{a.titulo}}</mat-card-title>
-            <mat-card-subtitle>{{a.taller}}</mat-card-subtitle>
-          </mat-card-header>
-          <mat-card-content>
-            <p>
-              {{a.mensaje}}
-            </p>
-          </mat-card-content>
-        </mat-card>
+<div class="container-fluid ad">
+  <div class="container">
+    <div *ngIf="avisos.length > 0 && loading != null">
+      <div class="ad__item" *ngFor="let a of avisos">
+        <h4 class="ad__title">{{a.titulo}} <span>{{a.taller}}</span></h4>
+        <p class="ad__desc">{{a.mensaje}}</p>
+        <hr>
       </div>
-      <div *ngIf="avisos.length < 1 && loading != null">
-        <h1>Sin Avisos</h1>
-        <p>Por el momento no hay avisos. Revisa nuevamente más tarde.</p>
-      </div>
+    </div>
+    <div *ngIf="avisos.length < 1 && loading != null">
+      <h4 class="ad__title">Sin Avisos</h4>
+      <p class="ad__desc">Por el momento no hay avisos. Revisa nuevamente más tarde.</p>
     </div>
   </div>
 </div>

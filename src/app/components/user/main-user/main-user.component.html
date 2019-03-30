@@ -1,33 +1,29 @@
-<div class="admin-container" [class.is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="toolbar">
-    <button mat-icon-button [hidden]="!mobileQuery.matches" (click)="snav.toggle()">
-      <mat-icon>menu</mat-icon>
+<div class="header">
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" routerLink="inicio">
+      <img src="../../../../assets/img/logo.svg" class="header__logo" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <img src="../../../../assets/img/menu.svg" class="navbar-toggler-icon">
     </button>
-    <h3 class="app-name">Usuario</h3>
-    <span class="remaining-space"></span>
-    <button mat-icon-button [matMenuTriggerFor]="menu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="logout()">
-        <mat-icon>logout</mat-icon>
-        <span>Cerrar sesión</span>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a routerLink="." class="header__link">Inicio</a>
+        <a routerLink="inscripcion" class="header__link">Inscripciones</a>
+        <a routerLink="documentos" class="header__link">Documentos a Entregar</a>
+      </div>
+      <button (click)="logout()" class="logout">
+        Cerrar sesión
       </button>
-    </mat-menu>
-  </mat-toolbar>
-
-  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
-    <mat-sidenav #snav [mode]="'over'" [disableClose]="!mobileQuery.matches" [opened]="!mobileQuery.matches"
-      [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-nav-list>
-        <a mat-list-item routerLink=".">Inicio</a>
-        <a mat-list-item routerLink="inscripcion">Inscripción</a>
-        <a mat-list-item routerLink="documentos">Documentos a Entregar</a>
-      </mat-nav-list>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    </div>
+  </nav>
+</div>
+<div class="user-container">
+  <section class="hero" style="background-image: url('../../../../assets/img/hero.png')">
+    <h1 class="hero__title" *ngIf="router.url === '/usuario/inicio'">Avisos</h1>
+    <h1 class="hero__title" *ngIf="router.url === '/usuario/inscripcion'">Talleres</h1>
+    <h1 class="hero__title" *ngIf="router.url === '/usuario/documentos'">Documentos</h1>
+  </section>
+  <router-outlet></router-outlet>
 </div>

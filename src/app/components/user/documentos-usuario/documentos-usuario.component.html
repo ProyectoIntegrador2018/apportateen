@@ -1,64 +1,53 @@
-<div class="container-fluid">
-  <h2><strong>Documentos Axt@Teen</strong></h2>
-  <hr>
-
-  <div class="row">
-    <div class="col-md-12">
-      <h5><strong>Documentos a Imprimir</strong></h5>
-      <p>Estos son los documentos que se deben de imprimir y subir a la plataforma de Axt@Teen.</p>
+<div class="container-fluid documents">
+  <div class="container">
+    <div class="documents__section">
+      <h3 class="documents__section__title">Documentos a Imprimir</h3>
+      <p class="documents__section__subtitle">Estos son los documentos que se deben de imprimir y subir a la plataforma de Axt@Teen.</p>
       <div class="list-group">
         <div class="input-group mb-3" *ngFor="let archivo of listaArchivosImprimir">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="{{archivo.nombre}}" disabled>
-            <div class="input-group-append">
-              <a href="{{archivo.url}}" class="btn btn-info">Abrir</a>
-            </div>
-          </div>
+          <a href="{{archivo.url}}" class="documents__item">{{archivo.nombre}}</a>
         </div>
       </div>
     </div>
-  </div>
-  <hr>
 
-  <div class="row">
-    <div class="col-md-12">
-      <h5><strong>Subir Documento</strong></h5>
+    <div class="documents__section">
+      <h3 class="documents__section__title">Subir Documento</h3>
       <form>
         <div class="form-group">
-          <label for="nombreArchivoInput"><strong>Nombre Archivo:</strong></label>
-          <input type="text" class="form-control" id="nombreArchivoInput" placeholder="Ingresar Nombre del Archivo" [(ngModel)]="nombreArchivo"  [ngModelOptions]="{standalone: true}">
+          <label for="nombreArchivoInput">Nombre del Archivo:</label>
+          <input type="text" class="form-control" id="nombreArchivoInput" placeholder="Nombre del Documento"
+            [(ngModel)]="nombreArchivo" [ngModelOptions]="{standalone: true}">
         </div>
         <div class="form-group">
           <div class="input-group">
             <div class="input-group">
               <div class="custom-file">
-                <input type="file" class="custom-file-input" id="archivoInput" (change)="getArchivo($event)">\
+                <input type="file" id="archivoInput" (change)="getArchivo($event)" placeholder="Seleccionar Archivo">
                 <label class="custom-file-label" for="archivoInput">Seleccionar Archivo</label>
               </div>
               <div class="input-group-append">
-                <button class="btn btn-success" type="button" (click)="uploadDB()">Subir</button>
+                <button class="btn btn-primary" type="button" (click)="uploadDB()">Subir</button>
               </div>
             </div>
           </div>
         </div>
       </form>
-
     </div>
 
-    <div class="col-md-12">
-      <h6><strong>Mis Documentos Subidos:</strong></h6>
+    <div class="documents__section">
+      <h3 class="documents__section__title">Mis Documentos Subidos</h3>
       <div class="list-group" *ngIf="listaArchivoUsuario.length > 0; else elseBlock">
         <div class="input-group mb-3" *ngFor="let archivo of listaArchivoUsuario">
-          <input type="text" class="form-control" placeholder="{{archivo.nombre}}" disabled>
-          <div class="input-group-append">
-            <a href="{{archivo.url}}" class="btn btn-success">Abrir</a>
-            <button class="btn btn-danger" type="button" (click)= deleteArchivo(archivo.archivo_path)>Borrar</button>
+          <input type="text" class="documents__item" placeholder="{{archivo.nombre}}" disabled>
+          <div class="documents__actions">
+            <a href="{{archivo.url}}" class="btn btn-primary">Abrir</a>
+            <button class="btn btn-danger" type="button" (click)=deleteArchivo(archivo.archivo_path)>Borrar</button>
           </div>
         </div>
       </div>
-
-      <ng-template #elseBlock><h5>No se han subido documentos.</h5></ng-template>
+      <ng-template #elseBlock>
+        <h3>No se ha subido ningún documento.</h3>
+      </ng-template>
     </div>
   </div>
-  
 </div>
