@@ -1,110 +1,84 @@
-/*@import '~styles-variables.scss';
-$theme-colors: ("primary": $main-light,
-);
+@import '~styles-variables.scss';
 
-@import "~bootstrap/scss/bootstrap.scss";
+.header {
+  background: rgba(95, 95, 95, 0.57);
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 
-.navbar {
-  background-color: $main-dark;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
-
-}
-
-
-@include media-breakpoint-down(lg) {
-
-  li {
-    text-align: center;
+  &__content {
+    align-items: center;
+    display: flex;
+    padding: 10px 0 10px 20px;
   }
 
-  #ingresar {
-    width: 100%;
+  &__logo {
+    height: 50px;
+    width: 35px;
+  }
 
-    a {
-      width: 100%;
+  &__link,
+  a {
+    color: $color-white;
+    font-size: 18px;
+    letter-spacing: 0;
+
+    &:hover {
+      color: $color-blue;
+      text-decoration: none;
+    }
+
+    & + & {
+      margin-left: 25px;
     }
   }
-
-}*/
-
-@import '~styles-variables.scss';
-@import "~bootstrap/scss/bootstrap.scss";
-.toolbar,
-mat-icon {
-    color: #fff;
 }
 
-.admin-container {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-}
-
-a {
-    color: #ffff;
-    font-size: 0.8em;
-}
-
-a:hover {
-    color: #ffff;
-    text-decoration: none;
-}
-
-mat-sidenav {
-    width: 200px;
-    background-color: $main;
-    color: #fff
-}
-
-mat-toolbar {
-    background-color: $main-dark;
+a + button {
+  margin-left: 15px;
 }
 
 button {
-    background: transparent;
-    border: none;
-     :hover {
-        cursor: pointer;
+  background-color: $color-blue;
+  border: none;
+  color: $color-white;
+  font-weight: 18px;
+  padding: 30px;
+
+  &:hover {
+    background: darken($color-blue, 10%);
+  }
+
+  &.logout {
+    background-color: $color-red;
+  }
+}
+
+/* Phone */
+@media only screen and (max-width: 600px) {
+  .header {
+    &__content {
+      padding: 0 0 0 20px;
     }
-}
 
-.is-mobile .toolbar {
-    position: fixed;
-    z-index: 2;
-}
-
-h3.app-name {
-    margin-left: 8px;
-    margin-bottom: 0 !important;
-}
-
-.sidenav-container {
-    flex: 1;
-}
-
-.is-mobile .sidenav-container {
-    flex: 1 0 auto;
-}
-
-mat-sidenav-content {
-    margin-left: 200px;
-    padding: 20px;
-}
-
-@include media-breakpoint-down(xs) {
-    mat-sidenav-content {
-        margin-left: 0;
-        padding: 12px;
+    .navigation {
+      display: none;
     }
-    .ml-3 {
-        display: none;
+
+    button {
+      padding: 20px 30px;
     }
+  }
 }
 
-.remaining-space {
-    flex: 1 1 auto;
+/* Tablet Portrait */
+@media only screen and (min-device-width: 768px) and (orientation: portrait) {
+  .header {
+    .navigation {
+      display: none;
+    }
+  }
 }

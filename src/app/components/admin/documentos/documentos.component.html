@@ -1,0 +1,70 @@
+<div class="container-fluid">
+  <h2><strong>Documentos ApportaTeen</strong></h2>
+
+  <h4>Documentos Solicitados a Usuarios</h4>
+  <p><em>Documentos que son solicitados a los usuarios en la página.</em></p>
+  <div class="row">
+    <div class="col-md-6 justify-content-right">
+        <form>
+          <div class="form-group">
+            <label for="nombreArchivoInput">Nombre Archivo:</label>
+            <input type="text" class="form-control" id="nombreArchivoInput" placeholder="Ingresar Nombre del Archivo" [(ngModel)]="nombreArchivo"  [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
+            <label for="archivoInput">Seleccionar Archivo a Subir:</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <input type="file" class="custom-file-input" id="archivoInput" (change)="getArchivo($event)" accept="application/pdf">
+                <label class="custom-file-label text-truncate" for="archivoInput" >Seleccionar Archivo</label>
+              </div>
+              <div class="input-group-append">
+                <button class="btn btn-success" type="button" (click)="uploadToDB()" id="botonSubir">Subir</button>
+              </div>
+          </div>
+          </div>
+        </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="listaArchivosAdmn.length > 0; else elseBlock1">
+    <div class="col-md-12">
+      <h5><strong>Documentos Subidos por Administrador</strong></h5>
+      <div class="list-group">
+        <div class="input-group mb-3" *ngFor="let archivo of listaArchivosAdmn">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="{{archivo.nombre}}" disabled>
+              <div class="input-group-append" id="button-addon4">
+                <a href="{{archivo.url}}" class="btn btn-success" target="_blank">Abrir</a>
+                <button class="btn btn-danger" type="button" (click)="deleteArchivo(archivo.archivo_path)">Borrar</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #elseBlock1><h5>No se han subido Documentos por parte del Administrador</h5></ng-template>
+  <hr>
+
+  <h4><strong>Lista Documentos de Usuarios</strong></h4>
+  <p><em>Documentos que fueron subidos por los usuarios de Axt@Teen.</em></p>
+  <div class="row">
+    <div class="col-md-12"  *ngIf="listaArchivosUsuarios.length > 0; else elseBlock2">
+      <div class="list-group">
+        <div class="input-group mb-3" *ngFor="let archivo of listaArchivosUsuarios">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="{{archivo.nombre}}" disabled>
+            <div class="input-group-append">
+              <a href="{{archivo.url}}" class="btn btn-info">Abrir</a>
+              <button class="btn btn-danger" type="button" (click)="deleteArchivo(archivo.archivo_path)">Borrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ng-template #elseBlock2>
+      <div class="col-md-12">
+        <h5>No se han subido Documentos por parte de los Usuario</h5>
+      </div>
+    </ng-template>
+  </div>
+</div>

@@ -137,7 +137,7 @@ export class SignupComponent implements OnInit {
                     this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
                         then(user => {
                             this.usuario.id = user.user.uid;
-                            this.api.createUser(this.usuario).subscribe(result => {
+                            this.api.createUserTaller(this.usuario).subscribe(result => {
                                 this.api.getUserById(this.usuario.id).subscribe(userResult => {
                                     const perm = ["USER"];
                                     this.storage.set('@user:data', userResult);

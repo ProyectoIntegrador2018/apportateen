@@ -1,7 +1,81 @@
-mat-card {
-  margin-bottom: 16px;
-  display: inline-block;
-  width: 100%;
-  -webkit-column-break-inside: avoid;
-  column-break-inside: avoid;
+@import '~styles-variables.scss';
+
+.register {
+  margin: 100px 0;
+
+  &__title {
+    color: $text-color;
+    font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 1.28px;
+  }
+
+  &__actions {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    width: 100%;
+  }
+
+  .btn {
+    &:focus {
+      box-shadow: none;
+    }
+
+    &-primary {
+      background-color: $color-blue;
+      border: 0;
+      color: $color-white;
+    }
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    margin: 20px 0 0 20px;
+    width: 260px;
+
+    img {
+      border-radius: 5px 5px 0 0;
+      height: 140px;
+      width: 100%;
+    }
+
+    .text-container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 15px;
+    }
+
+    .desc {
+      font-weight: 300;
+    }
+  }
+
+  .mat-option.mat-active,
+  .mat-option.mat-selected {
+    background: $color-blue !important;
+  }
+}
+
+/* Phone */
+@media only screen and (max-width: 600px) {
+  .register {
+    &__actions {
+      display: block;
+    }
+
+    &__item {
+      margin-left: 0;
+    }
+  }
 }

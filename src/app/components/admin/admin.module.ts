@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
+import {MatStepperModule} from '@angular/material';
 
 import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, } from '@angular/material'
 import { ConvocatoriasComponent } from './convocatorias/convocatorias.component';
@@ -15,6 +16,9 @@ import { StorageServiceModule } from 'angular-webstorage-service';
 import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog.component';
 import { CorreosComponent } from './correos/correos.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { UsuariosDetalleComponent } from './usuarios/usuarios-detalle/usuarios-detalle.component';
+import { DocumentosComponent } from './documentos/documentos.component';
+import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
     imports: [
@@ -34,7 +38,9 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
         MatSnackBarModule,
         StorageServiceModule,
         MatMenuModule,
-        MatTableModule
+        MatTableModule,
+        MatStepperModule,
+        AngularFireStorageModule
     ],
     declarations: [MainComponent,
         ConvocatoriasComponent,
@@ -44,7 +50,9 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
         PatrocinadoresComponent,
         AvisosComponent,
         CorreosComponent,
-        UsuariosComponent
+        UsuariosComponent,
+        UsuariosDetalleComponent,
+        DocumentosComponent
     ],
     exports: [MainComponent]
 })

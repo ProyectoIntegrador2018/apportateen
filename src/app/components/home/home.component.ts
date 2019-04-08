@@ -16,6 +16,8 @@ export class HomeComponent {
     first: boolean;
     second: boolean;
     third: boolean;
+    status: boolean;
+    rstatus: boolean;
     sponsor: Sponsor = new Sponsor();
 
     constructor(public snackBar: MatSnackBar, private api: ApiService) {

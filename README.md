@@ -26,7 +26,7 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 * **Production** - [TBD](TBD)
 * **Development** - [TBD](TBD)
 
-### Team
+### Team version 1.0
 
 | Name           | Email             | Role        |
 | -------------- | ----------------- | ----------- |
@@ -34,6 +34,31 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Iram Díaz Reyes | idr.diaz96@gmail.com | Development |
 | Luis Felipe Salazar | sv.luisfelipe@gmail.com | Development |
 | Carlos Eduardo Serret Heredia | carloserret@gmail.com | Development |
+
+
+### Team version 2.0
+
+| Name           | Email             | Role        |
+| -------------- | ----------------- | ----------- |
+| Carmelo Ramirez | jcarmelo37@gmail.com | Scrum Master |
+| Maria Paula Anastas | mpanastas8@gmail.com | Development |
+| Barabara Brina | bmbrina9@gmail.com | Product Owner |
+| David Martinez de Silva | dmtzds@gmail.com | Development |
+
+### Technology Used for Development
+
+#### ANGULAR
+* LINK: https://angular.io/
+Framework to build web applications for desktops and cellphones. Its main characteristics are that it uses declarative templates, dependency injection, end to end tooling and integrated practices. It requires the pre-installation of Node.Js (https://nodejs.org/en/). Angular is the main framework used to develop this application. 
+
+#### FIREBASE DATABASE
+* LINK: https://firebase.google.com/?hl=es-419
+Plataform to store data in a json-like structure. Firebase Real Time Database is a cloud-hosted, No-SQL database. Its main characteristic is that the data is in sync in realtime, this provide a great functionality for the application. 
+
+#### HEROKU
+* LINK: https://www.heroku.com/
+
+Platoform used to deploy and host the application.
 
 ### Management tools
 

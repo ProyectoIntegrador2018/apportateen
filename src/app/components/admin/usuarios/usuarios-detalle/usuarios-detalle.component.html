@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <button type="button" mat-dialog-close class="pull-right"><mat-icon>clear</mat-icon> </button>
+    </div>
+  </div>
+  <div class="col-md-12 row justify-content-center">
+      <h3>Detalle Info. {{nombreUsuario}}</h3>
+  </div>
+  <mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <mat-step>
+        <ng-template matStepLabel>Info. Usuario</ng-template>
+        <div class="row no-gutters">
+          <mat-form-field class="col-md-6">
+            <input matInput placeholder="Nombre" value="" [(ngModel)]="nombreUsuario">
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+              <input matInput placeholder="Apellido" value="" [(ngModel)]="apellidoUsuario">
+            </mat-form-field>
+        </div>
+        <div class="row no-gutters">
+          <mat-form-field class="col-md-6">
+            <input matInput placeholder="Fecha Nacimiento" value="" [(ngModel)]="fechaNacimientoUsuario">
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input matInput placeholder="CURP" value="" [(ngModel)]="curpUsuario">
+          </mat-form-field>
+        </div>
+        <div class="row no-gutters">
+          <mat-form-field class="col-md-6">
+            <input matInput placeholder="Teléfono" value="" [(ngModel)]="telefonoUsuario">
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input matInput placeholder="Sexo" value="" [(ngModel)]="sexoUsuario">
+          </mat-form-field>
+        </div>
+        <div class="row no-gutters">
+          <mat-form-field class="col-md-6">
+            <input matInput placeholder="Nombre Tutor" value="" [(ngModel)]="tutorNombreUsuario">
+          </mat-form-field>
+          <mat-form-field class="col-md-6">
+            <input matInput placeholder="Telefono Tutor" value="" [(ngModel)]="tutorTelefonoUsuario">
+          </mat-form-field>
+          <mat-form-field class="col-md-12">
+            <input matInput placeholder="Correo Tutor" value="" [(ngModel)]="tutorCorreoUsuario">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-button matStepperNext class="pull-right">Siguiente</button>
+        </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Info. Estudios</ng-template>
+      <div class="row no-gutters">
+        <mat-form-field class="col-md-12">
+          <input matInput placeholder="Nombre Escuela" value="" [(ngModel)]="escuelaUsuario">
+        </mat-form-field>
+      </div>
+      <div class="row no-gutters">
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="Tipo Escuela" value="" [(ngModel)]="escuelaTipoUsuario">
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+            <input matInput placeholder="Grado Escuela" value="" [(ngModel)]="escuelaGradoUsuario">
+          </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperNext class="pull-right">Siguiente</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Info. Experencia</ng-template>
+      <div class="row no-gutters">
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="¿Ha tenido Experenica?" value="" [(ngModel)]="experenciaUsuario">
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="¿Ha participado en ApportaTeen?" value="" [(ngModel)]="haParticipadoUsuario">
+        </mat-form-field>
+        <mat-form-field class="col-md-6">
+          <input matInput placeholder="¿Requiere Beca?" value="" [(ngModel)]="becaUsuario">
+        </mat-form-field>
+        <mat-form-field class="col-md-12">
+          <input matInput placeholder="Clases en el área de TI tomadas anteriormente" value="" [(ngModel)]="detalleExperenciaUsuario">
+        </mat-form-field>
+        <mat-form-field class="col-md-12">
+          <input matInput placeholder="Referencias del Evento" value="" [(ngModel)]="referenciaUsuario">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperNext mat-dialog-close class="edit-button pull-right">Cerrar</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <div class="row">
+    <div class="col-md-12">
+        <button type="button" class="btn btn-success mr-2" (click)="guardar()">Guardar</button>
+        <button type="button" mat-dialog-close class="btn btn-danger">Cancelar</button>
+    </div>
+  </div>
+</div>
