@@ -24,17 +24,7 @@
   </section>
   <section class="home__activities">
     <p class="home__activities__title">Actividades</p>
-    <div class="row">
-      <div class="col-6">
-        <img src="../../../../assets/img/block-1.png">
-      </div>
-      <div class="col-6 text-container">
-        <p class="home__activities__text">Los estudiantes se inscriben por medio de esta plataforma de forma individual.</p>
-        <p class="home__activities__text">Eligen el taller y la sede a la cuál desean acudir y asisten durante una semana de 9:00 a 16:00 hrs a los talleres
-        impartidos, donde identifican necesidades en su comunidad, escuela, localidad o en su entorno social y eligen la
-        necesidad que quieren resolver por medio de la tecnología aprendida.</p>
-      </div>
-    </div>
+
     <div class="row mobile-arrangement">
       <div class="col-6 text-container">
         <p class="home__activities__text right">Cada uno de los talleres de preparación, serán llevados a cabo por expertos en educación y en tecnología, desarrollando
@@ -97,31 +87,16 @@
             <img src="../../../../assets/img/sponsors/udem.png">
           </div>
           <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/skye.jpg">
+            <img src="../../../../assets/img/sponsors/tec.jpg">
           </div>
           <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/accenture2.png">
+            <img src="../../../../assets/img/sponsors/uanl.png">
           </div>
           <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/humans.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/hacsys.jpg">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/ice.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/cloudsourceit.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/iitt.png">
+            <img src="../../../../assets/img/sponsors/nuvasoft.png">
           </div>
           <div class="sponsor-container">
             <img src="../../../../assets/img/sponsors/Softek.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/Uerre.png">
           </div>
         </div>
       </div>
@@ -130,8 +105,8 @@
       <p class="form__title">¿Quieres ser patrocinador?</p>
       <p class="form__subtitle">¡Registra tus datos y nosotros te contactaremos!</p>
       <form class="form">
-        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre">
-        <input type="email" [(ngModel)]="sponsor.correo" [ngModelOptions]="{standalone: true}" placeholder="Correo">
+        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre" class="custom-input">
+        <input type="email" [(ngModel)]="sponsor.correo" [ngModelOptions]="{standalone: true}" placeholder="Correo" class="custom-input">
         <div class="action text-center">
           <button (click)="register()">Enviar</button>
         </div>
