@@ -34,7 +34,6 @@ export class AvisosUserComponent {
     ngAfterViewInit() {
         setTimeout(() => {
             if(this.user.idtaller == 0) {
-            //this.cargarDialogoTaller();
             this.cargarDialogoAvisoTaller();
             }
         });

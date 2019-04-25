@@ -30,6 +30,21 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  // API: GET /users/usuarios
+  public getUsersUsuarios(): Observable<User[]> {
+    return this.http
+    .get<User[]>(API_URL + '/admins/usuarios')
+    .catch(this.handleError);
+  }
+
+  // API: GET /users/admins
+  public getUsersAdmn(): Observable<User[]> {
+    return this.http
+    .get<User[]>(API_URL + '/admins/administradores')
+    .catch(this.handleError);
+  }
+
+
   // API: GET /users/:id
   public getUserById(user_id: string): Observable<User> {
     return this.http
@@ -70,6 +85,20 @@ export class ApiService {
     return this.http
       .delete<any>(`${API_URL}/users/delete/${id}`)
       .catch(this.handleError);
+  }
+
+  //API: PUT /admin/add/:id
+  public addAdmin(user : User): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/admins/agregar`, user)
+      .catch(this.handleError);
+  }
+
+  //API : DELETE /admins/delete/:id
+  public deleteAdmin(id : string): Observable<any> {
+    return this.http
+    .delete<any>(`${API_URL}/admins/delete/${id}`)
+    .catch(this.handleError);
   }
 
   // API: GET /sponsors

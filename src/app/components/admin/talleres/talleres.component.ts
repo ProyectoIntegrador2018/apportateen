@@ -95,6 +95,7 @@ export class TalleresComponent implements OnInit {
   }
 
   create() {
+    console.log(this.selectedTaller);
     this.newTaller = null;
     this.api.createTaller(this.selectedTaller).subscribe(result => {
       if (result.status == 'success') {

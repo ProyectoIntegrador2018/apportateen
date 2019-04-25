@@ -17,6 +17,8 @@ import { CorreosComponent } from '../admin/correos/correos.component';
 import { UsuariosComponent } from '../admin/usuarios/usuarios.component';
 import { DocumentosComponent } from '../admin/documentos/documentos.component';
 import { DocumentosUsuarioComponent } from '../user/documentos-usuario/documentos-usuario.component';
+import { AdministracionRolesComponent } from '../admin/administracion-roles/administracion-roles.component';
+import { PagosComponent } from '../admin/pagos/pagos.component';
 
 
 const routes: Routes = [
@@ -43,7 +45,9 @@ const routes: Routes = [
             { path: 'inicio', component: AvisosComponent },
             { path: 'correos', component: CorreosComponent },
             { path: 'usuarios', component: UsuariosComponent },
-            { path: 'documentos', component: DocumentosComponent}
+            { path: 'documentos', component: DocumentosComponent},
+            { path: 'admin-roles', component: AdministracionRolesComponent},
+            { path: 'pagos', component: PagosComponent}
         ]
     },
     {

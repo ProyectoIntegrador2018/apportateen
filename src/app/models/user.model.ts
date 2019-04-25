@@ -27,4 +27,5 @@ export class User {
     num_Edi: string = "";
     ha_participado: string = "";
     id_axtuser : string = "";
+    num_conf_pago : string = "";
 }
