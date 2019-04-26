@@ -309,4 +309,11 @@ export class ApiService {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
+
+  // API: PUT /sedes/:id
+  public updateUsuarioNumConfPago(user: User): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/users/pago/${user.id}`, user)
+      .catch(this.handleError);
+  }
 }

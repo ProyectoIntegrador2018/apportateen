@@ -33,7 +33,7 @@ export class AvisosUserComponent {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            if(this.user.idtaller == 0) {
+            if(this.user.idtaller == 0 || this.user.num_conf_pago == null) {
             this.cargarDialogoAvisoTaller();
             }
         });
@@ -50,8 +50,10 @@ export class AvisosUserComponent {
     }
 
     cargarDialogoAvisoTaller() {
+        let userStorage = this.storage.get('@user:data');
         let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
-            width: '800px'
+            width: '800px',
+            data: {id : userStorage.id}
         });
         dialogDetalle.afterClosed().subscribe(result => {
             this.router.navigate(['usuario/inscripcion']);
