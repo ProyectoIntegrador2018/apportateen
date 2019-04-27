@@ -1,77 +1,68 @@
-<div class="container-fluid">
-    <div class="col-md-12 row justify-content-center">
-        <h3>Lista Usuarios Registrados</h3>
-    </div>
+<div class="usuarios">
+  <div class="usuarios__container">
+    <h3 class="usuarios__title">Usuarios Registrados</h3>
     <div class="row justify-content-start col-md-3 pull-right">
-        <mat-form-field>
-            <mat-select placeholder="Selecciona el taller" (selectionChange)="seleccionarTaller($event)" name="tallerselect">
-                <mat-option [value]="0">Todos los Usuarios</mat-option>
-                <mat-option *ngFor="let t of talleres" [value]="t.id">{{t.nombre}} - {{t.sedeDesc}}</mat-option>
-            </mat-select>
-        </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Selecciona el taller" (selectionChange)="seleccionarTaller($event)"
+          name="tallerselect">
+          <mat-option [value]="0">Todos los Usuarios</mat-option>
+          <mat-option *ngFor="let t of talleres" [value]="t.id">{{t.nombre}} - {{t.sedeDesc}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-    <div *ngIf="selected.length > 0">
-        <table mat-table [dataSource]="selected" class="mat-elevation-z8 col-12"> 
-            <ng-container matColumnDef="position">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
-                <td mat-cell *matCellDef="let user; let i=index"> {{i+1}} </td>
-            </ng-container>
+    <div class="usuarios__table" *ngIf="selected.length > 0">
+      <table mat-table [dataSource]="selected" class="mat-elevation-z8 col-md-12">
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let user; let i=index"> {{i+1}} </td>
+        </ng-container>
 
-            <ng-container matColumnDef="id_Axt@Teen">
-                <th mat-header-cell *matHeaderCellDef> ID Usuario Axt@Teen </th>
-                <td mat-cell *matCellDef="let user"> {{user.id_axtuser}} </td>
-            </ng-container>
+        <ng-container matColumnDef="id_Axt@Teen">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let user"> {{user.id_axtuser}} </td>
+        </ng-container>
 
-            <ng-container matColumnDef="name">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let user"> {{user.nombre}} {{user.apellido}}</td>
-            </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let user"> {{user.nombre}} {{user.apellido}}</td>
+        </ng-container>
 
-            <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef> Correo </th>
-                <td mat-cell *matCellDef="let user"> {{user.correo}} </td>
-            </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Correo </th>
+          <td mat-cell *matCellDef="let user"> {{user.correo}} </td>
+        </ng-container>
 
-            <ng-container matColumnDef="school">
-                <th mat-header-cell *matHeaderCellDef> Escuela </th>
-                <td mat-cell *matCellDef="let user"> {{user.escuela}} </td>
-            </ng-container>
+        <ng-container matColumnDef="school">
+          <th mat-header-cell *matHeaderCellDef> Escuela </th>
+          <td mat-cell *matCellDef="let user"> {{user.escuela}} </td>
+        </ng-container>
 
-            <ng-container matColumnDef="grade">
-                <th mat-header-cell *matHeaderCellDef> Grado </th>
-                <td mat-cell *matCellDef="let user"> {{user.escuela_grado}} </td>
-            </ng-container>
-            
-            <!--<ng-container matColumnDef="editar">
-                <th mat-header-cell *matHeaderCellDef>Editar</th>
-                <td mat-cell *matCellDef="let user">
-                    <button type="button" class="btn btn-success" (click)="openDetalle(user)">Edit</button>
-                </td>
-            </ng-container>-->
+        <ng-container matColumnDef="grade">
+          <th mat-header-cell *matHeaderCellDef> Grado </th>
+          <td mat-cell *matCellDef="let user"> {{user.escuela_grado}} </td>
+        </ng-container>
 
-            <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef>Delete</th>
-                <td mat-cell *matCellDef="let user" (click)="$event.stopPropagation()">
-                    <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Borrar</button>
-                </td>
-            </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef>Delete</th>
+          <td mat-cell *matCellDef="let user" (click)="$event.stopPropagation()">
+            <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Borrar</button>
+          </td>
+        </ng-container>
 
-            <!--<ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-        <td mat-cell *matCellDef="let user"> <button mat-button color="primary" (click)="eliminar(sponsor.id)">Borrar</button>
-        </td>
-      </ng-container>-->
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDetalle(row)"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDetalle(row)"></tr>
 
-        </table>
+      </table>
 
     </div>
-
-
 
     <div *ngIf="selected.length < 1; else elseBlock" class="col-md-12 justify-content-center d-flex">
-        <h4>No existen usuarios registrados en este taller.</h4>
+      <h4>No existen usuarios registrados en este taller.</h4>
     </div>
-    <ng-template #elseBlock><button mat-button (click)="exportAsXLSX()" color="primary" class="mt-4">Descargar</button></ng-template>
+    <ng-template #elseBlock>
+      <div class="d-flex justify-content-center">
+        <button mat-button (click)="exportAsXLSX()" color="primary" class="mt-4">Descargar</button>
+      </div>
+    </ng-template>
+  </div>
 </div>

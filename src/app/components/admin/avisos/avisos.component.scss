@@ -1,10 +1,40 @@
 @import "~bootstrap/scss/_functions.scss";
 @import "~bootstrap/scss/_variables.scss";
 @import "~bootstrap/scss/mixins/_breakpoints.scss";
+@import '~styles-variables.scss';
 
-@include media-breakpoint-down(xs) {
-  .reduced {
-    margin-top: 16px;
+.avisos {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__item {
+    & + & {
+      margin-top: 70px;
+    }
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__msg {
+    padding-top: 16px;
+  }
+
+  .mat-expansion-panel-header {
+    background-color: $color-blue;
+
+    &:hover {
+      background-color: lighten($color-blue, .3);
+    }
+
+    &-title,
+    &-description,
+    .mat-expansion-indicator::after {
+      color: $color-white;
+    }
   }
 }
 
@@ -15,3 +45,17 @@ mat-form-field {
 textarea {
   height: 150px;
 }
+
+@include media-breakpoint-down(xs) {
+  .avisos {
+    .mat-expansion-panel-header {
+      height: auto !important;
+      padding: 10px 24px;
+    }
+  }
+
+  .reduced {
+    margin-top: 16px;
+  }
+}
+

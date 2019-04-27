@@ -1,50 +1,55 @@
-<div class="container-fluid">
-  <div class="row lpadfix">
-    <h3>Sedes</h3>
-    <button mat-icon-button color="primary" (click)="add()">
-      <mat-icon aria-label="add_sede">add_circle</mat-icon>
-    </button>
-  </div>
-  <div class="row">
-    <div class="col-md-4 sedes">
-      <div class="list-group">
-        <a *ngFor="let s of sedes" [class.active]="s.id == selectedSede.id" (click)="select(s)" class="list-group-item list-group-item-action">{{s.nombre}}</a>
+<div class="sedes">
+  <div class="sedes__container">
+    <div class="sedes__header lpadfix">
+      <h3>Sedes</h3>
+      <button mat-icon-button color="primary" (click)="add()">
+        <mat-icon aria-label="add_sede">add_circle</mat-icon>
+      </button>
+    </div>
+    <div class="sedes__item">
+      <div class="col-md-6 sedes__list">
+        <div class="list-group">
+          <a *ngFor="let s of sedes" [class.active]="s.id == selectedSede.id" (click)="select(s)"
+            class="list-group-item list-group-item-action">{{s.nombre}}</a>
+        </div>
+      </div>
+      <div class="col-md-6 detail con">
+        <div>
+          <h5>{{ newSede ? 'Nueva sede:' : ' '}} </h5>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre de la sede</mat-label>
+            <input matInput [(ngModel)]="selectedSede.nombre" name="sedeNombre">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <textarea matInput [(ngModel)]="selectedSede.direccion" name="descripcion"></textarea>
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="!newSede">
+          <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
+          <button mat-raised-button class="pull-right" color="primary" (click)="save()"
+            style="margin-right:12px;">Guardar</button>
+        </div>
+        <div *ngIf="newSede">
+          <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
+          <button mat-raised-button class="pull-right" color="primary" (click)="create()"
+            style="margin-right:12px;">Crear</button>
+        </div>
+
       </div>
     </div>
-
-    <div class="col-md-4 detail con">
-      <div>
-        <h5>{{ newSede ? 'Nueva sede:' : ' '}} </h5>
+    <div class="sedes__item">
+      <div class="col-md-4 talleres">
+        Talleres
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
+        </ul>
       </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Nombre de la sede</mat-label>
-          <input matInput [(ngModel)]="selectedSede.nombre" name="sedeNombre">
-        </mat-form-field>
-      </div>
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Dirección</mat-label>
-          <textarea matInput [(ngModel)]="selectedSede.direccion" name="descripcion"></textarea>
-        </mat-form-field>
-      </div>
-
-      <div *ngIf="!newSede">
-        <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
-        <button mat-raised-button class="pull-right" color="primary" (click)="save()" style="margin-right:12px;">Guardar</button>
-      </div>
-      <div *ngIf="newSede">
-        <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
-        <button mat-raised-button class="pull-right" color="primary" (click)="create()" style="margin-right:12px;">Crear</button>
-      </div>
-
-    </div>
-
-    <div class="col-md-4 talleres">
-      Talleres:
-      <ul class="list-group list-group-flush">
-        <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
-      </ul>
     </div>
   </div>
 </div>

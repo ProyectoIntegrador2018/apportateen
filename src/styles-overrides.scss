@@ -1,0 +1,376 @@
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $color-blue
+}
+
+.mat-warn .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $color-red
+}
+
+.mat-primary .mat-pseudo-checkbox-checked,
+.mat-primary .mat-pseudo-checkbox-indeterminate {
+  background: $color-blue
+}
+
+.mat-warn .mat-pseudo-checkbox-checked,
+.mat-warn .mat-pseudo-checkbox-indeterminate {
+  background: $color-red
+}
+
+.mat-badge-content {
+  color: $color-white;
+  background: $color-blue
+}
+
+.mat-badge-warn .mat-badge-content {
+  color: $color-white;
+  background: $color-red
+}
+
+.mat-button.mat-primary,
+.mat-icon-button.mat-primary,
+.mat-stroked-button.mat-primary {
+  color: $color-blue
+}
+
+.mat-button.mat-warn,
+.mat-icon-button.mat-warn,
+.mat-stroked-button.mat-warn {
+  color: $color-red
+}
+
+.mat-button.mat-primary .mat-button-focus-overlay,
+.mat-icon-button.mat-primary .mat-button-focus-overlay,
+.mat-stroked-button.mat-primary .mat-button-focus-overlay {
+  background-color: rgba($color-blue, .12)
+}
+
+.mat-button.mat-warn .mat-button-focus-overlay,
+.mat-icon-button.mat-warn .mat-button-focus-overlay,
+.mat-stroked-button.mat-warn .mat-button-focus-overlay {
+  background-color: rgba($color-red, .12)
+}
+
+.mat-button.mat-primary .mat-ripple-element,
+.mat-icon-button.mat-primary .mat-ripple-element,
+.mat-stroked-button.mat-primary .mat-ripple-element {
+  background-color: rgba($color-blue, .1)
+}
+
+.mat-button.mat-warn .mat-ripple-element,
+.mat-icon-button.mat-warn .mat-ripple-element,
+.mat-stroked-button.mat-warn .mat-ripple-element {
+  background-color: rgba($color-red, .1)
+}
+
+.mat-fab.mat-primary,
+.mat-flat-button.mat-primary,
+.mat-mini-fab.mat-primary,
+.mat-raised-button.mat-primary {
+  background-color: $color-blue
+}
+
+.mat-fab.mat-warn,
+.mat-flat-button.mat-warn,
+.mat-mini-fab.mat-warn,
+.mat-raised-button.mat-warn {
+  background-color: $color-red
+}
+
+.mat-icon-button.mat-primary .mat-ripple-element {
+  background-color: rgba($color-blue, .2)
+}
+
+.mat-icon-button.mat-warn .mat-ripple-element {
+  background-color: rgba($color-red, .2)
+}
+
+.mat-checkbox-checked.mat-primary .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background {
+  background-color: $color-blue
+}
+
+.mat-checkbox-checked.mat-warn .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-warn .mat-checkbox-background {
+  background-color: $color-red
+}
+
+.mat-checkbox:not(.mat-checkbox-disabled).mat-primary .mat-checkbox-ripple .mat-ripple-element {
+  background-color: rgba($color-blue, .26)
+}
+
+.mat-checkbox:not(.mat-checkbox-disabled).mat-warn .mat-checkbox-ripple .mat-ripple-element {
+  background-color: rgba($color-red, .26)
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  background-color: $color-blue;
+  color: $color-white
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-warn {
+  background-color: $color-red;
+  color: $color-white
+}
+
+.mat-calendar-body-selected {
+  background-color: $color-blue;
+  color: $color-white
+}
+
+.mat-calendar-body-disabled>.mat-calendar-body-selected {
+  background-color: rgba($color-blue, .4)
+}
+
+.mat-datepicker-content.mat-warn .mat-calendar-body-selected {
+  background-color: $color-red;
+  color: $color-white
+}
+
+.mat-datepicker-content.mat-warn .mat-calendar-body-disabled>.mat-calendar-body-selected {
+  background-color: rgba($color-red, .4)
+}
+
+.mat-datepicker-toggle-active {
+  color: $color-blue
+}
+
+.mat-datepicker-toggle-active.mat-warn {
+  color: $color-red
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: $color-blue
+}
+
+.mat-form-field.mat-focused .mat-form-field-label.mat-warn {
+  color: $color-red
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $color-blue
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple.mat-warn {
+  background-color: $color-red
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: $color-red
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label .mat-form-field-required-marker,
+.mat-form-field.mat-form-field-invalid .mat-form-field-label.mat-accent {
+  color: $color-red
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent {
+  background-color: $color-red
+}
+
+.mat-error {
+  color: $color-red
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: $color-blue
+}
+
+
+.mat-form-field-appearance-outline.mat-focused.mat-warn .mat-form-field-outline-thick {
+  color: $color-red
+}
+
+.mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+  color: $color-red
+}
+
+.mat-icon.mat-primary {
+  color: $color-blue
+}
+
+.mat-icon.mat-warn {
+  color: $color-red
+}
+
+.mat-input-element {
+  caret-color: $color-blue
+}
+
+.mat-form-field-invalid .mat-input-element,
+.mat-warn .mat-input-element {
+  caret-color: $color-red
+}
+
+.mat-progress-bar-fill::after {
+  background-color: $color-blue
+}
+
+.mat-progress-bar.mat-warn .mat-progress-bar-fill::after {
+  background-color: $color-red
+}
+
+.mat-progress-spinner circle,
+.mat-spinner circle {
+  stroke: $color-blue
+}
+
+.mat-progress-spinner.mat-warn circle,
+.mat-spinner.mat-warn circle {
+  stroke: $color-red
+}
+
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+  border-color: $color-blue
+}
+
+.mat-radio-button.mat-primary .mat-radio-inner-circle {
+  background-color: $color-blue
+}
+
+.mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element {
+  background-color: rgba($color-blue, .26)
+}
+
+.mat-radio-button.mat-warn.mat-radio-checked .mat-radio-outer-circle {
+  border-color: $color-red
+}
+
+.mat-radio-button.mat-warn .mat-radio-inner-circle {
+  background-color: $color-red
+}
+
+.mat-radio-button.mat-warn .mat-radio-ripple .mat-ripple-element {
+  background-color: rgba($color-red, .26)
+}
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: $color-blue
+}
+
+.mat-form-field.mat-focused.mat-warn .mat-select-arrow {
+  color: $color-red
+}
+
+.mat-form-field .mat-select.mat-select-invalid .mat-select-arrow {
+  color: $color-red
+}
+
+.mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: $color-blue
+}
+
+.mat-slide-toggle.mat-primary.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: rgba($color-blue, .5)
+}
+
+.mat-slide-toggle.mat-primary .mat-ripple-element {
+  background-color: rgba($color-blue, .12)
+}
+
+.mat-slide-toggle.mat-warn.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: $color-red
+}
+
+.mat-slide-toggle.mat-warn.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: rgba($color-red, .5)
+}
+
+.mat-slide-toggle.mat-warn .mat-ripple-element {
+  background-color: rgba($color-red, .12)
+}
+
+.mat-primary .mat-slider-thumb,
+.mat-primary .mat-slider-thumb-label,
+.mat-primary .mat-slider-track-fill {
+  background-color: $color-blue
+}
+
+.mat-warn .mat-slider-thumb,
+.mat-warn .mat-slider-thumb-label,
+.mat-warn .mat-slider-track-fill {
+  background-color: $color-red
+}
+
+.mat-step-header .mat-step-icon {
+  background-color: $color-blue;
+  color: $color-white
+}
+
+.mat-tab-group.mat-primary .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-primary .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-primary .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-primary .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-primary .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-primary .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-primary .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-primary .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled) {
+  background-color: rgba($color-blue, .12)
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: $color-blue
+}
+
+.mat-tab-group.mat-warn .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-warn .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-warn .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-warn .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-warn .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-warn .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-warn .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-warn .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled) {
+  background-color: rgba($color-red, .3)
+}
+
+.mat-tab-group.mat-warn .mat-ink-bar,
+.mat-tab-nav-bar.mat-warn .mat-ink-bar {
+  background-color: $color-red
+}
+
+.mat-tab-group.mat-background-primary .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-background-primary .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-background-primary .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-background-primary .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-primary .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-primary .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-primary .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-primary .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled) {
+  background-color: rgba($color-blue, .12)
+}
+
+.mat-tab-group.mat-background-primary .mat-tab-header,
+.mat-tab-group.mat-background-primary .mat-tab-links,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-header,
+.mat-tab-nav-bar.mat-background-primary .mat-tab-links {
+  background-color: $color-blue
+}
+
+.mat-tab-group.mat-background-warn .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-background-warn .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-background-warn .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-group.mat-background-warn .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-warn .mat-tab-label.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-warn .mat-tab-label.cdk-program-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-warn .mat-tab-link.cdk-keyboard-focused:not(.mat-tab-disabled),
+.mat-tab-nav-bar.mat-background-warn .mat-tab-link.cdk-program-focused:not(.mat-tab-disabled) {
+  background-color: rgba($color-red, .3)
+}
+
+.mat-tab-group.mat-background-warn .mat-tab-header,
+.mat-tab-group.mat-background-warn .mat-tab-links,
+.mat-tab-nav-bar.mat-background-warn .mat-tab-header,
+.mat-tab-nav-bar.mat-background-warn .mat-tab-links {
+  background-color: $color-red
+}
+
+.mat-toolbar.mat-primary {
+  background: $color-blue;
+  color: $color-white
+}
+
+.mat-toolbar.mat-warn {
+  background: $color-red;
+  color: $color-white
+}

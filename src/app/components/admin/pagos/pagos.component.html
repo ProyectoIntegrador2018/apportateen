@@ -1,31 +1,30 @@
-<div class="container-fluid">
-  <div class="col-md-12 row justify-content-center">
-    <h3>Lista Números Confirmación Pagos Usuarios</h3>
+<div class="pagos">
+  <div class="pagos__container">
+    <h3 class="pagos__title">Confirmación de Pagos</h3>
+    <div *ngIf="users.length > 0; else elsePagos">
+      <table mat-table [dataSource]="users" class="mat-elevation-z8 col-12">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Id Usuario Axt@Teen</th>
+          <td mat-cell *matCellDef="let user">{{user.id_axtuser}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let user">{{user.nombre}} {{user.apellido}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="NumConfPago">
+          <th mat-header-cell *matHeaderCellDef>Número Conf. Pago</th>
+          <td mat-cell *matCellDef="let user">{{user.num_conf_pago}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="thead-dark"></tr>
+        <tr mat-row *matRowDef="let row; columns : displayedColumns"></tr>
+      </table>
+    </div>
+
+    <ng-template #elsePagos>
+      <h4>No existen pagos registrados.</h4>
+    </ng-template>
   </div>
-  <hr>
-  <div *ngIf="users.length > 0; else elsePagos">
-    <table mat-table [dataSource]="users" class="mat-elevation-z8 col-12">
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>Id Usuario Axt@Teen</th>
-        <td mat-cell *matCellDef="let user">{{user.id_axtuser}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef>Nombre</th>
-        <td mat-cell *matCellDef="let user">{{user.nombre}} {{user.apellido}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="NumConfPago">
-        <th mat-header-cell *matHeaderCellDef>Número Conf. Pago</th>
-        <td mat-cell *matCellDef="let user">{{user.num_conf_pago}}</td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns" class="thead-dark"></tr>
-      <tr mat-row *matRowDef="let row; columns : displayedColumns"></tr>
-    </table>
-  </div>
-
-  <ng-template #elsePagos>
-    <h4>No existen pagos registrados.</h4>
-  </ng-template>
 </div>

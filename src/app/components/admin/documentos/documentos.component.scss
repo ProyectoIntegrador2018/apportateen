@@ -1,0 +1,35 @@
+@import '~styles-variables.scss';
+
+.documentos {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  .close {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .btn-success {
+    background-color: $color-blue;
+    border-color: $color-blue;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($color-blue, 0.5);
+    }
+  }
+
+  .btn-danger {
+    background-color: $color-red;
+    border-color: $color-red;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($color-red, 0.5);
+    }
+  }
+}

@@ -1,3 +1,31 @@
-    mat-form-field {
-      width: 100%;
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/mixins/_breakpoints.scss";
+
+.patrocinadores {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  .btn-table {
+    padding: 0;
+    text-align: left;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+@include media-breakpoint-down(xs) {
+  .patrocinadores {
+    &__table {
+      overflow-y: scroll;
     }
+  }
+}

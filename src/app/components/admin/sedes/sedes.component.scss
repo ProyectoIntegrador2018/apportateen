@@ -1,3 +1,43 @@
-    mat-form-field {
-      width: 100%;
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/mixins/_breakpoints.scss";
+
+.sedes {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__header {
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  &__item {
+    display: flex;
+
+    & + & {
+      margin-top: 30px;
     }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+@include media-breakpoint-down(xs) {
+  .sedes {
+    &__item {
+      flex-direction: column;
+    }
+
+    &__list {
+      margin-bottom: 30px;
+    }
+  }
+
+  .reduced {
+    margin-top: 16px;
+  }
+}

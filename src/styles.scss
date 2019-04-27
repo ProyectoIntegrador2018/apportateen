@@ -1,5 +1,6 @@
 @import '~styles-variables.scss';
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@import '~styles-overrides.scss';
 
 * {
     &:active,
@@ -36,7 +37,7 @@ mat-icon {
     font-family: 'Material Icons' !important;
 }
 
-$theme-colors: ("primary": $main-light, );
+$theme-colors: ("primary": $color-blue, );
 .mat-drawer-backdrop.mat-drawer-shown {
     background-color: rgba(0, 0, 0, 0);
 }
@@ -79,8 +80,8 @@ $theme-colors: ("primary": $main-light, );
 //@include media-breakpoint-up(sm) {}
 //less than 576 px
 //@include media-breakpoint-down(xs) { }
-//only small devices 
+//only small devices
 //@include media-breakpoint-only(xs) { }
 //targeting the same screen size range would be:
-//@include media-breakpoint-between(md, xl){} 
+//@include media-breakpoint-between(md, xl){}
 @import "~font-awesome/css/font-awesome.css";

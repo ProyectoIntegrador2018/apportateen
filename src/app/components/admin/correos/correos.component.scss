@@ -2,6 +2,17 @@
 @import "~bootstrap/scss/_variables.scss";
 @import "~bootstrap/scss/mixins/_breakpoints.scss";
 
+.correos {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+}
+
 @include media-breakpoint-down(xs) {
   .reduced {
     margin-top: 16px;

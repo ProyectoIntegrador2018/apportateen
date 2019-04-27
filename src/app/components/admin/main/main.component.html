@@ -1,5 +1,5 @@
 <div class="admin-container" [class.is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar class="toolbar">
     <button mat-icon-button [hidden]="!mobileQuery.matches" (click)="snav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
@@ -23,7 +23,6 @@
         <a mat-list-item routerLink="inicio">Inicio</a>
         <a mat-list-item routerLink="convocatorias">Convocatoria</a>
         <a mat-list-item routerLink="sedes">Sedes</a>
-       <!-- <a mat-list-item routerLink="categorias">Categorías</a>-->
         <a mat-list-item routerLink="talleres">Talleres</a>
         <a mat-list-item routerLink="patrocinadores">Patrocinadores</a>
         <a mat-list-item routerLink="usuarios">Usuarios</a>

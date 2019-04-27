@@ -1,7 +1,7 @@
-<div class="container-fluid">
-  <h3>Avisos</h3>
-  <div class="row justify-content-between">
-    <div class="col-md-5">
+<div class="avisos">
+  <div class="avisos__container">
+    <h3 class="avisos__title">Avisos</h3>
+    <div class="avisos__item">
       <form>
         <mat-form-field>
           <mat-select placeholder="Enviar mensaje a:" [(value)]="publico">
@@ -12,7 +12,8 @@
 
         <mat-form-field *ngIf="publico == 'especifico'">
           <mat-select placeholder="Selecciona el taller" [(ngModel)]="selectedAviso.idtaller" name="tallerselect">
-            <mat-option *ngFor="let taller of talleres" [value]="taller.id">{{taller.nombre}} - {{taller.sedeDesc}}</mat-option>
+            <mat-option *ngFor="let taller of talleres" [value]="taller.id">{{taller.nombre}} - {{taller.sedeDesc}}
+            </mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -26,10 +27,12 @@
           <textarea matInput [(ngModel)]="selectedAviso.mensaje" name="mensaje"></textarea>
         </mat-form-field>
         <button mat-raised-button class="pull-right" color="warn" (click)="resetInputs()">Cancelar</button>
-        <button mat-raised-button class="pull-right" color="primary" (click)="publicar()" style="margin-right:12px;">{{editMode?'Guardar':'Publicar'}}</button>
+        <button mat-raised-button class="pull-right" color="primary" (click)="publicar()"
+          style="margin-right:12px;">{{editMode?'Guardar':'Publicar'}}</button>
       </form>
     </div>
-    <div class="col-md-6 reduced">
+    <div class="avisos__item">
+      <h3 class="avisos__title">Avisos Activos</h3>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let aviso of avisos">
           <mat-expansion-panel-header>
@@ -40,14 +43,13 @@
               {{aviso.taller}}
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <p>{{aviso.mensaje}}</p>
+          <p class="avisos__msg">{{aviso.mensaje}}</p>
           <mat-action-row>
             <button mat-button color="primary" (click)="editar(aviso)">Editar</button>
             <button mat-button color="warn" (click)="eliminar(aviso)">Eliminar</button>
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
-
     </div>
   </div>
 </div>

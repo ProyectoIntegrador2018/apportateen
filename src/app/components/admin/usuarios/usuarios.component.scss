@@ -1,8 +1,42 @@
-    mat-form-field {
-      width: 100%;
-    }
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/mixins/_breakpoints.scss";
+@import '~styles-variables.scss';
 
-    mat-header-cell {
-      display:flex;
-      text-align: center !important;
-     }
+.usuarios {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  .btn-danger {
+    background-color: $color-red;
+    border-color: $color-red;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($color-red, 0.5);
+    }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-header-cell {
+  display: flex;
+  text-align: center !important;
+}
+
+@include media-breakpoint-down(xs) {
+  .usuarios {
+    &__table {
+      margin-top: 100px;
+      overflow-y: scroll;
+    }
+  }
+}
