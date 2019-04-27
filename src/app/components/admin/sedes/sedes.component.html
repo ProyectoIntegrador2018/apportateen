@@ -1,13 +1,13 @@
 <div class="sedes">
   <div class="sedes__container">
-    <div class="sedes__item lpadfix">
+    <div class="sedes__header lpadfix">
       <h3>Sedes</h3>
       <button mat-icon-button color="primary" (click)="add()">
         <mat-icon aria-label="add_sede">add_circle</mat-icon>
       </button>
     </div>
     <div class="sedes__item">
-      <div class="col-md-6 sedes">
+      <div class="col-md-6 sedes__list">
         <div class="list-group">
           <a *ngFor="let s of sedes" [class.active]="s.id == selectedSede.id" (click)="select(s)"
             class="list-group-item list-group-item-action">{{s.nombre}}</a>

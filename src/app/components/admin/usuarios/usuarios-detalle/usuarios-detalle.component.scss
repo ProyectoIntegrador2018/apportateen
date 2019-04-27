@@ -1,0 +1,21 @@
+@import '~styles-variables.scss';
+
+.usuario {
+  .btn-success {
+    background-color: $color-blue;
+    border-color: $color-blue;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($color-blue, 0.5);
+    }
+  }
+
+  .btn-danger {
+    background-color: $color-red;
+    border-color: $color-red;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($color-red, 0.5);
+    }
+  }
+}

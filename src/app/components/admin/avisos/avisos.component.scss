@@ -38,17 +38,24 @@
   }
 }
 
-@include media-breakpoint-down(xs) {
-  .reduced {
-    margin-top: 16px;
-  }
-}
-
 mat-form-field {
   width: 100%;
 }
 
 textarea {
   height: 150px;
+}
+
+@include media-breakpoint-down(xs) {
+  .avisos {
+    .mat-expansion-panel-header {
+      height: auto !important;
+      padding: 10px 24px;
+    }
+  }
+
+  .reduced {
+    margin-top: 16px;
+  }
 }
 

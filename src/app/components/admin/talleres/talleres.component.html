@@ -7,7 +7,7 @@
       </button>
     </div>
     <div class="talleres__item">
-      <div class="col-md-6 sedes">
+      <div class="col-md-6 talleres__list">
         <div class="list-group">
           <a *ngFor="let t of talleres" [class.active]="t.id == selectedTaller.id" (click)="select(t)"
             class="list-group-item list-group-item-action">{{t.nombre}}

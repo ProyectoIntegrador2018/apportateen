@@ -2,7 +2,7 @@
   <div class="patrocinadores__container">
     <h3 class="patrocinadores__title">Patrocinadores</h3>
 
-    <div *ngIf="sponsors.length > 0">
+    <div class="patrocinadores__table" *ngIf="sponsors.length > 0">
       <table mat-table [dataSource]="sponsors" class="mat-elevation-z8 col-md-12">
 
         <!--- Note that these columns can be defined in any order.

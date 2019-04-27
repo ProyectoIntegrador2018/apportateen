@@ -10,6 +10,11 @@
     margin-bottom: 20px;
   }
 
+  .close {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
   .btn-success {
     background-color: $color-blue;
     border-color: $color-blue;

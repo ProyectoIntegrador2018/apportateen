@@ -1,3 +1,8 @@
+@import "~bootstrap/scss/_functions.scss";
+@import "~bootstrap/scss/_variables.scss";
+@import "~bootstrap/scss/mixins/_breakpoints.scss";
+@import '~styles-variables.scss';
+
 .usuarios {
   &__container {
     margin: 0 auto;
@@ -7,6 +12,15 @@
   &__title {
     margin-bottom: 20px;
   }
+
+  .btn-danger {
+    background-color: $color-red;
+    border-color: $color-red;
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgba($color-red, 0.5);
+    }
+  }
 }
 
 mat-form-field {
@@ -14,6 +28,15 @@ mat-form-field {
 }
 
 mat-header-cell {
-  display:flex;
+  display: flex;
   text-align: center !important;
+}
+
+@include media-breakpoint-down(xs) {
+  .usuarios {
+    &__table {
+      margin-top: 100px;
+      overflow-y: scroll;
+    }
+  }
 }
