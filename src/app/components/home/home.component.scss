@@ -33,6 +33,7 @@
       flex-direction: column;
       justify-content: center;
       padding: 40px 0;
+      text-decoration: none;
 
       p {
         color: $color-white;
@@ -46,6 +47,10 @@
       &--about {
         background-color: $color-blue;
 
+        &:hover {
+          background-color: darken($color-blue, 5%);
+        }
+
         p {
           margin-top: 35px;
         }
@@ -54,6 +59,10 @@
       &--register {
         background-color: $color-gray;
 
+        &:hover {
+          background-color: darken($color-gray, 5%);
+        }
+
         p {
           margin-top: 54px;
         }
@@ -61,6 +70,10 @@
 
       &--calendar {
         background-color: $color-orange;
+
+        &:hover {
+          background-color: darken($color-orange, 5%);
+        }
 
         p {
           margin-top: 50px;
