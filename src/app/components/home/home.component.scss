@@ -198,9 +198,22 @@
     }
   }
 
-  &__sponsors {
-    margin-top: 70px;
+  &__calendar {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
+    .home__activities__title {
+      width: 100%;
+    }
+
+    img {
+      width: 45%;
+    }
+  }
+
+  &__sponsors {
     &__title {
       align-items: center;
       color: $color-white;
@@ -347,6 +360,12 @@
 
     .text-container {
       padding: 25px 0;
+    }
+
+    &__calendar {
+      img {
+        width: 100%;
+      }
     }
 
     &__sponsors {
