@@ -2,7 +2,7 @@
   <div class="roles__container">
     <h3 class="roles__title">Administración de Roles</h3>
     <h5 class="roles__subtitle"><strong>Administradores</strong></h5>
-    <div *ngIf="usersAdmn.length > 0; else elseUserAdmn" class="roles__item">
+    <div *ngIf="usersAdmn.length > 0" class="roles__item">
       <table mat-table [dataSource]="usersAdmn" class="mat-elevation-z8 col-12">
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef> No. </th>
