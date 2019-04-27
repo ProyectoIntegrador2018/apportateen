@@ -1,52 +1,57 @@
-<div class="container-fluid">
-  <div class="row lpadfix">
-    <h3>Talleres</h3>
-    <button mat-icon-button color="primary" (click)="add()">
-      <mat-icon aria-label="add_sede">add_circle</mat-icon>
-    </button>
-  </div>
-  <div class="row">
-    <div class="col-md-4 sedes">
-      <div class="list-group">
-        <a *ngFor="let t of talleres" [class.active]="t.id == selectedTaller.id" (click)="select(t)" class="list-group-item list-group-item-action">{{t.nombre}}
-          - {{t.sedeDesc}}</a>
+<div class="talleres">
+  <div class="talleres__container">
+    <div class="talleres__title lpadfix">
+      <h3>Talleres</h3>
+      <button mat-icon-button color="primary" (click)="add()">
+        <mat-icon aria-label="add_sede">add_circle</mat-icon>
+      </button>
+    </div>
+    <div class="talleres__item">
+      <div class="col-md-6 sedes">
+        <div class="list-group">
+          <a *ngFor="let t of talleres" [class.active]="t.id == selectedTaller.id" (click)="select(t)"
+            class="list-group-item list-group-item-action">{{t.nombre}}
+            - {{t.sedeDesc}}</a>
+        </div>
       </div>
     </div>
+    <div class="talleres__item">
+      <div class="col-md-12 detail con">
+        <h5>{{ newTaller ? 'Nuevo taller:' : ' '}} </h5>
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput [(ngModel)]="selectedTaller.nombre" name="nombreTaller">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput [(ngModel)]="selectedTaller.descripcion"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Sede" [(ngModel)]="selectedTaller.sede" name="sedeselect">
+            <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
+            <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Cupo máximo</mat-label>
+          <input matInput type="number" [(ngModel)]="selectedTaller.cupo" name="cupoTaller">
+        </mat-form-field>
 
-    <div class="col-md-4 detail con">
-      <h5>{{ newTaller ? 'Nuevo taller:' : ' '}} </h5>
-      <mat-form-field appearance="outline">
-        <mat-label>Nombre</mat-label>
-        <input matInput [(ngModel)]="selectedTaller.nombre" name="nombreTaller">
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Descripción</mat-label>
-        <textarea matInput [(ngModel)]="selectedTaller.descripcion"></textarea>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Sede" [(ngModel)]="selectedTaller.sede" name="sedeselect">
-          <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
-          <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Cupo máximo</mat-label>
-        <input matInput type="number" [(ngModel)]="selectedTaller.cupo" name="cupoTaller">
-      </mat-form-field>
-
-      <div *ngIf="!newTaller">
-        <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
-        <button mat-raised-button class="pull-right" color="primary" (click)="save()" style="margin-right:12px;">Guardar</button>
+        <div *ngIf="!newTaller">
+          <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
+          <button mat-raised-button class="pull-right" color="primary" (click)="save()"
+            style="margin-right:12px;">Guardar</button>
+        </div>
+        <div *ngIf="newTaller">
+          <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
+          <button mat-raised-button class="pull-right" color="primary" (click)="create()"
+            style="margin-right:12px;">Crear</button>
+        </div>
       </div>
-      <div *ngIf="newTaller">
-        <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
-        <button mat-raised-button class="pull-right" color="primary" (click)="create()" style="margin-right:12px;">Crear</button>
-      </div>
-
     </div>
   </div>
 </div>

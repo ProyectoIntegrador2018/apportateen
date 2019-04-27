@@ -8,8 +8,8 @@ import { MatDialogRef } from '@angular/material';
       <p>{{mensajeConfirmacion}}</p>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="dialogRef.close(false)" color="primary">No, cancelar</button>
-      <button mat-button (click)="dialogRef.close(true)" color="warn" cdkFocusInitial>Sí, continuar</button>
+      <button mat-button (click)="dialogRef.close(false)" color="warn">No, cancelar</button>
+      <button mat-button (click)="dialogRef.close(true)" color="primary" cdkFocusInitial>Sí, continuar</button>
     </div>`
 })
 export class ConfirmationDialog {

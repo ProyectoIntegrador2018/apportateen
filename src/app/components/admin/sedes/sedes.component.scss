@@ -1,3 +1,18 @@
-    mat-form-field {
-      width: 100%;
+.sedes {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__item {
+    display: flex;
+
+    & + & {
+      margin-top: 30px;
     }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}

@@ -1,8 +1,19 @@
-    mat-form-field {
-      width: 100%;
-    }
+.usuarios {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
 
-    mat-header-cell {
-      display:flex;
-      text-align: center !important;
-     }
+  &__title {
+    margin-bottom: 20px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-header-cell {
+  display:flex;
+  text-align: center !important;
+}

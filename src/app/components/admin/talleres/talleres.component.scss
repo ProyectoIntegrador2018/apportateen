@@ -1,3 +1,21 @@
-    mat-form-field {
-      width: 100%;
+.talleres {
+  &__container {
+    margin: 0 auto;
+    width: 90%;
+  }
+
+  &__title {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  &__item {
+    & + & {
+      margin-top: 30px;
     }
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}

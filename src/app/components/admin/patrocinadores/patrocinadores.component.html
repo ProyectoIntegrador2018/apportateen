@@ -1,43 +1,48 @@
-<div class="container-fluid">
-  <h3>Patrocinadores</h3>
+<div class="patrocinadores">
+  <div class="patrocinadores__container">
+    <h3 class="patrocinadores__title">Patrocinadores</h3>
 
-  <div *ngIf="sponsors.length > 0">
-    <table mat-table [dataSource]="sponsors" class="mat-elevation-z8 col-md-7">
+    <div *ngIf="sponsors.length > 0">
+      <table mat-table [dataSource]="sponsors" class="mat-elevation-z8 col-md-12">
 
-      <!--- Note that these columns can be defined in any order.
+        <!--- Note that these columns can be defined in any order.
               The actual rendered columns are set as a property on the row definition" -->
 
-      <!-- Position Column -->
-      <ng-container matColumnDef="position">
-        <th mat-header-cell *matHeaderCellDef> No. </th>
-        <td mat-cell *matCellDef="let sponsor; let i=index"> {{i+1}} </td>
-      </ng-container>
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let sponsor; let i=index"> {{i+1}} </td>
+        </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Nombre </th>
-        <td mat-cell *matCellDef="let sponsor"> {{sponsor.nombre}} </td>
-      </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nombre </th>
+          <td mat-cell *matCellDef="let sponsor"> {{sponsor.nombre}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Correo </th>
-        <td mat-cell *matCellDef="let sponsor"> {{sponsor.correo}} </td>
-      </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Correo </th>
+          <td mat-cell *matCellDef="let sponsor"> {{sponsor.correo}} </td>
+        </ng-container>
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-        <td mat-cell *matCellDef="let sponsor"> <button mat-button color="primary" (click)="eliminar(sponsor.id)">Borrar</button>
-        </td>
-      </ng-container>
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Acciones </th>
+          <td mat-cell *matCellDef="let sponsor">
+            <button mat-button class="btn-table" color="warn" (click)="eliminar(sponsor.id)">
+              Borrar
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-    </table>
+      </table>
 
-  </div>
+    </div>
 
-  <div *ngIf="sponsors.length < 1">
-    <h1>Sin patrocinadores</h1>
-    <p>No existen patrocinadores registrados.</p>
+    <div *ngIf="sponsors.length < 1">
+      <h1>Sin patrocinadores</h1>
+      <p>No existen patrocinadores registrados.</p>
+    </div>
   </div>
 </div>
