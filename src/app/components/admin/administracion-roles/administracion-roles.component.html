@@ -32,7 +32,7 @@
       </table>
     </div>
     <h5 class="roles__subtitle"><strong>Participantes</strong></h5>
-    <div *ngIf="users.length > 0; else elseUsersUsuario" class="roles__item">
+    <div *ngIf="users.length > 0;" class="roles__item">
       <table mat-table [dataSource]="users" class="mat-elevation-z8 col-12">
         <ng-container matColumnDef="position">
           <th mat-header-cell *matHeaderCellDef> No. </th>
