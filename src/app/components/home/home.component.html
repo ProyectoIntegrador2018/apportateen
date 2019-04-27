@@ -4,22 +4,28 @@
   </section>
   <section class="home__info">
     <div class="row">
-      <div class="col-4 home__info__block home__info__block--about">
-      <img src="../../../../assets/img/about.svg">
-      <p>Conócenos</p>
-    </div>
-    <div class="col-4 home__info__block home__info__block--register">
-      <img src="../../../../assets/img/register.svg">
-      <p>Participa en Aportateen</p>
-    </div>
-    <div class="col-4 home__info__block home__info__block--calendar">
-      <img src="../../../../assets/img/calendar.svg">
-      <p>Fecha de eventos</p>
-    </div>
+      <a href="#conocenos"> 
+        <div class="col-4 home__info__block home__info__block--about">
+       <img src="../../../../assets/img/about.svg">
+       <p>Conócenos</p>
+       </div>
+      </a>
+      <a href="#participa"> 
+        <div class="col-4 home__info__block home__info__block--register">
+        <img src="../../../../assets/img/register.svg">
+        <p>Participa en Aportateen</p>
+        </div>
+      </a>
+      <a href="#calendar"> 
+        <div class="col-4 home__info__block home__info__block--calendar">
+        <img src="../../../../assets/img/calendar.svg">
+        <p>Fecha de eventos</p> 
+        </div>
+      </a>
     </div>
   </section>
   <section class="home__about" id="QueEs">
-    <h1>¿Qué es Aportateen?</h1>
+    <a name="conocenos"> <h1>¿Qué es Aportateen?</h1> </a>
     <p>Axt@Teen es un programa intensivo para promover entre estudiantes de México ,desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
   </section>
   <section class="home__activities">
@@ -61,7 +67,7 @@
     </div>
     <div class="home__participation__details">
       <div class="details-container" (click)="status=!status" [ngClass]="status ? '' : 'open'">
-        <p class="subtitle">Importante</p>
+          <a name="participa"> <p class="subtitle">Importante</p> </a>
         <button>
           <img src="../../../../assets/img/down-arrow.svg">
         </button>
@@ -77,7 +83,7 @@
     </div>
   </section>
   <section class="home__calendar" id="Cal">
-    <p class="home__activities__title">Calendario</p>
+   <a name="calendar"> <p class="home__activities__title">Calendario</p> </a>
     <img src="../../../../assets/img/calendario.png">
   </section>
   <section class="home__sponsors" id="Pats">
