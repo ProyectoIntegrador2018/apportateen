@@ -97,6 +97,32 @@
           <button mat-button matStepperNext mat-dialog-close class="edit-button pull-right">Cerrar</button>
         </div>
       </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Documentos</ng-template>
+        <div class="row">
+          <div class="col-md-12" *ngIf="listaArchivos.length > 0; else elseBlock2">
+            <div class="list-group">
+              <div class="input-group mb-3" *ngFor="let archivo of listaArchivos">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="{{archivo.nombre}}" disabled>
+                  <div class="input-group-append">
+                    <a href="{{archivo.url}}" class="btn btn-info">Abrir</a>
+                    <button class="btn btn-danger" type="button"
+                      (click)="deleteArchivo(archivo.archivo_path)">Borrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-template #elseBlock2>
+            <div class="col-md-12">
+              <h5>No se han subido documentos por parte del usuario.</h5>
+            </div>
+          </ng-template>
+        </div>
+      </mat-step>
+
     </mat-horizontal-stepper>
     <div class="row">
       <div class="col-md-12">

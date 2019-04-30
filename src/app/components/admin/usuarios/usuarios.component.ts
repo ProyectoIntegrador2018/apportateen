@@ -68,6 +68,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   deleteUser(id) {
+    console.log(id);
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose : true
     });

@@ -129,6 +129,7 @@ export class SignupComponent implements OnInit {
     }
 
     signup() {
+        console.log(this.usuario);
         this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
         if (this.validate()) {
             if (this.usuario.tutor_correo.match(this.emailReg)) {

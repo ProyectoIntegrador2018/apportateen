@@ -2,9 +2,14 @@
   <h1 mat-dialog-title>AVISO - Falta Pago de Inscripción</h1>
   <div>
     <div mat-dialog-content>
-      <p>Antes de continuar, es necesario que te registres y realices el pago de inscripció del programa. Favor de inscribirse.</p>
+      <p>Antes de continuar, es necesario que te registres y realices el pago de inscripció del programa. Favor de realizar el pago haciendo click en el boton de "Pagar" y guardando el número de confirmación de pago en el espacio siguiente.</p>
     </div>
-
+    <div class="row mb-4">
+      <div class="col-md-12 text-center">
+        <a type="button" class="btn btn-info" href="https://boletia.com/events/155591" target="_blank">Pagar Inscripción</a>
+      </div>
+    </div>
+    
     <div class="input-group mb-3">
       <input [(ngModel)]="num_conf_pago" type="text" class="form-control" placeholder="Numero de Confirmación de Pago" aria-label="Numero de Confirmación de Pago" aria-describedby="basic-addon2">
       <div class="input-group-append">

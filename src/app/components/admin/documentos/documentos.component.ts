@@ -23,7 +23,6 @@ export class DocumentosComponent implements OnInit {
   downloadURL;
 
   listaArchivosAdmn : any;
-  listaArchivosUsuarios : any;
 
   constructor(private storage: AngularFireStorage,
     private api: ApiService,
@@ -31,13 +30,11 @@ export class DocumentosComponent implements OnInit {
     public snackBar: MatSnackBar,
     @Inject(LOCAL_STORAGE) private webStorage : WebStorageService) {
       this.listaArchivosAdmn = [];
-      this.listaArchivosUsuarios = [];
      }
 
   ngOnInit() {
     this.user = this.webStorage.get('@user:data');
     this.getArchivosAdmn();
-    this.getArchivosUser();
   }
 
   getArchivo(event) {
@@ -62,7 +59,6 @@ export class DocumentosComponent implements OnInit {
               duration: 1300
             });
             this.getArchivosAdmn();
-            this.getArchivosUser();
           }, error => {
             this.snackBar.open(error.error, '', {
               duration: 1300
@@ -92,7 +88,6 @@ export class DocumentosComponent implements OnInit {
               duration: 1300,
             });
             this.getArchivosAdmn();
-            this.getArchivosUser();
           }, error => {
             this.snackBar.open(error.error, '', {
               duration: 1400,
@@ -116,13 +111,6 @@ export class DocumentosComponent implements OnInit {
   getArchivosAdmn() {
     this.api.getAllArchivosById(this.user.id).subscribe(result => {
       this.listaArchivosAdmn = result[0];
-    })
-  }
-
-  getArchivosUser() {
-    this.api.getArchivosAdminByUser(this.user.id).subscribe(result =>{
-      this.listaArchivosUsuarios = result[0];
-      console.log(this.listaArchivosUsuarios.length);
     })
   }
 }

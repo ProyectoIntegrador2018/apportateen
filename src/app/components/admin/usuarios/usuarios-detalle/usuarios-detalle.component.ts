@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSnackBar} from '@angular/material';
 import { ApiService } from 'app/services/api/api.service';
 import {User} from '../../../../models/user.model';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 export interface DialogData{
 
 }
@@ -33,11 +35,19 @@ export class UsuariosDetalleComponent implements OnInit {
   referenciaUsuario : string;
   numEdicionUsuario : string;
 
+  listaArchivos : any;
+
   usuario : User = new User();
 
-  constructor(public dialogRef: MatDialogRef<UsuariosDetalleComponent>, @Inject(MAT_DIALOG_DATA) public result: DialogData, private api: ApiService, public snackBar: MatSnackBar) { }
+  constructor(public dialogRef: MatDialogRef<UsuariosDetalleComponent>, 
+    @Inject(MAT_DIALOG_DATA) public result: DialogData, 
+    private api: ApiService, 
+    public snackBar: MatSnackBar, 
+    public dialog: MatDialog, 
+    private storage: AngularFireStorage) { }
 
   ngOnInit() {
+    this.listaArchivos = [];
   
     this.idUsuario = this.result['row']['id'];
     this.api.getUserById(this.idUsuario).subscribe(result => {
@@ -60,7 +70,11 @@ export class UsuariosDetalleComponent implements OnInit {
       this.detalleExperenciaUsuario = result.detalle_exp;
       this.referenciaUsuario = result.referencia;
       this.numEdicionUsuario = null;
-    })
+    });
+
+    this.getArchivos();
+
+    
   }
 
   //Metodo utilizado para actualizar la informacion del usuario
@@ -104,6 +118,41 @@ export class UsuariosDetalleComponent implements OnInit {
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
     return [day, month, year].join('-');
+}
+
+  deleteArchivo(path) {
+    var archivoRef = this.storage.ref(path);
+
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará este documento. ¿Desea continuar?`;
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        archivoRef.delete().subscribe(res => {
+          console.log(path);
+          this.api.deleteArchivoAdmn(path).subscribe(res => {
+            this.snackBar.open(res.message, '', {
+              duration: 1300
+            });
+            this.getArchivos();
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 1300
+            });
+          })
+        })
+      }
+    })
+}
+
+getArchivos() {
+  this.api.getAllArchivosById(this.idUsuario).subscribe(result => {
+    this.listaArchivos = result[0];
+    console.log(this.listaArchivos);
+  })
 }
 
 }
