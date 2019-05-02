@@ -103,6 +103,32 @@
       text-align: center;
       width: 70%;
     }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 50px 20px;
+      margin: 0 auto;
+      width: 80%;
+    }
+
+    .cta {
+      background-color: $color-blue;
+      border: none;
+      border-radius: 3px;
+      color: $color-white;
+      display: inline-block;
+      font-size: 21px;
+      font-weight: 300;
+      letter-spacing: 0.47px;
+      margin-top: 20px;
+      padding: 10px 50px;
+      text-align: center;
+
+      &:hover {
+        background: darken($color-blue, 10%);
+        text-decoration: none;
+      }
+    }
   }
 
   &__activities {
@@ -363,6 +389,11 @@
       p {
         width: 100%;
       }
+
+      table {
+        border-spacing: 0 10px;
+        width: 90%;
+      }
     }
 
     .row {
@@ -381,10 +412,17 @@
       }
     }
 
+    &__participation {
+      .subtitle {
+        font-size: 38px;
+      }
+    }
+
     &__sponsors {
       margin-top: 30px;
 
       &__title {
+        font-size: 36px;
         justify-content: center;
         margin-top: 30px;
         padding-left: 0;
@@ -414,7 +452,7 @@
       width: 90%;
 
       &__title {
-        font-size: 46px;
+        font-size: 36px;
       }
     }
   }

@@ -1,0 +1,17 @@
+@import '~styles-variables.scss';
+
+.aviso-modal {
+  .btn-primary,
+  .mat-button {
+    background-color: $color-blue;
+    border-color: $color-blue;
+    color: $color-white;
+
+    &:hover {
+      color: $color-white;
+      background-color: $color-blue;
+      border-color: $color-blue;
+      text-decoration: none;
+    }
+  }
+}

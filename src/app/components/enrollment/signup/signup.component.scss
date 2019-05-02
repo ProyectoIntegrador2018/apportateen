@@ -2,14 +2,14 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 .btn-primary {
-  background-color: #A191C4;
-  border-color: #A191C4;
-}
+  background-color: $color-blue;
+  border-color: $color-blue;
 
-.btn-primary:hover {
-  color: #fff;
-  background-color: #8c78b7;
-  border-color: #8570b2;
+  &:hover {
+    color: $color-white;
+    background-color: $color-blue;
+    border-color: $color-blue;
+  }
 }
 
 @include media-breakpoint-down(xs) {

@@ -8,7 +8,7 @@
         <img src="../../../../assets/img/about.svg">
         <p>Conócenos</p>
       </a>
-      <a pageScroll href="#participa" class="col-4 home__info__block home__info__block--register">
+      <a pageScroll href="#Reqs" class="col-4 home__info__block home__info__block--register">
         <img src="../../../../assets/img/register.svg">
         <p>Participa en Axt@Teen 4.0</p>
       </a>
@@ -20,12 +20,64 @@
     </div>
   </section>
   <section class="home__about" id="QueEs">
-    <a name="conocenos"> <h1>¿Qué es Axt@Teen 4.0?</h1> </a>
+    <h1>¿Qué es Axt@Teen 4.0?</h1>
     <p>Axt@Teen 4.0 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
+    <p>En esta edición se impartirán talleres de:</p>
+    <table>
+      <tr>
+        <th>Taller</th>
+        <th>Descripción</th>
+      </tr>
+      <tr>
+        <td>Drones</td>
+        <td>Los participantes podrán aprender los principios de diseño, manufactura y vuelo de los drones, así como
+          las diferentes técnicas de programación</td>
+      </tr>
+      <tr>
+        <td>Diseño 3D</td>
+        <td>Los participantes podrán aprender a generar geometrías tridimensionales en software de diseño, los cuales
+          posteriormente serán utilizados para la manufactura de productos</td>
+      </tr>
+      <tr>
+        <td>Impresión en 3D</td>
+        <td>Los participantes aprenderán las diferentes técnicas de manufactura aditiva, diseñarán y generarán sus
+          prototipos a ser impresos dentro del taller</td>
+      </tr>
+      <tr>
+        <td>Apps Avanzadas</td>
+        <td>En este taller los participantes aprenden a desarrollar Apps móviles para diferentes sistemas operativos y
+          así aumentar su capacidad de desarrollo de software</td>
+      </tr>
+      <tr>
+        <td>App Inventor</td>
+        <td>Proporcionar a los participantes los conocimientos y herramientas tecnológicas para comprender y aplicar
+          los conceptos de Internet de las Cosas.</td>
+      </tr>
+      <tr>
+        <td>Programación Competitiva</td>
+        <td>Los participantes recordarán conceptos básicos de JAVA y solucionarán problemas usando un juez de
+          programación competitiva </td>
+      </tr>
+      <tr>
+        <td>Internet de las Cosas (IoT)</td>
+        <td>Proporcionar a los participantes los conocimientos y herramientas tecnológicas para comprender y aplicar
+          los conceptos de Internet de las Cosas.</td>
+      </tr>
+    </table>
+    <a class="cta" href="https://boletia.com/events/155591">Inscríbete Ahora</a>
   </section>
   <section class="home__activities">
     <p class="home__activities__title">Actividades</p>
-
+    <div class="row">
+      <div class="col-6">
+        <img src="../../../../assets/img/block-1.png">
+      </div>
+      <div class="col-6 text-container">
+        <p class="home__activities__text">Los estudiantes se inscriben por medio de esta plataforma de forma individual.</p>
+        <p class="home__activities__text">Eligen el taller y la sede a la cuál desean acudir y asisten durante una semana de 9:00 a 16:00 hrs a los talleres
+          impartidos, donde identifican necesidades en su comunidad, escuela, localidad o en su entorno social y eligen la necesidad que quieren resolver por medio de la tecnología aprendida.</p>
+      </div>
+    </div>
     <div class="row mobile-arrangement">
       <div class="col-6 text-container">
         <p class="home__activities__text right">Cada uno de los talleres de preparación, serán llevados a cabo por expertos en educación y en tecnología, desarrollando
@@ -60,7 +112,7 @@
         </ol>
       </div>
     </div>
-    <div class="home__participation__details" id="participa">
+    <div class="home__participation__details">
       <div class="details-container" (click)="status=!status" [ngClass]="status ? '' : 'open'">
         <p class="subtitle">Importante</p>
         <button>

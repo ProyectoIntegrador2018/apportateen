@@ -5,5 +5,12 @@ button {
 }
 
 .btn-primary {
-  color: $color-white;
+  background-color: $color-blue;
+  border-color: $color-blue;
+
+  &:hover {
+    color: $color-white;
+    background-color: $color-blue;
+    border-color: $color-blue;
+  }
 }
