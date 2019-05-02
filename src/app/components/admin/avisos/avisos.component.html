@@ -34,7 +34,7 @@
     <div class="avisos__item">
       <h3 class="avisos__title">Avisos Activos</h3>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let aviso of avisos">
+        <mat-expansion-panel *ngFor="let aviso of avisos" class="avisos__single">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{aviso.titulo}}

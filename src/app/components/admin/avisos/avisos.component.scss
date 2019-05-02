@@ -23,6 +23,10 @@
     padding-top: 16px;
   }
 
+  &__single + &__single {
+    margin-top: 15px;
+  }
+
   .mat-expansion-panel-header {
     background-color: $color-blue;
 
