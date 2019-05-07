@@ -107,12 +107,19 @@
     table {
       border-collapse: separate;
       border-spacing: 50px 20px;
-      margin: 0 auto;
+      margin: 0 auto 70px;
       width: 80%;
     }
 
+    .course {
+      &__title {
+        color: $color-blue;
+        text-transform: uppercase;
+      }
+    }
+
     .cta {
-      background-color: $color-blue;
+      background-color: $color-orange;
       border: none;
       border-radius: 3px;
       color: $color-white;
@@ -125,7 +132,7 @@
       text-align: center;
 
       &:hover {
-        background: darken($color-blue, 10%);
+        background: darken($color-orange, 10%);
         text-decoration: none;
       }
     }
@@ -456,6 +463,12 @@
       }
     }
   }
+
+  .steps {
+    &-section {
+      display: none;
+    }
+  }
 }
 
 /* Tablet */
@@ -513,6 +526,115 @@
         max-width: 100%;
         width: 100%;
       }
+    }
+  }
+}
+
+$break-point: 500px;
+
+.steps {
+  &-timeline {
+    margin: 30px 0;
+
+    @media screen and (max-width: $break-point) {
+      border-left: 2px solid $color-blue;
+      margin-left: 25px;
+    }
+
+    @media screen and (min-width: $break-point) {
+      border-top: 2px solid $color-blue;
+      margin-left: 16.65%;
+      margin-right: 16.65%;
+      margin-top: 60px;
+      padding-top: 20px;
+    }
+
+    &::after {
+      clear: both;
+      content: "";
+      display: table;
+    }
+  }
+
+  &-header {
+    color: $color-blue;
+    font-size: 1.4em;
+    font-weight: 400;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &-one,
+  &-two,
+  &-three {
+    @media screen and (max-width: $break-point) {
+      margin-left: -25px;
+    }
+
+    @media screen and (min-width: $break-point) {
+      float: left;
+      margin-top: -50px;
+      width: 33%;
+    }
+  }
+
+  &-one,
+  &-two {
+    @media screen and (max-width: $break-point) {
+      padding-bottom: 40px;
+    }
+  }
+
+  &-one {
+    @media screen and (min-width: $break-point) {
+      margin-left: -16.65%;
+      margin-right: 16.65%;
+    }
+  }
+
+  &-three {
+    @media screen and (max-width: $break-point) {
+      margin-bottom: -100%;
+    }
+
+    @media screen and (min-width: $break-point) {
+      margin-left: 16.65%;
+      margin-right: -16.65%;
+    }
+  }
+
+  &-img {
+    background-color: $color-blue;
+    border-radius: 50%;
+    color: $color-white;
+    display: block;
+    height: 50px;
+    margin: auto;
+    padding-top: 10px;
+    width: 50px !important;
+
+    @media screen and (max-width: $break-point) {
+      float: left;
+      margin-right: 20px;
+    }
+  }
+
+  &-name,
+  &-description {
+    margin: 0;
+  }
+
+  &-description {
+    width: 100% !important;
+  }
+
+  &-name {
+    color: $color-blue;
+    font-size: 1.4em;
+    font-weight: 400;
+
+    @media screen and (min-width: $break-point) {
+      text-align: center;
     }
   }
 }
