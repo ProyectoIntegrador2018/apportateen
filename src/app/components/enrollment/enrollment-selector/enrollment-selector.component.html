@@ -6,9 +6,11 @@
       <button class="tabLink" [ngClass]="{'selected': isLoginSelected}" (click)="isLoginSelected = true">Iniciar sesión</button>
       <button class="tabLink" [ngClass]="{'selected': !isLoginSelected}" (click)="isLoginSelected = false">Registrarse</button>
     </div>
-    <div id="loginWrapper">
+    <div id="loginWrapper" class="text-center">
       <login [hidden]="!isLoginSelected"></login>
       <signup [hidden]="isLoginSelected"></signup>
+      <button [hidden]="!isLoginSelected" (click)="isLoginSelected = false" class="justify-content-md-center btn btn-link btn-xs" type="button">¿No tienes una cuenta? ¡Favor de registrarte aquí!</button>
+      <button [hidden]="isLoginSelected" (click)="isLoginSelected = true" class="justify-content-md-center btn btn-link btn-xs" type="button">¿Ya tienes una cuenta? ¡Favor de iniciar sesión aquí!</button>
     </div>
   </div>
 </div>

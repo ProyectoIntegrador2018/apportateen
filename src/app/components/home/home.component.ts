@@ -93,16 +93,16 @@ export class HomeComponent {
         if (this.validate()) {
             this.api.createSponsor(this.sponsor).subscribe(res => {
                 this.snackBar.open(res.message, '', {
-                    duration: 1400,
+                    duration: 5000,
                 });
             }, error => {
                 this.snackBar.open(error.error, '', {
-                    duration: 1400,
+                    duration: 5000,
                 });
             })
         } else {
             this.snackBar.open('Revise que ambos campos estén correctos', '', {
-                duration: 1400,
+                duration: 5000,
             });
         }
 

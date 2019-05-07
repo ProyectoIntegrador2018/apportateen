@@ -4,6 +4,9 @@ import { Aviso } from 'app/models/aviso.model';
 import { ApiService } from 'app/services/api/api.service';
 import { User } from 'app/models/user.model';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { NgxPermissionsService } from 'ngx-permissions';
 
 export interface DialogData{
 
@@ -21,7 +24,10 @@ export class AvisoInscripcionTallerComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<AvisoInscripcionTallerComponent>, @Inject(MAT_DIALOG_DATA) public result : DialogData,
   private api: ApiService,
   public snackbar: MatSnackBar,
-  private router : Router) { 
+  private router : Router,
+  private afAuth: AngularFireAuth,
+  @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+  private permissionsService: NgxPermissionsService) { 
     dialogRef.disableClose = true;
   }
 
@@ -54,5 +60,14 @@ export class AvisoInscripcionTallerComponent implements OnInit {
       });
     });
   }
+
+  logout() {
+    this.afAuth.auth.signOut().then(() => {
+        this.dialogRef.close();
+        this.storage.remove('@user:data');
+        this.permissionsService.flushPermissions();
+        this.router.navigate(['ingresar']);
+    })
+}
 
 }

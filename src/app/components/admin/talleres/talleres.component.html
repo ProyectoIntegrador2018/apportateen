@@ -31,7 +31,7 @@
             <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field  [hidden]="true">
           <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
             <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
           </mat-select>

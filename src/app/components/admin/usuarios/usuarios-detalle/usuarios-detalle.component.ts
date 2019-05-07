@@ -35,7 +35,7 @@ export class UsuariosDetalleComponent implements OnInit {
   referenciaUsuario : string;
   numEdicionUsuario : string;
 
-  listaArchivos : any;
+  listaArchivos = [];
 
   usuario : User = new User();
 
@@ -70,9 +70,10 @@ export class UsuariosDetalleComponent implements OnInit {
       this.detalleExperenciaUsuario = result.detalle_exp;
       this.referenciaUsuario = result.referencia;
       this.numEdicionUsuario = null;
+
+      this.getArchivos();
     });
 
-    this.getArchivos();
 
     
   }
@@ -149,6 +150,7 @@ export class UsuariosDetalleComponent implements OnInit {
 }
 
 getArchivos() {
+  this.listaArchivos = [];
   this.api.getAllArchivosById(this.idUsuario).subscribe(result => {
     this.listaArchivos = result[0];
     console.log(this.listaArchivos);

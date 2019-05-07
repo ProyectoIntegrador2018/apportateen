@@ -114,6 +114,7 @@
     .course {
       &__title {
         color: $color-blue;
+        font-weight: bold;
         text-transform: uppercase;
       }
     }
