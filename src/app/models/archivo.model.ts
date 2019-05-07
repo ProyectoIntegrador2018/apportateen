@@ -5,4 +5,5 @@ export class Archivo {
     fecha_subida: string = '';
     url: string = '';
     archivo_path: string = '';
+    count : number = 0;
 }

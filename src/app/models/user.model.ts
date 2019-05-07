@@ -28,4 +28,5 @@ export class User {
     ha_participado: string = "";
     id_axtuser : string = "";
     num_conf_pago : string = "";
+    documentos : number = 0;
 }
