@@ -107,6 +107,12 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+        <br><p *ngIf="usuario.beca == 'Si'">¿Cual es la razón por la cuál requieres una beca?</p>
+        <mat-form-field class="col-md-12" *ngIf="usuario.beca == 'Si'">
+          <textarea matInput [(ngModel)]="usuario.razon_beca" placeholder="Razon Beca" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field>
+
         <br> Especifica qué clases has tomado y cuánto tiempo has tomado esa clase. Si sabes programar indica el
         lenguaje. (Especificar si es que no tienes experiencia) <br>
         <mat-form-field class="col-md-12">

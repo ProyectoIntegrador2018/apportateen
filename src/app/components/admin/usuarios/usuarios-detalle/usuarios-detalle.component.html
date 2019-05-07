@@ -85,6 +85,9 @@
           <mat-form-field class="col-md-6">
             <input matInput placeholder="¿Requiere Beca?" value="" [(ngModel)]="becaUsuario">
           </mat-form-field>
+          <mat-form-field class="col-md-12" *ngIf="razonBeca != null">
+              <input matInput placeholder="Razon de Necesidad de Beca" value="" [(ngModel)]="razonBeca">
+            </mat-form-field>
           <mat-form-field class="col-md-12">
             <input matInput placeholder="Clases en el área de TI tomadas anteriormente" value=""
               [(ngModel)]="detalleExperenciaUsuario">

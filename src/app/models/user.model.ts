@@ -29,4 +29,5 @@ export class User {
     id_axtuser : string = "";
     num_conf_pago : string = "";
     documentos : number = 0;
+    razon_beca : string = "";
 }

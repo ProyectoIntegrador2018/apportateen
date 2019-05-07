@@ -34,6 +34,7 @@ export class UsuariosDetalleComponent implements OnInit {
   detalleExperenciaUsuario : string;
   referenciaUsuario : string;
   numEdicionUsuario : string;
+  razonBeca : string = null;
 
   listaArchivos = [];
 
@@ -48,7 +49,7 @@ export class UsuariosDetalleComponent implements OnInit {
 
   ngOnInit() {
     this.listaArchivos = [];
-  
+    
     this.idUsuario = this.result['row']['id'];
     this.api.getUserById(this.idUsuario).subscribe(result => {
       this.usuario = result;
@@ -70,6 +71,7 @@ export class UsuariosDetalleComponent implements OnInit {
       this.detalleExperenciaUsuario = result.detalle_exp;
       this.referenciaUsuario = result.referencia;
       this.numEdicionUsuario = null;
+      this.razonBeca = result.razon_beca;
 
       this.getArchivos();
     });
@@ -97,6 +99,7 @@ export class UsuariosDetalleComponent implements OnInit {
     this.usuario.beca = this.becaUsuario;
     this.usuario.referencia = this.referenciaUsuario;
     this.usuario.num_Edi = this.numEdicionUsuario;
+    this.usuario.razon_beca = this.razonBeca;
 
     console.log(this.usuario);
     this.api.updateUserCompelte(this.usuario).subscribe(res => {

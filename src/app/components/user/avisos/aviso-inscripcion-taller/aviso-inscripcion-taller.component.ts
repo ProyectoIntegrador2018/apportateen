@@ -43,22 +43,28 @@ export class AvisoInscripcionTallerComponent implements OnInit {
   }
 
   guardarNumPago() {
-    this.user.num_conf_pago = this.num_conf_pago;
-    this.api.updateUsuarioNumConfPago(this.user).subscribe(result => {
-      if(result.status == 'success') {
-        this.snackbar.open(result.message, '', {
-          duration: 2000,
-        });
+    if(this.num_conf_pago != null) {
+      this.user.num_conf_pago = this.num_conf_pago;
+      this.api.updateUsuarioNumConfPago(this.user).subscribe(result => {
+        if(result.status == 'success') {
+          this.snackbar.open(result.message, '', {
+            duration: 5000,
+          });
 
-        if(this.user.idtaller > 0) {
-          this.dialogRef.close();
+          if(this.user.idtaller > 0) {
+            this.dialogRef.close();
+          }
         }
-      }
-    }, error => {
-      this.snackbar.open(error.error, '', {
-        duration: 2000,
+      }, error => {
+        this.snackbar.open(error.error, '', {
+          duration: 5000,
+        });
       });
-    });
+    } else {
+      this.snackbar.open("Ingrese el Número de Confirmación de Pago porfavor.", '', {
+        duration: 5000,
+      });
+    }
   }
 
   logout() {

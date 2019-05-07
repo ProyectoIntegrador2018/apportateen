@@ -18,7 +18,7 @@
 
       <div class="input-group mb-3">
         <input [(ngModel)]="num_conf_pago" type="text" class="form-control" placeholder="Número de Confirmación de Pago"
-          aria-label="Número de Confirmación de Pago" aria-describedby="basic-addon2">
+          aria-label="Número de Confirmación de Pago" aria-describedby="basic-addon2" required>
         <div class="input-group-append">
           <button mat-button class="btn-primary" type="button" (click)="guardarNumPago()">Guardar</button>
         </div>
@@ -40,11 +40,11 @@
         En caso de no querer inscribirse a un taller ahora, puede cerrar sesión haciendo click en "Cerrar Sesión" y regresar cuando pueda quiera inscribirse a un taller, ingresando con su usuario y contraseña que ya registro anteriormente.
       </p>
     </div>
-    <div mat-dialog-actions class="justify-content-center">
+    <div mat-dialog-actions class="justify-content-center mb-4 p-4">
       <button mat-button (click)="dialogRef.close(true)" color="primary" cdkFocusInitial>Inscribir Taller</button>
     </div>
     <hr>
-    <div class="row mb-4">
+    <div class="row">
       <div class="col-md-12 text-center">
         <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
       </div>
