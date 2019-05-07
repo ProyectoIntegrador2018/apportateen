@@ -16,7 +16,7 @@
 
     <div *ngIf="router.url !== '/ingresar'">
         <button routerLink="/ingresar" *ngIf="!user">
-            Ingresar
+            Registrar/Ingresar
         </button>
         <a class="header__link" *ngIf="user" (click)="userRedirect()">Preferencias</a>
         <button *ngIf="user" (click)="logout()" class="logout">
