@@ -7,4 +7,6 @@ export class Taller {
     sedeDesc: string = '';
     cupo: number = 0;
     inscritos: number = 0;
+    url : string = "";
+    foto_path : string = null;
 }

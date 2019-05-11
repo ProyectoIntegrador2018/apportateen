@@ -5,6 +5,9 @@ import { Categoria } from 'app/models/categoria.model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 import { Taller } from 'app/models/taller.model';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { discardPeriodicTasks } from '@angular/core/testing';
 
 @Component({
   selector: 'talleres',
@@ -19,8 +22,11 @@ export class TalleresComponent implements OnInit {
   talleres;
   sedes;
   categorias;
+  fileFoto;
+  filePath;
+  fileRef;
 
-  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage : AngularFireStorage) {
     this.talleres = [];
     this.selectedTaller = {};
     this.sedes = [];
@@ -52,39 +58,55 @@ export class TalleresComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
-          if (res.status == 'success') {
-            this.snackBar.open(res.message, '', {
-              duration: 900,
+        var archivoRef = this.storage.ref(this.selectedTaller.foto_path);
+        archivoRef.delete().subscribe(res => {
+          this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
+            if (res.status == 'success') {
+              this.snackBar.open(res.message, '', {
+                duration: 900,
+              });
+              this.obtenerTalleres();
+            }
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 1500,
             });
-            this.obtenerTalleres();
-          }
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 1500,
           });
-        });
+        })
       }
     });
   }
 
   save() {
+
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.api.updateTaller(this.selectedTaller).subscribe(res => {
-          this.snackBar.open(res.message, '', {
-            duration: 1000
-          });
-          this.obtenerTalleres();
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 1000
-          });
-        });
+        this.filePath = this.selectedTaller.nombre + "_Foto";
+        this.fileRef = this.storage.ref(this.filePath);
+        this.selectedTaller.foto_path = this.filePath;
+        const task = this.storage.upload(this.filePath, this.fileFoto);
+
+        task.snapshotChanges().pipe(
+          finalize(() => {
+            this.fileRef.getDownloadURL().subscribe(url => {
+              this.selectedTaller.url = url;
+              this.api.updateTaller(this.selectedTaller).subscribe(res => {
+                this.snackBar.open(res.message, '', {
+                  duration: 1000
+                });
+                this.obtenerTalleres();
+              }, error => {
+                this.snackBar.open(error.error, '', {
+                  duration: 1000
+                });
+              });
+            })
+          })
+        ).subscribe();
       }
     });
   }
@@ -95,20 +117,34 @@ export class TalleresComponent implements OnInit {
   }
 
   create() {
-    console.log(this.selectedTaller);
-    this.newTaller = null;
-    this.api.createTaller(this.selectedTaller).subscribe(result => {
-      if (result.status == 'success') {
-        this.snackBar.open(result.message, '', {
-          duration: 1500,
-        });
-        this.obtenerTalleres();
-      }
-    }, error => {
-      this.snackBar.open(error.error, '', {
-        duration: 1500,
-      });
-    })
+
+    this.filePath = this.selectedTaller.nombre + "_Foto";
+    this.fileRef = this.storage.ref(this.filePath);
+
+    this.selectedTaller.foto_path = this.filePath;
+
+    const task = this.storage.upload(this.filePath, this.fileFoto);
+
+    task.snapshotChanges().pipe(
+      finalize(() => {
+        this.fileRef.getDownloadURL().subscribe(url => {
+          this.selectedTaller.url = url;
+          this.newTaller = null;
+          this.api.createTaller(this.selectedTaller).subscribe(result => {
+            if (result.status == 'success') {
+              this.snackBar.open(result.message, '', {
+                duration: 1500,
+              });
+              this.obtenerTalleres();
+            }
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 1500,
+            });
+          })
+              })
+            })
+    ).subscribe()
   }
 
   select(taller: Taller) {
@@ -121,5 +157,9 @@ export class TalleresComponent implements OnInit {
       this.selectedTaller = Object.assign({}, this.talleres[0]);
     }
   }
+
+  getArchivo(event) {
+    this.fileFoto = event.target.files[0];
+ }
 
 }

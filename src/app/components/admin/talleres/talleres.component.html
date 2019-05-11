@@ -41,6 +41,19 @@
           <input matInput type="number" [(ngModel)]="selectedTaller.cupo" name="cupoTaller">
         </mat-form-field>
 
+        <div class="form-group col-md-12">
+          <label for="archivoInput">Seleccionar Foto de Taller:</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="archivoInput" (change)="getArchivo($event)">
+              <label *ngIf="selectedTaller.url == null; else elseFoto" class="custom-file-label text-truncate" for="archivoInput">Seleccionar Foto</label>
+              <ng-template #elseFoto>
+               <label class="custom-file-label text-truncate" for="archivoInput">{{selectedTaller.foto_path}}</label>
+            </ng-template>
+            </div>
+          </div>
+        </div>
+
         <div *ngIf="!newTaller">
           <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
           <button mat-raised-button class="pull-right" color="primary" (click)="save()"

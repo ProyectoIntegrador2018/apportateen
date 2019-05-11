@@ -12,7 +12,7 @@
     </div>
     <div class="items" *ngIf="estatus">
       <div class="register__item" *ngFor="let taller of selectedSede.talleres">
-        <img src="../../../../assets/img/block-1.png">
+        <img src="{{taller.url}}">
         <div class="text-container">
           <h3 class="title">{{taller.nombre}}</h3>
           <p class="desc">{{taller.descripcion}}</p>
