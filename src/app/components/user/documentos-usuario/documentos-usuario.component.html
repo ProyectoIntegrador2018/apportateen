@@ -2,10 +2,10 @@
   <div class="container">
     <div class="documents__section">
       <h3 class="documents__section__title">Documentos a Imprimir</h3>
-      <p class="documents__section__subtitle">Estos son los documentos que se deben de imprimir y subir a la plataforma de Axt@Teen.</p>
+      <p class="documents__section__subtitle">Estos son los documentos que se deben de imprimir y subir a la plataforma de Axt@Teen. Es necesario que descargue, firme y suba de nuevo a esta plataforma los siguientes documentos listados por parte de Axt@Teen. Es necesario que los archivos se suban en el formato de PDF.</p>
       <div class="list-group">
         <div class="input-group mb-3" *ngFor="let archivo of listaArchivosImprimir">
-          <a href="{{archivo.url}}" class="documents__item">{{archivo.nombre}}</a>
+          <a href="{{archivo.url}}" target="_blank" class="documents__item">{{archivo.nombre}}</a>
         </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
           <div class="input-group">
             <div class="input-group">
               <div class="custom-file">
-                <input type="file" id="archivoInput" (change)="getArchivo($event)" placeholder="Seleccionar Archivo">
+                <input type="file" id="archivoInput" (change)="getArchivo($event)" placeholder="Seleccionar Archivo" class="custom-file-input" accept="application/pdf">
                 <label class="custom-file-label" for="archivoInput">Seleccionar Archivo</label>
               </div>
               <div class="input-group-append">
@@ -31,16 +31,18 @@
             </div>
           </div>
         </div>
+        <p class="text-muted">NOTA: Favor de subir los documentos en formato PDF.</p>
       </form>
     </div>
 
     <div class="documents__section">
       <h3 class="documents__section__title">Mis Documentos Subidos</h3>
+      <p class="documents__section__subtitle">Estos son los documentos que usted ha subido a la plataforma de Axt@Teen. Favor de subir todos los documentos necesarios para participar en el programa.</p>
       <div class="list-group" *ngIf="listaArchivoUsuario.length > 0; else elseBlock">
         <div class="input-group mb-3" *ngFor="let archivo of listaArchivoUsuario">
-          <input type="text" class="documents__item" placeholder="{{archivo.nombre}}" disabled>
+          <input type="text" class="documents__item" placeholder="{{archivo.nombre}}">
           <div class="documents__actions">
-            <a href="{{archivo.url}}" class="btn btn-primary">Abrir</a>
+            <a href="{{archivo.url}}" target="_blank" class="btn btn-primary">Abrir</a>
             <button class="btn btn-danger" type="button" (click)=deleteArchivo(archivo.archivo_path)>Borrar</button>
           </div>
         </div>

@@ -40,6 +40,7 @@ export class DocumentosUsuarioComponent implements OnInit {
 
   getArchivosAdmn() {
     this.api.getAllArchivosAdmn().subscribe(res => {
+      console.log(res[0]);
       this.listaArchivosImprimir = res[0];
     });
   }
