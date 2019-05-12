@@ -263,6 +263,7 @@
   &__sponsors {
     &__title {
       align-items: center;
+      background-color: $color-blue;
       color: $color-white;
       display: flex;
       font-size: 40px;
@@ -273,7 +274,6 @@
 
     &__list {
       align-items: center;
-      background-color: $color-blue;
       display: flex;
 
       .sponsors {
