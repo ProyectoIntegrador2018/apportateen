@@ -26,7 +26,7 @@
               <mat-icon>done</mat-icon>
             </button>
             <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
-              lleno</button>
+              lleno.</button>
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@
     </div>
 
     <div *ngIf="!estatus && estatus != null">
-      <h1>Convocatoria inhabilitada</h1>
+      <h1>Convocatoria inhabilitada.</h1>
       <p>¡Ups! El período de inscripción a los talleres no ha comenzado o ya concluyó.</p>
       <p>Puedes revisar las fechas de convocatoria en la página principal de ApportaTeen.</p>
     </div>
