@@ -89,7 +89,7 @@ export class InscripcionComponent implements OnInit {
     });
     let message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
     if (this.user.idtaller != 0) {
-      message = `Se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
+      message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
     }
 
     dialogRef.componentInstance.mensajeConfirmacion = message;
