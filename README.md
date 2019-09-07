@@ -45,7 +45,7 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Barabara Brina | bmbrina9@gmail.com | Product Owner |
 | David Martinez de Silva | dmtzds@gmail.com | Development |
 
-### Team version 2.0
+### Team version 3.0
 
 | Name           | Email             | Role        |
 | -------------- | ----------------- | ----------- |
