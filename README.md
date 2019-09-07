@@ -45,6 +45,14 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Barabara Brina | bmbrina9@gmail.com | Product Owner |
 | David Martinez de Silva | dmtzds@gmail.com | Development |
 
+### Team version 2.0
+
+| Name           | Email             | Role        |
+| -------------- | ----------------- | ----------- |
+| Antonio Toussaint | A01281309@itesm.mx | Product Owner |
+| Alejandro Elizondo | alexelmtz@outlook.com  | Scrum Master |
+| Patricio Gutierrez Castaño | pagtzc@gmail.com | Administrador |
+
 ### Technology Used for Development
 
 #### ANGULAR
