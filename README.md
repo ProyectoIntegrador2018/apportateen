@@ -95,5 +95,14 @@ After installing please you can follow this simple steps:
 ```bash
 $ git clone https://github.com/ProyectoIntegrador2018/apportateen.git
 ```
+2. Install the dependencies inside the project folder
 
+```bash
+$ npm install
+```
+3. Start the application
+
+```bash
+$ npm start
+```
 
