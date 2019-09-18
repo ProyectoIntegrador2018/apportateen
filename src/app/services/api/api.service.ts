@@ -4,7 +4,7 @@ import { Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user.model';
 import { Sponsor } from '../../models/sponsor.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/throw';
@@ -15,6 +15,13 @@ import { Taller } from '../../models/taller.model';
 import { Categoria } from 'app/models/categoria.model';
 import { Archivo } from 'app/models/archivo.model';
 const API_URL = environment.apiUrl;
+const httpOptions = {
+  headers:new HttpHeaders({
+    'Content-Type':  'application/json',
+    'Authorization': 'Basic YWRtaW46YWRtaW4tcGFzc3dvcmQ='
+  }),
+  withCredentials: true
+};
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +33,7 @@ export class ApiService {
   // API: GET /users
   public getAllUsers(): Observable<User[]> {
     return this.http
-      .get<User[]>(API_URL + '/users')
+      .get<User[]>(API_URL + '/users', httpOptions)
       .catch(this.handleError);
   }
 
@@ -48,7 +55,7 @@ export class ApiService {
   // API: GET /users/:id
   public getUserById(user_id: string): Observable<User> {
     return this.http
-      .get<User>(`${API_URL}/users/${user_id}`)
+      .get<User>(`${API_URL}/users/${user_id}`, httpOptions)
       .catch(this.handleError);
   }
 
