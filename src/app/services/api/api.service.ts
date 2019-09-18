@@ -40,14 +40,14 @@ export class ApiService {
   // API: GET /users/usuarios
   public getUsersUsuarios(): Observable<User[]> {
     return this.http
-    .get<User[]>(API_URL + '/admins/usuarios')
+    .get<User[]>(API_URL + '/admins/usuarios', httpOptions)
     .catch(this.handleError);
   }
 
   // API: GET /users/admins
   public getUsersAdmn(): Observable<User[]> {
     return this.http
-    .get<User[]>(API_URL + '/admins/administradores')
+    .get<User[]>(API_URL + '/admins/administradores', httpOptions)
     .catch(this.handleError);
   }
 
@@ -62,84 +62,84 @@ export class ApiService {
   // API: GET /users/:correo
   public getUserByEmail(user_email: string): Observable<User> {
     return this.http
-    .get<User>(`${API_URL}/users/${user_email}`)
+    .get<User>(`${API_URL}/users/${user_email}`, httpOptions)
     .catch(this.handleError);
   }
 
   // API: POST /users
   public createUserTaller(user: User): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/users`, user)
+      .post<any>(`${API_URL}/users`, user, httpOptions)
       .catch(this.handleError);
   }
 
   // API: PUT /users/:id TALLER
   public updateUser(user: User): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/users/${user.id}`, user)
+      .put<any>(`${API_URL}/users/${user.id}`, user, httpOptions)
       .catch(this.handleError);
   }
 
   //API: PUT /users/complete/:id
   public updateUserCompelte(user : User): Observable<any> {
     return this.http
-    .put<any>(`${API_URL}/users/complete/${user.id}`, user)
+    .put<any>(`${API_URL}/users/complete/${user.id}`, user, httpOptions)
     .catch(this.handleError);
   }
 
   //API: DELETE /sponsors/:id
   public removeUser(id: number): Observable<any> {
     return this.http
-      .delete<any>(`${API_URL}/users/delete/${id}`)
+      .delete<any>(`${API_URL}/users/delete/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   //API: PUT /admin/add/:id
   public addAdmin(user : User): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/admins/agregar`, user)
+      .post<any>(`${API_URL}/admins/agregar`, user, httpOptions)
       .catch(this.handleError);
   }
 
   //API : DELETE /admins/delete/:id
   public deleteAdmin(id : string): Observable<any> {
     return this.http
-    .delete<any>(`${API_URL}/admins/delete/${id}`)
+    .delete<any>(`${API_URL}/admins/delete/${id}`, httpOptions)
     .catch(this.handleError);
   }
 
   // API: GET /sponsors
   public getAllSponsors(): Observable<Sponsor[]> {
     return this.http
-      .get<Sponsor[]>(API_URL + '/sponsors')
+      .get<Sponsor[]>(API_URL + '/sponsors', httpOptions)
       .catch(this.handleError);
   }
 
   // API: POST /sponsors
   public createSponsor(sponsor: Sponsor): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/sponsors`, sponsor)
+      .post<any>(`${API_URL}/sponsors`, sponsor, httpOptions)
       .catch(this.handleError);
   }
 
   //API: DELETE /sponsors/:id
   public removeSponsor(id: number): Observable<any> {
     return this.http
-      .delete<any>(`${API_URL}/sponsors/${id}`)
+      .delete<any>(`${API_URL}/sponsors/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /guardians/:id
   public getGuardianByChildId(user_id: string): Observable<Tutor> {
     return this.http
-      .get<Tutor>(API_URL + '/guardians/' + user_id)
+      .get<Tutor>(API_URL + '/guardians/' + user_id, httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /sedes
   public getAllSedes(): Observable<Sede[]> {
     return this.http
-      .get<Sede[]>(API_URL + '/sedes')
+      .get<Sede[]>(API_URL + '/sedes', httpOptions)
       .catch(this.handleError);
   }
 
@@ -147,168 +147,168 @@ export class ApiService {
   // API: POST /sedes
   public createSede(sede: Sede): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/sedes`, sede)
+      .post<any>(`${API_URL}/sedes`, sede, httpOptions)
       .catch(this.handleError);
   }
 
   // API: PUT /sedes/:id
   public updateSede(sede: Sede): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/sedes/${sede.id}`, sede)
+      .put<any>(`${API_URL}/sedes/${sede.id}`, sede, httpOptions)
       .catch(this.handleError);
   }
 
   //API: DELETE /sedes/:id
   public removeSede(id: number): Observable<any> {
     return this.http
-      .delete<any>(`${API_URL}/sedes/${id}`)
+      .delete<any>(`${API_URL}/sedes/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /avisos
   public getAllAvisos(): Observable<Aviso[]> {
     return this.http
-      .get<Aviso[]>(API_URL + '/avisos')
+      .get<Aviso[]>(API_URL + '/avisos', httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /avisos/:id
   public getAvisosByTaller(id: number): Observable<Aviso[]> {
     return this.http
-      .get<Aviso[]>(`${API_URL}/avisos/${id}`)
+      .get<Aviso[]>(`${API_URL}/avisos/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   // API: POST /avisos
   public createAviso(aviso: Aviso): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/avisos`, aviso)
+      .post<any>(`${API_URL}/avisos`, aviso, httpOptions)
       .catch(this.handleError);
   }
 
   // API: PUT /avisos/:id
   public updateAviso(aviso: Aviso): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/avisos/${aviso.id}`, aviso)
+      .put<any>(`${API_URL}/avisos/${aviso.id}`, aviso, httpOptions)
       .catch(this.handleError);
   }
 
   //API: DELETE /avisos/:id
   public removeAviso(id: number): Observable<any> {
     return this.http
-      .delete<any>(`${API_URL}/avisos/${id}`)
+      .delete<any>(`${API_URL}/avisos/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /talleres
   public getAllTalleres(): Observable<Taller[]> {
     return this.http
-      .get<Taller[]>(API_URL + '/talleres')
+      .get<Taller[]>(API_URL + '/talleres', httpOptions)
       .catch(this.handleError);
   }
 
   // API: POST /talleres
   public createTaller(taller: Taller): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/talleres`, taller)
+      .post<any>(`${API_URL}/talleres`, taller, httpOptions)
       .catch(this.handleError);
   }
 
   // API: PUT /talleres/:id
   public updateTaller(taller: Taller): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/talleres/${taller.id}`, taller)
+      .put<any>(`${API_URL}/talleres/${taller.id}`, taller, httpOptions)
       .catch(this.handleError);
   }
 
   //API: DELETE /talleres/:id
   public removeTaller(id: number): Observable<any> {
     return this.http
-      .delete<any>(`${API_URL}/talleres/${id}`)
+      .delete<any>(`${API_URL}/talleres/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /categorias
   public getAllCategorias(): Observable<Categoria[]> {
     return this.http
-      .get<Categoria[]>(API_URL + '/categorias')
+      .get<Categoria[]>(API_URL + '/categorias', httpOptions)
       .catch(this.handleError);
   }
 
   // API: POST /categorias
   public createCategoria(categoria: Categoria): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/categorias`, categoria)
+      .post<any>(`${API_URL}/categorias`, categoria, httpOptions)
       .catch(this.handleError);
   }
 
   // API: PUT /categorias/:id
   public updateCategoria(categoria: Categoria): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/categorias/${categoria.id}`, categoria)
+      .put<any>(`${API_URL}/categorias/${categoria.id}`, categoria, httpOptions)
       .catch(this.handleError);
   }
 
   //API: DELETE /categorias/:id
   public removeCategoria(id: number): Observable<any> {
     return this.http
-      .delete<any>(`${API_URL}/categorias/${id}`)
+      .delete<any>(`${API_URL}/categorias/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /convocatorias
   public getEstatusConvocatorias(): Observable<any> {
     return this.http
-      .get<any>(`${API_URL}/convocatorias`)
+      .get<any>(`${API_URL}/convocatorias`, httpOptions)
       .catch(this.handleError);
   }
 
   // API: PUT /convocatorias  -> No id needed as there's only one instance
   public updateConvocatorias(cambio: any): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/convocatorias`, cambio)
+      .put<any>(`${API_URL}/convocatorias`, cambio, httpOptions)
       .catch(this.handleError);
   }
 
   // API: GET /talleres/:id
   public getCorreosByTallerId(id: number): Observable<any[]> {
     return this.http
-      .get<any[]>(`${API_URL}/talleres/${id}`)
+      .get<any[]>(`${API_URL}/talleres/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
   //API: POST /archivos
   public createArchivoAdmn(archivo : Archivo): Observable<any>{
     return this.http
-    .post<any>(`${API_URL}/archivos`, archivo)
+    .post<any>(`${API_URL}/archivos`, archivo, httpOptions)
     .catch(this.handleError);
   }
 
   //API: GET /archivos
   public getAllArchivosAdmn(): Observable<any[]> {
     return this.http
-    .get<any[]>(`${API_URL}/archivos`)
+    .get<any[]>(`${API_URL}/archivos`, httpOptions)
     .catch(this.handleError);
   }
 
   //API: GET /archivos/:id
   public getAllArchivosById(id : string): Observable<any[]> {
     return this.http
-    .get<any[]>(`${API_URL}/archivos/user/${id}`)
+    .get<any[]>(`${API_URL}/archivos/user/${id}`, httpOptions)
     .catch(this.handleError);
   }
 
    //API: GET /archivos/:id
    public getArchivosAdminByUser(id : string): Observable<any[]> {
     return this.http
-    .get<any[]>(`${API_URL}/archivos/admin/user_files/${id}`)
+    .get<any[]>(`${API_URL}/archivos/admin/user_files/${id}`, httpOptions)
     .catch(this.handleError);
   }
 
   //API: DELETE /delete/:id
   public deleteArchivoAdmn(id: string): Observable<any> {
     return this.http
-    .delete<any>(`${API_URL}/archivos/delete/${id}`)
+    .delete<any>(`${API_URL}/archivos/delete/${id}`, httpOptions)
     .catch(this.handleError);
   }
 
@@ -320,7 +320,7 @@ export class ApiService {
   // API: PUT /sedes/:id
   public updateUsuarioNumConfPago(user: User): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/users/pago/${user.id}`, user)
+      .put<any>(`${API_URL}/users/pago/${user.id}`, user, httpOptions)
       .catch(this.handleError);
   }
 }
