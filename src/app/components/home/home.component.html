@@ -77,6 +77,25 @@
           los conceptos de Internet de las Cosas.</td>
       </tr>
     </table>
+    <p> Más información sobre ediciones anteriores <button type="button" class="btn btn-link" (click)="toggleTable()">aquí</button>.</p>
+    <table *ngIf="isVisible">
+      <tr>
+        <th>Año</th>
+        <th>Infográfico</th>
+      </tr>
+      <tr>
+        <td>2019</td>
+        <td>Imagen</td>
+      </tr>
+      <tr>
+        <td>2018</td>
+        <td>Imagen</td>
+      </tr>
+      <tr>
+        <td>2017</td>
+        <td>Imagen</td>
+      </tr>
+    </table>
     <div id="Steps" class="steps-section">
       <h1>¿Cómo participar?</h1>
       <div class="steps-timeline">
