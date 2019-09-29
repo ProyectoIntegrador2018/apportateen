@@ -12,6 +12,35 @@
     padding: 0;
   }
 
+  .carousel-item {
+    height: 95vh;
+  }
+
+  .carousel-caption {
+    top: 65%;
+    transform: translateY(-50%);
+  }
+
+  .btn-link {
+    padding: 0;
+  }
+
+  .modal,body.modal-open {
+    padding-right: 0!important
+  }
+
+  body.modal-open {
+    overflow: auto
+  }
+
+  body.scrollable {
+    overflow-y: auto
+  }
+
+  .modal-body img {
+    width: 100%
+
+  }
   &__hero {
     align-items: center;
     background-position: center center;
