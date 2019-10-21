@@ -18,6 +18,7 @@ export class HomeComponent {
     third: boolean;
     status: boolean;
     rstatus: boolean;
+    faqstatus: boolean;
     isVisible = false;
     sponsor: Sponsor = new Sponsor();
 
