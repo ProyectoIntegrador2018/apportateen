@@ -209,6 +209,38 @@
         </ol>
       </div>
     </div>
+    <div class="home__participation__faq">
+      <div class="details-container" (click)="faqstatus=!faqstatus" [ngClass]="faqstatus ? '' : 'open'">
+        <p class="subtitle">Preguntas Frequentes - FAQ</p>
+        <button>
+          <img src="../../../../assets/img/down-arrow.svg">
+        </button>
+      </div>
+      <div class="list--bg">
+        <ol class="list">
+          <li>¿Qué es Apportateen?</li>
+          <p class="steps-description">
+            Axt@Teen 4.0 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.
+          </p>
+          <li>¿Cómo puedo inscribir un taller?</li>
+          <p class="steps-description">
+            Se puede ver la oferta de talleres en la página principal del sitio. Cuando se sepa que taller se quiere inscribir, se puede ir a la sección de talleres, seleccionar el correcto y hacer click en “inscribir”
+          </p>
+          <li>¿Cómo puedo pagar un taller?</li>
+          <p class="steps-description">
+            Se puede pagar un taller si se genera la ficha de pago correspondiente, se realiza un pago y se manda un correo con el comprobante de pago y los datos de la persona inscrita al correo: angelica.cisneros@csoftmty.org
+          </p>
+          <li>¿Cuál es el costo de un taller?</li>
+          <p class="steps-description">
+            Todos los talleres tienen un costo de 1500 pesos.
+          </p>
+          <li>¿Cuándo es la fecha limite para pagar los talleres?</li>
+          <p class="steps-description">
+            La fecha limite para hacer la inscripción y el pago de los talleres es el día lunes 31 de diciembre.
+          </p>
+        </ol>
+      </div>
+    </div>
     <div class="home__participation__details">
       <div class="details-container" (click)="status=!status" [ngClass]="status ? '' : 'open'">
         <p class="subtitle">Importante</p>
