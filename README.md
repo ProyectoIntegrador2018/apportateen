@@ -81,6 +81,13 @@ You should ask for access to this tools if you don't have it already:
 
 ### Setup the project
 
+Apportateen consists of two repositories:
+
+- [Apportateen Angular App](https://github.com/ProyectoIntegrador2018/apportateen)
+- [Apportateen API](https://github.com/ProyectoIntegrador2018/apportateen_api)
+
+To successfully run the project locally you will need to clone both repositories and follow the running instructions of both of them.
+
 Install [Node.js and npm](https://nodejs.org/en/download/) if they are not already on your machine.
 
 Install Angular

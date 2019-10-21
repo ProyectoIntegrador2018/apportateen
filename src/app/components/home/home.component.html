@@ -77,6 +77,58 @@
           los conceptos de Internet de las Cosas.</td>
       </tr>
     </table>
+    <p> Más información sobre ediciones anteriores <button type="button" class="btn btn-link" (click)="toggleTable()">aquí</button>.</p>
+    <table *ngIf="isVisible">
+      <tr>
+        <th>Año</th>
+        <th>Infográfico</th>
+      </tr>
+      <tr>
+        <td>2019</td>
+        <td>
+          <a class="btn btn-info" data-target="#modal1" data-toggle="modal" href="#">Abrir</a>
+          <div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-body mb-0 p-0">
+                <img src="../../../../assets/img/past_editions/ed2019.png" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td>2018</td>
+        <td>
+          <a class="btn btn-info" data-target="#modal2" data-toggle="modal" href="#">Abrir</a>
+          <div id="modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-body mb-0 p-0">
+                <img src="../../../../assets/img/past_editions/ed2018.jpeg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+        </td>
+      </tr>
+      <tr>
+        <td>2017</td>
+        <td>
+          <a class="btn btn-info" data-target="#modal1" data-toggle="modal" href="#">Abrir</a>
+          <div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-body mb-0 p-0">
+                <img src="../../../../assets/img/past_editions/ed2018.jpeg" class="img-responsive">
+              </div>
+            </div>
+          </div>
+        </div>
+        </td>
+      </tr>
+    </table>
     <div id="Steps" class="steps-section">
       <h1>¿Cómo participar?</h1>
       <div class="steps-timeline">

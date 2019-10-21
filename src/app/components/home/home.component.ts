@@ -18,12 +18,18 @@ export class HomeComponent {
     third: boolean;
     status: boolean;
     rstatus: boolean;
+    isVisible = false;
     sponsor: Sponsor = new Sponsor();
 
     constructor(public snackBar: MatSnackBar, private api: ApiService) {
         this.first = true;
         this.second = false;
         this.third = false;
+        this.isVisible = false;
+    }
+
+    toggleTable() {
+        this.isVisible = !this.isVisible;
     }
 
     clickFirstSlide(){
