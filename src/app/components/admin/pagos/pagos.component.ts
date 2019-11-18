@@ -17,7 +17,7 @@ export class PagosComponent implements OnInit {
 
   constructor(private api: ApiService,
    public snackbar: MatSnackBar,
-   public dialog : MatDialog) {
+   public dialog: MatDialog) {
     this.users = [];
    }
 
@@ -33,7 +33,7 @@ export class PagosComponent implements OnInit {
   }
 
   agregarPago(user) {
-    const message = "Número de confirmación de pago:";
+    const message = 'Número de confirmación de pago:';
 
     const dialogRef = this.dialog.open(AddDialog, {
       data: {mensaje: message, num_de_conf: user.num_conf_pago}
@@ -43,7 +43,7 @@ export class PagosComponent implements OnInit {
       if (result) {
         user.num_conf_pago = result;
         this.api.updateUsuarioNumConfPago(user).subscribe(res => {
-          if(res.status == 'success') {
+          if (res.status === 'success') {
             this.snackbar.open(res.message, '', {
               duration: 5000,
             });
