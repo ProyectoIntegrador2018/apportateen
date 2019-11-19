@@ -33,30 +33,36 @@ export class AvisosUserComponent {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            if (this.user.idtaller === 0 || this.user.num_conf_pago == null) {
+            if(this.user.idtaller == 0) {
             this.cargarDialogoAvisoTaller();
             }
         });
     }
+  
     cargarAvisos() {
-        const userStorage = this.storage.get('@user:data');
+        let userStorage = this.storage.get('@user:data');
         this.api.getUserById(userStorage.id).subscribe(user => {
             this.storage.set('@user:data', user);
             this.api.getAvisosByTaller(user.idtaller).subscribe(result => {
                 this.loading = false;
                 this.avisos = result;
-            });
-        });
+            })
+        })
     }
-
+  
     cargarDialogoAvisoTaller() {
-        const userStorage = this.storage.get('@user:data');
-        const dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
+        let userStorage = this.storage.get('@user:data');
+        // Revisar si usuario ha inscrito un taller, si no lo mandamos a que inscriba
+        if (userStorage.idtaller !== 0) {
+            // Si ya inscribio y no ha pagado hay que decirle que pague
+            if (userStorage.num_conf_pago == null) {
+        let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
             width: '800px',
             data: {id : userStorage.id}
-        });
-        dialogDetalle.afterClosed().subscribe(result => {
-            this.router.navigate(['usuario/inscripcion']);
-        });
+        }); 
+    }
+    } else {
+        this.router.navigate(['usuario/inscripcion']);
+    }
     }
 }
