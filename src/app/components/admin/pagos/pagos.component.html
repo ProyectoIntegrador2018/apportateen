@@ -15,7 +15,7 @@
 
         <ng-container matColumnDef="NumConfPago">
           <th mat-header-cell *matHeaderCellDef>Número de Conf. Pago</th>
-          <td mat-cell *matCellDef="let user">{{user.num_conf_pago}}</td>
+          <td mat-cell *matCellDef="let user">{{user.num_conf_pago != null ? user.num_conf_pago : 'PENDIENTE'}}</td>
         </ng-container>
 
         <ng-container matColumnDef="add">
