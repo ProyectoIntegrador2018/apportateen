@@ -1,5 +1,5 @@
 export class Sponsor {
-    id: number = 0;
-    nombre: string = '';
-    correo: string = '';
+    id = 0;
+    nombre = '';
+    correo = '';
 }

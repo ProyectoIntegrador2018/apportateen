@@ -28,7 +28,6 @@ export class PagosComponent implements OnInit {
   fetchDB() {
     this.api.getUsersUsuarios().subscribe(result => {
       this.users = result;
-      console.log(this.users.length);
     });
   }
 

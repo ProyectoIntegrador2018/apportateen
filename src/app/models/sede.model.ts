@@ -1,8 +1,8 @@
-import { Taller } from "./taller.model";
+import { Taller } from './taller.model';
 
 export class Sede {
-    id: number = 0;
-    nombre: string = '';
-    direccion: string = '';
+    id = 0;
+    nombre = '';
+    direccion = '';
     talleres: Taller[] = [];
 }

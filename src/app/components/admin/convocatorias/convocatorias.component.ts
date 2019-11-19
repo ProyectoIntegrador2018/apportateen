@@ -26,7 +26,7 @@ export class ConvocatoriasComponent {
         this.api.getEstatusConvocatorias().subscribe(result => {
             this.disabled = false;
             this.estatus = result.estatus;
-        })
+        });
     }
 
     alternar() {
@@ -54,10 +54,10 @@ export class ConvocatoriasComponent {
                     });
                     this.disabled = false;
                     this.estatus = !this.estatus;
-                })
+                });
             } else {
                 this.estatus = !this.estatus;
             }
-        })
+        });
     }
 }

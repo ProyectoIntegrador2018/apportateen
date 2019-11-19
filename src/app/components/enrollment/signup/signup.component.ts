@@ -83,8 +83,8 @@ export class SignupComponent implements OnInit {
         public snackBar: MatSnackBar,
         private _formBuilder: FormBuilder) {
         this.loading = false;
-        this.password = "";
-        this.passwordConf = "";
+        this.password = '';
+        this.passwordConf = '';
     }
 
     ngOnInit() {
@@ -119,17 +119,16 @@ export class SignupComponent implements OnInit {
 
 
     validate(): boolean {
-        if (this.usuario.correo.trim().length == 0 || this.usuario.nombre.trim().length == 0 ||
-            this.usuario.apellido.trim().length == 0 || this.password.trim().length == 0 ||
-            this.passwordConf.trim().length == 0 || !this.usuario.fecha_nacimiento.match(this.dateReg) ||
-            this.usuario.fecha_nacimiento == "31-12-1969" || this.password != this.passwordConf) {
+        if (this.usuario.correo.trim().length === 0 || this.usuario.nombre.trim().length === 0 ||
+            this.usuario.apellido.trim().length === 0 || this.password.trim().length === 0 ||
+            this.passwordConf.trim().length === 0 || !this.usuario.fecha_nacimiento.match(this.dateReg) ||
+            this.usuario.fecha_nacimiento === '31-12-1969' || this.password !== this.passwordConf) {
             return false;
         }
         return true;
     }
 
     signup() {
-        console.log(this.usuario);
         this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
         if (this.validate()) {
             if (this.usuario.tutor_correo.match(this.emailReg)) {
@@ -140,12 +139,12 @@ export class SignupComponent implements OnInit {
                             this.usuario.id = user.user.uid;
                             this.api.createUserTaller(this.usuario).subscribe(result => {
                                 this.api.getUserById(this.usuario.id).subscribe(userResult => {
-                                    const perm = ["USER"];
+                                    const perm = ['USER'];
                                     this.storage.set('@user:data', userResult);
                                     this.permissionsService.loadPermissions(perm);
                                     this.router.navigate(['usuario']);
                                     this.loading = false;
-                                })
+                                });
                             }, error => {
                                 this.firebaseAuth.auth.signOut();
                                 this.snackBar.open(error.error, '', {
@@ -156,7 +155,7 @@ export class SignupComponent implements OnInit {
                         })
                         .catch(error => {
                             this.loading = false;
-                        })
+                        });
                 } else {
                     this.snackBar.open('La contraseña debe ser mayor a 5 caracteres', '', {
                         duration: 2000,
@@ -168,8 +167,7 @@ export class SignupComponent implements OnInit {
                 });
             }
 
-        }
-        else {
+        } else {
             this.snackBar.open('Revise que todos los campos estén correctos.', '', {
                 duration: 2000,
             });
@@ -177,12 +175,12 @@ export class SignupComponent implements OnInit {
     }
 
     formatDate(date) {
-        var d = new Date(date),
+        let d = new Date(date),
             month = '' + (d.getMonth() + 1),
             day = '' + d.getDate(),
             year = d.getFullYear();
-        if (month.length < 2) month = '0' + month;
-        if (day.length < 2) day = '0' + day;
+        if (month.length < 2) { month = '0' + month; }
+        if (day.length < 2) { day = '0' + day; }
         return [day, month, year].join('-');
     }
 

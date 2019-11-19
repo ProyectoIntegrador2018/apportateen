@@ -11,14 +11,14 @@ import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmat
 })
 export class AdministracionRolesComponent implements OnInit {
 
-  displayColumns1 : string [] = ['position', 'id', 'name', 'add'];
-  displayColumns2 : string[] = ['position', 'id', 'name', 'remove'];
+  displayColumns1: string [] = ['position', 'id', 'name', 'add'];
+  displayColumns2: string[] = ['position', 'id', 'name', 'remove'];
 
-  users : any;
-  usersAdmn : any;
+  users: any;
+  usersAdmn: any;
 
   constructor(private api: ApiService,
-    public dialog : MatDialog,
+    public dialog: MatDialog,
     public snackBar: MatSnackBar) {
       this.users = [];
       this.usersAdmn = [];
@@ -35,23 +35,20 @@ export class AdministracionRolesComponent implements OnInit {
 
   obtenerUserUsuarios() {
     this.api.getUsersUsuarios().subscribe(result => {
-      this.users=[];
+      this.users = [];
       this.users = result;
-      console.log(this.users.length);
     });
   }
 
   obtenerUserAdmn() {
-    this.usersAdmn=[];
+    this.usersAdmn = [];
     this.api.getUsersAdmn().subscribe(result => {
       this.usersAdmn = result;
-      console.log(this.usersAdmn.length);
-    })
+    });
   }
 
   removerAdmn(id) {
-    console.log(id);
-    const message= "Se eliminara al usuario como Administrador. ¿Desea continuar?";
+    const message = 'Se eliminara al usuario como Administrador. ¿Desea continuar?';
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -62,7 +59,7 @@ export class AdministracionRolesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.deleteAdmin(id).subscribe(res => {
-          if(res.status == 'success') {
+          if (res.status === 'success') {
             this.snackBar.open(res.message, '', {
               duration: 2000,
             });
@@ -78,8 +75,7 @@ export class AdministracionRolesComponent implements OnInit {
   }
 
   agregarAdmn(user) {
-    console.log(user.id);
-    const message= "Se agregara al usuario como Administrador. ¿Desea continuar?";
+    const message = 'Se agregara al usuario como Administrador. ¿Desea continuar?';
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -90,7 +86,7 @@ export class AdministracionRolesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.addAdmin(user).subscribe(res => {
-          if(res.status == 'success') {
+          if (res.status === 'success') {
             this.snackBar.open(res.message, '', {
               duration: 2000,
             });
