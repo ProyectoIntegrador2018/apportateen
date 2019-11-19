@@ -51,12 +51,17 @@ export class AvisosUserComponent {
 
     cargarDialogoAvisoTaller() {
         let userStorage = this.storage.get('@user:data');
+        // Revisar si usuario ha inscrito un taller, si no lo mandamos a que inscriba
+        if (userStorage.idtaller !== 0) {
+            // Si ya inscribio y no ha pagado hay que decirle que pague
+            if (userStorage.num_conf_pago == null) {
         let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
             width: '800px',
             data: {id : userStorage.id}
-        });
-        dialogDetalle.afterClosed().subscribe(result => {
-            this.router.navigate(['usuario/inscripcion']);
-        });
+        }); 
+    }
+    } else {
+        this.router.navigate(['usuario/inscripcion']);
+    }
     }
 }
