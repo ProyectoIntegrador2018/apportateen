@@ -1,7 +1,7 @@
 export class Tutor {
-    id: string = '';
-    nombre: string = '';
-    correo: string = '';
-    telefono: string = '';
-    asignacion: string = '';
+    id = '';
+    nombre = '';
+    correo = '';
+    telefono = '';
+    asignacion = '';
 }

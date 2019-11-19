@@ -16,7 +16,7 @@ import { Categoria } from 'app/models/categoria.model';
 import { Archivo } from 'app/models/archivo.model';
 const API_URL = environment.apiUrl;
 const httpOptions = {
-  headers:new HttpHeaders({
+  headers: new HttpHeaders({
     'Content-Type':  'application/json',
     'Authorization': 'Basic YWRtaW46YWRtaW4tcGFzc3dvcmQ='
   }),
@@ -80,29 +80,29 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  //API: PUT /users/complete/:id
-  public updateUserCompelte(user : User): Observable<any> {
+  // API: PUT /users/complete/:id
+  public updateUserCompelte(user: User): Observable<any> {
     return this.http
     .put<any>(`${API_URL}/users/complete/${user.id}`, user, httpOptions)
     .catch(this.handleError);
   }
 
-  //API: DELETE /sponsors/:id
+  // API: DELETE /sponsors/:id
   public removeUser(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/users/delete/${id}`, httpOptions)
       .catch(this.handleError);
   }
 
-  //API: PUT /admin/add/:id
-  public addAdmin(user : User): Observable<any> {
+  // API: PUT /admin/add/:id
+  public addAdmin(user: User): Observable<any> {
     return this.http
       .post<any>(`${API_URL}/admins/agregar`, user, httpOptions)
       .catch(this.handleError);
   }
 
-  //API : DELETE /admins/delete/:id
-  public deleteAdmin(id : string): Observable<any> {
+  // API : DELETE /admins/delete/:id
+  public deleteAdmin(id: string): Observable<any> {
     return this.http
     .delete<any>(`${API_URL}/admins/delete/${id}`, httpOptions)
     .catch(this.handleError);
@@ -122,7 +122,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  //API: DELETE /sponsors/:id
+  // API: DELETE /sponsors/:id
   public removeSponsor(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/sponsors/${id}`, httpOptions)
@@ -158,7 +158,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  //API: DELETE /sedes/:id
+  // API: DELETE /sedes/:id
   public removeSede(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/sedes/${id}`, httpOptions)
@@ -193,7 +193,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  //API: DELETE /avisos/:id
+  // API: DELETE /avisos/:id
   public removeAviso(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/avisos/${id}`, httpOptions)
@@ -221,7 +221,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  //API: DELETE /talleres/:id
+  // API: DELETE /talleres/:id
   public removeTaller(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/talleres/${id}`, httpOptions)
@@ -249,7 +249,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  //API: DELETE /categorias/:id
+  // API: DELETE /categorias/:id
   public removeCategoria(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/categorias/${id}`, httpOptions)
@@ -277,35 +277,35 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  //API: POST /archivos
-  public createArchivoAdmn(archivo : Archivo): Observable<any>{
+  // API: POST /archivos
+  public createArchivoAdmn(archivo: Archivo): Observable<any> {
     return this.http
     .post<any>(`${API_URL}/archivos`, archivo, httpOptions)
     .catch(this.handleError);
   }
 
-  //API: GET /archivos
+  // API: GET /archivos
   public getAllArchivosAdmn(): Observable<any[]> {
     return this.http
     .get<any[]>(`${API_URL}/archivos`, httpOptions)
     .catch(this.handleError);
   }
 
-  //API: GET /archivos/:id
-  public getAllArchivosById(id : string): Observable<any[]> {
+  // API: GET /archivos/:id
+  public getAllArchivosById(id: string): Observable<any[]> {
     return this.http
     .get<any[]>(`${API_URL}/archivos/user/${id}`, httpOptions)
     .catch(this.handleError);
   }
 
-   //API: GET /archivos/:id
-   public getArchivosAdminByUser(id : string): Observable<any[]> {
+   // API: GET /archivos/:id
+   public getArchivosAdminByUser(id: string): Observable<any[]> {
     return this.http
     .get<any[]>(`${API_URL}/archivos/admin/user_files/${id}`, httpOptions)
     .catch(this.handleError);
   }
 
-  //API: DELETE /delete/:id
+  // API: DELETE /delete/:id
   public deleteArchivoAdmn(id: string): Observable<any> {
     return this.http
     .delete<any>(`${API_URL}/archivos/delete/${id}`, httpOptions)

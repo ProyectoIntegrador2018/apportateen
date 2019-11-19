@@ -15,17 +15,17 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 
 export class UsuariosComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'id_Axt@Teen','name', 'email','school', 'grade', 'documentos', 'delete'];
+  displayedColumns: string[] = ['position', 'id_Axt@Teen', 'name', 'email', 'school', 'grade', 'documentos', 'delete'];
   users: any;
   talleres: any;
   selected: any;
   taller: string;
 
-  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private excelService:ExcelService, private firebaseAuth: AngularFireAuth) {
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private excelService: ExcelService, private firebaseAuth: AngularFireAuth) {
     this.users = [];
     this.talleres = [];
     this.selected = [];
-    this.taller="";
+    this.taller = '';
   }
 
   ngOnInit() {
@@ -39,9 +39,8 @@ export class UsuariosComponent implements OnInit {
 
   obtenerUsuarios() {
     this.api.getAllUsers().subscribe(result => {
-      console.log(result);
       this.users = result;
-      this.selected= result;
+      this.selected = result;
     });
   }
 
@@ -51,25 +50,23 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
-  getNombreTaller(id){
+  getNombreTaller(id) {
     this.talleres.forEach(t => {
-      if(t.id === id){
-        this.taller = t.nombre + "-" + t.sedeDesc;
+      if (t.id === id) {
+        this.taller = t.nombre + '-' + t.sedeDesc;
       }
     });
   }
-  
   seleccionarTaller(event: any) {
-    if(event.value != 0) {
+    if (event.value !== 0) {
       this.selected = this.users.filter(x => x.idtaller === event.value);
-      this.getNombreTaller(event.value)
+      this.getNombreTaller(event.value);
     } else {
       this.obtenerUsuarios();
     }
   }
 
   deleteUser(id) {
-    console.log(id);
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose : true
     });
@@ -77,16 +74,16 @@ export class UsuariosComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el usuario seleccionado. ¿Desea continuar?`;
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result) {
+      if (result) {
           this.api.removeUser(id).subscribe(res => {
-            if(res.status == 'success') {
-              this.snackBar.open(res.message,'', {
+            if (res.status === 'success') {
+              this.snackBar.open(res.message, '' , {
                 duration: 1000,
               });
               this.fetchDB();
             }
           }, error => {
-            this.snackBar.open(error.error,'', {
+            this.snackBar.open(error.error, '', {
               duration: 1500,
             });
           });
@@ -95,12 +92,12 @@ export class UsuariosComponent implements OnInit {
 
   }
 
-  exportAsXLSX():void {
-      this.excelService.exportAsExcelFile(this.selected, "Usuarios ApportaTeen");
+  exportAsXLSX(): void {
+      this.excelService.exportAsExcelFile(this.selected, 'Usuarios ApportaTeen');
   }
 
   openDetalle(row, usuario) {
-    let dialogDetalle = this.dialog.open(UsuariosDetalleComponent, {
+    const dialogDetalle = this.dialog.open(UsuariosDetalleComponent, {
       width: '800px',
       data: {row, usuario}
     });

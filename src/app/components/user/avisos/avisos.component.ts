@@ -4,7 +4,7 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { User } from 'app/models/user.model';
 import { MatDialog } from '@angular/material';
 import { InscripcionComponent } from '../inscripcion/inscripcion.component';
-import {Router, Routes} from "@angular/router";
+import {Router, Routes} from '@angular/router';
 import { AvisoInscripcionTallerComponent } from './aviso-inscripcion-taller/aviso-inscripcion-taller.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class AvisosUserComponent {
     constructor(private api: ApiService,
         @Inject(LOCAL_STORAGE) private storage: WebStorageService,
         public dialog: MatDialog,
-        private router : Router) {
+        private router: Router) {
         this.avisos = [];
         this.loading = null;
     }
@@ -33,25 +33,25 @@ export class AvisosUserComponent {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            if(this.user.idtaller == 0 || this.user.num_conf_pago == null) {
+            if (this.user.idtaller === 0 || this.user.num_conf_pago == null) {
             this.cargarDialogoAvisoTaller();
             }
         });
     }
     cargarAvisos() {
-        let userStorage = this.storage.get('@user:data');
+        const userStorage = this.storage.get('@user:data');
         this.api.getUserById(userStorage.id).subscribe(user => {
             this.storage.set('@user:data', user);
             this.api.getAvisosByTaller(user.idtaller).subscribe(result => {
                 this.loading = false;
                 this.avisos = result;
-            })
-        })
+            });
+        });
     }
 
     cargarDialogoAvisoTaller() {
-        let userStorage = this.storage.get('@user:data');
-        let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
+        const userStorage = this.storage.get('@user:data');
+        const dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
             width: '800px',
             data: {id : userStorage.id}
         });

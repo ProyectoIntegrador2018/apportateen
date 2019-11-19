@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-    isCollapsed: boolean = false;
+    isCollapsed = false;
     user: boolean;
     constructor(private afAuth: AngularFireAuth,
         @Inject(LOCAL_STORAGE) private storage: WebStorageService,
@@ -22,18 +22,18 @@ export class HeaderComponent implements OnInit {
     ngOnInit() {
         this.afAuth.authState.subscribe(auth => {
             this.user = auth ? true : false;
-        })
+        });
     }
 
     logout() {
         this.afAuth.auth.signOut().then(() => {
             this.storage.remove('@user:data');
             this.permissionsService.flushPermissions();
-        })
+        });
     }
 
     userRedirect() {
-        let stUser = this.storage.get('@user:data');
+        const stUser = this.storage.get('@user:data');
         if (stUser.isAdmin) {
             this.router.navigate(['admin']);
         } else {

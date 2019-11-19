@@ -11,7 +11,7 @@ export class LayoutComponent implements OnInit {
     route: string;
     constructor(loc: Location, private _router: Router) {
         this._router.events.subscribe((val) => {
-            if (loc.path() != '') {
+            if (loc.path() !== '') {
                 this.route = loc.path();
             }
         });
