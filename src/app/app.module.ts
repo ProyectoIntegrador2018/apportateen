@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {MatDialogModule} from '@angular/material';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -20,6 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import 'hammerjs';
 import { ConfirmationDialog } from './components/confirmation-dialog/confirmation-dialog.component';
+import { AddDialog } from './components/add-dialog/add-dialog.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
@@ -34,7 +36,8 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
   declarations: [
     AppComponent,
     HomeComponent,
-    ConfirmationDialog
+    ConfirmationDialog,
+    AddDialog
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
     UserModule,
     MatButtonModule,
     MatCardModule,
+    MatDialogModule,
     MatListModule,
     MatInputModule,
     MatStepperModule,
@@ -61,6 +65,6 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
   }, ExcelService],
   bootstrap: [AppComponent],
-  entryComponents: [ConfirmationDialog, UsuariosDetalleComponent, AvisoInscripcionTallerComponent]
+  entryComponents: [AddDialog, ConfirmationDialog, UsuariosDetalleComponent, AvisoInscripcionTallerComponent]
 })
 export class AppModule { }
