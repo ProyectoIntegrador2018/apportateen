@@ -62,7 +62,8 @@ const routes: Routes = [
             { path: '', redirectTo: 'inicio', pathMatch: 'full' },
             { path: 'inicio', component: AvisosUserComponent },
             { path: 'inscripcion', component: InscripcionComponent },
-            { path : 'documentos', component: DocumentosUsuarioComponent}
+            { path : 'documentos', component: DocumentosUsuarioComponent},
+            { path : 'principal', component: HomeComponent}
         ]
     }
 ]
