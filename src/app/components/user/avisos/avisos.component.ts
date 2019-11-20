@@ -4,7 +4,7 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { User } from 'app/models/user.model';
 import { MatDialog } from '@angular/material';
 import { InscripcionComponent } from '../inscripcion/inscripcion.component';
-import {Router, Routes} from '@angular/router';
+import {Router, Routes} from "@angular/router";
 import { AvisoInscripcionTallerComponent } from './aviso-inscripcion-taller/aviso-inscripcion-taller.component';
 
 @Component({
@@ -21,7 +21,7 @@ export class AvisosUserComponent {
     constructor(private api: ApiService,
         @Inject(LOCAL_STORAGE) private storage: WebStorageService,
         public dialog: MatDialog,
-        private router: Router) {
+        private router : Router) {
         this.avisos = [];
         this.loading = null;
     }
@@ -38,7 +38,6 @@ export class AvisosUserComponent {
             }
         });
     }
-  
     cargarAvisos() {
         let userStorage = this.storage.get('@user:data');
         this.api.getUserById(userStorage.id).subscribe(user => {
@@ -49,7 +48,7 @@ export class AvisosUserComponent {
             })
         })
     }
-  
+
     cargarDialogoAvisoTaller() {
         let userStorage = this.storage.get('@user:data');
         // Revisar si usuario ha inscrito un taller, si no lo mandamos a que inscriba

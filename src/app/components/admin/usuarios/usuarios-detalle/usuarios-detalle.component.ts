@@ -4,7 +4,7 @@ import { ApiService } from 'app/services/api/api.service';
 import {User} from '../../../../models/user.model';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
-export interface DialogData {
+export interface DialogData{
 
 }
 
@@ -14,42 +14,42 @@ export interface DialogData {
   styleUrls: ['./usuarios-detalle.component.scss']
 })
 export class UsuariosDetalleComponent implements OnInit {
-  idUsuario: string;
-  nombreUsuario: string;
-  apellidoUsuario: string;
-  fechaNacimientoUsuario: string;
-  correoUsuario: string;
-  telefonoUsuario: string;
-  curpUsuario: string;
-  escuelaUsuario: string;
-  sexoUsuario: string;
-  tutorNombreUsuario: string;
-  tutorCorreoUsuario: string;
-  tutorTelefonoUsuario: string;
-  escuelaTipoUsuario: string;
-  escuelaGradoUsuario: string;
-  experenciaUsuario: string;
-  haParticipadoUsuario: string;
-  becaUsuario: string;
-  detalleExperenciaUsuario: string;
-  referenciaUsuario: string;
-  numEdicionUsuario: string;
-  razonBeca: string = null;
+  idUsuario : string;
+  nombreUsuario : string;
+  apellidoUsuario : string;
+  fechaNacimientoUsuario : string;
+  correoUsuario : string;
+  telefonoUsuario : string;
+  curpUsuario : string;
+  escuelaUsuario : string;
+  sexoUsuario : string;
+  tutorNombreUsuario : string;
+  tutorCorreoUsuario : string;
+  tutorTelefonoUsuario : string;
+  escuelaTipoUsuario : string;
+  escuelaGradoUsuario : string;
+  experenciaUsuario : string;
+  haParticipadoUsuario : string;
+  becaUsuario : string;
+  detalleExperenciaUsuario : string;
+  referenciaUsuario : string;
+  numEdicionUsuario : string;
+  razonBeca : string = null;
 
   listaArchivos = [];
 
-  usuario: User = new User();
+  usuario : User = new User();
 
-  constructor(public dialogRef: MatDialogRef<UsuariosDetalleComponent>,
-    @Inject(MAT_DIALOG_DATA) public result: DialogData,
-    private api: ApiService,
-    public snackBar: MatSnackBar,
-    public dialog: MatDialog,
+  constructor(public dialogRef: MatDialogRef<UsuariosDetalleComponent>, 
+    @Inject(MAT_DIALOG_DATA) public result: DialogData, 
+    private api: ApiService, 
+    public snackBar: MatSnackBar, 
+    public dialog: MatDialog, 
     private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.listaArchivos = [];
-
+    
     this.idUsuario = this.result['row']['id'];
     this.api.getUserById(this.idUsuario).subscribe(result => {
       this.usuario = result;
@@ -77,10 +77,10 @@ export class UsuariosDetalleComponent implements OnInit {
     });
 
 
-
+    
   }
 
-  // Metodo utilizado para actualizar la informacion del usuario
+  //Metodo utilizado para actualizar la informacion del usuario
   guardar() {
     this.usuario.nombre = this.nombreUsuario;
     this.usuario.apellido = this.apellidoUsuario;
@@ -101,6 +101,7 @@ export class UsuariosDetalleComponent implements OnInit {
     this.usuario.num_Edi = this.numEdicionUsuario;
     this.usuario.razon_beca = this.razonBeca;
 
+    console.log(this.usuario);
     this.api.updateUserCompelte(this.usuario).subscribe(res => {
       this.snackBar.open(res.message, '', {
         duration: 1000
@@ -109,22 +110,22 @@ export class UsuariosDetalleComponent implements OnInit {
       this.snackBar.open(error.erro, '', {
         duration: 1000
       });
-    });
-
+    })
+    
   }
 
   formatDate(date) {
-    let d = new Date(date),
+    var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
-    if (month.length < 2) { month = '0' + month; }
-    if (day.length < 2) { day = '0' + day; }
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
     return [day, month, year].join('-');
 }
 
   deleteArchivo(path) {
-    const archivoRef = this.storage.ref(path);
+    var archivoRef = this.storage.ref(path);
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -133,8 +134,9 @@ export class UsuariosDetalleComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará este documento. ¿Desea continuar?`;
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
+      if(result) {
         archivoRef.delete().subscribe(res => {
+          console.log(path);
           this.api.deleteArchivoAdmn(path).subscribe(res => {
             this.snackBar.open(res.message, '', {
               duration: 1300
@@ -144,17 +146,18 @@ export class UsuariosDetalleComponent implements OnInit {
             this.snackBar.open(error.error, '', {
               duration: 1300
             });
-          });
-        });
+          })
+        })
       }
-    });
+    })
 }
 
 getArchivos() {
   this.listaArchivos = [];
   this.api.getAllArchivosById(this.idUsuario).subscribe(result => {
     this.listaArchivos = result[0];
-  });
+    console.log(this.listaArchivos);
+  })
 }
 
 }

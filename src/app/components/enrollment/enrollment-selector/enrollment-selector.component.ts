@@ -10,13 +10,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 
 export class EnrollmentComponent {
-    isLoginSelected = true;
+    isLoginSelected: boolean = true;
     loggedIn: boolean = null;
     constructor(public router: Router,
         @Inject(LOCAL_STORAGE) private storage: WebStorageService,
         afAuth: AngularFireAuth) {
 
-        const user = this.storage.get('@user:data');
+        let user = this.storage.get('@user:data');
         afAuth.authState.subscribe(auth => {
             if (auth) {
                 if (user && auth) {

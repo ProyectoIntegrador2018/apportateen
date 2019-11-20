@@ -31,7 +31,7 @@ export class CorreosComponent implements OnInit {
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
-    });
+    })
   }
 
   publicar() {
@@ -43,11 +43,11 @@ export class CorreosComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          if (this.publico === 'general') {
+          if (this.publico == 'general') {
             this.idtaller = 0;
           }
           this.api.getCorreosByTallerId(this.idtaller).subscribe(res => {
-            const correos = res.join(',');
+            var correos = res.join(',');
             window.location.href = `mailto:?bcc=${correos}`;
           }, error => {
             this.snackBar.open(error.error, '', {
@@ -60,7 +60,7 @@ export class CorreosComponent implements OnInit {
     } else {
       this.snackBar.open('Revise que todos los campos sean correctos.', '', {
         duration: 1600
-      });
+      })
     }
   }
 
@@ -69,11 +69,11 @@ export class CorreosComponent implements OnInit {
   }
 
   checkInputs(): boolean {
-    if (this.publico === '') {
+    if (this.publico == '') {
       return false;
     }
 
-    if (this.publico === 'especifico') {
+    if (this.publico == 'especifico') {
       return (this.idtaller > 0);
     }
 

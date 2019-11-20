@@ -4,11 +4,11 @@ import { Sede } from 'app/models/sede.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { User } from 'app/models/user.model';
 import { Taller } from 'app/models/taller.model';
-import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 import { TalleresComponent } from 'app/components/admin/talleres/talleres.component';
 
-export interface DialogData {
+export interface DialogData{
 
 }
 
@@ -46,12 +46,12 @@ export class InscripcionComponent implements OnInit {
       if (this.estatus) {
         this.api.getAllSedes().subscribe(result => {
           this.sedes = result;
-          if (this.user.idtaller !== 0) {
+          if (this.user.idtaller != 0) {
             this.obtenerTallerActual();
           }
-        });
+        })
       }
-    });
+    })
 
   }
 
@@ -78,9 +78,9 @@ export class InscripcionComponent implements OnInit {
           this.snackBar.open(error.error, '', {
             duration: 900,
           });
-        });
+        })
       }
-    });
+    })
   }
 
   inscripcion(taller: Taller) {
@@ -88,7 +88,7 @@ export class InscripcionComponent implements OnInit {
       disableClose: true
     });
     let message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
-    if (this.user.idtaller !== 0) {
+    if (this.user.idtaller != 0) {
       message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
     }
 
@@ -96,10 +96,12 @@ export class InscripcionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.user.idtaller = taller.id;
-        this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + '-' + (taller.nombre) + taller.inscritos;
+        console.log(taller);
+        this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
+        console.log(this.user.id_axtuser);
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
-          this.obtenerTallerActual();
+          this.obtenerTallerActual()
           this.cargarSedes();
           this.snackBar.open(res.message, '', {
             duration: 1500,
@@ -108,13 +110,13 @@ export class InscripcionComponent implements OnInit {
           this.snackBar.open(error.error, '', {
             duration: 900,
           });
-        });
+        })
       }
-    });
+    })
   }
 
   obtenerTallerActual() {
-    const sede = this.sedes.find(sede => sede.talleres.some(item => item.id === this.user.idtaller));
+    let sede = this.sedes.find(sede => sede.talleres.some(item => item.id === this.user.idtaller));
     this.tallerActual = `${sede.talleres.find(x => x.id === this.user.idtaller).nombre} - ${sede.nombre}`;
   }
 

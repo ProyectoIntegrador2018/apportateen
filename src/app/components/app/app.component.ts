@@ -26,12 +26,12 @@ export class AppComponent implements OnInit {
     let perm = [];
     this.afAuth.authState.subscribe(auth => {
       if (auth) {
-        const user = this.storage.get('@user:data');
+        let user = this.storage.get('@user:data');
         if (user) {
-          perm = user.isAdmin ? ['ADMIN'] : ['USER'];
+          perm = user.isAdmin ? ["ADMIN"] : ["USER"];
           this.permissionsService.loadPermissions(perm);
         }
       }
-    });
+    })
   }
 }

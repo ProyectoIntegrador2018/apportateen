@@ -33,52 +33,52 @@ export class HomeComponent {
         this.isVisible = !this.isVisible;
     }
 
-    clickFirstSlide() {
+    clickFirstSlide(){
         this.first = true;
         this.second = false;
         this.third = false;
     }
 
-    clickSecondSlide() {
+    clickSecondSlide(){
         this.first = false;
         this.second = true;
         this.third = false;
     }
 
-    clickThirdSlide() {
+    clickThirdSlide(){
         this.first = false;
         this.second = false;
         this.third = true;
     }
 
-    next() {
-        if (this.first) {
+    next(){
+        if(this.first){
             this.first = false;
             this.second = true;
             this.third = false;
-        } else if (this.second) {
+        } else if(this.second){
             this.first = false;
             this.second = false;
             this.third = true;
-        } else if (this.third) {
+        } else if (this.third){
             this.first = true;
             this.second = false;
             this.third = false;
         }
-
+        
     }
 
-    prev() {
-        if (this.first) {
+    prev(){
+        if(this.first){
             this.first = false;
             this.second = false;
             this.third = true;
-
-        } else if (this.second) {
+            
+        } else if(this.second){
             this.first = true;
             this.second = false;
             this.third = false;
-        } else if (this.third) {
+        } else if(this.third){
             this.first = false;
             this.second = true;
             this.third = false;
@@ -86,12 +86,12 @@ export class HomeComponent {
     }
 
     validateEmail(e) {
-        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(e).toLowerCase());
     }
 
     validate(): boolean {
-        if (this.sponsor.nombre.trim().length === 0 || this.sponsor.correo.trim().length === 0 || !this.validateEmail(this.sponsor.correo)) {
+        if (this.sponsor.nombre.trim().length == 0 || this.sponsor.correo.trim().length == 0 || !this.validateEmail(this.sponsor.correo)) {
             return false;
         }
         return true;
@@ -106,7 +106,7 @@ export class HomeComponent {
                 this.snackBar.open(error.error, '', {
                     duration: 5000,
                 });
-            });
+            })
         } else {
             this.snackBar.open('Revise que ambos campos estén correctos', '', {
                 duration: 5000,
