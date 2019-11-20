@@ -101,7 +101,6 @@ export class UsuariosDetalleComponent implements OnInit {
     this.usuario.num_Edi = this.numEdicionUsuario;
     this.usuario.razon_beca = this.razonBeca;
 
-    console.log(this.usuario);
     this.api.updateUserCompelte(this.usuario).subscribe(res => {
       this.snackBar.open(res.message, '', {
         duration: 1000
@@ -136,7 +135,6 @@ export class UsuariosDetalleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if(result) {
         archivoRef.delete().subscribe(res => {
-          console.log(path);
           this.api.deleteArchivoAdmn(path).subscribe(res => {
             this.snackBar.open(res.message, '', {
               duration: 1300
@@ -156,7 +154,6 @@ getArchivos() {
   this.listaArchivos = [];
   this.api.getAllArchivosById(this.idUsuario).subscribe(result => {
     this.listaArchivos = result[0];
-    console.log(this.listaArchivos);
   })
 }
 
