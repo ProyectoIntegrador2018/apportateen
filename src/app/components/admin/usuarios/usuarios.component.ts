@@ -39,7 +39,6 @@ export class UsuariosComponent implements OnInit {
 
   obtenerUsuarios() {
     this.api.getAllUsers().subscribe(result => {
-      console.log(result);
       this.users = result;
       this.selected= result;
     });
@@ -69,7 +68,6 @@ export class UsuariosComponent implements OnInit {
   }
 
   deleteUser(id) {
-    console.log(id);
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose : true
     });

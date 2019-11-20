@@ -37,7 +37,6 @@ export class AdministracionRolesComponent implements OnInit {
     this.api.getUsersUsuarios().subscribe(result => {
       this.users=[];
       this.users = result;
-      console.log(this.users.length);
     });
   }
 
@@ -45,12 +44,10 @@ export class AdministracionRolesComponent implements OnInit {
     this.usersAdmn=[];
     this.api.getUsersAdmn().subscribe(result => {
       this.usersAdmn = result;
-      console.log(this.usersAdmn.length);
     })
   }
 
   removerAdmn(id) {
-    console.log(id);
     const message= "Se eliminara al usuario como Administrador. ¿Desea continuar?";
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
@@ -78,7 +75,6 @@ export class AdministracionRolesComponent implements OnInit {
   }
 
   agregarAdmn(user) {
-    console.log(user.id);
     const message= "Se agregara al usuario como Administrador. ¿Desea continuar?";
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
