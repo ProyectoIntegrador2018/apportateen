@@ -23,61 +23,88 @@
       </a>
       <a pageScroll href="#Steps" class="col-4 home__info__block home__info__block--register">
         <img src="../../../../assets/img/register.svg">
-        <p>Participa en Axt@Teen 4.0</p>
+        <p>Participa en Axt@Teen 2020</p>
       </a>
       <a pageScroll href="#Cal" class="col-4 home__info__block home__info__block--calendar">
         <img src="../../../../assets/img/calendar.svg">
         <p>Fecha de eventos</p>
       </a>
-
     </div>
   </section>
   <section class="home__about" id="QueEs">
-    <h1>¿Qué es Axt@Teen 4.0?</h1>
-    <p>Axt@Teen 4.0 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
-    <p>En esta edición 4.0 se impartirán talleres de:</p>
+    <h1>¿Qué es Axt@Teen 2020?</h1>
+    <p>Axt@Teen 2020 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta
+      Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
+    <p>En esta edición 2020 se impartirán talleres de:</p>
     <table>
       <tr>
         <th>Taller</th>
         <th>Descripción</th>
+        <th>Sede</th>
       </tr>
       <tr>
         <td class="course__title">Drones</td>
         <td>Los participantes podrán aprender los principios de diseño, manufactura y vuelo de los drones, así como
           las diferentes técnicas de programación.</td>
+        <td>UANL</td>
       </tr>
       <tr>
         <td class="course__title">Diseño 3D</td>
         <td>Los participantes podrán aprender a generar geometrías tridimensionales en software de diseño, los cuales
           posteriormente serán utilizados para la manufactura de productos.</td>
+        <td>UANL</td>
       </tr>
       <tr>
         <td class="course__title">Impresión en 3D</td>
         <td>Los participantes aprenderán las diferentes técnicas de manufactura aditiva, diseñarán y generarán sus
           prototipos a ser impresos dentro del taller.</td>
+        <td>UANL</td>
       </tr>
       <tr>
         <td class="course__title">Apps Avanzadas</td>
         <td>En este taller los participantes aprenden a desarrollar Apps móviles para diferentes sistemas operativos y
           así aumentar su capacidad de desarrollo de software.</td>
+        <td>Softtek</td>
       </tr>
       <tr>
         <td class="course__title">App Inventor</td>
         <td>Proporcionar a los participantes los conocimientos y herramientas tecnológicas para comprender y aplicar
           los conceptos de Internet de las Cosas.</td>
+        <td>Tec de Mty</td>
       </tr>
       <tr>
         <td class="course__title">Programación Competitiva</td>
         <td>Los participantes recordarán conceptos básicos de JAVA y solucionarán problemas usando un juez de
           programación competitiva. </td>
+        <td>Tec de Mty</td>
       </tr>
       <tr>
         <td class="course__title">Internet de las Cosas (IoT)</td>
         <td>Proporcionar a los participantes los conocimientos y herramientas tecnológicas para comprender y aplicar
           los conceptos de Internet de las Cosas.</td>
+        <td>UDEM</td>
+      </tr>
+      <tr>
+        <td class="course__title">Ciberseguridad básica</td>
+        <td>Dar a conocer las políticas más importantes con respecto a las seguridad en las computadoras y dispositivos
+          móviles de los estudiantes,
+          advertir de riesgos sobre el uso de las conexión Wi-Fi pública.</td>
+        <td>UDEM</td>
+      </tr>
+      <tr>
+        <td class="course__title">Análisis de Datos</td>
+        <td>Este curso mostrará aquellos conceptos y métodos que se consideran básicos e imprescindibles para
+          el análisis de datos y su posterior aplicación en cualquier campo</td>
+        <td>Tec de Mty</td>
+      </tr>
+      <tr>
+        <td class="course__title">Robótica aplicada a automatización</td>
+        <td>Enseñar los principios básicos de automatización y sus aplicaciones</td>
+        <td>U-erre</td>
       </tr>
     </table>
-    <p> Más información sobre ediciones anteriores <button type="button" class="btn btn-link" (click)="toggleTable()">aquí</button>.</p>
+    <p> Más información sobre ediciones anteriores <button type="button" class="btn btn-link"
+        (click)="toggleTable()">aquí</button>.</p>
     <table *ngIf="isVisible">
       <tr>
         <th>Año</th>
@@ -87,45 +114,48 @@
         <td>2019</td>
         <td>
           <a class="btn btn-info" data-target="#modal1" data-toggle="modal" href="#">Abrir</a>
-          <div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-body mb-0 p-0">
-                <img src="../../../../assets/img/past_editions/ed2019.png" class="img-responsive">
+          <div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body mb-0 p-0">
+                  <img src="../../../../assets/img/past_editions/ed2019.png" class="img-responsive">
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </td>
       </tr>
       <tr>
         <td>2018</td>
         <td>
           <a class="btn btn-info" data-target="#modal2" data-toggle="modal" href="#">Abrir</a>
-          <div id="modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-body mb-0 p-0">
-                <img src="../../../../assets/img/past_editions/ed2018.jpeg" class="img-responsive">
+          <div id="modal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body mb-0 p-0">
+                  <img src="../../../../assets/img/past_editions/ed2018.jpeg" class="img-responsive">
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </td>
       </tr>
       <tr>
         <td>2017</td>
         <td>
           <a class="btn btn-info" data-target="#modal1" data-toggle="modal" href="#">Abrir</a>
-          <div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-body mb-0 p-0">
-                <img src="../../../../assets/img/past_editions/ed2018.jpeg" class="img-responsive">
+          <div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-body mb-0 p-0">
+                  <img src="../../../../assets/img/past_editions/ed2018.jpeg" class="img-responsive">
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </td>
       </tr>
     </table>
@@ -135,16 +165,16 @@
         <div class="steps-one">
           <p class="steps-img">1</p>
           <h3 class="steps-name">
-            Regístrate 
+            Regístrate
           </h3>
           <p class="steps-description">
-            Registra tus datos en este portal y realiza tu pago en Boletia para asegurar tu lugar en el evento.
+            Registra tus datos en este portal y realiza tu pago para asegurar tu lugar en el evento.
           </p>
         </div>
         <div class="steps-two">
           <p class="steps-img">2</p>
           <h3 class="steps-name">
-            Inscríbete 
+            Inscríbete
           </h3>
           <p class="steps-description">
             Inscríbete en el taller de tu preferencia.
@@ -153,7 +183,7 @@
         <div class="steps-three">
           <p class="steps-img">3</p>
           <h3 class="steps-name">
-            Documentos 
+            Documentos
           </h3>
           <p class="steps-description">
             Descarga los documentos de autorización y súbelos firmados por tu padre o tutor.
@@ -170,18 +200,24 @@
         <img src="../../../../assets/img/block-1.png">
       </div>
       <div class="col-6 text-container">
-        <p class="home__activities__text">Los estudiantes se inscriben por medio de esta plataforma de forma individual.</p>
-        <p class="home__activities__text">Eligen el taller y la sede a la cuál desean acudir y asisten durante una semana de 9:00 a 16:00 hrs a los talleres
-          impartidos, donde identifican necesidades en su comunidad, escuela, localidad o en su entorno social y eligen la necesidad que quieren resolver por medio de la tecnología aprendida.</p>
+        <p class="home__activities__text">Los estudiantes se inscriben por medio de esta plataforma de forma individual.
+        </p>
+        <p class="home__activities__text">Eligen el taller y la sede a la cuál desean acudir y asisten durante una
+          semana de 9:00 a 16:00 hrs a los talleres
+          impartidos, donde identifican necesidades en su comunidad, escuela, localidad o en su entorno social y eligen
+          la necesidad que quieren resolver por medio de la tecnología aprendida.</p>
       </div>
     </div>
     <div class="row mobile-arrangement">
       <div class="col-6 text-container">
-        <p class="home__activities__text right">Cada uno de los talleres de preparación, serán llevados a cabo por expertos en educación y en tecnología, desarrollando
-        así la creatividad en los participantes, quienes aprenden, se divierten, innovan, conviven, y logran convertir sus ideas
-        en proyectos tangibles y de gran beneficio a la sociedad.</p>
-        <p class="home__activities__text right">En el último día del campamento, los participantes expondrán su prototipo de proyecto frente a expertos en el ámbito tecnológico y
-        social. </p>
+        <p class="home__activities__text right">Cada uno de los talleres de preparación, serán llevados a cabo por
+          expertos en educación y en tecnología, desarrollando
+          así la creatividad en los participantes, quienes aprenden, se divierten, innovan, conviven, y logran convertir
+          sus ideas
+          en proyectos tangibles y de gran beneficio a la sociedad.</p>
+        <p class="home__activities__text right">En el último día del campamento, los participantes expondrán su
+          prototipo de proyecto frente a expertos en el ámbito tecnológico y
+          social. </p>
       </div>
       <div class="col-6">
         <img src="../../../../assets/img/block-2.png">
@@ -200,12 +236,17 @@
       <div class="list--bg">
         <ol class="list">
           <li>Estar estudiando máximo el 3er año de preparatoria.</li>
-          <li>Rango de edad: 12 a 17 años cumplidos al 31 de marzo del año en curso, cursando la primaria, secundaria o preparatoria al momento del programa.</li>
+          <li>Rango de edad: 12 a 17 años cumplidos al 31 de marzo del año en curso, cursando la primaria, secundaria o
+            preparatoria al momento del programa.</li>
           <li>Registrarse individualmente.</li>
           <li>Asistir a los talleres.</li>
-          <li>Pertenecer a una institución educativa, mostrar documento que lo compruebe en caso de tener los 18 años cumplidos al momento del concurso.</li>
-          <li>Presentar y entregar copia del acta de nacimiento o documento oficial que compruebe la edad como CURP o pasaporte, el primer día del evento.</li>
-          <li>Descargar, firmar y escanear el permiso para participar, subirlo a la plataforma o en su defecto entregar el primer día del evento, firmado por padre/madre o tutor. O bien firmarlo el primer día del evento para lo cual alguno de los padres o el tutor deberá llevar al participante y firmar el permiso.</li>
+          <li>Pertenecer a una institución educativa, mostrar documento que lo compruebe en caso de tener los 18 años
+            cumplidos al momento del taller.</li>
+          <li>Presentar y entregar copia del acta de nacimiento o documento oficial que compruebe la edad como CURP o
+            pasaporte, el primer día del evento.</li>
+          <li>Descargar, firmar y escanear el permiso para participar, subirlo a la plataforma o en su defecto entregar
+            el primer día del evento, firmado por padre/madre o tutor. O bien firmarlo el primer día del evento para lo
+            cual alguno de los padres o el tutor deberá llevar al participante y firmar el permiso.</li>
         </ol>
       </div>
     </div>
@@ -220,23 +261,32 @@
         <ol class="list">
           <li>¿Qué es Apportateen?</li>
           <p class="steps-description">
-            Axt@Teen 4.0 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.
+            Axt@Teen 2020 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental
+            hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento
+            computacional.
           </p>
           <li>¿Cómo puedo inscribir un taller?</li>
           <p class="steps-description">
-            Se puede ver la oferta de talleres en la página principal del sitio. Cuando se sepa que taller se quiere inscribir, se puede ir a la sección de talleres, seleccionar el correcto y hacer click en “inscribir”
+            Se puede ver la oferta de talleres en la página principal del sitio. Cuando se sepa que taller se quiere
+            inscribir, se puede ir a la sección de talleres, seleccionar el correcto y hacer click en “inscribir”
           </p>
           <li>¿Cómo puedo pagar un taller?</li>
           <p class="steps-description">
-            Se puede pagar un taller si se genera la ficha de pago correspondiente, se realiza un pago y se manda un correo con el comprobante de pago y los datos de la persona inscrita al correo: angelica.cisneros@csoftmty.org
+            Se puede pagar un taller si se genera la ficha de pago correspondiente, se realiza un pago y se manda un
+            correo con el comprobante de pago y los datos de la persona inscrita al correo:
+            angelica.cisneros@csoftmty.org
           </p>
           <li>¿Cuál es el costo de un taller?</li>
           <p class="steps-description">
-            Todos los talleres tienen un costo de 1500 pesos.
+            Los costos de los talleres son: $1,500 si el alumno es proveniente de una escuela privada y $500 si proviene
+            de una escuela publica.
+            <br> <span style="font-size: 12px">*Los talleres en las sedes Softtek y UDEM son totalmente
+              gratuitos.</span>
           </p>
           <li>¿Cuándo es la fecha limite para pagar los talleres?</li>
           <p class="steps-description">
-            La fecha limite para hacer la inscripción y el pago de los talleres es el día lunes 31 de diciembre.
+            La fecha limite para hacer la inscripción y el pago de los talleres es una semana anterior a fecha de inicio
+            taller.
           </p>
         </ol>
       </div>
@@ -300,8 +350,10 @@
       <p class="form__title">¿Quieres ser patrocinador?</p>
       <p class="form__subtitle">¡Registra tus datos y nosotros te contactaremos!</p>
       <form class="form">
-        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre" class="custom-input">
-        <input type="email" [(ngModel)]="sponsor.correo" [ngModelOptions]="{standalone: true}" placeholder="Correo" class="custom-input">
+        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre"
+          class="custom-input">
+        <input type="email" [(ngModel)]="sponsor.correo" [ngModelOptions]="{standalone: true}" placeholder="Correo"
+          class="custom-input">
         <div class="action text-center">
           <button (click)="register()">Enviar</button>
         </div>
