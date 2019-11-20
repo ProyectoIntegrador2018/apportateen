@@ -24,8 +24,8 @@ export class LoginComponent {
         private permissionsService: NgxPermissionsService,
         public snackBar: MatSnackBar) {
         this.loading = false;
-        this.email = '';
-        this.password = '';
+        this.email = "";
+        this.password = "";
     }
 
     login() {
@@ -36,21 +36,21 @@ export class LoginComponent {
                     this.storage.set('@user:data', result);
                     let perm = [];
                     if (result.isAdmin) {
-                        perm = ['ADMIN'];
+                        perm = ["ADMIN"];
                         this.router.navigate(['admin']);
                     } else {
-                        perm = ['USER'];
+                        perm = ["USER"];
                         this.router.navigate(['usuario']);
                     }
                     this.loading = false;
                     this.permissionsService.loadPermissions(perm);
-                });
+                })
             }).catch(err => {
                 this.loading = false;
                 this.snackBar.open('El usuario o la contraseña pueden ser incorrectos.', '', {
                     duration: 1850,
                 });
-            });
+            })
     }
 
 }

@@ -45,16 +45,16 @@ export class SedesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.removeSede(this.selectedSede.id).subscribe(res => {
-          if (res.status === 'success') {
+          if (res.status == 'success') {
             this.obtenersedes();
           }
           this.snackBar.open(res.message, '', {
             duration: 1000,
           });
         }, error => {
-          let errMessage = 'Ha sucedido un error eliminando la sede.';
+          var errMessage = 'Ha sucedido un error eliminando la sede.'
           if (error.error.indexOf('update or delete on table') > 0) {
-            errMessage = 'Error. Esta sede esta asignada a algún taller.';
+            errMessage = 'Error. Esta sede esta asignada a algún taller.'
           }
           this.snackBar.open(errMessage, '', {
             duration: 1500,
@@ -93,7 +93,7 @@ export class SedesComponent implements OnInit {
   create() {
     this.newSede = null;
     this.api.createSede(this.selectedSede).subscribe(result => {
-      if (result.status === 'success') {
+      if (result.status == 'success') {
         this.snackBar.open(result.message, '', {
           duration: 1500,
         });
@@ -103,7 +103,7 @@ export class SedesComponent implements OnInit {
       this.snackBar.open(error.error, '', {
         duration: 1500,
       });
-    });
+    })
   }
 
   select(sede: Sede) {
@@ -112,7 +112,7 @@ export class SedesComponent implements OnInit {
   }
 
   autoSelect() {
-    if (this.sedes.length !== 0) {
+    if (this.sedes.length != 0) {
       this.selectedSede = Object.assign({}, this.sedes[0]);
     }
   }

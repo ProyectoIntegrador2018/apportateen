@@ -26,7 +26,7 @@ export class TalleresComponent implements OnInit {
   filePath;
   fileRef;
 
-  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage : AngularFireStorage) {
     this.talleres = [];
     this.selectedTaller = {};
     this.sedes = [];
@@ -58,10 +58,10 @@ export class TalleresComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        const archivoRef = this.storage.ref(this.selectedTaller.foto_path);
+        var archivoRef = this.storage.ref(this.selectedTaller.foto_path);
         archivoRef.delete().subscribe(res => {
           this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
-            if (res.status === 'success') {
+            if (res.status == 'success') {
               this.snackBar.open(res.message, '', {
                 duration: 900,
               });
@@ -72,7 +72,7 @@ export class TalleresComponent implements OnInit {
               duration: 1500,
             });
           });
-        });
+        })
       }
     });
   }
@@ -85,7 +85,7 @@ export class TalleresComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.filePath = this.selectedTaller.nombre + '_Foto';
+        this.filePath = this.selectedTaller.nombre + "_Foto";
         this.fileRef = this.storage.ref(this.filePath);
         this.selectedTaller.foto_path = this.filePath;
         const task = this.storage.upload(this.filePath, this.fileFoto);
@@ -104,7 +104,7 @@ export class TalleresComponent implements OnInit {
                   duration: 1000
                 });
               });
-            });
+            })
           })
         ).subscribe();
       }
@@ -118,7 +118,7 @@ export class TalleresComponent implements OnInit {
 
   create() {
 
-    this.filePath = this.selectedTaller.nombre + '_Foto';
+    this.filePath = this.selectedTaller.nombre + "_Foto";
     this.fileRef = this.storage.ref(this.filePath);
 
     this.selectedTaller.foto_path = this.filePath;
@@ -131,7 +131,7 @@ export class TalleresComponent implements OnInit {
           this.selectedTaller.url = url;
           this.newTaller = null;
           this.api.createTaller(this.selectedTaller).subscribe(result => {
-            if (result.status === 'success') {
+            if (result.status == 'success') {
               this.snackBar.open(result.message, '', {
                 duration: 1500,
               });
@@ -141,10 +141,10 @@ export class TalleresComponent implements OnInit {
             this.snackBar.open(error.error, '', {
               duration: 1500,
             });
-          });
-              });
+          })
+              })
             })
-    ).subscribe();
+    ).subscribe()
   }
 
   select(taller: Taller) {
@@ -153,7 +153,7 @@ export class TalleresComponent implements OnInit {
   }
 
   autoSelect() {
-    if (this.talleres.length !== 0) {
+    if (this.talleres.length != 0) {
       this.selectedTaller = Object.assign({}, this.talleres[0]);
     }
   }

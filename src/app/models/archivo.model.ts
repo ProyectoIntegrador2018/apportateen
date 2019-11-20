@@ -1,9 +1,9 @@
 export class Archivo {
-    id = '';
-    user_id = '';
-    nombre = '';
-    fecha_subida = '';
-    url = '';
-    archivo_path = '';
-    count = 0;
+    id: string = '';
+    user_id: string = '';
+    nombre: string = '';
+    fecha_subida: string = '';
+    url: string = '';
+    archivo_path: string = '';
+    count : number = 0;
 }

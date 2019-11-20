@@ -36,6 +36,6 @@ export class MainComponent implements OnDestroy {
             this.storage.remove('@user:data');
             this.permissionsService.flushPermissions();
             this.router.navigate(['ingresar']);
-        });
+        })
     }
 }

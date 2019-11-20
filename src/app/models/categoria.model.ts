@@ -1,7 +1,7 @@
 export class Categoria {
-    id = 0;
-    nombre = '';
-    minima = 0;
-    maxima = 0;
+    id: number = 0;
+    nombre: string = '';
+    minima: number = 0;
+    maxima: number = 0;
     talleres: any[] = [];
 }

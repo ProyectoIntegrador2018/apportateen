@@ -1,7 +1,7 @@
 export class Aviso {
-  id = 0;
-  titulo = '';
-  mensaje = '';
-  taller = '';
-  idtaller = 0;
+  id: number = 0;
+  titulo: string = '';
+  mensaje: string = '';
+  taller: string = '';
+  idtaller: number = 0;
 }

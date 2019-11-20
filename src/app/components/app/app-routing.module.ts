@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
-import { EnrollmentComponent } from '../enrollment/enrollment-selector/enrollment-selector.component';
+import { EnrollmentComponent } from '../enrollment/enrollment-selector/enrollment-selector.component'
 import { MainComponent } from '../admin/main/main.component';
 import { ConvocatoriasComponent } from '../admin/convocatorias/convocatorias.component';
 import { SedesComponent } from '../admin/sedes/sedes.component';
@@ -65,7 +65,7 @@ const routes: Routes = [
             { path : 'documentos', component: DocumentosUsuarioComponent}
         ]
     }
-];
+]
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

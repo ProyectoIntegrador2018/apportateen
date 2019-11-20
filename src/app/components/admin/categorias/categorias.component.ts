@@ -46,16 +46,16 @@ export class CategoriasComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.removeCategoria(this.selectedCat.id).subscribe(res => {
-          if (res.status === 'success') {
+          if (res.status == 'success') {
             this.obtenerCategorias();
           }
           this.snackBar.open(res.message, '', {
             duration: 900,
           });
         }, error => {
-          let errMessage = 'Ha sucedido un error eliminando la categoría.';
+          var errMessage = 'Ha sucedido un error eliminando la categoría.'
           if (error.error.indexOf('update or delete on table') > 0) {
-            errMessage = 'Esta categoría esta asignada a algún taller.';
+            errMessage = 'Esta categoría esta asignada a algún taller.'
           }
           this.snackBar.open(errMessage, '', {
             duration: 1500,
@@ -94,7 +94,7 @@ export class CategoriasComponent implements OnInit {
   create() {
     this.newCat = null;
     this.api.createCategoria(this.selectedCat).subscribe(result => {
-      if (result.status === 'success') {
+      if (result.status == 'success') {
         this.snackBar.open(result.message, '', {
           duration: 1500,
         });
@@ -104,7 +104,7 @@ export class CategoriasComponent implements OnInit {
       this.snackBar.open(error.error, '', {
         duration: 1500,
       });
-    });
+    })
   }
 
   select(categoria: Categoria) {
@@ -113,7 +113,7 @@ export class CategoriasComponent implements OnInit {
   }
 
   autoSelect() {
-    if (this.categorias.length !== 0) {
+    if (this.categorias.length != 0) {
       this.selectedCat = Object.assign({}, this.categorias[0]);
     }
   }

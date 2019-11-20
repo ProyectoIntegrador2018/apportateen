@@ -1,12 +1,12 @@
 export class Taller {
-    id = 0;
-    nombre = '';
-    descripcion = '';
-    sede = 0;
-    categoria = 0;
-    sedeDesc = '';
-    cupo = 0;
-    inscritos = 0;
-    url = '';
-    foto_path: string = null;
+    id: number = 0;
+    nombre: string = '';
+    descripcion: string = '';
+    sede: number = 0;
+    categoria: number = 0;
+    sedeDesc: string = '';
+    cupo: number = 0;
+    inscritos: number = 0;
+    url : string = "";
+    foto_path : string = null;
 }
