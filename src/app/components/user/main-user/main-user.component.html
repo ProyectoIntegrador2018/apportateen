@@ -9,6 +9,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+        <a routerLink="principal" class="header__link">Inicio</a>
         <a routerLink="." class="header__link">Avisos</a>
         <a routerLink="inscripcion" class="header__link"> Inscripciones </a>
         <a routerLink="documentos" class="header__link"> Documentos a Entregar </a>
@@ -20,7 +21,7 @@
   </nav>
 </div>
 <div class="user-container">
-  <section class="hero" style="background-image: url('../../../../assets/img/hero.png')">
+  <section class="hero" *ngIf="router.url !== '/usuario/principal'"  style="background-image: url('../../../../assets/img/hero.png')">
     <h1 class="hero__title" *ngIf="router.url === '/usuario/inicio'"> Avisos </h1>
     <h1 class="hero__title" *ngIf="router.url === '/usuario/inscripcion'"> Talleres </h1>
     <h1 class="hero__title" *ngIf="router.url === '/usuario/documentos'"> Documentos </h1>
