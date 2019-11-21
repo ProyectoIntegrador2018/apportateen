@@ -33,8 +33,8 @@ export class AvisosUserComponent {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            if(this.user.idtaller == 0) {
-            this.cargarDialogoAvisoTaller();
+            if(this.user.idtaller !== 0) {
+                this.cargarDialogoAvisoTaller();
             }
         });
     }
@@ -55,11 +55,11 @@ export class AvisosUserComponent {
         if (userStorage.idtaller !== 0) {
             // Si ya inscribio y no ha pagado hay que decirle que pague
             if (userStorage.num_conf_pago == null) {
-        let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
-            width: '800px',
-            data: {id : userStorage.id}
-        }); 
-    }
+                let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
+                width: '800px',
+                data: {id : userStorage.id}
+            }); 
+        }
     } else {
         this.router.navigate(['usuario/inscripcion']);
     }

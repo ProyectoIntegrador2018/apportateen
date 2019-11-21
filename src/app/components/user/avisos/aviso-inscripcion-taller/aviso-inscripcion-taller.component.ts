@@ -67,13 +67,8 @@ export class AvisoInscripcionTallerComponent implements OnInit {
     }
   }
 
-  logout() {
-    this.afAuth.auth.signOut().then(() => {
-        this.dialogRef.close();
-        this.storage.remove('@user:data');
-        this.permissionsService.flushPermissions();
-        this.router.navigate(['ingresar']);
-    })
-}
+  noClick(): void {
+    this.dialogRef.close();
+  }
 
 }
