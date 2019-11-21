@@ -96,9 +96,10 @@ export class InscripcionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.user.idtaller = taller.id;
-        console.log(taller);
         this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
-        console.log(this.user.id_axtuser);
+        if (this.selectedSede.nombre === "SOFTTEK" || this.selectedSede.nombre === "UDEM") {
+          this.user.num_conf_pago = "BECA";
+        }
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           this.obtenerTallerActual()
