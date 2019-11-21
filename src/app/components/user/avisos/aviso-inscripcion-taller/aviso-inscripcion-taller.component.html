@@ -4,9 +4,6 @@
     <div>
       <div mat-dialog-content>
         <p>Antes de continuar, es necesario que realices el pago de inscripción del programa. Favor de descargar la ficha de pago y una vez que se haya hecho el pago enviar el comprobante a angelica.cisneros@csoftmty.org.</p>
-        <p>
-          En caso de no poder pagar ahora, puede cerrar sesión haciendo click en "Cerrar Sesión" y regresar cuando pueda realizar el pago, ingresando con su usuario y contraseña que ya registro anteriormente.
-        </p>
       </div>
       <div class="row mb-4">
         <div *ngIf="user.escuela_tipo == 'Privada'; else fichaPublica" class="col-md-12 text-center">
@@ -24,7 +21,7 @@
       <hr>
       <div class="row mb-4">
         <div class="col-md-12 text-center">
-          <button class="btn btn-danger" (click)="logout()">Cerrar Sesión</button>
+          <button class="btn btn-danger" (click)="noClick()">Cerrar</button>
         </div>
       </div>
     </div>
