@@ -67,7 +67,15 @@ export class InscripcionComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará su inscripción a este taller. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.user.num_conf_pago = "";
+        this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        });
         this.user.idtaller = 0;
+        this.user.id_axtuser = "";
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           this.tallerActual = '';
@@ -99,6 +107,12 @@ export class InscripcionComponent implements OnInit {
         this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
         if (this.selectedSede.nombre === "SOFTTEK" || this.selectedSede.nombre === "UDEM") {
           this.user.num_conf_pago = "BECA";
+          this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 900,
+            });
+          });
         }
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
