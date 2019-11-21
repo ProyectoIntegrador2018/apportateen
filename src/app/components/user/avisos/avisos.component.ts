@@ -33,7 +33,7 @@ export class AvisosUserComponent {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            if(this.user.idtaller == 0) {
+            if(this.user.idtaller !== 0) {
             this.cargarDialogoAvisoTaller();
             }
         });
@@ -54,6 +54,7 @@ export class AvisosUserComponent {
         // Revisar si usuario ha inscrito un taller, si no lo mandamos a que inscriba
         if (userStorage.idtaller !== 0) {
             // Si ya inscribio y no ha pagado hay que decirle que pague
+            console.log(userStorage.num_conf_pago);
             if (userStorage.num_conf_pago == null) {
         let dialogDetalle = this.dialog.open(AvisoInscripcionTallerComponent, {
             width: '800px',
