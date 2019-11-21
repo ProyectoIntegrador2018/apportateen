@@ -1,5 +1,5 @@
 <div class="aviso-modal">
-  <div *ngIf="user.num_conf_pago == null; else avisoTaller">
+  <div *ngIf="user.num_conf_pago == null || user.num_conf_pago === ''; else avisoTaller">
     <h1 mat-dialog-title>AVISO - Falta Pago de Inscripción</h1>
     <div>
       <div mat-dialog-content>
