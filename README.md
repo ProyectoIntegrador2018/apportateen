@@ -50,8 +50,8 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Name           | Email             | Role        |
 | -------------- | ----------------- | ----------- |
 | Antonio Toussaint | A01281309@itesm.mx | Product Owner |
-| Alejandro Elizondo | alexelmtz@outlook.com  | Scrum Master |
-| Patricio Gutierrez Castaño | pagtzc@gmail.com | Administrador |
+| Alejandro Elizondo | A01193334@itesm.mx  | Scrum Master |
+| Patricio Gutierrez Castaño | A01193455@itesm.mx | Administrador |
 
 ### Technology Used for Development
 
