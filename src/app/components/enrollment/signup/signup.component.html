@@ -79,58 +79,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel><span class="step-header">Experiencia</span></ng-template>
-      <div class="row no-gutters" style="display: inline-block">
-        ¿Has tomado alguna clase de programación, desarrollo de video juegos o apps, o de robótica antes?<br>
-        <mat-form-field style="padding-right: 8px;">
-          <mat-select placeholder="Si/No" [(ngModel)]="usuario.experiencia" formControlName="expCtrl" required>
-            <mat-option *ngFor="let op of siNo" [value]="op.value">
-              {{op.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br> ¿Participaste en alguna edición anterior de ApportaTeen?<br>
-        <mat-form-field style="padding-right: 8px;">
-          <mat-select placeholder="Si/No" [(ngModel)]="usuario.exAlumno" formControlName="exAlumnoCtrl" required>
-            <mat-option *ngFor="let op of siNo" [value]="op.value">
-              {{op.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br> ¿Requieres beca?<br>
-        <mat-form-field style="padding-right: 8px;">
-          <mat-select placeholder="Si/No" [(ngModel)]="usuario.beca" formControlName="becaCtrl" required>
-            <mat-option *ngFor="let op of siNo" [value]="op.value">
-              {{op.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
 
-        <br><p *ngIf="usuario.beca == 'Si'">¿Cual es la razón por la cuál requieres una beca?</p>
-        <mat-form-field class="col-md-12" *ngIf="usuario.beca == 'Si'">
-          <textarea matInput [(ngModel)]="usuario.razon_beca" placeholder="Razon Beca" [ngModelOptions]="{standalone: true}"></textarea>
-        </mat-form-field>
-
-        <br> Especifica qué clases has tomado y cuánto tiempo has tomado esa clase. Si sabes programar indica el
-        lenguaje. (Especificar si es que no tienes experiencia) <br>
-        <mat-form-field class="col-md-12">
-          <textarea matInput [(ngModel)]="usuario.detalle_exp" placeholder="Experiencia" formControlName="expDetalleCtrl"
-            required></textarea>
-        </mat-form-field>
-        <br> ¿Cómo te enteraste de este evento? <br>
-        <mat-form-field class="col-md-12">
-          <textarea matInput [(ngModel)]="usuario.referencia" placeholder="Referencia" formControlName="refCtrl"
-            required></textarea>
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-button matStepperPrevious class="btn btn-secondary">Atrás</button>
-        <button mat-button matStepperNext class="pull-right btn btn-primary">Siguiente</button>
-      </div>
-    </form>
-  </mat-step>
   <mat-step>
     <ng-template matStepLabel><span class="step-header">Finalizar</span></ng-template>
     <div class="row no-gutters">
