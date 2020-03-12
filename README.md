@@ -53,6 +53,15 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Alejandro Elizondo | A01193334@itesm.mx  | Scrum Master |
 | Patricio Gutierrez Castaño | A01193455@itesm.mx | Administrador |
 
+### Team version 4.0
+
+| Name           | Email             | Role        |
+| -------------- | ----------------- | ----------- |
+| Adrían Peña | A00816456@itesm.mx | Scrum Master |
+| Flor Barbosa | A01281460@itesm.mx | Product Owner |
+| Jonathan Cárdenas | A00818821@itesm.mx | Project Manager |
+| Valeria Rocha | A01193039@itesm.mx | Configuration Manager |
+
 ### Technology Used for Development
 
 #### ANGULAR
