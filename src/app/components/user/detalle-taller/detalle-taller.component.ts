@@ -11,13 +11,13 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 })
 export class DetalleTallerComponent implements OnInit {
 
-  talleres;
+  taller;
   estatus;
   user : User = new User();
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,) {
-    this.talleres = [];
+    this.taller = Taller;
     this.estatus = null;
   }
 
@@ -26,11 +26,12 @@ export class DetalleTallerComponent implements OnInit {
     this.user = this.storage.get('@user:data');
   }
 
+
   cargarTalleres() {
     this.api.getAllTalleres().subscribe(result => {
-      this.talleres = result[0];
+      this.taller = result[0][0];
       console.log("TALLERES");
-      console.log(this.talleres);
+      console.log(this.taller);
     })
   }
 
