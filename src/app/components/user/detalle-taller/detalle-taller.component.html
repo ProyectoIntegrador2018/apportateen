@@ -2,8 +2,22 @@
   <div *ngFor="let taller of talleres">
     <img src="https://technext.github.io/Evento/images/demo/bg-slide-01.jpg" alt="">
     <h3 class="register__title">{{taller["nombre"]}}</h3>
-    <p>{{taller["sedeDesc"]}}</p>
-    <p>{{taller["cupo"]}}</p>
+    <h4 class="register__title">25 Junio - 29 Junio</h4>
+    <p>$500 MXN</p>
+    <button mat-button mat-stroked-button class="btn-primary"
+    *ngIf="!(taller.id == user.idtaller) && taller.inscritos < taller.cupo"
+    (click)="inscripcion(taller)">Inscribirme</button>
+
+    <h4 class="register__title">Descripción</h4>
     <p>{{taller["descripcion"]}}</p>
+
+    <p>Fecha y Hora</p>
+    <p>9:00 a.m. - 11:30 a.m.</p>
+    <p>Sede</p>
+    <p>{{taller["sedeDesc"]}}</p>
+    <!-- <p>{{taller["cupo"]}}</p> -->
+    <p>Ubicación</p>
+    <p>Calle tal Colonia tal CP 12345</p>
+
   </div>
 </div>

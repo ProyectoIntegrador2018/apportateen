@@ -1,8 +1,24 @@
+@import '~styles-variables.scss';
+
+
 img {
   border-radius: 5px 5px 0 0;
   height: 300px;
   width: 50%;
 }
+
+.btn {
+  &:focus {
+    box-shadow: none;
+  }
+
+  &-primary {
+    background-color: $color-blue;
+    border: 0;
+    color: $color-white;
+  }
+}
+
 
 div{
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject} from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { Taller } from 'app/models/taller.model';
+import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 @Component({
@@ -12,6 +13,7 @@ export class DetalleTallerComponent implements OnInit {
 
   talleres;
   estatus;
+  user : User = new User();
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,) {
@@ -21,14 +23,7 @@ export class DetalleTallerComponent implements OnInit {
 
   ngOnInit() {
     this.cargarTalleres();
-    this.cargarAvisos();
-  }
-
-  cargarAvisos(){
-    let userStorage = this.storage.get('@user:data');
-    console.log("user storage");
-    console.log(userStorage);
-
+    this.user = this.storage.get('@user:data');
   }
 
   cargarTalleres() {
@@ -37,6 +32,10 @@ export class DetalleTallerComponent implements OnInit {
       console.log("TALLERES");
       console.log(this.talleres);
     })
+  }
+
+  inscripcion(taller: Taller){
+
   }
 
 }
