@@ -146,7 +146,7 @@ export class TalleresComponent implements OnInit {
         console.log(error);
         console.log("Error");
       })
-    )
+    
   }
 
   uploadPhotosSave(file, index) {
