@@ -25,8 +25,11 @@ export class TalleresComponent implements OnInit {
   fileFoto;
   filePath;
   fileRef;
+  fileFotoAr;
+  filePathAr;
+  fileRefAr;
 
-  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage : AngularFireStorage) {
+  constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
     this.talleres = [];
     this.selectedTaller = {};
     this.sedes = [];
@@ -40,6 +43,7 @@ export class TalleresComponent implements OnInit {
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
+      console.log(this.talleres)
       this.sedes = result[1];
       this.categorias = result[2];
       this.autoSelect();
@@ -51,6 +55,36 @@ export class TalleresComponent implements OnInit {
     this.selectedTaller = this.newTaller;
   }
 
+  deleteImage(urlToDelete) {
+    console.log(urlToDelete);
+    const index = this.selectedTaller.url_array.indexOf(urlToDelete);
+    if (index > -1) {
+      const dialogRef = this.dialog.open(ConfirmationDialog, {
+        disableClose: true
+      });
+      dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la imagen seleccionada. ¿Desea continuar?`;
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          var archivoRef = this.storage.ref(this.selectedTaller.foto_path_array[index]);
+          archivoRef.delete().subscribe(res => {
+            this.selectedTaller.url_array.splice(index, 1);
+            this.selectedTaller.foto_path_array.splice(index, 1);
+            this.api.updateTaller(this.selectedTaller).subscribe(res => {
+              this.snackBar.open(res.message, '', {
+                duration: 900,
+              });
+              this.obtenerTalleres();
+            }, error => {
+              this.snackBar.open(error.error, '', {
+                duration: 1500,
+              });
+            });
+          })
+        }
+      });
+    }
+    return;
+  }
   delete() {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -78,35 +112,22 @@ export class TalleresComponent implements OnInit {
   }
 
   save() {
-
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.filePath = this.selectedTaller.nombre + "_Foto";
-        this.fileRef = this.storage.ref(this.filePath);
-        this.selectedTaller.foto_path = this.filePath;
-        const task = this.storage.upload(this.filePath, this.fileFoto);
-
-        task.snapshotChanges().pipe(
-          finalize(() => {
-            this.fileRef.getDownloadURL().subscribe(url => {
-              this.selectedTaller.url = url;
-              this.api.updateTaller(this.selectedTaller).subscribe(res => {
-                this.snackBar.open(res.message, '', {
-                  duration: 1000
-                });
-                this.obtenerTalleres();
-              }, error => {
-                this.snackBar.open(error.error, '', {
-                  duration: 1000
-                });
-              });
-            })
-          })
-        ).subscribe();
+        this.api.updateTaller(this.selectedTaller).subscribe(res => {
+          this.snackBar.open(res.message, '', {
+            duration: 1000
+          });
+          this.obtenerTalleres();
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 1000
+          });
+        });
       }
     });
   }
@@ -117,34 +138,121 @@ export class TalleresComponent implements OnInit {
   }
 
   create() {
+    Promise.all(
+      Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosCreate(this.fileFotoAr[item], index))).then((url) => {
+        console.log("success");
+        this.api.createTaller(this.selectedTaller).subscribe(res => {
+          this.snackBar.open(res.message, '', {
+            duration: 1000
+          });
+          this.obtenerTalleres();
+          this.fileFotoAr = [];
+          this.filePathAr = []
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 1000
+          });
+        });
+      }).catch((error) => {
+        console.log(error);
+        console.log("Error");
+      })
+  }
 
-    this.filePath = this.selectedTaller.nombre + "_Foto";
-    this.fileRef = this.storage.ref(this.filePath);
-
-    this.selectedTaller.foto_path = this.filePath;
-
-    const task = this.storage.upload(this.filePath, this.fileFoto);
-
-    task.snapshotChanges().pipe(
-      finalize(() => {
-        this.fileRef.getDownloadURL().subscribe(url => {
-          this.selectedTaller.url = url;
-          this.newTaller = null;
-          this.api.createTaller(this.selectedTaller).subscribe(result => {
-            if (result.status == 'success') {
-              this.snackBar.open(result.message, '', {
+  updateImages(){
+    Promise.all(
+      Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosSave(this.fileFotoAr[item], index))).then((url) => {
+        console.log("success");
+        this.api.updateTaller(this.selectedTaller).subscribe(res => {
+          this.snackBar.open(res.message, '', {
+            duration: 1000
+          });
+          this.obtenerTalleres();
+          this.fileFotoAr = [];
+          this.filePathAr = []
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 1000
+          });
+        });
+      }).catch((error) => {
+        console.log(error);
+        console.log("Error");
+      })
+  }
+  newDelete() {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        Promise.all(
+          this.selectedTaller.foto_path_array.map(item => this.deleteAllPhotos(item))).then((url) => {
+            console.log("success");
+            this.api.removeTaller(this.selectedTaller).subscribe(res => {
+              if (res.status == 'success') {
+                this.snackBar.open(res.message, '', {
+                  duration: 900,
+                });
+                this.obtenerTalleres();
+              }
+            }, error => {
+              this.snackBar.open(error.error, '', {
                 duration: 1500,
               });
-              this.obtenerTalleres();
-            }
-          }, error => {
-            this.snackBar.open(error.error, '', {
-              duration: 1500,
             });
+          }).catch((error) => {
+            console.log(error);
+            console.log("Error");
           })
-              })
-            })
-    ).subscribe()
+      }
+    });
+  }
+
+  deleteAllPhotos(fotoPath) {
+    return new Promise<any>((resolve, reject) => {
+      console.log("FOTO PATH IS:");
+      console.log(fotoPath);
+      var archivoRef = this.storage.ref(fotoPath);
+      archivoRef.delete().subscribe(res => {
+        resolve(true)
+      })
+    })
+  }
+
+  uploadPhotosSave(file, index) {
+    return new Promise<any>((resolve, reject) => {
+      const task = this.storage.upload(this.filePathAr[index], file);
+      let fileRef = this.storage.ref(this.filePathAr[index]);
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.selectedTaller.url_array.push(url);
+            this.selectedTaller.foto_path_array.push(this.filePathAr[index])
+            console.log(this.selectedTaller);
+            console.log("Pushing into local obj");
+            resolve(true)
+          })
+        })
+      ).subscribe()
+    })
+  }
+
+  uploadPhotosCreate(file, index) {
+    return new Promise<any>((resolve, reject) => {
+      const task = this.storage.upload(this.filePathAr[index], file);
+      let fileRef = this.storage.ref(this.filePathAr[index]);
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            this.selectedTaller.url_array.push(url);
+            this.selectedTaller.foto_path_array.push(this.filePathAr[index])
+            resolve(true);
+          })
+        })
+      ).subscribe()
+    })
   }
 
   select(taller: Taller) {
@@ -158,8 +266,13 @@ export class TalleresComponent implements OnInit {
     }
   }
 
-  getArchivo(event) {
+  getArchivos(event) {
     this.fileFoto = event.target.files[0];
- }
+    this.fileFotoAr = event.target.files;
+    this.filePathAr = Object.keys(this.fileFotoAr).map((key) => this.fileFotoAr[key].name)
+    if(!this.newTaller){
+      this.updateImages()
+    }
+  }
 
 }
