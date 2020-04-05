@@ -57,7 +57,7 @@
         <div>
           <label for="archivoInput">Imágenes:</label>
           <br>
-          <div *ngFor="let url of selectedTaller.url_array" class="imageDivTaller">
+          <div *ngFor="let url of selectedTaller.url_array;" class="imageDivTaller">
             <button mat-icon-button (click)="deleteImage(url)">
               <mat-icon>delete</mat-icon>
             </button>
