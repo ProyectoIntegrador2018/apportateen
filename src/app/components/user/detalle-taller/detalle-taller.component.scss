@@ -1,11 +1,62 @@
 @import '~styles-variables.scss';
 
 
-img {
-  border-radius: 5px 5px 0 0;
-  height: 300px;
-  width: 50%;
+// img {
+//   border-radius: 5px 5px 0 0;
+//   height: 70vh;
+//   width: 100%;
+// }
+
+.hero {
+  align-items: center;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  height: 70vh;
+  justify-content: center;
+
+  &__title {
+    color: $color-white;
+    // color: rgb(0, 0, 0);
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: 1.69px;
+    text-align: center;
+    background-color: rgba(83,83,83,0.5);
+    // background-color: rgba(236, 236, 236, 0.5);
+    border-radius: 10px;
+    padding: 50px;
+  }
 }
+
+
+.description{
+  h4 {
+    color: $text-color;
+    // font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 1.28px;
+  }
+}
+
+.btn-primary{
+  margin-bottom: 20px;
+}
+
+.sideBox{
+
+  margin: 20px 0px;
+
+  h5{
+    font-weight: bold;
+  }
+}
+
+.informacion {
+  margin: 55px;
+}
+
 
 .btn {
   &:focus {
@@ -20,9 +71,9 @@ img {
 }
 
 
-div{
+// div{
 
-  p {
-    color: rgb(1, 2, 14);
-  }
-}
+//   p {
+//     color: rgb(1, 2, 14);
+//   }
+// }

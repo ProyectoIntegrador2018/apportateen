@@ -1,23 +1,45 @@
-<div>
-  <div>
-    <img src="https://technext.github.io/Evento/images/demo/bg-slide-01.jpg" alt="">
-    <h3 class="register__title">{{taller["nombre"]}}</h3>
-    <h4 class="register__title">25 Junio - 29 Junio</h4>
-    <p>$500 MXN</p>
-    <button mat-button mat-stroked-button class="btn-primary"
-    *ngIf="!(taller.id == user.idtaller) && taller.inscritos < taller.cupo"
-    (click)="inscripcion(taller)">Inscribirme</button>
+<div class="">
+    <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Open_House_Day_2014.jpg" alt=""> -->
+    <section class="hero" style="background-image: url('../../../../assets/img/hero.png')">
+      <h1 class="hero__title"> {{taller["nombre"]}} </h1>
+    </section>
+    <!-- <div>
+      <h2>Inscríbete!</h2>
+    </div> -->
 
-    <h4 class="register__title">Descripción</h4>
-    <p>{{taller["descripcion"]}}</p>
+    <div class="informacion">
+      <div class="row">
+        <div class="col-md-8 description">
+          <h4 class="title">Descripción</h4>
+          <p>{{taller["descripcion"]}}</p>
+        </div>
 
-    <p>Fecha y Hora</p>
-    <p>9:00 a.m. - 11:30 a.m.</p>
-    <p>Sede</p>
-    <p>{{taller["sedeDesc"]}}</p>
-    <!-- <p>{{taller["cupo"]}}</p> -->
-    <p>Ubicación</p>
-    <p>Calle tal Colonia tal CP 12345</p>
 
-  </div>
+        <div class="col-md-4">
+          <button mat-button mat-stroked-button class="btn-primary"
+            (click)="inscripcion(taller)">Inscribirme</button>
+
+          <div class="sideBox">
+            <h5 class="">Fecha y Hora NO ESTA</h5>
+            <p>9:00 a.m. - 11:30 a.m.</p>
+          </div>
+          <div class="sideBox">
+            <h5>Sede</h5>
+            <p>{{taller["sedeDesc"]}}</p>
+          </div>
+          <div class="sideBox">
+            <!-- <p>{{taller["cupo"]}}</p> -->
+          </div>
+          <div class="sideBox">
+            <h5>Ubicación</h5>
+            <p>Calle tal Colonia tal CP 12345</p>
+          </div>
+
+        </div>
+
+        <!-- <h4 class="register__title">25 Junio - 29 Junio</h4>
+    <p>$500 MXN</p> -->
+      </div>
+    </div>
+
 </div>
