@@ -65,7 +65,7 @@ const routes: Routes = [
             { path: 'inscripcion', component: InscripcionComponent },
             { path : 'documentos', component: DocumentosUsuarioComponent},
             { path : 'principal', component: HomeComponent},
-            { path : 'detalleTaller', component: DetalleTallerComponent}
+            { path : 'inscripcion/detalleTaller/:id', component: DetalleTallerComponent}
         ]
     }
 ]

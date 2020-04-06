@@ -1,8 +1,9 @@
-import { Component, OnInit, Inject} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { Taller } from 'app/models/taller.model';
 import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detalle-taller',
@@ -11,31 +12,37 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 })
 export class DetalleTallerComponent implements OnInit {
 
+  idTaller;
   taller;
   estatus;
-  user : User = new User();
+  user: User = new User();
 
   constructor(private api: ApiService,
-    @Inject(LOCAL_STORAGE) private storage: WebStorageService,) {
+    @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+    private route: ActivatedRoute, ) {
     this.taller = Taller;
     this.estatus = null;
   }
 
   ngOnInit() {
-    this.cargarTalleres();
+    //obtener Id del taller
+    this.route.paramMap.subscribe(params => {
+      this.idTaller = +params.get('id');
+    });
+    this.cargarTaller();
     this.user = this.storage.get('@user:data');
+
   }
 
-
-  cargarTalleres() {
-    this.api.getAllTalleres().subscribe(result => {
+  cargarTaller(){
+    this.api.getTaller(this.idTaller).subscribe(result => {
+      console.log("taller");
+      console.log(result);
       this.taller = result[0][0];
-      console.log("TALLERES");
-      console.log(this.taller);
     })
   }
 
-  inscripcion(taller: Taller){
+  inscripcion(taller: Taller) {
 
   }
 
