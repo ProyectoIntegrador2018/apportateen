@@ -128,11 +128,26 @@ export class SignupComponent implements OnInit {
         return true;
     }
 
+    mailTutor(stepper){
+        if (!(this.usuario.tutor_correo.match(this.emailReg))) {
+            this.snackBar.open('La dirección de correo del tutor no es valida', '', {
+                duration: 2000,
+            });
+            
+        } else {
+            stepper.next();
+        }
+        
+        
+    }
+
+
+
     signup() {
         console.log(this.usuario);
         this.usuario.fecha_nacimiento = this.formatDate(this.fecha_nacimiento);
         if (this.validate()) {
-            if (this.usuario.tutor_correo.match(this.emailReg)) {
+            
                 if (this.password.length >= 6) {
                     this.loading = true;
                     this.firebaseAuth.auth.createUserWithEmailAndPassword(this.usuario.correo, this.password).
@@ -162,11 +177,7 @@ export class SignupComponent implements OnInit {
                         duration: 2000,
                     });
                 }
-            } else {
-                this.snackBar.open('La dirección de correo del tutor no es valida', '', {
-                    duration: 2000,
-                });
-            }
+            
 
         }
         else {

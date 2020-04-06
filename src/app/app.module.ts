@@ -31,13 +31,16 @@ import { UsuariosDetalleComponent } from './components/admin/usuarios/usuarios-d
 import { Aviso } from './models/aviso.model';
 import { AvisoInscripcionTallerComponent } from './components/user/avisos/aviso-inscripcion-taller/aviso-inscripcion-taller.component';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
+import { PruebaComponent } from './components/prueba/prueba.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ConfirmationDialog,
-    AddDialog
+    AddDialog,
+    PruebaComponent
   ],
   imports: [
     BrowserModule,
