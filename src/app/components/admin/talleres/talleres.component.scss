@@ -16,6 +16,36 @@
   }
 }
 
+.showcaseImg{
+  width:100%;
+  height: auto;
+}
+
+.imageDivTaller button {
+  z-index: 1000;
+  min-width:0;
+  width:40px;
+  height:40px;
+  position: absolute;
+  top:5%;
+  right: 5%;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+}
+
+.imageDivTaller{
+  padding:20px;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  max-width: 200px;
+}
+
 mat-form-field {
   width: 100%;
 }
