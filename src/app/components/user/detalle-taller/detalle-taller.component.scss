@@ -47,9 +47,7 @@
 }
 
 .sideBox{
-
   margin: 20px 0px;
-
   h5{
     font-weight: bold;
   }
@@ -72,10 +70,28 @@
   }
 }
 
+#gallery{
+  width: 100vh;
+  height: 70vh;
+}
 
-// div{
 
-//   p {
-//     color: rgb(1, 2, 14);
-//   }
-// }
+.carousel-item {
+  height: 95vh;
+}
+
+.carousel-caption {
+  top: 65%;
+  transform: translateY(-50%);
+}
+
+.titleSection{
+  background-color: #F7931D;
+  padding: 7vh;
+
+  h4{
+    text-align: center;
+    color:white;
+    font-weight: bold;
+  }
+}
