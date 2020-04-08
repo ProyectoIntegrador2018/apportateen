@@ -10,6 +10,7 @@
     background-color: $color-blue;
     border-color: $color-blue;
   }
+  
 }
 
 .top {
@@ -19,4 +20,9 @@
   .step-header {
     display: none;
   }
+}
+
+.subt {
+  margin-bottom: 2px;
+  margin-top: 15px;
 }

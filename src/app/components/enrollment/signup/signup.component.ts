@@ -62,12 +62,12 @@ export class SignupComponent implements OnInit {
     ];
 
     grades: Select[] = [
-        { value: '1ro prepa', viewValue: '1er año de prepa' },
-        { value: '2do prepa', viewValue: '2do año de prepa' },
-        { value: '3ro prepa', viewValue: '3er año de prepa' },
         { value: '1ro secundaria', viewValue: '1er año de secundaria' },
         { value: '2do secundaria', viewValue: '2do año de secundaria' },
-        { value: '3ro secundaria', viewValue: '3er año de secundaria' }
+        { value: '3ro secundaria', viewValue: '3er año de secundaria' },
+        { value: '1ro prepa', viewValue: '1er año de prepa' },
+        { value: '2do prepa', viewValue: '2do año de prepa' },
+        { value: '3ro prepa', viewValue: '3er año de prepa' }
     ];
 
     isLinear = true;
@@ -128,6 +128,7 @@ export class SignupComponent implements OnInit {
         return true;
     }
 
+    // función para verificar el mail del tutor antes de pasar a "siguiente" y no al final cuando registras
     mailTutor(stepper){
         if (!(this.usuario.tutor_correo.match(this.emailReg))) {
             this.snackBar.open('La dirección de correo del tutor no es valida', '', {
