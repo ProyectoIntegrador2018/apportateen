@@ -8,10 +8,10 @@
   <!-- <div>
       <h2>Inscríbete!</h2>
     </div> -->
-
+<!--
   <div class="titleSection">
     <h4>Información del taller</h4>
-  </div>
+  </div> -->
 
   <div class="informacion">
     <div class="row">
@@ -50,12 +50,12 @@
     <p>$500 MXN</p> -->
   </div>
 
-  <div class="titleSection">
+  <div *ngIf="taller.url_array != null" class="titleSection">
     <h4>Galería de Fotos</h4>
   </div>
 
-  <div class="row">
-    <div id="gallery col align-self-center">
+  <div class="row galleryBackground">
+    <div class="gallery col align-self-center">
       <div *ngIf="taller.url_array != null" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div [ngClass]="{'carousel-item' : true, 'active' : i == 0}"

@@ -70,21 +70,6 @@
   }
 }
 
-#gallery{
-  width: 100vh;
-  height: 70vh;
-}
-
-
-.carousel-item {
-  height: 95vh;
-}
-
-.carousel-caption {
-  top: 65%;
-  transform: translateY(-50%);
-}
-
 .titleSection{
   background-color: #F7931D;
   padding: 7vh;
@@ -93,5 +78,36 @@
     text-align: center;
     color:white;
     font-weight: bold;
+  }
+}
+
+//carousel
+.gallery{
+  // width: 100vh;
+  // height: 70vh;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.galleryBackground{
+  background-color: #2d2d2d;
+}
+
+
+// .carousel-item {
+//   height: 95vh;
+// }
+
+// .carousel-caption {
+//   top: 65%;
+//   transform: translateY(-50%);
+// }
+
+.carousel-item{
+  img {
+    width: auto !important;
+    height: 80vh;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
