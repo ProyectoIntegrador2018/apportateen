@@ -29,6 +29,18 @@
             <textarea matInput [(ngModel)]="selectedSede.direccion" name="descripcion"></textarea>
           </mat-form-field>
         </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Responsable</mat-label>
+            <textarea matInput [(ngModel)]="selectedSede.nombre_responsable" name="nombre_responsable"></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail del responable</mat-label>
+            <textarea matInput [(ngModel)]="selectedSede.correo_responsable" name="correo_responsable"></textarea>
+          </mat-form-field>
+        </div>
 
         <div *ngIf="!newSede">
           <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
