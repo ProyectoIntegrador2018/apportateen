@@ -16,8 +16,8 @@ import { Categoria } from 'app/models/categoria.model';
 import { Archivo } from 'app/models/archivo.model';
 const API_URL = environment.apiUrl;
 const httpOptions = {
-  headers:new HttpHeaders({
-    'Content-Type':  'application/json',
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
     'Authorization': 'Basic YWRtaW46YWRtaW4tcGFzc3dvcmQ='
   }),
   withCredentials: true
@@ -40,15 +40,15 @@ export class ApiService {
   // API: GET /users/usuarios
   public getUsersUsuarios(): Observable<User[]> {
     return this.http
-    .get<User[]>(API_URL + '/admins/usuarios', httpOptions)
-    .catch(this.handleError);
+      .get<User[]>(API_URL + '/admins/usuarios', httpOptions)
+      .catch(this.handleError);
   }
 
   // API: GET /users/admins
   public getUsersAdmn(): Observable<User[]> {
     return this.http
-    .get<User[]>(API_URL + '/admins/administradores', httpOptions)
-    .catch(this.handleError);
+      .get<User[]>(API_URL + '/admins/administradores', httpOptions)
+      .catch(this.handleError);
   }
 
 
@@ -62,8 +62,8 @@ export class ApiService {
   // API: GET /users/:correo
   public getUserByEmail(user_email: string): Observable<User> {
     return this.http
-    .get<User>(`${API_URL}/users/${user_email}`, httpOptions)
-    .catch(this.handleError);
+      .get<User>(`${API_URL}/users/${user_email}`, httpOptions)
+      .catch(this.handleError);
   }
 
   // API: POST /users
@@ -81,10 +81,10 @@ export class ApiService {
   }
 
   //API: PUT /users/complete/:id
-  public updateUserCompelte(user : User): Observable<any> {
+  public updateUserCompelte(user: User): Observable<any> {
     return this.http
-    .put<any>(`${API_URL}/users/complete/${user.id}`, user, httpOptions)
-    .catch(this.handleError);
+      .put<any>(`${API_URL}/users/complete/${user.id}`, user, httpOptions)
+      .catch(this.handleError);
   }
 
   //API: DELETE /sponsors/:id
@@ -95,17 +95,17 @@ export class ApiService {
   }
 
   //API: PUT /admin/add/:id
-  public addAdmin(user : User): Observable<any> {
+  public addAdmin(user: User): Observable<any> {
     return this.http
       .post<any>(`${API_URL}/admins/agregar`, user, httpOptions)
       .catch(this.handleError);
   }
 
   //API : DELETE /admins/delete/:id
-  public deleteAdmin(id : string): Observable<any> {
+  public deleteAdmin(id: string): Observable<any> {
     return this.http
-    .delete<any>(`${API_URL}/admins/delete/${id}`, httpOptions)
-    .catch(this.handleError);
+      .delete<any>(`${API_URL}/admins/delete/${id}`, httpOptions)
+      .catch(this.handleError);
   }
 
   // API: GET /sponsors
@@ -270,6 +270,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  // API: GET /talleres/detalle/:id
+  public getTaller(id: number): Observable<any[]> {
+    return this.http
+      .get<any[]>(`${API_URL}/talleres/detalle/${id}`, httpOptions)
+      .catch(this.handleError);
+  }
+
   // API: GET /talleres/:id
   public getCorreosByTallerId(id: number): Observable<any[]> {
     return this.http
@@ -278,38 +285,38 @@ export class ApiService {
   }
 
   //API: POST /archivos
-  public createArchivoAdmn(archivo : Archivo): Observable<any>{
+  public createArchivoAdmn(archivo: Archivo): Observable<any> {
     return this.http
-    .post<any>(`${API_URL}/archivos`, archivo, httpOptions)
-    .catch(this.handleError);
+      .post<any>(`${API_URL}/archivos`, archivo, httpOptions)
+      .catch(this.handleError);
   }
 
   //API: GET /archivos
   public getAllArchivosAdmn(): Observable<any[]> {
     return this.http
-    .get<any[]>(`${API_URL}/archivos`, httpOptions)
-    .catch(this.handleError);
+      .get<any[]>(`${API_URL}/archivos`, httpOptions)
+      .catch(this.handleError);
   }
 
   //API: GET /archivos/:id
-  public getAllArchivosById(id : string): Observable<any[]> {
+  public getAllArchivosById(id: string): Observable<any[]> {
     return this.http
-    .get<any[]>(`${API_URL}/archivos/user/${id}`, httpOptions)
-    .catch(this.handleError);
+      .get<any[]>(`${API_URL}/archivos/user/${id}`, httpOptions)
+      .catch(this.handleError);
   }
 
-   //API: GET /archivos/:id
-   public getArchivosAdminByUser(id : string): Observable<any[]> {
+  //API: GET /archivos/:id
+  public getArchivosAdminByUser(id: string): Observable<any[]> {
     return this.http
-    .get<any[]>(`${API_URL}/archivos/admin/user_files/${id}`, httpOptions)
-    .catch(this.handleError);
+      .get<any[]>(`${API_URL}/archivos/admin/user_files/${id}`, httpOptions)
+      .catch(this.handleError);
   }
 
   //API: DELETE /delete/:id
   public deleteArchivoAdmn(id: string): Observable<any> {
     return this.http
-    .delete<any>(`${API_URL}/archivos/delete/${id}`, httpOptions)
-    .catch(this.handleError);
+      .delete<any>(`${API_URL}/archivos/delete/${id}`, httpOptions)
+      .catch(this.handleError);
   }
 
   private handleError(error: Response | any) {

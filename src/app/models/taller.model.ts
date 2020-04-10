@@ -9,4 +9,6 @@ export class Taller {
     inscritos: number = 0;
     url : string = "";
     foto_path : string = null;
+    url_array : string[] = [];
+    foto_path_array : string[] = [];
 }
