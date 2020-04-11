@@ -6,5 +6,5 @@ export class Sede {
     direccion: string = '';
     talleres: Taller[] = [];
     responsable: string = '';
-    email_responsable: string = '';
+    correo_responsable: string = '';
 }
