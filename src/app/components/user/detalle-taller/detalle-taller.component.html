@@ -1,17 +1,8 @@
 <div class="">
-  <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Open_House_Day_2014.jpg" alt=""> -->
-  <!-- <section class="hero" [ngStyle] = "{'background-image': taller.url_array == null ? 'url(../../../../assets/img/hero.png)'  :  'url(' + taller.url_array[0] + ')'}"> -->
   <section class="hero"
     [ngStyle]="{'background-image': taller.url_array == null ? 'url(' + taller.url + ')'  :  'url(' + taller.url_array[0] + ')'}">
     <h1 class="hero__title"> {{taller["nombre"]}} </h1>
   </section>
-  <!-- <div>
-      <h2>Inscríbete!</h2>
-    </div> -->
-  <!--
-  <div class="titleSection">
-    <h4>Información del taller</h4>
-  </div> -->
 
   <div class="informacion">
     <div class="row">
@@ -55,8 +46,6 @@
       </div>
 
     </div>
-    <!-- <h4 class="register__title">25 Junio - 29 Junio</h4>
-    <p>$500 MXN</p> -->
   </div>
 
   <div *ngIf="taller.url_array != null" class="titleSection">
