@@ -90,16 +90,6 @@ export class SedesComponent implements OnInit {
               });
           });
         });
-        // this.api.updateSede(this.selectedSede).subscribe(res => {
-        //   this.snackBar.open(res.message, '', {
-        //     duration: 1000
-        //   });
-        //   this.obtenersedes();
-        // }, error => {
-        //   this.snackBar.open(error.error, '', {
-        //     duration: 1000
-        //   });
-        // });
       }
     });
   }
