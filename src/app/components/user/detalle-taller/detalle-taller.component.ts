@@ -1,9 +1,11 @@
+import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { Taller } from 'app/models/taller.model';
 import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-detalle-taller',
@@ -20,7 +22,8 @@ export class DetalleTallerComponent implements OnInit {
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
-    private route: ActivatedRoute, ) {
+    private route: ActivatedRoute,
+    public dialog: MatDialog,) {
     this.taller = Taller;
     this.estatus = null;
   }
@@ -59,7 +62,10 @@ export class DetalleTallerComponent implements OnInit {
   }
 
   inscripcion(taller: Taller) {
-
+  //   let dialogDetalle = this.dialog.open(AvisoInscripcionComponent, {
+  //     width: '800px',
+  //     data: {id : this.user.id}
+  // });
   }
 
 }
