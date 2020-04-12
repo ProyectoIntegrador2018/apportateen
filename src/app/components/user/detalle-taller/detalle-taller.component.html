@@ -8,7 +8,7 @@
   <!-- <div>
       <h2>Inscríbete!</h2>
     </div> -->
-<!--
+  <!--
   <div class="titleSection">
     <h4>Información del taller</h4>
   </div> -->
@@ -22,7 +22,12 @@
 
 
       <div class="col-md-4">
-        <button mat-button mat-stroked-button class="btn-primary"  *ngIf="!(taller['id'] == user.idtaller) && taller['inscritos'] < taller['cupo']" (click)="inscripcion(taller)">Inscribirme</button>
+        <button mat-button mat-stroked-button class="btn-primary"
+          (click)="inscripcion(taller)">Inscribirme</button>
+        <!-- <button mat-button mat-raised-button class="btn reject"
+          *ngIf="taller['id'] == user.idtaller"
+          >Desinscribir
+        </button> -->
 
         <div class="sideBox">
           <h5 class="">Costo</h5>
@@ -30,7 +35,7 @@
         </div>
         <div class="sideBox">
           <h5 class="">Fecha y Hora NO ESTA</h5>
-          <p>{{user.apellido}}</p>
+          <p>24 abril - 27 abril</p>
         </div>
         <div class="sideBox">
           <!-- <p>COSTO</p> -->

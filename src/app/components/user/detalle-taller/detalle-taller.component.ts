@@ -32,6 +32,7 @@ export class DetalleTallerComponent implements OnInit {
     });
     this.cargarTaller();
 
+
     //datos del usuario para obtener el costo dependiendod el tipo de escuela
     this.user = this.storage.get('@user:data');
 
@@ -41,6 +42,7 @@ export class DetalleTallerComponent implements OnInit {
   cargarTaller() {
     this.api.getTaller(this.idTaller).subscribe(result => {
       this.taller = result[0][0];
+      console.log(this.taller);
     })
   }
 
