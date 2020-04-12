@@ -22,11 +22,15 @@
 
 
       <div class="col-md-4">
-        <button mat-button mat-stroked-button class="btn-primary" (click)="inscripcion(taller)">Inscribirme</button>
+        <button mat-button mat-stroked-button class="btn-primary"  *ngIf="!(taller['id'] == user.idtaller) && taller['inscritos'] < taller['cupo']" (click)="inscripcion(taller)">Inscribirme</button>
 
         <div class="sideBox">
+          <h5 class="">Costo</h5>
+          <p>{{costoTaller() == 0 ? 'Gratis' : costoTaller()}}</p>
+        </div>
+        <div class="sideBox">
           <h5 class="">Fecha y Hora NO ESTA</h5>
-          <p>9:00 a.m. - 11:30 a.m.</p>
+          <p>{{user.apellido}}</p>
         </div>
         <div class="sideBox">
           <!-- <p>COSTO</p> -->
