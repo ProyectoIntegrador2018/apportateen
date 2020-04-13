@@ -13,11 +13,13 @@
 
       <div class="col-md-4">
         <button mat-button mat-stroked-button class="btn-primary"
+          *ngIf="!(taller['id'] == user.idtaller) && taller['inscritos'] < taller['cupo']"
           (click)="inscripcion(taller)">Inscribirme</button>
-        <!-- <button mat-button mat-raised-button class="btn reject"
+        <button mat-button mat-raised-button class="btn-reject"
           *ngIf="taller['id'] == user.idtaller"
+          (click)="quitarInscripcion()"
           >Desinscribir
-        </button> -->
+        </button>
 
         <div class="sideBox">
           <h5 class="">Costo</h5>
@@ -25,21 +27,21 @@
         </div>
         <div class="sideBox">
           <h5 class="">Fecha y Hora NO ESTA</h5>
-          <p>24 abril - 27 abril</p>
+          <p>{{taller["inscritos"]}}</p>
         </div>
         <div class="sideBox">
           <!-- <p>COSTO</p> -->
         </div>
         <div class="sideBox">
           <h5>Sede</h5>
-          <p>{{taller["sedeDesc"]}}</p>
+          <p>{{taller["sededesc"]}}</p>
         </div>
         <div class="sideBox">
           <!-- <p>{{taller["cupo"]}}</p> -->
         </div>
         <div class="sideBox">
           <h5>Ubicación</h5>
-          <p>{{taller["ubicacion"]}}</p>
+          <p>{{taller["direccion"]}}</p>
         </div>
 
       </div>
@@ -61,11 +63,11 @@
             <img class="d-block w-100" [src]="url" alt="First slide">
           </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <a *ngIf="taller.url_array.length > 1" class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <a *ngIf="taller.url_array.length > 1" class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
