@@ -8,7 +8,8 @@ import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 
 
 
@@ -31,8 +32,8 @@ export class DetalleTallerComponent implements OnInit {
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
 
     private route: ActivatedRoute,
-    public dialog: MatDialog,) {
-
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar) {
     this.taller = Taller;
     this.estatus = null;
   }
@@ -55,7 +56,7 @@ export class DetalleTallerComponent implements OnInit {
   cargarTaller() {
     this.api.getTaller(this.idTaller).subscribe(result => {
       this.taller = result[0][0];
-      console.log(this.taller);
+      this.taller["inscritos"] = result[1][0]["inscritos"];
     })
   }
 
@@ -72,11 +73,75 @@ export class DetalleTallerComponent implements OnInit {
   }
 
   inscripcion(taller: Taller) {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+    let message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
+    if (this.user.idtaller != 0) {
+      message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
+    }
+
+    dialogRef.componentInstance.mensajeConfirmacion = message;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.user.idtaller = taller.id;
+        this.user.id_axtuser = taller["sededesc"].toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
+        if (taller["sededesc"] === "SOFTTEK" || taller["sededesc"] === "UDEM") {
+          this.user.num_conf_pago = "BECA";
+          this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 900,
+            });
+          });
+        }
+        this.api.updateUser(this.user).subscribe(res => {
+          this.storage.set('@user:data', this.user);
+          this.snackBar.open(res.message, '', {
+            duration: 1500,
+          });
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        })
+      }
+    })
+  }
+
+
+  quitarInscripcion() {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará su inscripción a este taller. ¿Desea continuar?`;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.user.num_conf_pago = "";
+        this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        });
+        this.user.idtaller = 0;
+        this.user.id_axtuser = "";
+        this.api.updateUser(this.user).subscribe(res => {
+          this.storage.set('@user:data', this.user);
+          this.snackBar.open(res.message, '', {
+            duration: 1500,
+          });
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        })
+      }
+    })
   //   let dialogDetalle = this.dialog.open(AvisoInscripcionComponent, {
   //     width: '800px',
   //     data: {id : this.user.id}
   // });
-
   }
 
 }
