@@ -32,6 +32,7 @@ import { Aviso } from './models/aviso.model';
 import { AvisoInscripcionTallerComponent } from './components/user/avisos/aviso-inscripcion-taller/aviso-inscripcion-taller.component';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 
+
 @NgModule({
   declarations: [
     AppComponent,
