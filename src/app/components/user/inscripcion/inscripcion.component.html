@@ -12,12 +12,14 @@
     </div>
     <div class="items" *ngIf="estatus">
 
+
       <div class="register__item" *ngFor="let taller of selectedSede.talleres">
         <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
           <img [src]="taller.url_array[0]">
           <div class="text-container">
             <h3 class="title">{{taller.nombre}}</h3>
             <p class="desc">{{taller.descripcion}}</p>
+
           </div>
         </div>
         <div class="btn-container">

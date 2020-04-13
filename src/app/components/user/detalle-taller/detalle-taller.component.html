@@ -1,8 +1,10 @@
 <div class="">
+
   <section class="hero"
     [ngStyle]="{'background-image': 'url(' + taller.url_array[0] + ')'}">
     <h1 class="hero__title"> {{taller["nombre"]}} </h1>
   </section>
+
   <div class="informacion">
     <div class="row">
       <div class="col-md-8 description">
@@ -12,6 +14,7 @@
 
 
       <div class="col-md-4">
+
         <button mat-button mat-stroked-button class="btn-primary"
           *ngIf="!(taller['id'] == user.idtaller) && taller['inscritos'] < taller['cupo']"
           (click)="inscripcion(taller)">Inscribirme</button>
@@ -27,7 +30,7 @@
         </div>
         <div class="sideBox">
           <h5 class="">Fecha y Hora NO ESTA</h5>
-          <p>{{taller["inscritos"]}}</p>
+          <p>24 abril - 27 abril</p>
         </div>
         <div class="sideBox">
           <!-- <p>COSTO</p> -->

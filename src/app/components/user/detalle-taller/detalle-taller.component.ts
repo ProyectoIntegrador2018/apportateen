@@ -1,13 +1,16 @@
 
 import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { Taller } from 'app/models/taller.model';
 import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
+
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
+
 
 
 @Component({
@@ -19,12 +22,15 @@ export class DetalleTallerComponent implements OnInit {
 
   idTaller;
   taller;
+
   costo;
+
   estatus;
   user: User = new User();
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
+
     private route: ActivatedRoute,
     public dialog: MatDialog,
     public snackBar: MatSnackBar) {
@@ -38,6 +44,7 @@ export class DetalleTallerComponent implements OnInit {
       this.idTaller = +params.get('id');
     });
     this.cargarTaller();
+
 
 
     //datos del usuario para obtener el costo dependiendod el tipo de escuela
@@ -131,6 +138,10 @@ export class DetalleTallerComponent implements OnInit {
         })
       }
     })
+  //   let dialogDetalle = this.dialog.open(AvisoInscripcionComponent, {
+  //     width: '800px',
+  //     data: {id : this.user.id}
+  // });
   }
 
 }
