@@ -25,6 +25,7 @@ export class TalleresComponent implements OnInit {
   fileFoto;
   filePath;
   fileRef;
+
   
   fileFotoAr;
   filePathAr;
@@ -34,7 +35,6 @@ export class TalleresComponent implements OnInit {
   nombre_tutor;
   correo_tutor;
   telefono_tutor;
-
 
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
     this.talleres = [];
@@ -50,7 +50,7 @@ export class TalleresComponent implements OnInit {
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
-      
+
       this.sedes = result[1];
       this.categorias = result[2];
       this.autoSelect();
@@ -94,7 +94,6 @@ export class TalleresComponent implements OnInit {
     }
     return;
   }
-  
   delete() {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -130,6 +129,7 @@ export class TalleresComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
         console.log(result);
         // Cambiar a updateTutor
         this.api.updateTutor(this.selectedTaller).subscribe(res => {
@@ -163,6 +163,7 @@ export class TalleresComponent implements OnInit {
     Promise.all(
       Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosCreate(this.fileFotoAr[item], index))).then((url) => {
         console.log("success");
+
         
         // crea tutor nuevo al crear taller... hay que checar con Sonia si conviene entonces tener una interfaz para el manejo de tutores ?
         this.api.createTaller(this.selectedTaller).subscribe(res => {
@@ -231,6 +232,7 @@ export class TalleresComponent implements OnInit {
           }).catch((error) => {
             console.log(error);
             console.log("Error");
+
           })
       }
     });

@@ -1,9 +1,16 @@
+
+import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { Taller } from 'app/models/taller.model';
 import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
-import { ActivatedRoute } from '@angular/router';
+
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { MatDialog } from '@angular/material';
+
+
 
 @Component({
   selector: 'app-detalle-taller',
@@ -14,12 +21,18 @@ export class DetalleTallerComponent implements OnInit {
 
   idTaller;
   taller;
+
+  costo;
+
   estatus;
   user: User = new User();
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
-    private route: ActivatedRoute, ) {
+
+    private route: ActivatedRoute,
+    public dialog: MatDialog,) {
+
     this.taller = Taller;
     this.estatus = null;
   }
@@ -30,19 +43,39 @@ export class DetalleTallerComponent implements OnInit {
       this.idTaller = +params.get('id');
     });
     this.cargarTaller();
+
+
+
+    //datos del usuario para obtener el costo dependiendod el tipo de escuela
     this.user = this.storage.get('@user:data');
 
+    window.scrollTo(0, 0);
   }
 
-  cargarTaller(){
+  cargarTaller() {
     this.api.getTaller(this.idTaller).subscribe(result => {
-      console.log("taller");
-      console.log(result);
       this.taller = result[0][0];
+      console.log(this.taller);
     })
   }
 
+  costoTaller(): number {
+    if (this.taller["sedeDesc"] == "UDEM" || this.taller["sedeDesc"] == "SOFTTEK") {
+      return 0;
+    } else {
+      if (this.user.escuela_tipo == "Privada") {
+        return 1700;
+      } else {
+        return 700;
+      }
+    }
+  }
+
   inscripcion(taller: Taller) {
+  //   let dialogDetalle = this.dialog.open(AvisoInscripcionComponent, {
+  //     width: '800px',
+  //     data: {id : this.user.id}
+  // });
 
   }
 

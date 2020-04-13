@@ -12,6 +12,10 @@ import { AvisoInscripcionTallerComponent } from './avisos/aviso-inscripcion-tall
 import { DocumentosUsuarioComponent } from './documentos-usuario/documentos-usuario.component';
 import { DetalleTallerComponent } from './detalle-taller/detalle-taller.component';
 
+import { AvisoInscripcionComponent } from './detalle-taller/aviso-inscripcion/aviso-inscripcion.component';
+
+
+
 
 @NgModule({
   imports: [
@@ -34,7 +38,9 @@ import { DetalleTallerComponent } from './detalle-taller/detalle-taller.componen
     MatMenuModule
 
   ],
-  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent, DetalleTallerComponent],
+
+  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent, DetalleTallerComponent, AvisoInscripcionComponent],
+
   exports: [MainUserComponent],
 })
 export class UserModule { }

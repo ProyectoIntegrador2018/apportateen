@@ -32,7 +32,6 @@
           </mat-select>
         </mat-form-field>
 
-        
           <mat-form-field appearance="outline">
             <mat-label>Tutor</mat-label>
             <input matInput [(ngModel)]="selectedTaller.nombre_tutor" name="tallerNombre">
@@ -47,7 +46,6 @@
             <mat-label>Teléfono del tutor</mat-label>
             <input matInput type="number" [(ngModel)]="selectedTaller.telefono_tutor" name="telefono_tutor">
           </mat-form-field>
-
 
         <mat-form-field [hidden]="true">
           <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
