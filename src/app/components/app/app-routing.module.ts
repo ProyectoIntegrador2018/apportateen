@@ -15,6 +15,7 @@ import { NgxPermissionsGuard } from 'ngx-permissions';
 import { AvisosUserComponent } from '../user/avisos/avisos.component';
 import { CorreosComponent } from '../admin/correos/correos.component';
 import { UsuariosComponent } from '../admin/usuarios/usuarios.component';
+import { DetalleTallerComponent } from '../user/detalle-taller/detalle-taller.component';
 import { DocumentosComponent } from '../admin/documentos/documentos.component';
 import { DocumentosUsuarioComponent } from '../user/documentos-usuario/documentos-usuario.component';
 import { AdministracionRolesComponent } from '../admin/administracion-roles/administracion-roles.component';
@@ -63,7 +64,8 @@ const routes: Routes = [
             { path: 'inicio', component: AvisosUserComponent },
             { path: 'inscripcion', component: InscripcionComponent },
             { path : 'documentos', component: DocumentosUsuarioComponent},
-            { path : 'principal', component: HomeComponent}
+            { path : 'principal', component: HomeComponent},
+            { path : 'inscripcion/detalleTaller/:id', component: DetalleTallerComponent}
         ]
     }
 ]

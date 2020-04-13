@@ -10,6 +10,7 @@ import { AvisosUserComponent } from './avisos/avisos.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvisoInscripcionTallerComponent } from './avisos/aviso-inscripcion-taller/aviso-inscripcion-taller.component';
 import { DocumentosUsuarioComponent } from './documentos-usuario/documentos-usuario.component';
+import { DetalleTallerComponent } from './detalle-taller/detalle-taller.component';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { DocumentosUsuarioComponent } from './documentos-usuario/documentos-usua
     MatMenuModule
 
   ],
-  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent],
+  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent, DetalleTallerComponent],
   exports: [MainUserComponent],
 })
 export class UserModule { }
