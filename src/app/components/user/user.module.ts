@@ -11,7 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AvisoInscripcionTallerComponent } from './avisos/aviso-inscripcion-taller/aviso-inscripcion-taller.component';
 import { DocumentosUsuarioComponent } from './documentos-usuario/documentos-usuario.component';
 import { DetalleTallerComponent } from './detalle-taller/detalle-taller.component';
+
 import { AvisoInscripcionComponent } from './detalle-taller/aviso-inscripcion/aviso-inscripcion.component';
+
 
 
 
@@ -36,7 +38,9 @@ import { AvisoInscripcionComponent } from './detalle-taller/aviso-inscripcion/av
     MatMenuModule
 
   ],
+
   declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent, DetalleTallerComponent, AvisoInscripcionComponent],
+
   exports: [MainUserComponent],
 })
 export class UserModule { }

@@ -25,9 +25,16 @@ export class TalleresComponent implements OnInit {
   fileFoto;
   filePath;
   fileRef;
+
+  
   fileFotoAr;
   filePathAr;
   fileRefAr;
+  
+  
+  nombre_tutor;
+  correo_tutor;
+  telefono_tutor;
 
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
     this.talleres = [];
@@ -43,10 +50,12 @@ export class TalleresComponent implements OnInit {
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
-      console.log(this.talleres)
+
       this.sedes = result[1];
       this.categorias = result[2];
       this.autoSelect();
+
+      this.api
     });
   }
 
@@ -115,19 +124,32 @@ export class TalleresComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
+    
+    
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.api.updateTaller(this.selectedTaller).subscribe(res => {
-          this.snackBar.open(res.message, '', {
-            duration: 1000
-          });
-          this.obtenerTalleres();
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 1000
-          });
-        });
+
+        console.log(result);
+        // Cambiar a updateTutor
+        this.api.updateTutor(this.selectedTaller).subscribe(res => {
+            console.log(this.selectedTaller);
+
+            this.api.updateTaller(this.selectedTaller).subscribe(res => {
+              this.snackBar.open(res.message, '', {
+                duration: 1000
+              });
+              this.obtenerTalleres();
+            }, error => {
+              this.snackBar.open(error.error, '', {
+                duration: 1000
+              });
+            });
+          
+        //aqui
+        })
+
+        
       }
     });
   }
@@ -141,18 +163,23 @@ export class TalleresComponent implements OnInit {
     Promise.all(
       Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosCreate(this.fileFotoAr[item], index))).then((url) => {
         console.log("success");
+
+        
+        // crea tutor nuevo al crear taller... hay que checar con Sonia si conviene entonces tener una interfaz para el manejo de tutores ?
         this.api.createTaller(this.selectedTaller).subscribe(res => {
-          this.snackBar.open(res.message, '', {
-            duration: 1000
-          });
-          this.obtenerTalleres();
-          this.fileFotoAr = [];
-          this.filePathAr = []
-        }, error => {
-          this.snackBar.open(error.error, '', {
+          this.api.createTutor(this.selectedTaller).subscribe(res => {
+            this.snackBar.open(res.message, '', {
+              duration: 1000
+            });
+            this.obtenerTalleres();
+            this.fileFotoAr = [];
+            this.filePathAr = []
+          }, error => {
+            this.snackBar.open(error.error, '', {
             duration: 1000
           });
         });
+      })
       }).catch((error) => {
         console.log(error);
         console.log("Error");
@@ -205,6 +232,7 @@ export class TalleresComponent implements OnInit {
           }).catch((error) => {
             console.log(error);
             console.log("Error");
+
           })
       }
     });
@@ -258,11 +286,17 @@ export class TalleresComponent implements OnInit {
   select(taller: Taller) {
     this.selectedTaller = Object.assign({}, taller);
     this.newTaller = null;
+
+    this.getTutor(this.selectedTaller);
+    
   }
 
   autoSelect() {
     if (this.talleres.length != 0) {
       this.selectedTaller = Object.assign({}, this.talleres[0]);
+      
+      this.getTutor(this.selectedTaller);
+
     }
   }
 
@@ -273,6 +307,14 @@ export class TalleresComponent implements OnInit {
     if(!this.newTaller){
       this.updateImages()
     }
+  }
+
+  getTutor(taller){
+    this.api.getTutor(this.selectedTaller).subscribe( result => {
+      taller.nombre_tutor = result.nombre_tutor;
+      taller.correo_tutor = result.correo_tutor;
+      taller.telefono_tutor = result.telefono_tutor;
+    })
   }
 
 }
