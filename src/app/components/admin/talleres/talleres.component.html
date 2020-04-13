@@ -31,6 +31,24 @@
             <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
+
+        
+          <mat-form-field appearance="outline">
+            <mat-label>Tutor</mat-label>
+            <input matInput [(ngModel)]="selectedTaller.nombre_tutor" name="tallerNombre">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail del Tutor</mat-label>
+            <input matInput [(ngModel)]="selectedTaller.correo_tutor" name="correo_tutor">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono del tutor</mat-label>
+            <input matInput type="number" [(ngModel)]="selectedTaller.telefono_tutor" name="telefono_tutor">
+          </mat-form-field>
+
+
         <mat-form-field [hidden]="true">
           <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
             <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
