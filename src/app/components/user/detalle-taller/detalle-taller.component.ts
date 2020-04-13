@@ -1,3 +1,4 @@
+
 import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
 import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
@@ -6,6 +7,7 @@ import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material';
+
 
 @Component({
   selector: 'app-detalle-taller',

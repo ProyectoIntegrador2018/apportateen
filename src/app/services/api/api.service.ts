@@ -143,6 +143,19 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  public createResponsable(sede: Sede): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/responsable`, sede, httpOptions)
+      .catch(this.handleError);
+  }
+
+  public getReponsable(sede: Sede): Observable<any> {
+    return this.http
+      .get<any>(API_URL + '/responsable/' + sede.correo_responsable, httpOptions)
+      .catch(this.handleError);
+  }
+
+
 
   // API: POST /sedes
   public createSede(sede: Sede): Observable<any> {

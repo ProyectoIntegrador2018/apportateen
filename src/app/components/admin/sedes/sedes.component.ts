@@ -29,6 +29,7 @@ export class SedesComponent implements OnInit {
     this.api.getAllSedes().subscribe(result => {
       this.sedes = result;
       this.autoSelect();
+      console.log(result);
     });
   }
 
@@ -71,14 +72,22 @@ export class SedesComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la sede seleccionada. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.api.updateSede(this.selectedSede).subscribe(res => {
-          this.snackBar.open(res.message, '', {
-            duration: 1000
-          });
-          this.obtenersedes();
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 1000
+        if (this.selectedSede == undefined){
+          console.log("LA SEDE NO TIENE RESPONSABLE")
+        }
+        this.api.createResponsable(this.selectedSede).subscribe( res => {
+          this.api.getReponsable(this.selectedSede).subscribe( res_id => {
+            this.selectedSede.responsable = res_id.id_responsable;
+              this.api.updateSede(this.selectedSede).subscribe(res => {
+                this.snackBar.open(res.message, '', {
+                  duration: 1000
+                });
+                this.obtenersedes();
+              }, error => {
+                this.snackBar.open(error.error, '', {
+                  duration: 1000
+                });
+              });
           });
         });
       }
@@ -91,19 +100,39 @@ export class SedesComponent implements OnInit {
   }
 
   create() {
+    console.log("NUEVA SEDE")
     this.newSede = null;
-    this.api.createSede(this.selectedSede).subscribe(result => {
-      if (result.status == 'success') {
-        this.snackBar.open(result.message, '', {
-          duration: 1500,
-        });
-        this.obtenersedes();
-      }
-    }, error => {
-      this.snackBar.open(error.error, '', {
-        duration: 1500,
+
+    this.api.createResponsable(this.selectedSede).subscribe( res => {
+      this.api.getReponsable(this.selectedSede).subscribe( res_id => {
+        this.selectedSede.responsable = res_id.id_responsable;
+          this.api.createSede(this.selectedSede).subscribe(result => {
+            if (result.status == 'success') {
+              this.snackBar.open(result.message, '', {
+                duration: 1500,
+              });
+              this.obtenersedes();
+            }
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 1500,
+            });
+            this.autoSelect();
+          })
       });
-    })
+    });
+          // this.api.createSede(this.selectedSede).subscribe(result => {
+          //   if (result.status == 'success') {
+          //     this.snackBar.open(result.message, '', {
+          //       duration: 1500,
+          //     });
+          //     this.obtenersedes();
+          //   }
+          // }, error => {
+          //   this.snackBar.open(error.error, '', {
+          //     duration: 1500,
+          //   });
+          // })
   }
 
   select(sede: Sede) {

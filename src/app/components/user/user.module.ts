@@ -14,6 +14,7 @@ import { DetalleTallerComponent } from './detalle-taller/detalle-taller.componen
 import { AvisoInscripcionComponent } from './detalle-taller/aviso-inscripcion/aviso-inscripcion.component';
 
 
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
