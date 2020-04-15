@@ -31,7 +31,23 @@
             <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field  [hidden]="true">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Tutor</mat-label>
+            <input matInput [(ngModel)]="selectedTaller.nombre_tutor" name="tallerNombre">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail del Tutor</mat-label>
+            <input matInput [(ngModel)]="selectedTaller.correo_tutor" name="correo_tutor">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Teléfono del tutor</mat-label>
+            <input matInput type="number" [(ngModel)]="selectedTaller.telefono_tutor" name="telefono_tutor">
+          </mat-form-field>
+
+        <mat-form-field [hidden]="true">
           <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
             <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
           </mat-select>
@@ -45,17 +61,28 @@
           <label for="archivoInput">Seleccionar Foto de Taller:</label>
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="archivoInput" (change)="getArchivo($event)">
-              <label *ngIf="selectedTaller.url == null; else elseFoto" class="custom-file-label text-truncate" for="archivoInput">Seleccionar Foto</label>
+              <input type="file" class="custom-file-input" id="archivoInput" (change)="getArchivos($event)" multiple>
+              <label *ngIf="selectedTaller.url == null; else elseFoto" class="custom-file-label text-truncate"
+                for="archivoInput">Seleccionar Foto</label>
               <ng-template #elseFoto>
-               <label class="custom-file-label text-truncate" for="archivoInput">{{selectedTaller.foto_path}}</label>
-            </ng-template>
+                <label class="custom-file-label text-truncate" for="archivoInput">{{selectedTaller.foto_path}}</label>
+              </ng-template>
             </div>
+          </div>
+        </div>
+        <div>
+          <label for="archivoInput">Imágenes:</label>
+          <br>
+          <div *ngFor="let url of selectedTaller.url_array;" class="imageDivTaller">
+            <button mat-icon-button (click)="deleteImage(url)">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <img class="showcaseImg" [src]="url" alt="">
           </div>
         </div>
 
         <div *ngIf="!newTaller">
-          <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
+          <button mat-raised-button class="pull-right" color="warn" (click)="newDelete()">Eliminar</button>
           <button mat-raised-button class="pull-right" color="primary" (click)="save()"
             style="margin-right:12px;">Guardar</button>
         </div>
