@@ -96,15 +96,19 @@ export class InscripcionComponent implements OnInit {
       disableClose: true
     });
     let message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
-    if (this.user.idtaller != 0) {
-      message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
-    }
+    // if (this.user.idtaller != 0) {
+    //   message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
+    // }
 
     dialogRef.componentInstance.mensajeConfirmacion = message;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        
         this.user.idtaller = taller.id;
+        this.user.talleres.push(taller.id);
+        
         this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
+        
         if (this.selectedSede.nombre === "SOFTTEK" || this.selectedSede.nombre === "UDEM") {
           this.user.num_conf_pago = "BECA";
           this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
@@ -114,6 +118,7 @@ export class InscripcionComponent implements OnInit {
             });
           });
         }
+
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           this.obtenerTallerActual()

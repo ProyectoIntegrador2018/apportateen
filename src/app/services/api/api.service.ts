@@ -75,6 +75,8 @@ export class ApiService {
 
   // API: PUT /users/:id TALLER
   public updateUser(user: User): Observable<any> {
+    console.log("hola");
+    console.log(user);
     return this.http
       .put<any>(`${API_URL}/users/${user.id}`, user, httpOptions)
       .catch(this.handleError);
