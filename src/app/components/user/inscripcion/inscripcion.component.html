@@ -24,13 +24,13 @@
         </div>
         <div class="btn-container">
           <button mat-button mat-stroked-button class="btn accept"
-            *ngIf="!(taller.id == user.idtaller) && taller.inscritos < taller.cupo"
+            *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos < taller.cupo"
             (click)="inscripcion(taller)">Inscribirme</button>
           <!-- <button mat-button mat-stroked-button class="btn primary" [routerLink]="['detalleTaller/', taller.id]">Detalle
             Taller</button> -->
           <button mat-button mat-raised-button class="btn reject"
-            *ngIf="taller.id == user.idtaller && taller.inscritos < taller.cupo"
-            (click)="quitarInscripcion()">Desinscribir
+            *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
+            (click)="quitarInscripcion(taller)">Desinscribir
             <!-- <mat-icon>done</mat-icon> -->
           </button>
           <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller

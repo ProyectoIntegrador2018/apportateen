@@ -77,14 +77,18 @@ export class DetalleTallerComponent implements OnInit {
       disableClose: true
     });
     let message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
-    if (this.user.idtaller != 0) {
-      message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
-    }
+    // if (this.user.idtaller != 0) {
+    //   message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
+    // }
 
     dialogRef.componentInstance.mensajeConfirmacion = message;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.user.idtaller = taller.id;
+
+
+        // this.user.idtaller = taller.id;
+        this.user.talleres.push(taller.id);
+
         this.user.id_axtuser = taller["sededesc"].toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
         if (taller["sededesc"] === "SOFTTEK" || taller["sededesc"] === "UDEM") {
           this.user.num_conf_pago = "BECA";
@@ -110,7 +114,7 @@ export class DetalleTallerComponent implements OnInit {
   }
 
 
-  quitarInscripcion() {
+  quitarInscripcion(taller: Taller) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
@@ -126,6 +130,13 @@ export class DetalleTallerComponent implements OnInit {
         });
         this.user.idtaller = 0;
         this.user.id_axtuser = "";
+
+        const index_taller = this.user.talleres.indexOf(taller.id);
+        if(index_taller > -1){
+          this.user.talleres.splice(index_taller,1);
+        }
+
+
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           this.snackBar.open(res.message, '', {
