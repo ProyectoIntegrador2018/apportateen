@@ -38,6 +38,9 @@ export class InscripcionComponent implements OnInit {
   ngOnInit() {
     this.user = this.storage.get('@user:data');
     this.cargarSedes();
+    console.log(this.user);
+    
+
   }
 
   cargarSedes() {
@@ -60,7 +63,7 @@ export class InscripcionComponent implements OnInit {
     this.selectedSede.talleres = this.selectedSede.talleres.filter(x => x.categoria === this.user.idcategoria);
   }
 
-  quitarInscripcion() {
+  quitarInscripcion(taller: Taller) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
@@ -74,8 +77,17 @@ export class InscripcionComponent implements OnInit {
             duration: 900,
           });
         });
+        
+        
         this.user.idtaller = 0;
-        this.user.id_axtuser = "";
+
+        this.user.id_axtuser = ""; // para qué es este id ??
+        
+        const index_taller = this.user.talleres.indexOf(taller.id);
+        if(index_taller > -1){
+          this.user.talleres.splice(index_taller,1);
+        }
+          
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           this.tallerActual = '';
@@ -95,6 +107,7 @@ export class InscripcionComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
+    console.log(taller);
     let message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
     // if (this.user.idtaller != 0) {
     //   message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;
@@ -104,7 +117,7 @@ export class InscripcionComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         
-        this.user.idtaller = taller.id;
+        // this.user.idtaller = taller.id;
         this.user.talleres.push(taller.id);
         
         this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
