@@ -1,5 +1,4 @@
-
-import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
+import { MessageDialogComponent } from './../../message-dialog/message-dialog.component';
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
@@ -10,7 +9,7 @@ import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
-
+// import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
 
 
 @Component({
@@ -22,11 +21,10 @@ export class DetalleTallerComponent implements OnInit {
 
   idTaller;
   taller;
-
   costo;
-
   estatus;
   user: User = new User();
+  // inscripcionDialogRef: MatDialogRef<AvisoInscripcionComponent>;
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
@@ -100,6 +98,14 @@ export class DetalleTallerComponent implements OnInit {
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
+          const dialogRef = this.dialog.open(MessageDialogComponent, {
+            disableClose: true
+          });
+          let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+          dialogRef.componentInstance.mensaje = message;
+          dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+
+
         }, error => {
           this.snackBar.open(error.error, '', {
             duration: 900,
