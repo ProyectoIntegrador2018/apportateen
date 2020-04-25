@@ -12,7 +12,7 @@ import { AvisoInscripcionTallerComponent } from './avisos/aviso-inscripcion-tall
 import { DocumentosUsuarioComponent } from './documentos-usuario/documentos-usuario.component';
 import { DetalleTallerComponent } from './detalle-taller/detalle-taller.component';
 
-import { AvisoInscripcionComponent } from './detalle-taller/aviso-inscripcion/aviso-inscripcion.component';
+// import { AvisoInscripcionComponent } from './detalle-taller/aviso-inscripcion/aviso-inscripcion.component';
 
 
 
@@ -39,8 +39,9 @@ import { AvisoInscripcionComponent } from './detalle-taller/aviso-inscripcion/av
 
   ],
 
-  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent, DetalleTallerComponent, AvisoInscripcionComponent],
+  declarations: [MainUserComponent, InscripcionComponent, AvisosUserComponent, AvisoInscripcionTallerComponent, DocumentosUsuarioComponent, DetalleTallerComponent, /*AvisoInscripcionComponent*/],
 
   exports: [MainUserComponent],
+  // entryComponents: [AvisoInscripcionTallerComponent]
 })
 export class UserModule { }

@@ -1,5 +1,4 @@
-
-import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
+import { MessageDialogComponent } from './../../message-dialog/message-dialog.component';
 
 import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
@@ -22,9 +21,8 @@ export class DetalleTallerComponent implements OnInit {
 
   idTaller;
   taller;
-
   costo;
-  
+
   estatus;
   user: User = new User();
   talleres;
@@ -61,7 +59,7 @@ export class DetalleTallerComponent implements OnInit {
 
     window.scrollTo(0, 0);
 
-    
+
 
   }
 
@@ -82,7 +80,7 @@ export class DetalleTallerComponent implements OnInit {
       this.fecha_fin = this.taller.fecha_fin;
       this.fecha_inicio = this.taller.fecha_inicio;
 
-      
+
       this.fecha_inicio = this.formatDate(this.fecha_inicio.slice(0,10));
       this.fecha_fin = this.formatDate(this.fecha_fin.slice(0,10));
 
@@ -97,16 +95,16 @@ export class DetalleTallerComponent implements OnInit {
     let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
     let date = new Date(x.replace(/-+/g, '/'));
-  
+
     var fechaNum = date.getDate();
     var mes_name = date.getMonth();
-  
-  
+
+
     return(dias[date.getDay()-1] + " " + fechaNum + " de " + meses[mes_name] + " de " + date.getFullYear());
-  
+
   }
 
-  
+
   /*obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
@@ -132,24 +130,24 @@ export class DetalleTallerComponent implements OnInit {
   let t : any;
   for(t in this.user.talleres){
     let tall = this.talleres.find(x => x.id === this.user.talleres[t]);
-  
-    
+
+
     var fi= tall.fecha_inicio.slice(0,10);
     var ff = tall.fecha_fin.slice(0,10);
     var fi_n = taller.fecha_inicio.slice(0,10);
     var ff_n = taller.fecha_fin.slice(0,10);
-    
+
     fi = fi.split("-").join("");
     ff = ff.split("-").join("");
     fi_n = fi_n.split("-").join("");
     ff_n = ff_n.split("-").join("");
-    
+
     var hi = tall.hora_inicio.replace(":","");
     var hf = tall.hora_fin.replace(":","");
     var hi_n = taller.hora_inicio.replace(":","");
     var hf_n = taller.hora_fin.replace(":","");
 
-    
+
     // checar si los rangos de fechas del nuevo taller a inscribir estan dentro de los rangos de fechas de los talleres ya inscritos
     // TODO: más pruebas de esto
     if((fi_n >= fi && ff >= fi_n) || (ff_n >= fi && ff >= ff_n)){
@@ -162,11 +160,11 @@ export class DetalleTallerComponent implements OnInit {
 
   }
   let dialogRef, message;
-  
+
   if(!this.checa_talleres){
     dialogRef = this.dialog.open(WarningDialogComponent);
   } else {
-    
+
     dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
@@ -195,6 +193,14 @@ export class DetalleTallerComponent implements OnInit {
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
+          const dialogRef = this.dialog.open(MessageDialogComponent, {
+            disableClose: true
+          });
+          let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+          dialogRef.componentInstance.mensaje = message;
+          dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+
+
         }, error => {
           this.snackBar.open(error.error, '', {
             duration: 900,
