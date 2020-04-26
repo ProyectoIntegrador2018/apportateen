@@ -1,5 +1,26 @@
 <div class="talleres">
   <div class="talleres__container">
+    <div class="talleres costos lpadfix">
+      <h3>Costo de los Talleres</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Escuela pública</mat-label>
+            <input matInput type="number" [(ngModel)]="costos.escuela_publica" name="escuelaPublica">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field appearance="fill">
+            <mat-label>Escuela privada</mat-label>
+            <input matInput type="number" [(ngModel)]="costos.escuela_privada" name="escuelaPrivada">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row talleres button">
+        <button mat-raised-button class="talleres buttonSave" color="primary" (click)="guardarCostos()">Guardar Cambios</button>
+        <!-- <button mat-raised-button class="" color="warn" >Revertir</button> -->
+      </div>
+    </div>
     <div class="talleres__title lpadfix">
       <h3>Talleres</h3>
       <button mat-icon-button color="primary" (click)="add()">

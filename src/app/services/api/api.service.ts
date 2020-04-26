@@ -141,7 +141,7 @@ export class ApiService {
     .post<any>(`${API_URL}/guardians`, taller, httpOptions)
     .catch(this.handleError);
   }
-  
+
   public getTutor(taller: Taller): Observable<any> {
     return this.http
     .get<any>(API_URL + '/guardians/' + taller.tutor, httpOptions)
@@ -228,6 +228,20 @@ export class ApiService {
   public removeAviso(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/avisos/${id}`, httpOptions)
+      .catch(this.handleError);
+  }
+
+  //API: GET /talleres/costos
+  public getCostos(): Observable<any> {
+    return this.http
+      .get<any>(`${API_URL}/talleres/costos`, httpOptions)
+      .catch(this.handleError);
+  }
+
+  //API: PUT /talleres/costos
+  public updateCostos(costos: any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/talleres/costos`, costos, httpOptions)
       .catch(this.handleError);
   }
 

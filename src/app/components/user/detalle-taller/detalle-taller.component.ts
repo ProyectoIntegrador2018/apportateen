@@ -59,7 +59,7 @@ export class DetalleTallerComponent implements OnInit {
   }
 
   costoTaller(): number {
-    if (this.taller["sedeDesc"] == "UDEM" || this.taller["sedeDesc"] == "SOFTTEK") {
+    if (this.taller["gratis"]) {
       return 0;
     } else {
       if (this.user.escuela_tipo == "Privada") {
