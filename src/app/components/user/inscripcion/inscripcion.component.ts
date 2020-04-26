@@ -24,6 +24,8 @@ export class InscripcionComponent implements OnInit {
   talleres;
   sedes;
   selectedSede: Sede = new Sede();
+  sede_seleccionada : boolean;
+  muestra_todos : boolean;
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
@@ -33,11 +35,14 @@ export class InscripcionComponent implements OnInit {
     this.sedes = [];
     this.tallerActual = '';
     this.estatus = null;
+    this.sede_seleccionada = null;
+    this.muestra_todos = true;
   }
 
   ngOnInit() {
     this.user = this.storage.get('@user:data');
     this.cargarSedes();
+    this.cargarTalleres();
     console.log(this.user);
     
 
@@ -58,9 +63,19 @@ export class InscripcionComponent implements OnInit {
 
   }
 
+  cargarTalleres(){
+    this.api.getAllTalleres().subscribe(result => {
+      this.talleres = result[0];
+      this.muestra_todos = true;
+      console.log(this.talleres);
+    })
+  }
+
   seleccionarSede(event: any) {
     this.selectedSede = this.sedes.find(x => x.id === event.value);
     this.selectedSede.talleres = this.selectedSede.talleres.filter(x => x.categoria === this.user.idcategoria);
+    this.sede_seleccionada = true;
+    this.muestra_todos = false;
   }
 
   quitarInscripcion(taller: Taller) {
@@ -107,7 +122,21 @@ export class InscripcionComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    console.log(taller);
+    
+
+    // sección para checar que el usuario puede inscribir otro taller dependiendo del horario y fecha de los talleres que ya tiene inscritos
+    let t : any;
+    for(t in this.user.talleres){
+      
+      let tall = this.talleres.find(x => x.id === this.user.talleres[t]);
+      console.log(tall.fecha_inicio);
+      
+      var fecha_1 = tall.fecha_inicio.slice(0,10);
+
+      // 2020-04-30T05:00:00.000Z
+
+    }
+
     let message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
     // if (this.user.idtaller != 0) {
     //   message = `Se identificó que ya estas registrado en otro taller. Si desea estar inscrito simultáneamente en dos o más talleres, deberas crear un nuevo usuario por cada nuevo registro que deseaa realizar. En caso de querer reemplazar el taller inscrito actual, se reemplazará la inscripción actual por el taller ${taller.nombre}. ¿Desea continuar?`;

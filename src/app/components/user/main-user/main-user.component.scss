@@ -82,7 +82,7 @@ button {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    height: 50vh;
+    height: 260px;
     justify-content: center;
 
     &__title {
@@ -91,6 +91,7 @@ button {
       font-weight: bold;
       letter-spacing: 1.69px;
       text-align: center;
+      margin-top: 80px;
     }
   }
 }
