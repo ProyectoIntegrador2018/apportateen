@@ -19,6 +19,7 @@ export class TalleresComponent implements OnInit {
 
   newTaller: Taller;
   selectedTaller;
+  costos;
   talleres;
   sedes;
   categorias;
@@ -28,7 +29,7 @@ export class TalleresComponent implements OnInit {
   fileFotoAr;
   filePathAr;
   fileRefAr;
-  
+
   nombre_tutor;
   correo_tutor;
   telefono_tutor;
@@ -42,6 +43,7 @@ export class TalleresComponent implements OnInit {
 
   ngOnInit() {
     this.obtenerTalleres();
+    this.obtenerCostos();
   }
 
   obtenerTalleres() {
@@ -51,7 +53,39 @@ export class TalleresComponent implements OnInit {
       this.categorias = result[2];
       this.autoSelect();
 
-      this.api
+      // this.api
+    });
+  }
+
+  obtenerCostos(){
+    this.api.getCostos().subscribe(result => {
+      console.log(result);
+      this.costos = result;
+    });
+  }
+
+  guardarCostos(){
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+
+    console.log("costos a guardar");
+    console.log(this.costos);
+
+    dialogRef.componentInstance.mensajeConfirmacion = `Se modificarán los costos de los talleres. ¿Desea continuar?`;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.api.updateCostos(this.costos).subscribe(res => {
+          this.snackBar.open(res.message, '', {
+            duration: 1000
+          });
+          this.obtenerCostos();
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 1000
+          });
+        });
+      }
     });
   }
 
@@ -120,8 +154,8 @@ export class TalleresComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    
-    
+
+
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
@@ -140,11 +174,11 @@ export class TalleresComponent implements OnInit {
                 duration: 1000
               });
             });
-          
+
         //aqui
         })
 
-        
+
       }
     });
   }
@@ -283,13 +317,13 @@ export class TalleresComponent implements OnInit {
     this.newTaller = null;
 
     this.getTutor(this.selectedTaller);
-    
+
   }
 
   autoSelect() {
     if (this.talleres.length != 0) {
       this.selectedTaller = Object.assign({}, this.talleres[0]);
-      
+
       this.getTutor(this.selectedTaller);
 
     }
