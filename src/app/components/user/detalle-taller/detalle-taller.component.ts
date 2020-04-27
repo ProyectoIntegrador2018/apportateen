@@ -22,6 +22,7 @@ export class DetalleTallerComponent implements OnInit {
   idTaller;
   taller;
   costo;
+  costosPorEscuela;
   estatus;
   user: User = new User();
   // inscripcionDialogRef: MatDialogRef<AvisoInscripcionComponent>;
@@ -53,10 +54,19 @@ export class DetalleTallerComponent implements OnInit {
 
   cargarTaller() {
     this.api.getTaller(this.idTaller).subscribe(result => {
+      console.log(result);
       this.taller = result[0][0];
       this.taller["inscritos"] = result[1][0]["inscritos"];
     })
   }
+
+  // obtenerCostos(){
+  //   this.api.getCostos().subscribe(result => {
+  //     this.costosPorEscuela = result;
+  //     console.log(result);
+  //   });
+  // }
+
 
   costoTaller(): number {
     if (this.taller["gratis"]) {
