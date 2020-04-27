@@ -7,6 +7,7 @@ import { Taller } from 'app/models/taller.model';
 import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 import { TalleresComponent } from 'app/components/admin/talleres/talleres.component';
+import { MessageDialogComponent } from './../../message-dialog/message-dialog.component';
 
 export interface DialogData{
 
@@ -24,6 +25,7 @@ export class InscripcionComponent implements OnInit {
   talleres;
   sedes;
   selectedSede: Sede = new Sede();
+  costosPorEscuela;
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
@@ -38,6 +40,7 @@ export class InscripcionComponent implements OnInit {
   ngOnInit() {
     this.user = this.storage.get('@user:data');
     this.cargarSedes();
+    this.obtenerCostos();
   }
 
   cargarSedes() {
@@ -53,6 +56,13 @@ export class InscripcionComponent implements OnInit {
       }
     })
 
+  }
+
+  obtenerCostos(){
+    this.api.getCostos().subscribe(result => {
+      this.costosPorEscuela = result;
+      console.log(result);
+    });
   }
 
   seleccionarSede(event: any) {
@@ -91,6 +101,18 @@ export class InscripcionComponent implements OnInit {
     })
   }
 
+  costoTaller(): number {
+    if (this.selectedSede.gratis) {
+      return 0;
+    } else {
+      if (this.user.escuela_tipo == "Privada") {
+        return this.costosPorEscuela["escuela_privada"];
+      } else {
+        return this.costosPorEscuela["escuela_publica"];
+      }
+    }
+  }
+
   inscripcion(taller: Taller) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -105,7 +127,7 @@ export class InscripcionComponent implements OnInit {
       if (result) {
         this.user.idtaller = taller.id;
         this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
-        if (this.selectedSede.nombre === "SOFTTEK" || this.selectedSede.nombre === "UDEM") {
+        if (this.selectedSede.gratis) {
           this.user.num_conf_pago = "BECA";
           this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
           }, error => {
@@ -116,11 +138,19 @@ export class InscripcionComponent implements OnInit {
         }
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
-          this.obtenerTallerActual()
+          this.obtenerTallerActual();
           this.cargarSedes();
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
+          if(this.costoTaller() != 0){
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              disableClose: true
+            });
+            let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+            dialogRef.componentInstance.mensaje = message;
+            dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+          }
         }, error => {
           this.snackBar.open(error.error, '', {
             duration: 900,
