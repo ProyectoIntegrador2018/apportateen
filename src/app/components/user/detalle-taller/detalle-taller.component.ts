@@ -43,7 +43,7 @@ export class DetalleTallerComponent implements OnInit {
       this.idTaller = +params.get('id');
     });
     this.cargarTaller();
-
+    this.obtenerCostos();
 
 
     //datos del usuario para obtener el costo dependiendod el tipo de escuela
@@ -60,12 +60,12 @@ export class DetalleTallerComponent implements OnInit {
     })
   }
 
-  // obtenerCostos(){
-  //   this.api.getCostos().subscribe(result => {
-  //     this.costosPorEscuela = result;
-  //     console.log(result);
-  //   });
-  // }
+  obtenerCostos(){
+    this.api.getCostos().subscribe(result => {
+      this.costosPorEscuela = result;
+      console.log(result);
+    });
+  }
 
 
   costoTaller(): number {
@@ -73,9 +73,9 @@ export class DetalleTallerComponent implements OnInit {
       return 0;
     } else {
       if (this.user.escuela_tipo == "Privada") {
-        return 1700;
+        return this.costosPorEscuela["escuela_privada"];
       } else {
-        return 700;
+        return this.costosPorEscuela["escuela_publica"];
       }
     }
   }

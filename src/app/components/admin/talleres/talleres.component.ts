@@ -65,28 +65,30 @@ export class TalleresComponent implements OnInit {
   }
 
   guardarCostos(){
-    const dialogRef = this.dialog.open(ConfirmationDialog, {
-      disableClose: true
-    });
-
-    console.log("costos a guardar");
-    console.log(this.costos);
-
-    dialogRef.componentInstance.mensajeConfirmacion = `Se modificarán los costos de los talleres. ¿Desea continuar?`;
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.api.updateCostos(this.costos).subscribe(res => {
-          this.snackBar.open(res.message, '', {
-            duration: 1000
+    if(this.costos.escuela_publica == null || this.costos.escuela_privada == null){
+      this.snackBar.open("Favor de completar los campos.", '', {
+        duration: 2000
+      });
+    }else{
+      const dialogRef = this.dialog.open(ConfirmationDialog, {
+        disableClose: true
+      });
+      dialogRef.componentInstance.mensajeConfirmacion = `Se modificarán los costos de los talleres. ¿Desea continuar?`;
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.api.updateCostos(this.costos).subscribe(res => {
+            this.snackBar.open(res.message, '', {
+              duration: 1000
+            });
+            this.obtenerCostos();
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 1000
+            });
           });
-          this.obtenerCostos();
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 1000
-          });
-        });
-      }
-    });
+        }
+      });
+    }
   }
 
   add() {
