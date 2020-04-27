@@ -181,7 +181,7 @@ export class DetalleTallerComponent implements OnInit {
         this.user.talleres.push(taller.id);
 
         this.user.id_axtuser = taller["sededesc"].toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
-        if (taller["sededesc"] === "SOFTTEK" || taller["sededesc"] === "UDEM") {
+        if (taller["gratis"]) {
           this.user.num_conf_pago = "BECA";
           this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
           }, error => {
@@ -195,14 +195,14 @@ export class DetalleTallerComponent implements OnInit {
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
-          const dialogRef = this.dialog.open(MessageDialogComponent, {
-            disableClose: true
-          });
-          let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
-          dialogRef.componentInstance.mensaje = message;
-          dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
-
-
+          if(this.costoTaller() != 0){
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              disableClose: true
+            });
+            let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+            dialogRef.componentInstance.mensaje = message;
+            dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+          }
         }, error => {
           this.snackBar.open(error.error, '', {
             duration: 900,
