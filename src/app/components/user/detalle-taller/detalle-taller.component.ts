@@ -52,6 +52,7 @@ export class DetalleTallerComponent implements OnInit {
     });
     this.cargarTaller();
     this.cargarTalleres();
+    this.obtenerCostos();
 
 
     //datos del usuario para obtener el costo dependiendod el tipo de escuela
@@ -119,9 +120,9 @@ export class DetalleTallerComponent implements OnInit {
       return 0;
     } else {
       if (this.user.escuela_tipo == "Privada") {
-        return 1700;
+        return this.costosPorEscuela["escuela_privada"];
       } else {
-        return 700;
+        return this.costosPorEscuela["escuela_publica"];
       }
     }
   }
