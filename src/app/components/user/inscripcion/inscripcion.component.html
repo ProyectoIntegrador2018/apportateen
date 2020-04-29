@@ -105,7 +105,7 @@
 
     </div>
 
-    <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus">
+    <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus && !muestra_todos && !muestra_tusuario">
       <h1>Sin talleres</h1>
       <p>Por el momento no existen talleres de tu categoría en esta sede.</p>
       <button class="btn primary" mat-flat-button matTooltipPosition="after"
