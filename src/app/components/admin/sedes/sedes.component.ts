@@ -67,6 +67,21 @@ export class SedesComponent implements OnInit {
     });
   }
 
+  updatesede() {
+    console.log("UPADTING SEDE")
+    // Update de la sede
+    this.api.updateSede(this.selectedSede).subscribe(res => {
+      this.snackBar.open(res.message, '', {
+        duration: 1000
+      });
+      this.obtenersedes();
+    }, error => {
+      this.snackBar.open(error.error, '', {
+        duration: 1000
+      });
+    });
+  }
+
   save() {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -74,13 +89,14 @@ export class SedesComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la sede seleccionada. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        if (this.originalInfoSede.correo_responsable!= null) {
+        if (this.originalInfoSede.correo_responsable != null) {
           // La sede ya tenía responsable
-          if(this.selectedSede.correo_responsable == ""){
+          console.log("SEDE CON RESPONSABLE")
+          if (this.selectedSede.correo_responsable == "") {
             // Se elimino el responsable
             console.log("ELIMINAR AL RESPONSABLE")
-          } 
-          else if (this.originalInfoSede.correo_responsable != this.selectedSede.correo_responsable || this.originalInfoSede.correo_responsable != this.selectedSede.correo_responsable){
+          }
+          else if (this.originalInfoSede.correo_responsable != this.selectedSede.correo_responsable || this.originalInfoSede.nombre_responsable != this.selectedSede.nombre_responsable) {
             console.log("UPDATE AL RESPONSABLE")
             // Se tiene que hacer update al responsable
             var data = new Responsable
@@ -89,7 +105,7 @@ export class SedesComponent implements OnInit {
             data.correo_responsable = this.selectedSede.correo_responsable
 
             this.api.updateResponsable(data).subscribe(res => {
-
+              this.updatesede()
             }, error => {
               this.snackBar.open('Problema al actualizar el responsable', '', {
                 duration: 1000
@@ -97,7 +113,7 @@ export class SedesComponent implements OnInit {
             })
           }
         }
-        else if(this.selectedSede.correo_responsable != "" && this.selectedSede.correo_responsable != null ) {
+        else if (this.selectedSede.correo_responsable != "" && this.selectedSede.correo_responsable != null) {
           // No tiene responsable y se agregó uno
           console.log("AGREGAR AL RESPONSABLE")
           var data = new Responsable
@@ -108,6 +124,8 @@ export class SedesComponent implements OnInit {
           this.api.createResponsable(data).subscribe(res => {
             this.api.getReponsable(this.selectedSede).subscribe(res => {
               this.selectedSede.responsable = res.id_responsable;
+              this.updatesede()
+
             }, error => {
               console.log(error.error)
               this.snackBar.open("Error al obtener el responsable", '', {
@@ -120,22 +138,11 @@ export class SedesComponent implements OnInit {
               duration: 1000
             });
           })
-          
+
+        } else {
+          // No se modifico el responsable
+          this.updatesede()
         }
-
-        console.log("UPADTING SEDE")
-        // Update de la sede
-        this.api.updateSede(this.selectedSede).subscribe(res => {
-          this.snackBar.open(res.message, '', {
-            duration: 1000
-          });
-          this.obtenersedes();
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 1000
-          });
-        });
-
       }
     });
   }
@@ -209,17 +216,17 @@ export class SedesComponent implements OnInit {
   select(sede: Sede) {
     this.selectedSede = Object.assign({}, sede);
     this.newSede = null;
-    this.originalInfoSede = Object.assign({},this.selectedSede)
+    this.originalInfoSede = Object.assign({}, this.selectedSede)
   }
 
   autoSelect() {
     if (this.sedes.length != 0) {
       this.selectedSede = Object.assign({}, this.sedes[0]);
-      this.originalInfoSede = Object.assign({},this.selectedSede)
+      this.originalInfoSede = Object.assign({}, this.selectedSede)
     }
   }
 
-  show(){
+  show() {
     console.log(this.selectedSede)
     console.log(this.originalInfoSede)
   }
