@@ -78,9 +78,10 @@ export class SedesComponent implements OnInit {
           // La sede ya tenía responsable
           if(this.selectedSede.correo_responsable == ""){
             // Se elimino el responsable
-
+            console.log("ELIMINAR AL RESPONSABLE")
           } 
           else if (this.originalInfoSede.correo_responsable != this.selectedSede.correo_responsable || this.originalInfoSede.correo_responsable != this.selectedSede.correo_responsable){
+            console.log("UPDATE AL RESPONSABLE")
             // Se tiene que hacer update al responsable
             var data = new Responsable
             data.id_responsable = this.selectedSede.id_responsable
@@ -96,8 +97,9 @@ export class SedesComponent implements OnInit {
             })
           }
         }
-        else if(this.selectedSede.correo_responsable != "") {
+        else if(this.selectedSede.correo_responsable != "" && this.selectedSede.correo_responsable != null ) {
           // No tiene responsable y se agregó uno
+          console.log("AGREGAR AL RESPONSABLE")
           var data = new Responsable
           data.id_responsable = null
           data.nombre_responsable = this.selectedSede.nombre_responsable
@@ -219,6 +221,7 @@ export class SedesComponent implements OnInit {
 
   show(){
     console.log(this.selectedSede)
+    console.log(this.originalInfoSede)
   }
 
 }
