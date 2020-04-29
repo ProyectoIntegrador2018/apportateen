@@ -203,6 +203,7 @@ export class InscripcionComponent implements OnInit {
 
       // checar si los rangos de fechas del nuevo taller a inscribir estan dentro de los rangos de fechas de los talleres ya inscritos
       // TODO: más pruebas de esto
+
       if((fi_n >= fi && ff >= fi_n) || (ff_n >= fi && ff >= ff_n)){
         // checa si las horas del nuevo taller coinciden dentro de las horas de los talleres que ya tiene inscritos
 
@@ -218,13 +219,14 @@ export class InscripcionComponent implements OnInit {
     
     if(!this.checa_talleres){
       dialogRef = this.dialog.open(WarningDialogComponent);
+      
     } else {
       
       dialogRef = this.dialog.open(ConfirmationDialog, {
         disableClose: true
       });
   
-      message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
+      message = `Está por inscribirse al taller ${taller.nombre} en el estado de ${taller.estado}. ¿Desea continuar?`;
       dialogRef.componentInstance.mensajeConfirmacion = message;
     }
    
@@ -235,6 +237,8 @@ export class InscripcionComponent implements OnInit {
         
         this.cargaTu();
         
+
+
         this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
         
         if (this.selectedSede.nombre === "SOFTTEK" || this.selectedSede.nombre === "UDEM") {
@@ -259,13 +263,9 @@ export class InscripcionComponent implements OnInit {
             duration: 900,
           });
         })
+      } else{
+        this.checa_talleres = true; //resetea valor
       }
     })
   }
-
-  // obtenerTallerActual() {
-  //   let sede = this.sedes.find(sede => sede.talleres.some(item => item.id === this.user.idtaller));
-  //   this.tallerActual = `${sede.talleres.find(x => x.id === this.user.idtaller).nombre} - ${sede.nombre}`;
-  // }
-
 }
