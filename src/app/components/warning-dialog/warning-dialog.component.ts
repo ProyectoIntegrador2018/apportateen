@@ -4,7 +4,7 @@ import { MatDialogRef } from '@angular/material';
 @Component({
   selector: 'warning-dialog',
   template: `
-    <h1 mat-dialog-title>Confirmación</h1>
+    <h1 mat-dialog-title>Error</h1>
     <div mat-dialog-content>
       <p>No es posible inscribir este taller por cuestiones de fecha, hora o ciudad con respecto a algún taller que ya tienes inscrito</p>
     </div>

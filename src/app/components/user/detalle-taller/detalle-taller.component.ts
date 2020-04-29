@@ -133,7 +133,7 @@ export class DetalleTallerComponent implements OnInit {
       disableClose: true
     });
 
-    message = `Está por inscribirse al taller ${taller.nombre}. ¿Desea continuar?`;
+    message = `Está por inscribirse al taller ${taller.nombre} en el estado de ${taller.estado}. ¿Desea continuar?`;
     dialogRef.componentInstance.mensajeConfirmacion = message;
   }
 
@@ -162,6 +162,8 @@ export class DetalleTallerComponent implements OnInit {
             duration: 900,
           });
         })
+      } else {
+        this.checa_talleres = true; //resetea valor
       }
     })
   }

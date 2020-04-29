@@ -3,7 +3,7 @@
     <!-- <h3 class="register__title">Sede</h3> -->
     
     <div class="register__actions" *ngIf="estatus">
-      <button (click) = "cargarTalleres()">Todos</button>
+      <button class="btn btn-primary" (click) = "cargarTalleres()">Todos</button>
       <mat-form-field style="margin-left:10px;">
         
         <mat-select [disabled]="sedes.length < 1" placeholder="Selecciona la Sede"
@@ -11,8 +11,7 @@
           <mat-option *ngFor="let sede of sedes" [value]="sede.id">{{sede.nombre}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <button style="margin-left: auto;" (click) = "cargarTalleresUsuario()">Mis talleres</button>
-      <!-- <p style="margin-left: 500px;"> Inscripción actual: <b>{{tallerActual? tallerActual: 'Sin inscripción'}}</b> </p> -->
+      <button class="btn btn-primary" style="margin-left: auto;" (click) = "cargarTalleresUsuario()">Mis talleres</button>
     </div>
 
     <div class="items" *ngIf="estatus">
@@ -20,21 +19,24 @@
     <ng-container *ngIf="muestra_todos && !muestra_tusuario">
     <ng-container *ngFor="let sede of sedes" >
     <div class="register__item" *ngFor="let taller of sede.talleres">
+      
       <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
+        
         <img [src]="taller.url_array[0]">
+        
         <div class="text-container">
+          <div class="ciudad">{{taller.estado}}</div>
           <h3 class="title">{{taller.nombre}}</h3>
           <p class="desc">{{taller.descripcion}}</p>
-
         </div>
       </div>
       <div class="btn-container">
-        <button mat-button mat-stroked-button class="btn primary" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
-        <button mat-button mat-stroked-button class="btn accept"
+        <button mat-button mat-stroked-button class="btn primary card" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+        <button mat-button mat-stroked-button class="btn accept card"
           *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos < taller.cupo"
           (click)="inscripcion(taller)">Inscribirme</button>
           
-        <button mat-button mat-raised-button class="btn reject"
+        <button mat-button mat-raised-button class="btn reject card"
           *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
           (click)="quitarInscripcion(taller)">Desinscribir
           <!-- <mat-icon>done</mat-icon> -->
@@ -51,18 +53,19 @@
         <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
           <img [src]="taller.url_array[0]">
           <div class="text-container">
+            <div class="ciudad">{{taller.estado}}</div>
             <h3 class="title">{{taller.nombre}}</h3>
             <p class="desc">{{taller.descripcion}}</p>
 
           </div>
         </div>
         <div class="btn-container">
-          <button mat-button mat-stroked-button class="btn primary" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
-          <button mat-button mat-stroked-button class="btn accept"
+          <button mat-button mat-stroked-button class="btn primary card" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+          <button mat-button mat-stroked-button class="btn accept card"
             *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos < taller.cupo"
             (click)="inscripcion(taller)">Inscribirme</button>
             
-          <button mat-button mat-raised-button class="btn reject"
+          <button mat-button mat-raised-button class="btn reject card"
             *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
             (click)="quitarInscripcion(taller)">Desinscribir
             <!-- <mat-icon>done</mat-icon> -->
@@ -79,15 +82,16 @@
       <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
         <img [src]="taller.url_array[0]">
         <div class="text-container">
+          <div class="ciudad">{{taller.estado}}</div>
           <h3 class="title">{{taller.nombre}}</h3>
           <p class="desc">{{taller.descripcion}}</p>
 
         </div>
       </div>
       <div class="btn-container">
-        <button mat-button mat-stroked-button class="btn primary" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+        <button mat-button mat-stroked-button class="btn primary card" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
        
-        <button mat-button mat-raised-button class="btn reject"
+        <button mat-button mat-raised-button class="btn reject card"
           (click)="quitarInscripcion(taller)">Desinscribir
           <!-- <mat-icon>done</mat-icon> -->
         </button>
@@ -106,6 +110,15 @@
       <p>Por el momento no existen talleres de tu categoría en esta sede.</p>
       <button class="btn primary" mat-flat-button matTooltipPosition="after"
         matTooltip="La categoría es asignada de manera automática por el sistema según tu edad. Actualmente perteneces a la categoría {{user.categoria}}.">
+        Más información
+      </button>
+    </div>
+
+    <div *ngIf="user.talleres.length === 0 && !muestra_todos">
+      <h1>Sin talleres</h1>
+      <p>Por el momento no tienes ningún taller inscrito.</p>
+      <button class="btn primary" mat-flat-button matTooltipPosition="after"
+        matTooltip="Para inscribir un taller puedes seleccionar el botón de Todos y ver todos los talleres disponibles, o bien, seleccionar una sede específica y ver sus talleres.">
         Más información
       </button>
     </div>
