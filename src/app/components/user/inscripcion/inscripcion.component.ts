@@ -140,36 +140,36 @@ export class InscripcionComponent implements OnInit {
           this.storage.set('@user:data', this.user);
           this.obtenerTallerActual();
           this.cargarSedes();
-          this.snackBar.open(res.message, '', {
-            duration: 1500,
-          });
-          if (this.costoTaller() != 0) {
+          if (res.status == "success") {
             const dialogRef = this.dialog.open(MessageDialogComponent, {
               disableClose: true
             });
-            let message = `Para terminar tu inscripción al taller "${taller.nombre}", necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
-            dialogRef.componentInstance.mensaje = message;
-            dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
-          } else{
-            const dialogRef = this.dialog.open(MessageDialogComponent, {
-              disableClose: true
+            if (this.costoTaller() != 0) {
+              let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+              dialogRef.componentInstance.mensaje = message;
+              dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+            } else {
+              let message = `Te has inscrito exitosamente al taller "${taller.nombre}".`;
+              dialogRef.componentInstance.mensaje = message;
+              dialogRef.componentInstance.titulo = "¡Estas inscrito!";
+            }
+          } else {
+            this.snackBar.open(res.message, '', {
+              duration: 1500,
             });
-            let message = `Te has inscrito existosamente al taller "${taller.nombre}".`;
-            dialogRef.componentInstance.mensaje = message;
-            dialogRef.componentInstance.titulo = "¡Estas inscrito!";
           }
         }, error => {
-        this.snackBar.open(error.error, '', {
-          duration: 900,
-        });
-      })
-  }
-})
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        })
+      }
+    })
   }
 
-obtenerTallerActual() {
-  let sede = this.sedes.find(sede => sede.talleres.some(item => item.id === this.user.idtaller));
-  this.tallerActual = `${sede.talleres.find(x => x.id === this.user.idtaller).nombre} - ${sede.nombre}`;
-}
+  obtenerTallerActual() {
+    let sede = this.sedes.find(sede => sede.talleres.some(item => item.id === this.user.idtaller));
+    this.tallerActual = `${sede.talleres.find(x => x.id === this.user.idtaller).nombre} - ${sede.nombre}`;
+  }
 
 }
