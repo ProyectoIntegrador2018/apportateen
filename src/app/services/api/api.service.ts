@@ -151,7 +151,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  public updateResponsable(responsable: Responsable){
+  public updateResponsable(responsable: Responsable): Observable<any>{
     return this.http
       .put<any>(`${API_URL}/responsable/${responsable.id_responsable}`, responsable, httpOptions)
       .catch(this.handleError);
@@ -163,7 +163,11 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-
+  public deleteResponsable(id: string): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/responsable/${id}`, httpOptions)
+      .catch(this.handleError);
+  }
 
   // API: POST /sedes
   public createSede(sede: Sede): Observable<any> {
