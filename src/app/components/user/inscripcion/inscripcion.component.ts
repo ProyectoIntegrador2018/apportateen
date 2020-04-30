@@ -4,12 +4,12 @@ import { Sede } from 'app/models/sede.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { User } from 'app/models/user.model';
 import { Taller } from 'app/models/taller.model';
-import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 import { TalleresComponent } from 'app/components/admin/talleres/talleres.component';
 import { MessageDialogComponent } from './../../message-dialog/message-dialog.component';
 
-export interface DialogData{
+export interface DialogData {
 
 }
 
@@ -58,7 +58,7 @@ export class InscripcionComponent implements OnInit {
 
   }
 
-  obtenerCostos(){
+  obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
       console.log(result);
@@ -143,26 +143,33 @@ export class InscripcionComponent implements OnInit {
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
-          if(this.costoTaller() != 0){
+          if (this.costoTaller() != 0) {
             const dialogRef = this.dialog.open(MessageDialogComponent, {
               disableClose: true
             });
-            let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+            let message = `Para terminar tu inscripción al taller "${taller.nombre}", necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
             dialogRef.componentInstance.mensaje = message;
             dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+          } else{
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              disableClose: true
+            });
+            let message = `Te has inscrito existosamente al taller "${taller.nombre}".`;
+            dialogRef.componentInstance.mensaje = message;
+            dialogRef.componentInstance.titulo = "¡Estas inscrito!";
           }
         }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 900,
-          });
-        })
-      }
-    })
+        this.snackBar.open(error.error, '', {
+          duration: 900,
+        });
+      })
+  }
+})
   }
 
-  obtenerTallerActual() {
-    let sede = this.sedes.find(sede => sede.talleres.some(item => item.id === this.user.idtaller));
-    this.tallerActual = `${sede.talleres.find(x => x.id === this.user.idtaller).nombre} - ${sede.nombre}`;
-  }
+obtenerTallerActual() {
+  let sede = this.sedes.find(sede => sede.talleres.some(item => item.id === this.user.idtaller));
+  this.tallerActual = `${sede.talleres.find(x => x.id === this.user.idtaller).nombre} - ${sede.nombre}`;
+}
 
 }

@@ -7,7 +7,7 @@ import { User } from 'app/models/user.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
-import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 // import { AvisoInscripcionComponent } from './aviso-inscripcion/aviso-inscripcion.component';
 
@@ -60,7 +60,7 @@ export class DetalleTallerComponent implements OnInit {
     })
   }
 
-  obtenerCostos(){
+  obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
       console.log(result);
@@ -108,13 +108,20 @@ export class DetalleTallerComponent implements OnInit {
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
-          if(this.costoTaller() != 0){
+          if (this.costoTaller() != 0) {
             const dialogRef = this.dialog.open(MessageDialogComponent, {
               disableClose: true
             });
             let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
             dialogRef.componentInstance.mensaje = message;
             dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+          } else {
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              disableClose: true
+            });
+            let message = `Te has inscrito existosamente al taller "${taller.nombre}".`;
+            dialogRef.componentInstance.mensaje = message;
+            dialogRef.componentInstance.titulo = "¡Estas inscrito!";
           }
         }, error => {
           this.snackBar.open(error.error, '', {
@@ -154,10 +161,10 @@ export class DetalleTallerComponent implements OnInit {
         })
       }
     })
-  //   let dialogDetalle = this.dialog.open(AvisoInscripcionComponent, {
-  //     width: '800px',
-  //     data: {id : this.user.id}
-  // });
+    //   let dialogDetalle = this.dialog.open(AvisoInscripcionComponent, {
+    //     width: '800px',
+    //     data: {id : this.user.id}
+    // });
   }
 
 }
