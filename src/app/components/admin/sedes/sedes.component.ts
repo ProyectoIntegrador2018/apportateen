@@ -31,7 +31,6 @@ export class SedesComponent implements OnInit {
     this.api.getAllSedes().subscribe(result => {
       this.sedes = result;
       this.autoSelect();
-      console.log(result);
     });
   }
 
@@ -44,11 +43,17 @@ export class SedesComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la sede seleccionada. ¿Desea continuar?`;
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la información de la sede: ${this.selectedSede.nombre.toUpperCase()}. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.api.removeSede(this.selectedSede.id).subscribe(res => {
           if (res.status == 'success') {
+            this.api.deleteResponsable(this.selectedSede.responsable).subscribe(_=>{}, _=>{
+              console.log("Error al eliminar al responsable de la sede.")
+              this.snackBar.open("Error al eliminar el responsable de la sede.",'',{
+                duration:1500
+              });
+            })
             this.obtenersedes();
           }
           this.snackBar.open(res.message, '', {
@@ -67,13 +72,15 @@ export class SedesComponent implements OnInit {
     });
   }
 
-  updatesede() {
-    console.log("UPADTING SEDE")
+  updatesede(next?) {
     // Update de la sede
     this.api.updateSede(this.selectedSede).subscribe(res => {
       this.snackBar.open(res.message, '', {
         duration: 1000
       });
+      if (next != undefined) {
+        next()
+      }
       this.obtenersedes();
     }, error => {
       this.snackBar.open(error.error, '', {
@@ -91,13 +98,19 @@ export class SedesComponent implements OnInit {
       if (result) {
         if (this.originalInfoSede.correo_responsable != null) {
           // La sede ya tenía responsable
-          console.log("SEDE CON RESPONSABLE")
           if (this.selectedSede.correo_responsable == "") {
             // Se elimino el responsable
-            console.log("ELIMINAR AL RESPONSABLE")
+            this.selectedSede.responsable = null
+            let deleteResponsable = () => {
+              this.api.deleteResponsable(this.originalInfoSede.responsable).subscribe(res => { }, error => {
+                this.snackBar.open('Problema al eliminar el responsable', '', {
+                  duration: 1000
+                });
+              })
+            }
+            this.updatesede(deleteResponsable)
           }
           else if (this.originalInfoSede.correo_responsable != this.selectedSede.correo_responsable || this.originalInfoSede.nombre_responsable != this.selectedSede.nombre_responsable) {
-            console.log("UPDATE AL RESPONSABLE")
             // Se tiene que hacer update al responsable
             var data = new Responsable
             data.id_responsable = this.selectedSede.id_responsable
@@ -115,7 +128,6 @@ export class SedesComponent implements OnInit {
         }
         else if (this.selectedSede.correo_responsable != "" && this.selectedSede.correo_responsable != null) {
           // No tiene responsable y se agregó uno
-          console.log("AGREGAR AL RESPONSABLE")
           var data = new Responsable
           data.id_responsable = null
           data.nombre_responsable = this.selectedSede.nombre_responsable
@@ -127,13 +139,11 @@ export class SedesComponent implements OnInit {
               this.updatesede()
 
             }, error => {
-              console.log(error.error)
               this.snackBar.open("Error al obtener el responsable", '', {
                 duration: 1000
               });
             })
           }, error => {
-            console.log(error.error)
             this.snackBar.open("Error al crear responsable", '', {
               duration: 1000
             });
@@ -179,14 +189,12 @@ export class SedesComponent implements OnInit {
             this.autoSelect();
           })
         }, error => {
-          console.log("Error al encontrar el responsable")
           this.snackBar.open("Ha ocurrido un error con el responsable, intende de nuevo por favor.", '', {
             duration: 1500,
           });
           this.autoSelect();
         });
       }, error => {
-        console.log("Error al registrar el responsable")
         this.snackBar.open("Ha ocurrido un error al registrar el responsable, intende de nuevo por favor.", '', {
           duration: 1500,
         });
@@ -224,11 +232,6 @@ export class SedesComponent implements OnInit {
       this.selectedSede = Object.assign({}, this.sedes[0]);
       this.originalInfoSede = Object.assign({}, this.selectedSede)
     }
-  }
-
-  show() {
-    console.log(this.selectedSede)
-    console.log(this.originalInfoSede)
   }
 
 }
