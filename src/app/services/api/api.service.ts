@@ -138,6 +138,24 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  public createTutor(taller: Taller): Observable<any> {
+    return this.http
+    .post<any>(`${API_URL}/guardians`, taller, httpOptions)
+    .catch(this.handleError);
+  }
+  
+  public getTutor(taller: Taller): Observable<any> {
+    return this.http
+    .get<any>(API_URL + '/guardians/' + taller.tutor, httpOptions)
+    .catch(this.handleError);
+  }
+
+  public updateTutor(taller: Taller): Observable<any> {
+    return this.http
+    .put<any>(API_URL + '/guardians/' + taller.tutor, taller, httpOptions)
+    .catch(this.handleError);
+  }
+
   // API: GET /sedes
   public getAllSedes(): Observable<Sede[]> {
     return this.http
@@ -241,6 +259,7 @@ export class ApiService {
 
   // API: PUT /talleres/:id
   public updateTaller(taller: Taller): Observable<any> {
+    console.log(taller);
     return this.http
       .put<any>(`${API_URL}/talleres/${taller.id}`, taller, httpOptions)
       .catch(this.handleError);

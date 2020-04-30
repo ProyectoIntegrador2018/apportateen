@@ -31,6 +31,7 @@ export class SedesComponent implements OnInit {
     this.api.getAllSedes().subscribe(result => {
       this.sedes = result;
       this.autoSelect();
+      console.log(result);
     });
   }
 
@@ -163,6 +164,7 @@ export class SedesComponent implements OnInit {
   }
 
   create() {
+    console.log("NUEVA SEDE")
     this.newSede = null;
 
     // Checar si la sede tiene responsable

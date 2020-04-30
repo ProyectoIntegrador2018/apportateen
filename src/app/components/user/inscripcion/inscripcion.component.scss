@@ -1,4 +1,4 @@
-@import '~styles-variables.scss';
+@import "~styles-variables.scss";
 
 .register {
   margin: 100px 0;
@@ -23,11 +23,24 @@
       box-shadow: none;
     }
 
-    &-primary {
-      background-color: $color-blue;
-      border: 0;
-      color: $color-white;
+    &.accept{
+      background-color: $color-green;
     }
+
+    &.primary {
+      background-color: $color-blue;
+    }
+
+    &.reject{
+      background-color: $color-red;
+    }
+
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    border: 0;
+    color: $color-white;
   }
 
   .items {
@@ -48,12 +61,24 @@
       width: 100%;
     }
 
+    .info-container{
+      cursor: pointer;
+    }
+
     .text-container {
       align-items: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 15px;
+      padding: 15px 15px 0px 15px;
+    }
+
+    .btn-container{
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0px 15px 15px 15px;
     }
 
     .desc {

@@ -1,3 +1,5 @@
+
+
 export class Taller {
     id: number = 0;
     nombre: string = '';
@@ -11,4 +13,8 @@ export class Taller {
     foto_path : string = null;
     url_array : string[] = [];
     foto_path_array : string[] = [];
+    tutor : number = 0;
+    correo_tutor : string = '';
+    nombre_tutor : string = '';
+    telefono_tutor : string = '';
 }
