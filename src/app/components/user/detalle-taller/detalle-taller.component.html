@@ -1,7 +1,6 @@
 <div class="">
-
-  <section class="hero"
-    [ngStyle]="{'background-image': 'url(' + taller.url_array[0] + ')'}">
+  <!-- [ngStyle]="{'background-image': 'url(' + taller.url_array[0] + ')'}" -->
+  <section class="hero">
     <h1 class="hero__title"> {{taller["nombre"]}} </h1>
   </section>
 
@@ -16,13 +15,11 @@
       <div class="col-md-4">
 
         <button mat-button mat-stroked-button class="btn-primary"
-          *ngIf="!(taller['id'] == user.idtaller) && taller['inscritos'] < taller['cupo']"
+          *ngIf="!(user.talleres.includes(taller['id'])) && taller['inscritos'] < taller['cupo']"
           (click)="inscripcion(taller)">Inscribirme</button>
         <button mat-button mat-raised-button class="btn-reject"
-          *ngIf="taller['id'] == user.idtaller"
-          (click)="quitarInscripcion()"
-          >Desinscribir
-        </button>
+          *ngIf="user.talleres.includes(taller['id'])"
+          (click)="quitarInscripcion(taller)">Desinscribir</button>
 
         <div class="sideBox">
           <h5 class="">Costo</h5>

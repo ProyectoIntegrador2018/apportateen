@@ -1,48 +1,124 @@
 <div class="container-fluid register">
   <div class="container">
-    <h3 class="register__title">Sede</h3>
+    <!-- <h3 class="register__title">Sede</h3> -->
+
     <div class="register__actions" *ngIf="estatus">
-      <mat-form-field>
+      <button class="btn btn-primary" (click) = "cargarTalleres()">Todos</button>
+      <mat-form-field style="margin-left:10px;">
+
         <mat-select [disabled]="sedes.length < 1" placeholder="Selecciona la Sede"
-          (selectionChange)="seleccionarSede($event)" name="sedeselect">
+          (selectionChange)="seleccionarSede($event)" name="sedeselect" [(ngModel)] = "sedeselect">
           <mat-option *ngFor="let sede of sedes" [value]="sede.id">{{sede.nombre}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <p style="margin: 0;"> Inscripción actual: <b>{{tallerActual? tallerActual: 'Sin inscripción'}}</b> </p>
+      <button class="btn btn-primary" style="margin-left: auto;" (click) = "cargarTalleresUsuario()">Mis talleres</button>
     </div>
+
     <div class="items" *ngIf="estatus">
 
+    <ng-container *ngIf="muestra_todos && !muestra_tusuario">
+    <ng-container *ngFor="let sede of sedes" >
+    <div class="register__item" *ngFor="let taller of sede.talleres">
 
+      <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
+
+        <img [src]="taller.url_array[0]">
+
+        <div class="text-container">
+          <div class="ciudad">{{taller.estado}}</div>
+          <h3 class="title">{{taller.nombre}}</h3>
+          <p class="desc">{{taller.descripcion}}</p>
+        </div>
+      </div>
+      <div class="btn-container">
+        <button mat-button mat-stroked-button class="btn primary card" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+        <button mat-button mat-stroked-button class="btn accept card"
+          *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos < taller.cupo"
+          (click)="inscripcion(taller)">Inscribirme</button>
+
+        <button mat-button mat-raised-button class="btn reject card"
+          *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
+          (click)="quitarInscripcion(taller)">Desinscribir
+          <!-- <mat-icon>done</mat-icon> -->
+        </button>
+        <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
+          lleno.</button>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+
+<ng-container *ngIf="!muestra_todos && !muestra_tusuario">
       <div class="register__item" *ngFor="let taller of selectedSede.talleres">
         <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
           <img [src]="taller.url_array[0]">
           <div class="text-container">
+            <div class="ciudad">{{taller.estado}}</div>
             <h3 class="title">{{taller.nombre}}</h3>
             <p class="desc">{{taller.descripcion}}</p>
 
           </div>
         </div>
         <div class="btn-container">
-          <button mat-button mat-stroked-button class="btn accept"
-            *ngIf="!(taller.id == user.idtaller) && taller.inscritos < taller.cupo"
+          <button mat-button mat-stroked-button class="btn primary card" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+          <button mat-button mat-stroked-button class="btn accept card"
+            *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos < taller.cupo"
             (click)="inscripcion(taller)">Inscribirme</button>
-          <!-- <button mat-button mat-stroked-button class="btn primary" [routerLink]="['detalleTaller/', taller.id]">Detalle
-            Taller</button> -->
-          <button mat-button mat-raised-button class="btn reject"
-            *ngIf="taller.id == user.idtaller && taller.inscritos < taller.cupo"
-            (click)="quitarInscripcion()">Desinscribir
+
+          <button mat-button mat-raised-button class="btn reject card"
+            *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
+            (click)="quitarInscripcion(taller)">Desinscribir
             <!-- <mat-icon>done</mat-icon> -->
           </button>
           <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
             lleno.</button>
         </div>
       </div>
+    </ng-container>
+
+    <ng-container *ngIf="!muestra_todos && muestra_tusuario">
+
+    <div class="register__item" *ngFor="let taller of talleres_usuario">
+      <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
+        <img [src]="taller.url_array[0]">
+        <div class="text-container">
+          <div class="ciudad">{{taller.estado}}</div>
+          <h3 class="title">{{taller.nombre}}</h3>
+          <p class="desc">{{taller.descripcion}}</p>
+
+        </div>
+      </div>
+      <div class="btn-container">
+        <button mat-button mat-stroked-button class="btn primary card" [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+
+        <button mat-button mat-raised-button class="btn reject card"
+          (click)="quitarInscripcion(taller)">Desinscribir
+          <!-- <mat-icon>done</mat-icon> -->
+        </button>
+        <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
+          lleno.</button>
+      </div>
     </div>
-    <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus">
+
+</ng-container>
+
+
+    </div>
+
+    <div *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus && !muestra_todos && !muestra_tusuario">
       <h1>Sin talleres</h1>
       <p>Por el momento no existen talleres de tu categoría en esta sede.</p>
       <button class="btn primary" mat-flat-button matTooltipPosition="after"
         matTooltip="La categoría es asignada de manera automática por el sistema según tu edad. Actualmente perteneces a la categoría {{user.categoria}}.">
+        Más información
+      </button>
+    </div>
+
+    <div *ngIf="user.talleres.length === 0 && !muestra_todos">
+      <h1>Sin talleres</h1>
+      <p>Por el momento no tienes ningún taller inscrito.</p>
+      <button class="btn primary" mat-flat-button matTooltipPosition="after"
+        matTooltip="Para inscribir un taller puedes seleccionar el botón de Todos y ver todos los talleres disponibles, o bien, seleccionar una sede específica y ver sus talleres.">
         Más información
       </button>
     </div>
@@ -52,5 +128,6 @@
       <p>¡Ups! El período de inscripción a los talleres no ha comenzado o ya concluyó.</p>
       <p>Puedes revisar las fechas de convocatoria en la página principal de ApportaTeen.</p>
     </div>
+
   </div>
 </div>

@@ -46,6 +46,31 @@
               <mat-checkbox [(ngModel)]="selectedSede.gratis">Hacer todos los talleres gratis en esta sede.</mat-checkbox>
           </div>
         </div>
+        <!-- <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre de la Sede</mat-label>
+            <input matInput [(ngModel)]="selectedSede.nombre" name="sedeNombre">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Dirección</mat-label>
+            <textarea matInput [(ngModel)]="selectedSede.direccion" name="descripcion"></textarea>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Responsable</mat-label>
+            <input matInput [(ngModel)]="selectedSede.nombre_responsable" name="sedeNombre">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>E-mail del Responsable</mat-label>
+            <input matInput [(ngModel)]="selectedSede.correo_responsable" name="correo_responsable">
+          </mat-form-field>
+        </div> -->
+
         <div *ngIf="!newSede">
           <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
           <button mat-raised-button class="pull-right" color="primary" (click)="save()"
