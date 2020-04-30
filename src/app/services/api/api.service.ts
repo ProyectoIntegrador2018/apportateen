@@ -14,6 +14,8 @@ import { Aviso } from '../../models/aviso.model';
 import { Taller } from '../../models/taller.model';
 import { Categoria } from 'app/models/categoria.model';
 import { Archivo } from 'app/models/archivo.model';
+import { Responsable } from 'app/models/responsable.model';
+
 const API_URL = environment.apiUrl;
 const httpOptions = {
   headers: new HttpHeaders({
@@ -161,9 +163,15 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  public createResponsable(sede: Sede): Observable<any> {
+  public createResponsable(responsable: Responsable): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/responsable`, sede, httpOptions)
+      .post<any>(`${API_URL}/responsable`, responsable, httpOptions)
+      .catch(this.handleError);
+  }
+
+  public updateResponsable(responsable: Responsable): Observable<any>{
+    return this.http
+      .put<any>(`${API_URL}/responsable/${responsable.id_responsable}`, responsable, httpOptions)
       .catch(this.handleError);
   }
 
@@ -173,7 +181,11 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-
+  public deleteResponsable(id: string): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/responsable/${id}`, httpOptions)
+      .catch(this.handleError);
+  }
 
   // API: POST /sedes
   public createSede(sede: Sede): Observable<any> {
