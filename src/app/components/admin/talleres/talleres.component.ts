@@ -49,6 +49,7 @@ export class TalleresComponent implements OnInit {
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
+      console.log(this.talleres)
       this.sedes = result[1];
       this.categorias = result[2];
       this.autoSelect();

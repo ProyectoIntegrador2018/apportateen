@@ -8,4 +8,5 @@ export class Sede {
     responsable: string = '';
     correo_responsable: string = '';
     gratis: boolean = false;
+    nombre_responsable: string = '';
 }
