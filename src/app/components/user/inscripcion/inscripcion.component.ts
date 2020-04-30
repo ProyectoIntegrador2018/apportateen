@@ -10,7 +10,7 @@ import { WarningDialogComponent } from 'app/components/warning-dialog/warning-di
 import { TalleresComponent } from 'app/components/admin/talleres/talleres.component';
 import { MessageDialogComponent } from './../../message-dialog/message-dialog.component';
 
-export interface DialogData{
+export interface DialogData {
 
 }
 
@@ -279,13 +279,20 @@ export class InscripcionComponent implements OnInit {
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
-          if(this.costoTaller() != 0){
+          if (this.costoTaller() != 0) {
             const dialogRef = this.dialog.open(MessageDialogComponent, {
               disableClose: true
             });
-            let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+            let message = `Para terminar tu inscripción al taller "${taller.nombre}", necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
             dialogRef.componentInstance.mensaje = message;
             dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+          } else{
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              disableClose: true
+            });
+            let message = `Te has inscrito existosamente al taller "${taller.nombre}".`;
+            dialogRef.componentInstance.mensaje = message;
+            dialogRef.componentInstance.titulo = "¡Estas inscrito!";
           }
         }, error => {
           this.snackBar.open(error.error, '', {
