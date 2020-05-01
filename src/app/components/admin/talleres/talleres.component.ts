@@ -34,6 +34,12 @@ export class TalleresComponent implements OnInit {
   correo_tutor;
   telefono_tutor;
 
+  hora_inicio;
+  hora_fin;
+  fecha_inicio: Date;
+  fecha_fin : Date;
+  estado;
+
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
     this.talleres = [];
     this.selectedTaller = {};
@@ -53,8 +59,6 @@ export class TalleresComponent implements OnInit {
       this.sedes = result[1];
       this.categorias = result[2];
       this.autoSelect();
-
-      // this.api
     });
   }
 
