@@ -7,5 +7,6 @@ export class Sede {
     talleres: Taller[] = [];
     responsable: string = '';
     correo_responsable: string = '';
+    gratis: boolean = false;
     nombre_responsable: string = '';
 }
