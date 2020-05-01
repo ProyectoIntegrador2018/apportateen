@@ -29,6 +29,8 @@ export class DetalleTallerComponent implements OnInit {
   user: User = new User();
   talleres;
   checa_talleres: boolean;
+  fecha_inicio;
+  fecha_fin;
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
@@ -40,6 +42,8 @@ export class DetalleTallerComponent implements OnInit {
     this.estatus = null;
     this.checa_talleres = true;
     this.talleres = [];
+    this.fecha_inicio;
+    this.fecha_fin;
   }
 
   ngOnInit() {
@@ -56,6 +60,9 @@ export class DetalleTallerComponent implements OnInit {
     this.user = this.storage.get('@user:data');
 
     window.scrollTo(0, 0);
+
+    
+
   }
 
 
@@ -71,8 +78,42 @@ export class DetalleTallerComponent implements OnInit {
     this.api.getTaller(this.idTaller).subscribe(result => {
       this.taller = result[0][0];
       this.taller["inscritos"] = result[1][0]["inscritos"];
+
+      this.fecha_fin = this.taller.fecha_fin;
+      this.fecha_inicio = this.taller.fecha_inicio;
+
+      
+      this.fecha_inicio = this.formatDate(this.fecha_inicio.slice(0,10));
+      this.fecha_fin = this.formatDate(this.fecha_fin.slice(0,10));
+
     })
+
+
   }
+
+  formatDate(x:string) {
+
+    let dias = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
+    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+    let date = new Date(x.replace(/-+/g, '/'));
+  
+    var fechaNum = date.getDate();
+    var mes_name = date.getMonth();
+  
+  
+    return(dias[date.getDay()-1] + " " + fechaNum + " de " + meses[mes_name] + " de " + date.getFullYear());
+  
+  }
+
+  
+  obtenerCostos() {
+    this.api.getCostos().subscribe(result => {
+      this.costosPorEscuela = result;
+      console.log(result);
+    });
+  }
+
 
   costoTaller(): number {
     if (this.taller["sedeDesc"] == "UDEM" || this.taller["sedeDesc"] == "SOFTTEK") {
@@ -90,9 +131,6 @@ export class DetalleTallerComponent implements OnInit {
   // sección para checar que el usuario puede inscribir otro taller dependiendo del horario y fecha de los talleres que ya tiene inscritos
   let t : any;
   for(t in this.user.talleres){
-    
-    console.log(this.user.talleres);
-    console.log(this.talleres);
     let tall = this.talleres.find(x => x.id === this.user.talleres[t]);
   
     
