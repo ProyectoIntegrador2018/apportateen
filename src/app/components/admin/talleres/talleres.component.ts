@@ -250,7 +250,7 @@ export class TalleresComponent implements OnInit {
         Promise.all(
           this.selectedTaller.foto_path_array.map(item => this.deleteAllPhotos(item))).then((url) => {
             console.log("success");
-            this.api.removeTaller(this.selectedTaller).subscribe(res => {
+            this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
               if (res.status == 'success') {
                 this.snackBar.open(res.message, '', {
                   duration: 900,
@@ -335,7 +335,7 @@ export class TalleresComponent implements OnInit {
   getArchivos(event) {
     this.fileFoto = event.target.files[0];
     this.fileFotoAr = event.target.files;
-    this.filePathAr = Object.keys(this.fileFotoAr).map((key) => this.fileFotoAr[key].name)
+    this.filePathAr = Object.keys(this.fileFotoAr).map((key) => (this.fileFotoAr[key].name)+Math.floor((Math.random() * 10000) + 1))
     if(!this.newTaller){
       this.updateImages()
     }

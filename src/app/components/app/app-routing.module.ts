@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HomeComponent } from '../home/home.component';
+import { HomeTalleresComponent } from '../home-talleres/home-talleres.component'
+import { HomeFAQComponent } from '../home-faq/home-faq.component'
+import { HomeExitoComponent } from '../home-exito/home-exito.component'
+import { HomePatrocinadoresComponent } from '../home-patrocinadores/home-patrocinadores.component'
+import { HomeGalleryComponent } from '../home-gallery/home-gallery.component'
 import { EnrollmentComponent } from '../enrollment/enrollment-selector/enrollment-selector.component'
 import { MainComponent } from '../admin/main/main.component';
 import { ConvocatoriasComponent } from '../admin/convocatorias/convocatorias.component';
@@ -25,6 +30,11 @@ import { PagosComponent } from '../admin/pagos/pagos.component';
 const routes: Routes = [
     { path: '', redirectTo: '/inicio', pathMatch: 'full' },
     { path: 'inicio', component: HomeComponent },
+    { path: 'talleres', component: HomeTalleresComponent },
+    { path: 'FAQ', component: HomeFAQComponent },
+    { path: 'exito', component: HomeExitoComponent },
+    { path: 'patrocinadores', component: HomePatrocinadoresComponent },
+    { path: 'gallery', component: HomeGalleryComponent },
     {
         path: 'ingresar', component: EnrollmentComponent
     },
@@ -46,9 +56,9 @@ const routes: Routes = [
             { path: 'inicio', component: AvisosComponent },
             { path: 'correos', component: CorreosComponent },
             { path: 'usuarios', component: UsuariosComponent },
-            { path: 'documentos', component: DocumentosComponent},
-            { path: 'admin-roles', component: AdministracionRolesComponent},
-            { path: 'pagos', component: PagosComponent}
+            { path: 'documentos', component: DocumentosComponent },
+            { path: 'admin-roles', component: AdministracionRolesComponent },
+            { path: 'pagos', component: PagosComponent }
         ]
     },
     {
@@ -63,9 +73,9 @@ const routes: Routes = [
             { path: '', redirectTo: 'inicio', pathMatch: 'full' },
             { path: 'inicio', component: AvisosUserComponent },
             { path: 'inscripcion', component: InscripcionComponent },
-            { path : 'documentos', component: DocumentosUsuarioComponent},
-            { path : 'principal', component: HomeComponent},
-            { path : 'inscripcion/detalleTaller/:id', component: DetalleTallerComponent}
+            { path: 'documentos', component: DocumentosUsuarioComponent },
+            { path: 'principal', component: HomeComponent },
+            { path: 'inscripcion/detalleTaller/:id', component: DetalleTallerComponent }
         ]
     }
 ]

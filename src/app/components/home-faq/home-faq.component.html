@@ -1,0 +1,18 @@
+<main class="home-faq">
+  <div class="my-jumbotron">
+    <img src="../../../assets/img/main.jpg" alt="">
+    <div class="my-jumbotron-text">Preguntas frecuentes</div>
+  </div>
+
+  <section class="faq">
+    <div class="faq-question" *ngFor="let faq of preguntas; let i = index">
+      <div class="speech-bubble-left" [ngClass]="i % 2 == 0 ? 'left-blue' : 'left-orange'">
+        <h5>{{faq.pregunta}}</h5>
+      </div>
+      <div class="speech-bubble-right">
+        <h5>{{faq.respuesta}}</h5>
+        <h5 *ngIf="faq.extra">{{faq.extra}}</h5>
+      </div>
+    </div>
+  </section>
+</main>
