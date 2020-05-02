@@ -35,74 +35,6 @@
     <h1>¿Qué es Axt@Teen 2020?</h1>
     <p>Axt@Teen 2020 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta
       Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
-    <p>En esta edición 2020 se impartirán talleres de:</p>
-    <table>
-      <tr>
-        <th>Taller</th>
-        <th>Descripción</th>
-        <th>Sede</th>
-      </tr>
-      <tr>
-        <td class="course__title">Drones</td>
-        <td>Los participantes podrán aprender los principios de diseño, manufactura y vuelo de los drones, así como
-          las diferentes técnicas de programación.</td>
-        <td>UANL</td>
-      </tr>
-      <tr>
-        <td class="course__title">Diseño 3D</td>
-        <td>Los participantes podrán aprender a generar geometrías tridimensionales en software de diseño, los cuales
-          posteriormente serán utilizados para la manufactura de productos.</td>
-        <td>UANL</td>
-      </tr>
-      <tr>
-        <td class="course__title">Impresión en 3D</td>
-        <td>Los participantes aprenderán las diferentes técnicas de manufactura aditiva, diseñarán y generarán sus
-          prototipos a ser impresos dentro del taller.</td>
-        <td>UANL</td>
-      </tr>
-      <tr>
-        <td class="course__title">Apps Avanzadas</td>
-        <td>En este taller los participantes aprenden a desarrollar Apps móviles para diferentes sistemas operativos y
-          así aumentar su capacidad de desarrollo de software.</td>
-        <td>Softtek</td>
-      </tr>
-      <tr>
-        <td class="course__title">App Inventor</td>
-        <td>Proporcionar a los participantes los conocimientos y herramientas tecnológicas para comprender y aplicar
-          los conceptos de Internet de las Cosas.</td>
-        <td>Tec de Mty</td>
-      </tr>
-      <tr>
-        <td class="course__title">Programación Competitiva</td>
-        <td>Los participantes recordarán conceptos básicos de JAVA y solucionarán problemas usando un juez de
-          programación competitiva. </td>
-        <td>Tec de Mty</td>
-      </tr>
-      <tr>
-        <td class="course__title">Internet de las Cosas (IoT)</td>
-        <td>Proporcionar a los participantes los conocimientos y herramientas tecnológicas para comprender y aplicar
-          los conceptos de Internet de las Cosas.</td>
-        <td>UDEM</td>
-      </tr>
-      <tr>
-        <td class="course__title">Ciberseguridad básica</td>
-        <td>Dar a conocer las políticas más importantes con respecto a las seguridad en las computadoras y dispositivos
-          móviles de los estudiantes,
-          advertir de riesgos sobre el uso de las conexión Wi-Fi pública.</td>
-        <td>UDEM</td>
-      </tr>
-      <tr>
-        <td class="course__title">Análisis de Datos</td>
-        <td>Este curso mostrará aquellos conceptos y métodos que se consideran básicos e imprescindibles para
-          el análisis de datos y su posterior aplicación en cualquier campo</td>
-        <td>Tec de Mty</td>
-      </tr>
-      <tr>
-        <td class="course__title">Robótica aplicada a automatización</td>
-        <td>Enseñar los principios básicos de automatización y sus aplicaciones</td>
-        <td>U-erre</td>
-      </tr>
-    </table>
     <p> <strong> Más información sobre ediciones anteriores <button type="button" class="btn btn-link"
         (click)="toggleTable()">aquí</button>. </strong></p>
     <table *ngIf="isVisible">
@@ -193,186 +125,85 @@
     </div>
     <a class="cta" routerLink="/ingresar">Inscríbete Ahora</a>
   </section>
-  <section class="home__activities">
-    <p class="home__activities__title">Actividades</p>
-    <div class="row">
-      <div class="col-6">
-        <img src="../../../../assets/img/block-1.png">
-      </div>
-      <div class="col-6 text-container">
-        <p class="home__activities__text">Los estudiantes se inscriben por medio de esta plataforma de forma individual.
-        </p>
-        <p class="home__activities__text">Eligen el taller y la sede a la cuál desean acudir y asisten durante una
-          semana de 9:00 a 16:00 hrs a los talleres
-          impartidos, donde identifican necesidades en su comunidad, escuela, localidad o en su entorno social y eligen
-          la necesidad que quieren resolver por medio de la tecnología aprendida.</p>
-      </div>
-    </div>
-    <div class="row mobile-arrangement">
-      <div class="col-6 text-container">
-        <p class="home__activities__text right">Cada uno de los talleres de preparación, serán llevados a cabo por
-          expertos en educación y en tecnología, desarrollando
-          así la creatividad en los participantes, quienes aprenden, se divierten, innovan, conviven, y logran convertir
-          sus ideas
-          en proyectos tangibles y de gran beneficio a la sociedad.</p>
-        <p class="home__activities__text right">En el último día del campamento, los participantes expondrán su
-          prototipo de proyecto frente a expertos en el ámbito tecnológico y
-          social. </p>
-      </div>
-      <div class="col-6">
-        <img src="../../../../assets/img/block-2.png">
-      </div>
-    </div>
-  </section>
   <section class="home__participation" id="Reqs">
     <p class="home__activities__title">Convocatoria</p>
-    <div class="home__participation__requirements">
-      <div class="details-container" (click)="rstatus=!rstatus" [ngClass]="rstatus ? '' : 'open'">
-        <p class="subtitle">Requisitos</p>
-        <button>
-          <img src="../../../../assets/img/down-arrow.svg">
-        </button>
+    <div class="row convo-row">
+      <div class="col-8" style="padding: 0;">
+        Requisitos
+        <div class="list--bg">
+          <ol class="list">
+            <li>Estar estudiando máximo el 3er año de preparatoria.</li>
+            <li>Rango de edad: 12 a 17 años cumplidos al 31 de marzo del año en curso, cursando la primaria, secundaria o
+              preparatoria al momento del programa.</li>
+            <li>Registrarse individualmente.</li>
+            <li>Asistir a los talleres.</li>
+            <li>Pertenecer a una institución educativa, mostrar documento que lo compruebe en caso de tener los 18 años
+              cumplidos al momento del taller.</li>
+            <li>Presentar y entregar copia del acta de nacimiento o documento oficial que compruebe la edad como CURP o
+              pasaporte, el primer día del evento.</li>
+            <li>Descargar, firmar y escanear el permiso para participar, subirlo a la plataforma o en su defecto entregar
+              el primer día del evento, firmado por padre/madre o tutor. O bien firmarlo el primer día del evento para lo
+              cual alguno de los padres o el tutor deberá llevar al participante y firmar el permiso.</li>
+          </ol>
+        </div>
       </div>
-      <div class="list--bg">
-        <ol class="list">
-          <li>Estar estudiando máximo el 3er año de preparatoria.</li>
-          <li>Rango de edad: 12 a 17 años cumplidos al 31 de marzo del año en curso, cursando la primaria, secundaria o
-            preparatoria al momento del programa.</li>
-          <li>Registrarse individualmente.</li>
-          <li>Asistir a los talleres.</li>
-          <li>Pertenecer a una institución educativa, mostrar documento que lo compruebe en caso de tener los 18 años
-            cumplidos al momento del taller.</li>
-          <li>Presentar y entregar copia del acta de nacimiento o documento oficial que compruebe la edad como CURP o
-            pasaporte, el primer día del evento.</li>
-          <li>Descargar, firmar y escanear el permiso para participar, subirlo a la plataforma o en su defecto entregar
-            el primer día del evento, firmado por padre/madre o tutor. O bien firmarlo el primer día del evento para lo
-            cual alguno de los padres o el tutor deberá llevar al participante y firmar el permiso.</li>
-        </ol>
-      </div>
-    </div>
-    <div class="home__participation__faq" id="FAQ">
-      <div class="details-container" (click)="faqstatus=!faqstatus" [ngClass]="faqstatus ? '' : 'open'">
-        <p class="subtitle">Preguntas Frequentes - FAQ</p>
-        <button>
-          <img src="../../../../assets/img/down-arrow.svg">
-        </button>
-      </div>
-      <div class="list--bg">
-        <ol class="list">
-          <li>¿Qué es Apportateen?</li>
-          <p class="steps-description">
-            Axt@Teen 2020 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental
-            hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento
-            computacional.
-          </p>
-          <li>¿Cómo puedo inscribir un taller?</li>
-          <p class="steps-description">
-            Se puede ver la oferta de talleres en la página principal del sitio. Cuando se sepa que taller se quiere
-            inscribir, se puede ir a la sección de talleres, seleccionar el correcto y hacer click en “inscribir”
-          </p>
-          <li>¿Cómo puedo pagar un taller?</li>
-          <p class="steps-description">
-            Se puede pagar un taller si se genera la ficha de pago correspondiente, se realiza un pago y se manda un
-            correo con el comprobante de pago y los datos de la persona inscrita al correo:
-            angelica.cisneros@csoftmty.org
-          </p>
-          <li>¿Cuál es el costo de un taller?</li>
-          <p class="steps-description">
-            Los costos de los talleres son: $1,500 si el alumno es proveniente de una escuela privada y $500 si proviene
-            de una escuela publica.
-            <br> <span style="font-size: 12px">*Los talleres en las sedes Softtek y UDEM son totalmente
-              gratuitos.</span>
-          </p>
-          <li>¿Cuándo es la fecha limite para pagar los talleres?</li>
-          <p class="steps-description">
-            La fecha limite para hacer la inscripción y el pago de los talleres es una semana anterior a fecha de inicio
-            taller.
-          </p>
-        </ol>
-      </div>
-    </div>
-    <div class="home__participation__details">
-      <div class="details-container" (click)="status=!status" [ngClass]="status ? '' : 'open'">
-        <p class="subtitle">Importante</p>
-        <button>
-          <img src="../../../../assets/img/down-arrow.svg">
-        </button>
-      </div>
-      <div class="list--bg">
-        <ol class="list">
-          <li>No es necesario tener experiencia previa programando, sólo ganas de participar.</li>
-          <li>Es para niñas, niños y jóvenes independientemente de la escuela y de las habilidades previas.</li>
-          <li>No se necesita un equipo para participar.</li>
-          <li>No es necesario contar con computadora para participar.</li>
-        </ol>
+      <div class="col convo-col" style="padding: 0;">
+        <div class="importante-text">
+          Importante
+            <ol class="list">
+              <li>No es necesario tener experiencia previa programando, sólo ganas de participar.</li>
+              <li>Es para niñas, niños y jóvenes independientemente de la escuela y de las habilidades previas.</li>
+              <li>No se necesita un equipo para participar.</li>
+              <li>No es necesario contar con computadora para participar.</li>
+            </ol>
+        </div>
+        <div class="ver-frecuentes">
+          <a class="button outer-div" mat-flat-button color="primary" href="/FAQ">
+            <span>Preguntas frecuentes</span><mat-icon>chevron_right</mat-icon></a>
+        </div>
       </div>
     </div>
   </section>
   <section class="home__calendar" id="Cal">
-    <p class="home__activities__title">Calendario</p>
-    <img src="../../../../assets/img/calendario.png">
+    <p class="home__activities__title">Fechas</p>
+    <div class="row">
+      <div class="col-5" style="padding: 0;">
+        <div class="fechas-text">
+          <span>10 al 28 de Junio</span>
+        </div>
+        <div class="ver-talleres">
+          <a class="button outer-div" mat-raised-button color="primary" href="/talleres"> <mat-icon class="icon-prop">event</mat-icon><br>
+            <span>Ver todos los talleres</span></a>
+        </div>
+      </div>
+      <div class="col calendar-col">
+        <img src="../../../../assets/img/calendario.png">
+      </div>
+    </div>
+  </section>
+  <section class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img class="d-block w-100" src="../../../../assets/img/main4.jpg">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="../../../../assets/img/main3.jpg">
+      </div>
+      <div class="carousel-item">
+        <img class="d-block w-100" src="../../../../assets/img/paginaPrincipal.png">
+      </div>
+    </div>
   </section>
   <section class="home__sponsors" id="Pats">
     <div class="home__sponsors__list">
-      <div class="row">
-        <div class="col-6 home__sponsors__title">
-          <p>Patrocinadores</p>
+      <div class="row home__sponsors__title">
+            <p>PATROCINADORES</p>
         </div>
-        <div class="col-6 sponsors">
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/udem.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/itesm.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/uanl.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/uerre.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/nuvasoft.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/sofftek.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/nic.png">
-          </div>
-          <div class="sponsor-container">
-            <img src="../../../../assets/img/sponsors/tecnoap.jpeg">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="home__sponsors__form text-center"><p class="form__subtitle" style="font-weight: bold;"><i>"Tenemos que preparar a los estudiantes para su futuro, no para nuestro pasado."</i></p></div>
-    <div class="home__sponsors__form text-center"><p class="form__subtitle" style="font-weight: italic;"><i>Participar como patrocinador ayuda a que niñas y niños puedan tener acceso a información relacionada con la tecnología, logrando un mejor futuro para todas y todos.</i></p></div>
-    <section class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src="../../../../assets/img/main4.jpg">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="../../../../assets/img/main3.jpg">
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src="../../../../assets/img/paginaPrincipal.png">
-        </div>
-      </div>
-    </section>
-    <div class="home__sponsors__form text-center">
-      <p class="form__title">¿Quieres ser patrocinador?</p>
-      <p class="form__subtitle">¡Registra tus datos y nosotros te contactaremos!</p>
-      <form class="form">
-        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre"
-          class="custom-input">
-        <input type="email" [(ngModel)]="sponsor.correo" [ngModelOptions]="{standalone: true}" placeholder="Correo"
-          class="custom-input">
-        <div class="action text-center">
-          <button (click)="register()">Enviar</button>
-        </div>
-      </form>
+        <mat-grid-list cols="5" rowHeight="200px">
+          <mat-grid-tile *ngFor="let patrocinador of sponsorList">
+            <img class="patro-img" [src]="patrocinador.url" alt="Patrocinador">
+          </mat-grid-tile>
+        </mat-grid-list>
     </div>
   </section>
 </main>
