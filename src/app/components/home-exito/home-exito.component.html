@@ -1,0 +1,19 @@
+<main class="home-exito">
+  <div class="my-jumbotron">
+    <img src="../../../assets/img/main.jpg" alt="">
+    <div class="my-jumbotron-text">Historias de éxito</div>
+  </div>
+
+  <section class="faq">
+    <div class="historia-exito row" *ngFor="let testimonio of testimonios; let i = index">
+      <div class="col imgcol">
+        <img [src]="testimonio.urlImg" alt="">
+      </div>
+      <div class="col">
+        <p class="nombre">{{testimonio.nombre}}</p>
+        <p class="subtitulo">{{testimonio.subtitulo}}</p>
+        <p class="testimonio">{{testimonio.testimonio}}</p>
+      </div>
+    </div>
+  </section>
+</main>

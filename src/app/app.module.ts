@@ -5,6 +5,11 @@ import {MatDialogModule} from '@angular/material';
 
 import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
+import { HomeTalleresComponent } from './components/home-talleres/home-talleres.component';
+import { HomeFAQComponent } from './components/home-faq/home-faq.component';
+import { HomeExitoComponent } from './components/home-exito/home-exito.component';
+import { HomePatrocinadoresComponent } from './components/home-patrocinadores/home-patrocinadores.component';
+import { HomeGalleryComponent } from './components/home-gallery/home-gallery.component';
 import { AppRoutingModule } from './components/app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiModule } from './components/ui/ui.module';
@@ -14,8 +19,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { ApiService } from './services/api/api.service';
 import { AdminModule } from './components/admin/admin.module';
-import { MAT_DATE_LOCALE, MatButtonModule } from '@angular/material';
+import { MAT_DATE_LOCALE, MatButtonModule, MatIconModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { UserModule } from './components/user/user.module';
 import { MatListModule } from '@angular/material/list';
 import { NgxPermissionsModule } from 'ngx-permissions';
@@ -37,6 +43,11 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
   declarations: [
     AppComponent,
     HomeComponent,
+    HomeTalleresComponent,
+    HomeFAQComponent,
+    HomeExitoComponent,
+    HomePatrocinadoresComponent,
+    HomeGalleryComponent,
     ConfirmationDialog,
     AddDialog
   ],
@@ -54,13 +65,15 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
     UserModule,
     MatButtonModule,
     MatCardModule,
+    MatGridListModule,
     MatDialogModule,
     MatListModule,
     MatInputModule,
     MatStepperModule,
     MatSelectModule,
     NgxPageScrollModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatIconModule,
   ],
   providers: [ApiService, {
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'

@@ -20,6 +20,7 @@ export class HomeComponent {
     rstatus: boolean;
     faqstatus: boolean;
     isVisible = false;
+    sponsorList;
     sponsor: Sponsor = new Sponsor();
 
     constructor(public snackBar: MatSnackBar, private api: ApiService) {
@@ -27,6 +28,48 @@ export class HomeComponent {
         this.second = false;
         this.third = false;
         this.isVisible = false;
+        this.sponsorList = [
+            {
+              frase: "Frase de la UDEM",
+              url: '../../../../assets/img/sponsors/udem.png',
+              backImg: '../../../../assets/img/main4.jpg'
+            },
+            {
+              frase: "Frase del Tec",
+              url: '../../../../assets/img/sponsors/itesm.png',
+              backImg: '../../../../assets/img/main4.jpg'
+            },
+            {
+              frase: "Frase de la UANL",
+              url: '../../../../assets/img/sponsors/uanl.png',
+              backImg: '../../../../assets/img/main4.jpg'
+            },
+            {
+              frase: "Frase de la UERRE",
+              url: '../../../../assets/img/sponsors/uerre.png',
+              backImg: '../../../../assets/img/main4.jpg'
+            },
+            {
+              frase: "Frase de Nuvasoft",
+              url: '../../../../assets/img/sponsors/nuvasoft.png',
+              backImg: '../../../../assets/img/main4.jpg'
+            },
+            {
+              frase: "Frase de Sofftek",
+              url: '../../../../assets/img/sponsors/sofftek.png',
+              backImg: '../../../../assets/img/main4.jpg'
+            },
+            {
+              frase: "Frase de NIC",
+              url: '../../../../assets/img/sponsors/nic.png',
+              backImg: '../../../../assets/img/main4.jpg'
+            },
+            {
+              frase: "Frase de Tecnoap",
+              url: '../../../../assets/img/sponsors/tecnoap.jpeg',
+              backImg: '../../../../assets/img/main4.jpg'
+            }
+          ]
     }
 
     toggleTable() {
