@@ -32,7 +32,7 @@
       transform: translate(-50%, -50%);
     }
   }
-  &__sponsors {
+  &__gallery {
     &__title {
       align-items: center;
       background-color: $color-blue;
@@ -45,14 +45,9 @@
     }
 
     &__list {
-      align-items: center;
-      display: flex;
-
-      .sponsors {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        padding: 0;
+      .gallery-img {
+        padding:0 10px;
+        width:100%;
       }
 
       .sponsor-container {
