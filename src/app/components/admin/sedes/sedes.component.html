@@ -58,11 +58,26 @@
         </div>
       </div>
       <div class="sedes__item">
-        <div class="col-md-4 talleres">
-          Talleres
+        <div class="col-md-6 talleres">
+          <!-- Talleres
           <ul class="list-group list-group-flush">
             <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
-          </ul>
+          </ul> -->
+
+          <mat-card class="mat-elevation-z2" *ngIf="selectedSede.talleres.length > 0; else SinTalleres">
+            <h6 *ngIf="selectedSede.talleres.length == 1; else VariosTalleres">
+              {{selectedSede.talleres.length + ' '}}Taller registrado:</h6>
+            <ng-template #VariosTalleres>
+              <h6>{{selectedSede.talleres.length + ' '}}Talleres registrados:</h6>
+            </ng-template>
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
+            </ul>
+          </mat-card>
+          <ng-template #SinTalleres>
+            <mat-card class="mat-elevation-z2">No hay talleres registrados en esta sede</mat-card>
+          </ng-template>
+
         </div>
       </div>
     </div>

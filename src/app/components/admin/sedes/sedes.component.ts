@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Sede } from '../../../models/sede.model';
 import { Responsable } from '../../../models/responsable.model';
 import { ApiService } from '../../../services/api/api.service';
-import { MatDialog, MatSnackBar, MatProgressSpinnerModule} from '@angular/material';
+import { MatDialog, MatSnackBar, MatProgressSpinnerModule } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -55,11 +55,10 @@ export class SedesComponent implements OnInit {
         this.loading = true;
         this.api.removeSede(this.selectedSede.id).subscribe(res => {
           if (res.status == 'success') {
-            if(this.originalInfoSede.responsable != null){
-              this.api.deleteResponsable(this.selectedSede.responsable).subscribe(_=>{}, _=>{
-                console.log("Error al eliminar al responsable de la sede.")
-                this.snackBar.open("Error al eliminar el responsable de la sede.",'',{
-                  duration:3000
+            if (this.originalInfoSede.responsable != null) {
+              this.api.deleteResponsable(this.selectedSede.responsable).subscribe(_ => { }, _ => {
+                this.snackBar.open("Error al eliminar el responsable de la sede.", '', {
+                  duration: 3000
                 });
                 this.loading = false;
               })
@@ -70,12 +69,14 @@ export class SedesComponent implements OnInit {
             duration: 3000,
           });
         }, error => {
-          var errMessage = 'Ha sucedido un error eliminando la sede.'
-          if (error.error.indexOf('update or delete on table') > 0) {
-            errMessage = 'Error. Esta sede esta asignada a algún taller.'
+          var errMessage = 'Ha sucedido un error eliminando la sede'
+          if (this.selectedSede.talleres.length > 0) {
+            errMessage = `Error. No se pueden eliminar sedes con talleres`
           }
-          this.snackBar.open(errMessage, '', {
-            duration: 3000,
+          this.snackBar.open(errMessage, 'Ayuda', {
+            duration: 3000
+          }).onAction().subscribe(() => {
+            this.snackBar.open('Primero se deben eliminar o asignar los talleres registrados en esta sede a otra. Solo se pueden eliminar sedes que no cuentan con talleres.', 'OK', {}
           });
           this.loading = false;
         });
@@ -140,6 +141,10 @@ export class SedesComponent implements OnInit {
               this.loading = false;
             })
           }
+          else {
+            // No se modificó el responsable actual
+            this.updatesede()
+          }
         }
         else if (this.selectedSede.correo_responsable != "" && this.selectedSede.correo_responsable != null) {
           // No tiene responsable y se agregó uno
@@ -167,7 +172,7 @@ export class SedesComponent implements OnInit {
           })
 
         } else {
-          // No se modifico el responsable
+          // No se modificó el responsable  
           this.updatesede()
         }
       }
@@ -181,7 +186,6 @@ export class SedesComponent implements OnInit {
 
   create() {
     this.loading = true;
-    console.log("NUEVA SEDE")
     this.newSede = null;
 
     // Checar si la sede tiene responsable
