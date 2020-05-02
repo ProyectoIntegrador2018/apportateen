@@ -8,6 +8,7 @@ import { Taller } from 'app/models/taller.model';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { discardPeriodicTasks } from '@angular/core/testing';
+import { estados } from './estados';
 
 @Component({
   selector: 'talleres',
@@ -34,22 +35,24 @@ export class TalleresComponent implements OnInit {
   correo_tutor;
   telefono_tutor;
 
-  hora_inicio;
-  hora_fin;
-  fecha_inicio: Date;
-  fecha_fin : Date;
-  estado;
-
+  estados_data = estados;
+  fecha_actual : Date;
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
     this.talleres = [];
     this.selectedTaller = {};
     this.sedes = [];
     this.categorias = [];
+    this.fecha_actual = new Date();
+
+    // var hoy = new Date();
+    // this.fecha_actual = hoy.getFullYear()+'-'+(hoy.getMonth()+1)+'-'+hoy.getDate();
+    
   }
 
   ngOnInit() {
     this.obtenerTalleres();
     this.obtenerCostos();
+    
   }
 
   obtenerTalleres() {

@@ -50,15 +50,9 @@
 
         <div class="row">
         <div class="col-md-6">
-          <!-- <mat-form-field class="example-full-width">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field> -->
           <mat-form-field>
             <mat-label>Fecha de inicio</mat-label>
-              <input matInput [matDatepicker]="picker1" [(ngModel)]="fecha_inicio">
+              <input matInput [matDatepicker]="picker1" [(ngModel)]="selectedTaller.fecha_inicio" [min]="fecha_actual" [max]="selectedTaller.fecha_fin">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
@@ -68,7 +62,7 @@
         <div class="col-md-6">
           <mat-form-field>
             <mat-label>Fecha de fin</mat-label>
-              <input matInput [matDatepicker]="picker2" [(ngModel)]="fecha_fin">
+              <input matInput [matDatepicker]="picker2" [(ngModel)]="selectedTaller.fecha_fin" [min] ="selectedTaller.fecha_inicio">
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
@@ -80,7 +74,7 @@
         <div class="col-md-3">
           <mat-form-field>
             <mat-label>Hora de inicio</mat-label>
-            <input matInput type="time" [(ngModel)] ="hora_inicio">
+            <input matInput type="time" [(ngModel)] ="selectedTaller.hora_inicio">
             <mat-hint align="start">24 hrs.</mat-hint>
           </mat-form-field>
           
@@ -88,7 +82,7 @@
         <div class="col-md-3">
           <mat-form-field>
             <mat-label>Hora de fin</mat-label>
-            <input matInput type="time" [(ngModel)] ="hora_inicio">
+            <input matInput type="time" [(ngModel)] ="selectedTaller.hora_fin">
             <mat-hint align="start">24 hrs.</mat-hint>
           </mat-form-field>
         </div>
@@ -103,6 +97,13 @@
           <mat-form-field>
             <mat-select placeholder="Sede" [(ngModel)]="selectedTaller.sede" name="sedeselect">
               <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-select placeholder="Estado" [(ngModel)]="selectedTaller.estado">
+              <mat-option *ngFor="let e of estados_data" [value]="e">{{e}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
