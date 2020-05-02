@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Sede } from '../../../models/sede.model';
 import { Responsable } from '../../../models/responsable.model';
 import { ApiService } from '../../../services/api/api.service';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar, MatProgressSpinnerModule} from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -12,6 +12,9 @@ import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmat
 })
 
 export class SedesComponent implements OnInit {
+
+  loading = true;
+  initialLoading = false;
 
   newSede: Sede;
   selectedSede;
@@ -28,9 +31,12 @@ export class SedesComponent implements OnInit {
   }
 
   obtenersedes() {
+    this.loading = true;
     this.api.getAllSedes().subscribe(result => {
       this.sedes = result;
       this.autoSelect();
+      this.loading = false;
+      this.initialLoading = true;
     });
   }
 
@@ -46,18 +52,22 @@ export class SedesComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la información de la sede: ${this.selectedSede.nombre.toUpperCase()}. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.loading = true;
         this.api.removeSede(this.selectedSede.id).subscribe(res => {
           if (res.status == 'success') {
-            this.api.deleteResponsable(this.selectedSede.responsable).subscribe(_=>{}, _=>{
-              console.log("Error al eliminar al responsable de la sede.")
-              this.snackBar.open("Error al eliminar el responsable de la sede.",'',{
-                duration:1500
-              });
-            })
+            if(this.originalInfoSede.responsable != null){
+              this.api.deleteResponsable(this.selectedSede.responsable).subscribe(_=>{}, _=>{
+                console.log("Error al eliminar al responsable de la sede.")
+                this.snackBar.open("Error al eliminar el responsable de la sede.",'',{
+                  duration:3000
+                });
+                this.loading = false;
+              })
+            }
             this.obtenersedes();
           }
           this.snackBar.open(res.message, '', {
-            duration: 1000,
+            duration: 3000,
           });
         }, error => {
           var errMessage = 'Ha sucedido un error eliminando la sede.'
@@ -65,8 +75,9 @@ export class SedesComponent implements OnInit {
             errMessage = 'Error. Esta sede esta asignada a algún taller.'
           }
           this.snackBar.open(errMessage, '', {
-            duration: 1500,
+            duration: 3000,
           });
+          this.loading = false;
         });
       }
     });
@@ -76,7 +87,7 @@ export class SedesComponent implements OnInit {
     // Update de la sede
     this.api.updateSede(this.selectedSede).subscribe(res => {
       this.snackBar.open(res.message, '', {
-        duration: 1000
+        duration: 3000
       });
       if (next != undefined) {
         next()
@@ -84,8 +95,9 @@ export class SedesComponent implements OnInit {
       this.obtenersedes();
     }, error => {
       this.snackBar.open(error.error, '', {
-        duration: 1000
+        duration: 3000
       });
+      this.loading = false;
     });
   }
 
@@ -96,6 +108,7 @@ export class SedesComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la sede seleccionada. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.loading = true;
         if (this.originalInfoSede.correo_responsable != null) {
           // La sede ya tenía responsable
           if (this.selectedSede.correo_responsable == "") {
@@ -104,8 +117,9 @@ export class SedesComponent implements OnInit {
             let deleteResponsable = () => {
               this.api.deleteResponsable(this.originalInfoSede.responsable).subscribe(res => { }, error => {
                 this.snackBar.open('Problema al eliminar el responsable', '', {
-                  duration: 1000
+                  duration: 3000
                 });
+                this.loading = false;
               })
             }
             this.updatesede(deleteResponsable)
@@ -121,8 +135,9 @@ export class SedesComponent implements OnInit {
               this.updatesede()
             }, error => {
               this.snackBar.open('Problema al actualizar el responsable', '', {
-                duration: 1000
+                duration: 3000
               });
+              this.loading = false;
             })
           }
         }
@@ -140,13 +155,15 @@ export class SedesComponent implements OnInit {
 
             }, error => {
               this.snackBar.open("Error al obtener el responsable", '', {
-                duration: 1000
+                duration: 3000
               });
+              this.loading = false;
             })
           }, error => {
             this.snackBar.open("Error al crear responsable", '', {
-              duration: 1000
+              duration: 3000
             });
+            this.loading = false;
           })
 
         } else {
@@ -163,6 +180,8 @@ export class SedesComponent implements OnInit {
   }
 
   create() {
+    this.loading = true;
+    console.log("NUEVA SEDE")
     this.newSede = null;
 
     // Checar si la sede tiene responsable
@@ -178,27 +197,30 @@ export class SedesComponent implements OnInit {
           this.api.createSede(this.selectedSede).subscribe(result => {
             if (result.status == 'success') {
               this.snackBar.open(result.message, '', {
-                duration: 1500,
+                duration: 3000,
               });
               this.obtenersedes();
             }
           }, error => {
             this.snackBar.open("Ha ocurrido un error, intente de nuevo por favor", '', {
-              duration: 1500,
+              duration: 3000,
             });
             this.autoSelect();
+            this.loading = false;
           })
         }, error => {
           this.snackBar.open("Ha ocurrido un error con el responsable, intende de nuevo por favor.", '', {
-            duration: 1500,
+            duration: 3000,
           });
           this.autoSelect();
+          this.loading = false;
         });
       }, error => {
         this.snackBar.open("Ha ocurrido un error al registrar el responsable, intende de nuevo por favor.", '', {
-          duration: 1500,
+          duration: 3000,
         });
         this.autoSelect();
+        this.loading = false;
       });
     }
     else {
@@ -207,15 +229,16 @@ export class SedesComponent implements OnInit {
       this.api.createSede(this.selectedSede).subscribe(result => {
         if (result.status == 'success') {
           this.snackBar.open(result.message, '', {
-            duration: 1500,
+            duration: 3000,
           });
           this.obtenersedes();
         }
       }, error => {
         this.snackBar.open("Ha ocurrido un error, intente de nuevo por favor", '', {
-          duration: 1500,
+          duration: 3000,
         });
         this.autoSelect();
+        this.loading = false;
       })
 
     }

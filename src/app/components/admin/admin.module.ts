@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
 import {MatStepperModule, MatCheckbox} from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material';
 
 import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule} from '@angular/material'
 import { ConvocatoriasComponent } from './convocatorias/convocatorias.component';
@@ -44,7 +45,8 @@ import { PendingComponent } from './pending/pending.component';
         MatMenuModule,
         MatTableModule,
         MatStepperModule,
-        AngularFireStorageModule
+        AngularFireStorageModule,
+        MatProgressSpinnerModule
     ],
     declarations: [MainComponent,
         ConvocatoriasComponent,
