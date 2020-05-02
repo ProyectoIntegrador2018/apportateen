@@ -1,7 +1,7 @@
 @import "~styles-variables.scss";
 
 .register {
-  margin: 100px 0;
+  margin: 20px 0;
 
   &__title {
     color: $text-color;
@@ -13,10 +13,11 @@
   &__actions {
     align-items: center;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     margin-bottom: 30px;
     width: 100%;
   }
+
 
   .btn {
     &:focus {
@@ -35,10 +36,14 @@
       background-color: $color-red;
     }
 
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+    &.card {
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+
     border: 0;
     color: $color-white;
   }
@@ -54,10 +59,12 @@
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
     margin: 20px 0 0 20px;
     width: 260px;
+    height: 580px;
+    position: relative;
 
     img {
       border-radius: 5px 5px 0 0;
-      height: 140px;
+      height: 160px;
       width: 100%;
     }
 
@@ -70,20 +77,36 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 15px 15px 0px 15px;
+      padding: 0px 15px 0px 15px;
     }
 
     .btn-container{
       align-items: center;
+      position: absolute;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 0px 15px 15px 15px;
+      width: 230px;
+      height: 20px;
+      bottom: 10%;
+      left: 5%;
     }
 
     .desc {
       font-weight: 300;
+      font-size: 14;
     }
+
+    .ciudad {
+      font-weight: 500;
+      background-color: $color-orange;
+      text-align: center;
+      width: 150px;
+      color: white;
+      margin-bottom: 5px;
+
+    }
+
   }
 
   .mat-option.mat-active,
@@ -104,3 +127,4 @@
     }
   }
 }
+

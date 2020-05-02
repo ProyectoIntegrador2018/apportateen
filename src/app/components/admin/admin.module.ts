@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FormsModule } from '@angular/forms';
-import {MatStepperModule} from '@angular/material';
+import {MatStepperModule, MatCheckbox} from '@angular/material';
 
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, } from '@angular/material'
+import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule} from '@angular/material'
 import { ConvocatoriasComponent } from './convocatorias/convocatorias.component';
 import { SedesComponent } from './sedes/sedes.component';
 import { TalleresComponent } from './talleres/talleres.component';
@@ -32,6 +32,7 @@ import { PagosComponent } from './pagos/pagos.component';
         MatToolbarModule,
         MatListModule,
         MatSlideToggleModule,
+        MatCheckboxModule,
         MatButtonModule,
         MatInputModule,
         MatExpansionModule,

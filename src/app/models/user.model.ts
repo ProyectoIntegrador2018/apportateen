@@ -30,4 +30,5 @@ export class User {
     num_conf_pago : string = "";
     documentos : number = 0;
     razon_beca : string = "";
+    talleres : number [] = [];
 }

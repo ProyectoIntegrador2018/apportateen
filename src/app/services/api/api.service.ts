@@ -14,6 +14,8 @@ import { Aviso } from '../../models/aviso.model';
 import { Taller } from '../../models/taller.model';
 import { Categoria } from 'app/models/categoria.model';
 import { Archivo } from 'app/models/archivo.model';
+import { Responsable } from 'app/models/responsable.model';
+
 const API_URL = environment.apiUrl;
 const httpOptions = {
   headers: new HttpHeaders({
@@ -75,6 +77,8 @@ export class ApiService {
 
   // API: PUT /users/:id TALLER
   public updateUser(user: User): Observable<any> {
+    console.log("hola");
+    console.log(user);
     return this.http
       .put<any>(`${API_URL}/users/${user.id}`, user, httpOptions)
       .catch(this.handleError);
@@ -141,7 +145,6 @@ export class ApiService {
     .post<any>(`${API_URL}/guardians`, taller, httpOptions)
     .catch(this.handleError);
   }
-  
   public getTutor(taller: Taller): Observable<any> {
     return this.http
     .get<any>(API_URL + '/guardians/' + taller.tutor, httpOptions)
@@ -161,9 +164,15 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  public createResponsable(sede: Sede): Observable<any> {
+  public createResponsable(responsable: Responsable): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/responsable`, sede, httpOptions)
+      .post<any>(`${API_URL}/responsable`, responsable, httpOptions)
+      .catch(this.handleError);
+  }
+
+  public updateResponsable(responsable: Responsable): Observable<any>{
+    return this.http
+      .put<any>(`${API_URL}/responsable/${responsable.id_responsable}`, responsable, httpOptions)
       .catch(this.handleError);
   }
 
@@ -173,7 +182,11 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-
+  public deleteResponsable(id: string): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/responsable/${id}`, httpOptions)
+      .catch(this.handleError);
+  }
 
   // API: POST /sedes
   public createSede(sede: Sede): Observable<any> {
@@ -228,6 +241,20 @@ export class ApiService {
   public removeAviso(id: number): Observable<any> {
     return this.http
       .delete<any>(`${API_URL}/avisos/${id}`, httpOptions)
+      .catch(this.handleError);
+  }
+
+  //API: GET /talleres/costos
+  public getCostos(): Observable<any> {
+    return this.http
+      .get<any>(`${API_URL}/talleres/costos`, httpOptions)
+      .catch(this.handleError);
+  }
+
+  //API: PUT /talleres/costos
+  public updateCostos(costos: any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/talleres/costos`, costos, httpOptions)
       .catch(this.handleError);
   }
 

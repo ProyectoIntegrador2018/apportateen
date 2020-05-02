@@ -1,7 +1,5 @@
 <div class="">
-
-  <section class="hero"
-    [ngStyle]="{'background-image': 'url(' + taller.url_array[0] + ')'}">
+  <section class="hero">
     <h1 class="hero__title"> {{taller["nombre"]}} </h1>
   </section>
 
@@ -10,34 +8,57 @@
       <div class="col-md-8 description">
         <h4 class="title">Descripción</h4>
         <p>{{taller["descripcion"]}}</p>
+        <div *ngIf="taller.url_array != null" class="titleSection">
+          <h4>Galería de Fotos</h4>
+        </div>
+        <div class="row galleryBackground">
+          <div class="gallery col align-self-center">
+            <div *ngIf="taller.url_array != null" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+              <div class="carousel-inner">
+                <div [ngClass]="{'carousel-item' : true, 'active' : i == 0}"
+                  *ngFor="let url of taller.url_array; index as i;">
+                  <img class="d-block w-100" [src]="url" alt="First slide">
+                </div>
+              </div>
+              <a *ngIf="taller.url_array.length > 1" class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a *ngIf="taller.url_array.length > 1" class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
 
       <div class="col-md-4">
 
         <button mat-button mat-stroked-button class="btn-primary"
-          *ngIf="!(taller['id'] == user.idtaller) && taller['inscritos'] < taller['cupo']"
+          *ngIf="!(user.talleres.includes(taller['id'])) && taller['inscritos'] < taller['cupo']"
           (click)="inscripcion(taller)">Inscribirme</button>
         <button mat-button mat-raised-button class="btn-reject"
-          *ngIf="taller['id'] == user.idtaller"
-          (click)="quitarInscripcion()"
-          >Desinscribir
-        </button>
+          *ngIf="user.talleres.includes(taller['id'])"
+          (click)="quitarInscripcion(taller)">Desinscribir</button>
 
         <div class="sideBox">
           <h5 class="">Costo</h5>
           <p>{{costoTaller() == 0 ? 'Gratis' : costoTaller()}}</p>
         </div>
         <div class="sideBox">
-          <h5 class="">Fecha y Hora NO ESTA</h5>
-          <p>24 abril - 27 abril</p>
-        </div>
-        <div class="sideBox">
-          <!-- <p>COSTO</p> -->
-        </div>
-        <div class="sideBox">
           <h5>Sede</h5>
-          <p>{{taller["sededesc"]}}</p>
+          <p>{{taller["sededesc"]}} - {{taller["estado"]}} </p>
+        </div>
+        
+        <div class="sideBox">
+          <h5 class="">Horario</h5>
+          <p>{{taller["hora_inicio"]}} - {{taller["hora_fin"]}}</p>
+        </div>
+        <div class="sideBox">
+          <h5 class="">Fecha</h5>
+          <p>{{fecha_inicio}} al {{fecha_fin}}</p>
         </div>
         <div class="sideBox">
           <!-- <p>{{taller["cupo"]}}</p> -->
@@ -50,32 +71,10 @@
       </div>
 
     </div>
-
   </div>
 
-  <div *ngIf="taller.url_array != null" class="titleSection">
-    <h4>Galería de Fotos</h4>
-  </div>
+  
 
-  <div class="row galleryBackground">
-    <div class="gallery col align-self-center">
-      <div *ngIf="taller.url_array != null" id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div [ngClass]="{'carousel-item' : true, 'active' : i == 0}"
-            *ngFor="let url of taller.url_array; index as i;">
-            <img class="d-block w-100" [src]="url" alt="First slide">
-          </div>
-        </div>
-        <a *ngIf="taller.url_array.length > 1" class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a *ngIf="taller.url_array.length > 1" class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-    </div>
-  </div>
+  
 
 </div>

@@ -4,6 +4,19 @@
     width: 90%;
   }
 
+  &.costos {
+    margin-bottom: 70px;
+  }
+
+  &.button{
+    float: right;
+    margin: 0px auto;
+  }
+
+  &.buttonSave{
+    margin-right: 10px;
+  }
+
   &__title {
     display: flex;
     margin-bottom: 20px;

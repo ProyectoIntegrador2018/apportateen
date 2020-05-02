@@ -1,9 +1,10 @@
-import { Component, Inject, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, Inject, ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { NgxPermissionsService } from 'ngx-permissions';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { User } from 'app/models/user.model';
 
 @Component({
   selector: 'user',
@@ -11,8 +12,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-user.component.scss']
 })
 
-export class MainUserComponent implements OnDestroy {
+export class MainUserComponent implements OnDestroy, OnInit {
   mobileQuery: MediaQueryList;
+  user: User = new User();
 
   private _mobileQueryListener: () => void;
 
@@ -24,6 +26,9 @@ export class MainUserComponent implements OnDestroy {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+  }
+  ngOnInit(): void {
+    this.user = this.storage.get('@user:data');
   }
 
   ngOnDestroy(): void {
