@@ -18,13 +18,12 @@
   //   width: 100%;
   // }
 
-
   .btn {
     &:focus {
       box-shadow: none;
     }
 
-    &.accept{
+    &.accept {
       background-color: $color-green;
     }
 
@@ -32,7 +31,7 @@
       background-color: $color-blue;
     }
 
-    &.reject{
+    &.reject {
       background-color: $color-red;
     }
 
@@ -42,7 +41,6 @@
       margin-right: auto;
       width: 100%;
     }
-
 
     border: 0;
     color: $color-white;
@@ -68,7 +66,7 @@
       width: 100%;
     }
 
-    .info-container{
+    .info-container {
       cursor: pointer;
     }
 
@@ -80,7 +78,7 @@
       padding: 0px 15px 0px 15px;
     }
 
-    .btn-container{
+    .btn-container {
       align-items: center;
       position: absolute;
       display: flex;
@@ -104,9 +102,7 @@
       width: 150px;
       color: white;
       margin-bottom: 5px;
-
     }
-
   }
 
   .mat-option.mat-active,
@@ -130,11 +126,15 @@
 
 //=========== ANIMACION
 @keyframes example {
-  from  {background-color: rgb(255, 255, 255);}
-  to {background-color: $color-blue}
+  from {
+    background-color: rgb(255, 255, 255);
+  }
+  to {
+    background-color: $color-blue;
+  }
 }
 
-.scButton{
+.scButton {
   margin: 0px 5px 0px 0px;
   background-color: $color-blue;
   border-bottom: 2px solid $color-blue;
@@ -143,8 +143,7 @@
   animation-duration: 2s;
 }
 
-
-.scButton1{
+.scButton1 {
   margin: 0px 5px 0px 0px;
   background-color: $color-blue;
   border-bottom: 2px solid $color-blue;
@@ -155,35 +154,40 @@
 
 //====================
 
-
-.leftSc{
+.leftSc {
   border-radius: 10px 0px 0px 10px;
-    padding: 10px 10px 10px 20px;
-    border-bottom: 2px solid #6EB7C2;
-    border-top: 2px solid #6EB7C2;
-    border-left: 2px solid #6EB7C2;
-    border-right: 0px;
-    color: white;
-    background-color: white;
+  padding: 10px 10px 10px 20px;
+  border-bottom: 2px solid #6eb7c2;
+  border-top: 2px solid #6eb7c2;
+  border-left: 2px solid #6eb7c2;
+  border-right: 0px;
+  color: #6eb7c2;
+  background-color: white;
 
-    &.enabled {
-      background-color:  #6EB7C2;
-    }
+  &.enabled {
+    background-color: #6eb7c2;
+    color: white;
+  }
 }
 
-
-.rightSc{
+.scContainer {
+  margin: 0px auto 0px auto;
+  display: flex;
+  justify-content: center;
+}
+.rightSc {
   border-radius: 0px 10px 10px 0px;
   padding: 10px 20px 10px 20px;
   background-color: white;
-  border-bottom: 2px solid #6EB7C2;
-  border-top: 2px solid #6EB7C2;
-  border-right: 2px solid #6EB7C2;
+  border-bottom: 2px solid #6eb7c2;
+  border-top: 2px solid #6eb7c2;
+  border-right: 2px solid #6eb7c2;
   border-left: 0px;
-  color: #6EB7C2;
+  color: #6eb7c2;
 
-  &.enabled{
-    background-color:  #6EB7C2;
+  &.enabled {
+    background-color: #6eb7c2;
+    color: white;
   }
 }
 

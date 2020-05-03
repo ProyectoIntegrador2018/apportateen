@@ -9,10 +9,10 @@
     </div> -->
     <div class="segmented-control">
       <div class="row justify-content-center">
-        <div class="col-5">
-          <div>
-            <button [ngClass]="{'leftSc': true, 'enabled': isLeft}" (onClick)="toggleButton("left")">Talleres Inscritos</button>
-            <button [ngClass]="{'rightSc': true, 'enabled': !isLeft}">Talleres por pagar</button>
+        <div class="col-6">
+          <div class="scContainer">
+            <button [ngClass]="{'leftSc': true, 'enabled': isLeft}" (click)="toggleButton('left')">Talleres Inscritos</button>
+            <button [ngClass]="{'rightSc': true, 'enabled': !isLeft}" (click)="toggleButton('right')">Talleres por pagar</button>
           </div>
           <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
             <mat-button-toggle value="bold">Bold</mat-button-toggle>
