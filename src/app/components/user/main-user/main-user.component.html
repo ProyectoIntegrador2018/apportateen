@@ -12,6 +12,7 @@
         <a routerLink="principal" class="header__link">Inicio</a>
         <a routerLink="." class="header__link">Avisos</a>
         <a routerLink="inscripcion" class="header__link"> Inscripciones </a>
+        <a routerLink="inscritos" class="header__link"> Talleres Inscritos </a>
         <a routerLink="documentos" class="header__link"> Documentos a Entregar </a>
         <!-- <a class="header__link" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScBah9YGpn4JA78bcCwnQGS1RIbVCfBN0jCvdZfFVmMSURegg/viewform"> Encuesta de Salida </a> -->
       </div>
@@ -26,6 +27,7 @@
     <h1 class="hero__title" *ngIf="router.url === '/usuario/inicio'"> Hola, {{ user.nombre }} </h1>
     <h1 class="hero__title" *ngIf="router.url === '/usuario/inscripcion'"> Talleres </h1>
     <h1 class="hero__title" *ngIf="router.url === '/usuario/documentos'"> Documentos </h1>
+    <h1 class="hero__title" *ngIf="router.url === '/usuario/inscritos'"> Tus Talleres Inscritos </h1>
   </section>
   <router-outlet></router-outlet>
 </div>
