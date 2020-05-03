@@ -14,13 +14,13 @@ import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef, MatSelectModule }
 export class TalleresInscritosComponent implements OnInit {
 
   talleres;
-  isLeft;
+  isTalleresInscritos;
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar) {
       this.talleres = [];
-      this.isLeft = true;
+      this.isTalleresInscritos = false;
     }
 
   ngOnInit() {
@@ -37,9 +37,9 @@ export class TalleresInscritosComponent implements OnInit {
 
   toggleButton(direction : String){
     if(direction == "left"){
-      this.isLeft = true;
+      this.isTalleresInscritos = true;
     } else {
-      this.isLeft = false;
+      this.isTalleresInscritos = false;
     }
   }
 

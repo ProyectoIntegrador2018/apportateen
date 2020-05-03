@@ -140,20 +140,20 @@ export class ApiService {
 
   public createTutor(taller: Taller): Observable<any> {
     return this.http
-    .post<any>(`${API_URL}/guardians`, taller, httpOptions)
-    .catch(this.handleError);
+      .post<any>(`${API_URL}/guardians`, taller, httpOptions)
+      .catch(this.handleError);
   }
 
   public getTutor(taller: Taller): Observable<any> {
     return this.http
-    .get<any>(API_URL + '/guardians/' + taller.tutor, httpOptions)
-    .catch(this.handleError);
+      .get<any>(API_URL + '/guardians/' + taller.tutor, httpOptions)
+      .catch(this.handleError);
   }
 
   public updateTutor(taller: Taller): Observable<any> {
     return this.http
-    .put<any>(API_URL + '/guardians/' + taller.tutor, taller, httpOptions)
-    .catch(this.handleError);
+      .put<any>(API_URL + '/guardians/' + taller.tutor, taller, httpOptions)
+      .catch(this.handleError);
   }
 
   // API: GET /sedes
@@ -275,6 +275,14 @@ export class ApiService {
       .delete<any>(`${API_URL}/talleres/${id}`, httpOptions)
       .catch(this.handleError);
   }
+
+  // API: POST /inscripciones
+  public createInscripcion(inscripcion: any): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/inscripciones`, inscripcion, httpOptions)
+      .catch(this.handleError);
+  }
+
 
   // API: GET /categorias
   public getAllCategorias(): Observable<Categoria[]> {

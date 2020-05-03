@@ -272,6 +272,20 @@ export class InscripcionComponent implements OnInit {
           });
         }
 
+        ///======== inscribir a tabla de Inscripciones,lo comente por mientras porque falta el query para quitar inscripcion y marcaria error si tratas de inscribir dos veces el mismo
+        // let inscripcion = {
+        //   "tallerId" : taller.id,
+        //   "userId" : this.user.id
+        // }
+
+        // this.api.createInscripcion(inscripcion).subscribe(res => {
+        // }, error => {
+        //   this.snackBar.open(error.error, '', {
+        //     duration: 900,
+        //   });
+        // })
+        //=============
+
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           // this.obtenerTallerActual();

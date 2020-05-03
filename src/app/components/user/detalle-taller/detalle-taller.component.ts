@@ -189,6 +189,7 @@ export class DetalleTallerComponent implements OnInit {
             });
           });
         }
+
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           if (res.status == "success") {
