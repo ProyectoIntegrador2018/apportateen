@@ -1,0 +1,274 @@
+@import "~styles-variables.scss";
+
+.register {
+  margin: 20px 0;
+
+  &__title {
+    color: $text-color;
+    font-size: 38px;
+    font-weight: bold;
+    letter-spacing: 1.28px;
+  }
+
+  // &__actions {
+  //   align-items: center;
+  //   display: flex;
+  //   // justify-content: space-between;
+  //   margin-bottom: 30px;
+  //   width: 100%;
+  // }
+
+
+  .btn {
+    &:focus {
+      box-shadow: none;
+    }
+
+    &.accept{
+      background-color: $color-green;
+    }
+
+    &.primary {
+      background-color: $color-blue;
+    }
+
+    &.reject{
+      background-color: $color-red;
+    }
+
+    &.card {
+      margin-top: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+    }
+
+
+    border: 0;
+    color: $color-white;
+  }
+
+  .items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__item {
+    border-radius: 5px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+    margin: 20px 0 0 20px;
+    width: 260px;
+    height: 580px;
+    position: relative;
+
+    img {
+      border-radius: 5px 5px 0 0;
+      height: 160px;
+      width: 100%;
+    }
+
+    .info-container{
+      cursor: pointer;
+    }
+
+    .text-container {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0px 15px 0px 15px;
+    }
+
+    .btn-container{
+      align-items: center;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 230px;
+      height: 20px;
+      bottom: 10%;
+      left: 5%;
+    }
+
+    .desc {
+      font-weight: 300;
+      font-size: 14;
+    }
+
+    .ciudad {
+      font-weight: 500;
+      background-color: $color-orange;
+      text-align: center;
+      width: 150px;
+      color: white;
+      margin-bottom: 5px;
+
+    }
+
+  }
+
+  .mat-option.mat-active,
+  .mat-option.mat-selected {
+    background: $color-blue !important;
+  }
+}
+
+/* Phone */
+@media only screen and (max-width: 600px) {
+  .register {
+    &__actions {
+      display: block;
+    }
+
+    &__item {
+      margin-left: 0;
+    }
+  }
+}
+
+//=========== ANIMACION
+@keyframes example {
+  from  {background-color: rgb(255, 255, 255);}
+  to {background-color: $color-blue}
+}
+
+.scButton{
+  margin: 0px 5px 0px 0px;
+  background-color: $color-blue;
+  border-bottom: 2px solid $color-blue;
+  border-width: 0px 0px 2px 0px;
+  animation-name: example;
+  animation-duration: 2s;
+}
+
+
+.scButton1{
+  margin: 0px 5px 0px 0px;
+  background-color: $color-blue;
+  border-bottom: 2px solid $color-blue;
+  border-width: 0px 0px 2px 0px;
+  animation-name: example;
+  animation-duration: 2s;
+}
+
+//====================
+
+
+.leftSc{
+  border-radius: 10px 0px 0px 10px;
+    padding: 10px 10px 10px 20px;
+    border-bottom: 2px solid #6EB7C2;
+    border-top: 2px solid #6EB7C2;
+    border-left: 2px solid #6EB7C2;
+    border-right: 0px;
+    color: white;
+    background-color: white;
+
+    &.enabled {
+      background-color:  #6EB7C2;
+    }
+}
+
+
+.rightSc{
+  border-radius: 0px 10px 10px 0px;
+  padding: 10px 20px 10px 20px;
+  background-color: white;
+  border-bottom: 2px solid #6EB7C2;
+  border-top: 2px solid #6EB7C2;
+  border-right: 2px solid #6EB7C2;
+  border-left: 0px;
+  color: #6EB7C2;
+
+  &.enabled{
+    background-color:  #6EB7C2;
+  }
+}
+
+// .scButton {
+//   width: 100px;
+//   height: 100px;
+//   background-color: rgb(137, 238, 167);
+//   transition: background-color 2s;
+// }
+
+// div:hover {
+//   width: 300px;
+// }
+
+// $color: #0cf;
+
+// .scButton {
+//     display: inline-block;
+//     padding: .75rem 1.25rem;
+//     border-radius: 10rem;
+//     color: #fff;
+//     text-transform: uppercase;
+//     font-size: 1rem;
+//     letter-spacing: .15rem;
+//     transition: all .3s;
+//     position: relative;
+//     overflow: hidden;
+//     z-index: 1;
+//     &:after {
+//         content: '';
+//         position: absolute;
+//         bottom: 0;
+//         left: 0;
+//         width: 100%;
+//         height: 100%;
+//         background-color: $color;
+//         border-radius: 10rem;
+//         z-index: -2;
+//     }
+//     &:before {
+//         content: '';
+//         position: absolute;
+//         bottom: 0;
+//         left: 0;
+//         width: 0%;
+//         height: 100%;
+//         background-color: darken($color, 15%);
+//         transition: all .3s;
+//         border-radius: 10rem;
+//         z-index: -1;
+//     }
+//     &:hover {
+//         color: #fff;
+//         &:before {
+//             width: 100%;
+//         }
+//     }
+// }
+
+// /* optional reset for presentation */
+// * {
+//   font-family: Arial;
+//   text-decoration: none;
+//   font-size: 20px;
+// }
+// .container {
+//   padding-top: 50px;
+//   margin: 0 auto;
+//   width: 100%;
+//   text-align: center;
+// }
+// h1 {
+//   text-transform: uppercase;
+//   font-size: .8rem;
+//   margin-bottom: 2rem;
+//   color: #777;
+// }
+// span {
+//   display: block;
+//   margin-top: 2rem;
+//   font-size: .7rem;
+//   color: #777;
+//   a {
+//     font-size: .7rem;
+//     color: #999;
+//     text-decoration: underline;
+//   }
+// }

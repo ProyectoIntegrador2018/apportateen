@@ -14,11 +14,13 @@ import { MatDialog, MatSnackBar,MAT_DIALOG_DATA, MatDialogRef, MatSelectModule }
 export class TalleresInscritosComponent implements OnInit {
 
   talleres;
+  isLeft;
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
     public dialog: MatDialog,
     public snackBar: MatSnackBar) {
       this.talleres = [];
+      this.isLeft = true;
     }
 
   ngOnInit() {
@@ -31,6 +33,14 @@ export class TalleresInscritosComponent implements OnInit {
       this.talleres = result[0];
       console.log(this.talleres);
     });
+  }
+
+  toggleButton(direction : String){
+    if(direction == "left"){
+      this.isLeft = true;
+    } else {
+      this.isLeft = false;
+    }
   }
 
 }

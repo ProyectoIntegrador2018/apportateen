@@ -1,3 +1,51 @@
-<p>
-  talleres-inscritos works!
-</p>
+<div class="container-fluid register">
+  <div class="container">
+    <!-- <div class="segmented-control" style="width: 100%; color: #5FBAAC">
+      <input type="radio" name="pagados" id="pagados">
+      <label for="pagados" data-value="Lorem Ipsum">Talleres Pagados</label>
+
+      <input type="radio" name="porPagar" id="porPagar" checked>
+      <label for="porPagar" data-value="Fringilla">Talleres por Pagar</label>
+    </div> -->
+    <div class="segmented-control">
+      <div class="row justify-content-center">
+        <div class="col-5">
+          <div>
+            <button [ngClass]="{'leftSc': true, 'enabled': isLeft}" (onClick)="toggleButton("left")">Talleres Inscritos</button>
+            <button [ngClass]="{'rightSc': true, 'enabled': !isLeft}">Talleres por pagar</button>
+          </div>
+          <!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="bold">Bold</mat-button-toggle>
+            <mat-button-toggle value="italic">Italic</mat-button-toggle>
+          </mat-button-toggle-group> -->
+        </div>
+        <!-- <div class="col-4">
+
+        </div> -->
+      </div>
+      <!-- <button >Talleres Inscritos</button>
+      <button>Talleres por pagar</button> -->
+    </div>
+
+    <div class="items">
+      <div class="register__item" *ngFor="let taller of talleres">
+        <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
+          <img [src]="taller.url_array[0]">
+          <div class="text-container">
+            <div class="ciudad">{{taller.estado}}</div>
+            <h3 class="title">{{taller.nombre}}</h3>
+            <p class="desc">{{taller.descripcion}}</p>
+
+          </div>
+        </div>
+        <div class="btn-container">
+          <button mat-button mat-stroked-button class="btn primary card"
+            [routerLink]="['detalleTaller/', taller.id]">Más
+            información</button>
+          <!-- <button mat-button mat-raised-button class="btn reject card" (click)="quitarInscripcion(taller)">Desinscribir
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
