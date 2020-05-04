@@ -286,7 +286,7 @@ export class ApiService {
   //API: DELETE /inscripciones
   public removeInscripcion(inscripcion: any): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/inscripciones/delete`, inscripcion, httpOptions)
+      .delete<any>(`${API_URL}/inscripciones/${inscripcion['taller_id']}/${inscripcion['user_id']}`, httpOptions)
       .catch(this.handleError);
   }
 

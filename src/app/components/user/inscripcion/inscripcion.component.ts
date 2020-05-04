@@ -170,6 +170,7 @@ export class InscripcionComponent implements OnInit {
 
         this.cargaTu();
 
+
         let inscripcion = {
           "taller_id": taller.id,
           "user_id": this.user.id
