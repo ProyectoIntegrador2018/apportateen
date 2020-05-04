@@ -283,6 +283,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  //API: DELETE /inscripciones
+  public removeInscripcion(inscripcion: any): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/inscripciones/delete`, inscripcion, httpOptions)
+      .catch(this.handleError);
+  }
+
 
   // API: GET /categorias
   public getAllCategorias(): Observable<Categoria[]> {
