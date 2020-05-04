@@ -1,9 +1,9 @@
-<h1 mat-dialog-title>Enviar un nuevo aviso {{data.target}}</h1>
+<h1 mat-dialog-title>Enviar un nuevo aviso {{targetMessage}}</h1>
 <div mat-dialog-content>
     <form>
-        <mat-form-field *ngIf="data.target != 'General'">
+        <mat-form-field *ngIf="data.target != 1">
             <mat-label>Para: </mat-label>
-            <mat-chip-list #chipList>
+            <mat-chip-list #chipList [required]="true">
                 <mat-chip *ngFor="let destinatario of destinatariosSeleccionados;let indx=index;"
                     [selectable]="selectable" [removable]="removable" (removed)="remove(destinatario,indx)">
                     {{destinatario.nombre}}
@@ -22,24 +22,23 @@
             </mat-autocomplete>
         </mat-form-field>
 
-        <div *ngIf="data.target != 'a Responsables'">
+        <div *ngIf="data.target != 4">
             <mat-form-field>
                 <mat-label>Asunto: </mat-label>
-                <input matInput [(ngModel)]="aviso.titulo" name="asunto">
+                <input matInput [(ngModel)]="aviso.titulo" name="asunto" [required]="true">
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Mensaje:</mat-label>
-                <textarea matInput [(ngModel)]="aviso.mensaje" name="mensaje"></textarea>
+                <textarea matInput [(ngModel)]="aviso.mensaje" name="mensaje" [required]="true"></textarea>
             </mat-form-field>
         </div>
+
+        <button mat-button (click)="dialogRef.close(false)" color="warn">Cancelar</button>
+        <button mat-button (click)="enviar()" color="primary" >Enviar</button>
 
         <!-- <button mat-raised-button class="pull-right" color="warn" (click)="resetInputs()">Cancelar</button>
     <button mat-raised-button class="pull-right" color="primary" (click)="publicar()"
       style="margin-right:12px;">{{editMode?'Guardar':'Publicar'}}</button> -->
     </form>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="dialogRef.close(false)" color="warn">Cancelar</button>
-    <button mat-button (click)="enviar()" color="primary" cdkFocusInitial>Enviar</button>
-</div>`

@@ -5,5 +5,4 @@ export class Aviso {
   talleres: number[] = [];
   sedes: number[] = [];
   global: boolean = false;
-  idtaller: number = 0;
 }

@@ -144,26 +144,26 @@ export class AvisosComponent implements OnInit {
   enviarAviso(option: number) {
     if (option === 1) {
       const dialogRef = this.dialog.open(AvisosDialog, {
-        data: { target: 'General' },
+        data: { target: option },
         width: "80%"
       })
     }
     else if( option === 2){
       const dialogRef = this.dialog.open(AvisosDialog, {
-        data: { posiblesDestinararios: this.talleres, target: 'por Taller' },
+        data: { posiblesDestinararios: this.talleres, target: option },
         width: "80%"
       })
       console.log(this.talleres)
     }
     else if( option === 3){
       const dialogRef = this.dialog.open(AvisosDialog, {
-        data: { posiblesDestinararios: this.sedes, target: 'por Sede' },
+        data: { posiblesDestinararios: this.sedes, target: option },
         width: "80%"
       })
     }
     else if( option === 4){
       const dialogRef = this.dialog.open(AvisosDialog, {
-        data: { posiblesDestinararios: this.sedes, target: 'a Responsables' },
+        data: { posiblesDestinararios: this.sedes, target: option },
         width: "80%"
       })
     }
