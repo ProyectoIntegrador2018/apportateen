@@ -35,7 +35,8 @@
         </div>
 
         <button mat-button (click)="dialogRef.close(false)" color="warn">Cancelar</button>
-        <button mat-button (click)="enviar()" color="primary" >Enviar</button>
+        <button mat-button (click)="enviar()" color="primary" *ngIf="!edit">Enviar</button>
+        <button mat-button (click)="duardar()" color="primary" *ngIf="edit">Guardar</button>
 
         <!-- <button mat-raised-button class="pull-right" color="warn" (click)="resetInputs()">Cancelar</button>
     <button mat-raised-button class="pull-right" color="primary" (click)="publicar()"

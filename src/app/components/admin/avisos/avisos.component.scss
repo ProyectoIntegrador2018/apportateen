@@ -27,19 +27,27 @@
     margin-top: 15px;
   }
 
-  // .mat-expansion-panel-header {
-  //   background-color: $color-blue;
+  .mat-expansion-panel-header {
+    background-color: $color-blue;
 
-  //   &:hover {
-  //     background-color: lighten($color-blue, .3);
-  //   }
+    &:hover {
+      background-color: lighten($color-blue, .3);
+    }
 
-  //   &-title,
-  //   &-description,
-  //   .mat-expansion-indicator::after {
-  //     color: $color-white;
-  //   }
-  // }
+    &-title,
+    &-description,
+    .mat-expansion-indicator::after {
+      color: $color-white;
+    }
+  }
+}
+
+mat-chip-list{
+  margin-right: 10px !important;
+}
+
+mat-chip{
+  background: #a5cfd6 !important;
 }
 
 ::ng-deep .mainbtns{

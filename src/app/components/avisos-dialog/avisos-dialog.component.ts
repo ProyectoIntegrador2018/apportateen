@@ -9,7 +9,9 @@ import { ApiService } from '../../services/api/api.service';
 
 export interface AvisosData {
   posiblesDestinararios,
-  target: number
+  destinatariosactuales,
+  target: number,
+  edit: boolean
 }
 
 /**
@@ -152,6 +154,15 @@ export class AvisosDialog {
       this.posiblesDestinatarios.unshift(destionatario)
     })
 
+    this.aviso = new Aviso
+  }
+
+  guardar(){
+
+    this.dialogRef.close(true)
+    this.destinatariosSeleccionados.forEach(destionatario => {
+      this.posiblesDestinatarios.unshift(destionatario)
+    })
     this.aviso = new Aviso
   }
 }

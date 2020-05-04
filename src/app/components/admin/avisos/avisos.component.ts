@@ -14,10 +14,11 @@ import { Sede } from 'app/models/sede.model';
 
 export class AvisosComponent implements OnInit {
   sedes: Sede[];
+  sedesById = [{}];
 
   newAviso: Aviso;
   talleres;
-  selectedAviso: Aviso = new Aviso();
+  selectedAviso;
   avisos;
   mensaje: string;
   titulo: string;
@@ -38,19 +39,20 @@ export class AvisosComponent implements OnInit {
 
   ngOnInit() {
     this.loading = true;
-    this.obtenerAvisos( () => {
-      this.obtenerTalleres(() =>{
-        this.obtenersedes(()=>{
+    this.obtenerAvisos(() => {
+      this.obtenerTalleres(() => {
+        this.obtenersedes(() => {
           this.loading = false;
         });
       });
     });
-    
-    
+
+
   }
 
   obtenerAvisos(callback) {
     this.api.getAllAvisos().subscribe(result => {
+      console.log(result);
       this.avisos = result;
       callback();
     });
@@ -62,12 +64,23 @@ export class AvisosComponent implements OnInit {
       callback();
     })
   }
-  
+
   obtenersedes(callback) {
     this.api.getAllSedes().subscribe(result => {
       this.sedes = result;
+      this.procesarSedes()
+      console.log(this.sedes, 'LAS SEDES')
       callback();
     });
+  }
+
+  procesarSedes() {
+    this.sedes.forEach(sede => {
+      let id = sede.id;
+      let nombre = sede.nombre;
+      this.sedesById.push({ id: nombre })
+    })
+    console.log(this.sedesById)
   }
 
   eliminar(aviso: Aviso) {
@@ -91,8 +104,31 @@ export class AvisosComponent implements OnInit {
 
   editar(aviso: Aviso) {
     this.selectedAviso = Object.assign({}, aviso);
+    var dialogRef;
+    if (this.selectedAviso.general == true) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { target: 1, edit: true }
+      });
+    } else if (this.selectedAviso.sede == null) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { destinatariosactuales: this.selectedAviso.talleres, posiblesDestinararios: this.talleres, target: 2, edit: true }
+      });
+    } else if (this.selectedAviso.taller == null) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { destinatariosactuales: this.selectedAviso.talleres, posiblesDestinararios: this.sedes, target: 3, edit: true }
+      });
+    }
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.snackBar.open("Aviso editado con éxito.", null, {
+          duration: 2000
+        })
+      }
+    })
+
     // this.publico = aviso.taller == 'Aviso público general' ? 'general' : 'especifico';
-    this.editMode = true;
+    // this.editMode = true;
   }
 
   // publicar() {
@@ -130,11 +166,16 @@ export class AvisosComponent implements OnInit {
   //   }
   // }
 
+  select(aviso) {
+    this.selectedAviso = aviso
+    console.log(this.selectedAviso)
+  }
+
   resetInputs() {
     this.selectedAviso = new Aviso();
     this.publico = 'general';
     this.editMode = false;
-    this.obtenerAvisos(()=>{
+    this.obtenerAvisos(() => {
       this.loading = false;
     })
   }
@@ -163,20 +204,20 @@ export class AvisosComponent implements OnInit {
         width: "80%"
       })
     }
-    else if( option === 2){
+    else if (option === 2) {
       dialogRef = this.dialog.open(AvisosDialog, {
         data: { posiblesDestinararios: this.talleres, target: option },
         width: "80%"
       })
       console.log(this.talleres)
     }
-    else if( option === 3){
+    else if (option === 3) {
       dialogRef = this.dialog.open(AvisosDialog, {
         data: { posiblesDestinararios: this.sedes, target: option },
         width: "80%"
       })
     }
-    else if( option === 4){
+    else if (option === 4) {
       dialogRef = this.dialog.open(AvisosDialog, {
         data: { posiblesDestinararios: this.sedes, target: option },
         width: "80%"
@@ -184,9 +225,9 @@ export class AvisosComponent implements OnInit {
     }
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result){
+      if (result) {
         this.loading = true;
-        this.obtenerAvisos(()=>{
+        this.obtenerAvisos(() => {
           this.loading = false;
         })
       }

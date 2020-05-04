@@ -30,13 +30,24 @@
       <mat-accordion>
         <mat-expansion-panel *ngFor="let aviso of avisos" class="avisos__single">
           <mat-expansion-panel-header>
-            <!-- <mat-panel-title>
+            <mat-panel-title>
               {{aviso.titulo}}
             </mat-panel-title>
-            <mat-panel-description>
-              {{aviso.taller}}
-            </mat-panel-description> -->
-            {{aviso.titulo}}<br />{{aviso.taller}}
+            <mat-chip-list>
+              <mat-chip *ngFor="let sede of aviso.nombresedes" [disableRipple]="true" [disabled]="true">
+                {{sede}}
+              </mat-chip>
+            </mat-chip-list>
+            <mat-chip-list>
+              <mat-chip *ngFor="let taller of aviso.nombretalleres" [disableRipple]="true" [disabled]="true">
+                {{taller}}
+              </mat-chip>
+            </mat-chip-list>
+            <mat-chip-list *ngIf="aviso.general">
+              <mat-chip [disableRipple]="true" [disabled]="true">
+                GENERAL
+              </mat-chip>
+            </mat-chip-list>
           </mat-expansion-panel-header>
           <p class="avisos__msg">{{aviso.mensaje}}</p>
           <mat-action-row>
@@ -45,6 +56,29 @@
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
+    </div>
+    <div class="avisos__item" *ngIf="!loading">
+      <div class="list-group">
+        <a *ngFor="let aviso of avisos" [class.active]="aviso.id == selectedAviso.id" (click)="select(aviso)"
+          class="list-group-item list-group-item-action">
+          <p>{{aviso.titulo}}</p>
+          <mat-chip-list>
+            <mat-chip *ngFor="let sede of aviso.nombresedes" [disableRipple]="true" [disabled]="true">
+              {{sede}}
+            </mat-chip>
+          </mat-chip-list>
+          <mat-chip-list>
+            <mat-chip *ngFor="let taller of aviso.nombretalleres" [disableRipple]="true" [disabled]="true">
+              {{taller}}
+            </mat-chip>
+          </mat-chip-list>
+          <mat-chip-list *ngIf="aviso.general">
+            <mat-chip [disableRipple]="true" [disabled]="true">
+              GENERAL
+            </mat-chip>
+          </mat-chip-list>
+        </a>
+      </div>
     </div>
   </div>
 </div>
