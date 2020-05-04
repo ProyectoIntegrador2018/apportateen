@@ -1,0 +1,40 @@
+<main class="home-patrocinadores">
+  <div class="my-jumbotron">
+    <img src="../../../assets/img/main.jpg" alt="">
+    <div class="my-jumbotron-text">Tenemos que preparar a los estudiantes para su futuro, no para nuestro pasado.</div>
+  </div>
+
+  <section class="home-patrocinadores__sponsors" id="Pats">
+    <section id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+
+      <div class="carousel-inner" >
+        <div class="carousel-item" *ngFor="let patrocinador of sponsorList; let i = index" [ngClass]="i == 0 ? 'active': ''">
+          <img class="d-block w-100" [src]="patrocinador.backImg">
+          <img class="inner-logo" [src]=patrocinador.url alt="">
+          <p>{{patrocinador.frase}}</p>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </section>
+    <div class="home-patrocinadores__sponsors__form text-center">
+      <p class="form__title">¿Quieres ser patrocinador?</p>
+      <p class="form__subtitle">¡Registra tus datos y nosotros te contactaremos!</p>
+      <form class="form">
+        <input [(ngModel)]="sponsor.nombre" [ngModelOptions]="{standalone: true}" placeholder="Nombre"
+          class="custom-input">
+        <input type="email" [(ngModel)]="sponsor.correo" [ngModelOptions]="{standalone: true}" placeholder="Correo"
+          class="custom-input">
+        <div class="action text-center">
+          <button (click)="register()">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>

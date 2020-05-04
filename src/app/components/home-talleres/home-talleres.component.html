@@ -1,0 +1,34 @@
+<main class="home-talleres">
+  <div class="my-jumbotron">
+    <img src="../../../assets/img/main2.jpg" alt="">
+    <div class="my-jumbotron-text">TALLERES, FECHAS Y SEDES</div>
+  </div>
+
+  <section class="talleres">
+    <mat-grid-list cols="2" rowHeight="700px">
+      <mat-grid-tile *ngFor="let taller of talleres">
+        <mat-card class="example-card">
+          <div mat-card-image class="example-img-container">
+            <img [src]="taller.url_array[0]" alt="Photo of a Shiba Inu">
+          </div>
+          <mat-card-content class="taller-title">
+            <p>
+              {{taller.nombre}}
+            </p>
+          </mat-card-content>
+          <mat-card-content class="taller-fechas">
+            <p>
+              {{formatDates(taller.fecha_inicio, taller.fecha_fin)}}
+            </p>
+            <p>{{taller.sedeDesc}}</p>
+          </mat-card-content>
+          <mat-card-content class="taller-description">
+            <p>
+              {{taller.descripcion}}
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </section>
+</main>
