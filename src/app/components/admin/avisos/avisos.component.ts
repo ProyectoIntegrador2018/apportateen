@@ -25,6 +25,8 @@ export class AvisosComponent implements OnInit {
   publico: string;
   idtaller = 0;
 
+  loading = true;
+
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {
     this.avisos = [];
     this.talleres = [];
@@ -35,26 +37,36 @@ export class AvisosComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.obtenerAvisos();
-    this.obtenerTalleres();
-    this.obtenersedes();
+    this.loading = true;
+    this.obtenerAvisos( () => {
+      this.obtenerTalleres(() =>{
+        this.obtenersedes(()=>{
+          this.loading = false;
+        });
+      });
+    });
+    
+    
   }
 
-  obtenerAvisos() {
+  obtenerAvisos(callback) {
     this.api.getAllAvisos().subscribe(result => {
       this.avisos = result;
+      callback();
     });
   }
 
-  obtenerTalleres() {
+  obtenerTalleres(callback) {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
+      callback();
     })
   }
   
-  obtenersedes() {
+  obtenersedes(callback) {
     this.api.getAllSedes().subscribe(result => {
       this.sedes = result;
+      callback();
     });
   }
 
@@ -79,7 +91,7 @@ export class AvisosComponent implements OnInit {
 
   editar(aviso: Aviso) {
     this.selectedAviso = Object.assign({}, aviso);
-    this.publico = aviso.taller == 'Aviso público general' ? 'general' : 'especifico';
+    // this.publico = aviso.taller == 'Aviso público general' ? 'general' : 'especifico';
     this.editMode = true;
   }
 
@@ -122,7 +134,9 @@ export class AvisosComponent implements OnInit {
     this.selectedAviso = new Aviso();
     this.publico = 'general';
     this.editMode = false;
-    this.obtenerAvisos();
+    this.obtenerAvisos(()=>{
+      this.loading = false;
+    })
   }
 
   // checkInputs(): boolean {
@@ -142,31 +156,41 @@ export class AvisosComponent implements OnInit {
   // }
 
   enviarAviso(option: number) {
+    var dialogRef;
     if (option === 1) {
-      const dialogRef = this.dialog.open(AvisosDialog, {
+      dialogRef = this.dialog.open(AvisosDialog, {
         data: { target: option },
         width: "80%"
       })
     }
     else if( option === 2){
-      const dialogRef = this.dialog.open(AvisosDialog, {
+      dialogRef = this.dialog.open(AvisosDialog, {
         data: { posiblesDestinararios: this.talleres, target: option },
         width: "80%"
       })
       console.log(this.talleres)
     }
     else if( option === 3){
-      const dialogRef = this.dialog.open(AvisosDialog, {
+      dialogRef = this.dialog.open(AvisosDialog, {
         data: { posiblesDestinararios: this.sedes, target: option },
         width: "80%"
       })
     }
     else if( option === 4){
-      const dialogRef = this.dialog.open(AvisosDialog, {
+      dialogRef = this.dialog.open(AvisosDialog, {
         data: { posiblesDestinararios: this.sedes, target: option },
         width: "80%"
       })
     }
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.loading = true;
+        this.obtenerAvisos(()=>{
+          this.loading = false;
+        })
+      }
+    })
 
   }
 }

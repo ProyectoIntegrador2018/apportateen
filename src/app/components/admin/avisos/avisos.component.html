@@ -1,7 +1,8 @@
 <div class="avisos">
   <div class="avisos__container">
+    <mat-spinner [diameter]="50" *ngIf="loading"></mat-spinner>
     <h3 class="avisos__title">Avisos</h3>
-    <div class="avisos__item">
+    <div class="avisos__item" *ngIf="!loading">
       <mat-card>
         <h5>Enviar nuevo aviso:</h5>
         <button mat-raised-button color="primary" class="mainbtns" (click)="enviarAviso(1)">
@@ -24,7 +25,7 @@
         </button>
       </mat-card>
     </div>
-    <div class="avisos__item">
+    <div class="avisos__item" *ngIf="!loading">
       <h3 class="avisos__title">Avisos Activos</h3>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let aviso of avisos" class="avisos__single">
