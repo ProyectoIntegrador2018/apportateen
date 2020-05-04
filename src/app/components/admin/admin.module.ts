@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatStepperModule, MatProgressSpinnerModule, MatCheckbox} from '@angular/material';
-import { MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule,MatCardModule} from '@angular/material'
+import { MatChipsModule,MatAutocompleteModule, MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule,MatCardModule,MatGridListModule} from '@angular/material'
 import { ConvocatoriasComponent } from './convocatorias/convocatorias.component';
 import { SedesComponent } from './sedes/sedes.component';
 import { TalleresComponent } from './talleres/talleres.component';
@@ -21,12 +21,14 @@ import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/stor
 import { AdministracionRolesComponent } from './administracion-roles/administracion-roles.component';
 import { PagosComponent } from './pagos/pagos.component';
 import { PendingComponent } from './pending/pending.component';
+import { AvisosDialog } from '../avisos-dialog/avisos-dialog.component';
 
 @NgModule({
     imports: [
         CommonModule,
         RouterModule,
         FormsModule,
+        ReactiveFormsModule,
         MatSidenavModule,
         MatIconModule,
         MatToolbarModule,
@@ -45,7 +47,10 @@ import { PendingComponent } from './pending/pending.component';
         MatStepperModule,
         AngularFireStorageModule,
         MatProgressSpinnerModule,
-        MatCardModule
+        MatCardModule,
+        MatGridListModule,
+        MatChipsModule,
+        MatAutocompleteModule
     ],
     declarations: [MainComponent,
         ConvocatoriasComponent,
@@ -60,8 +65,11 @@ import { PendingComponent } from './pending/pending.component';
         DocumentosComponent,
         AdministracionRolesComponent,
         PagosComponent,
-        PendingComponent
+        PendingComponent,
+        AvisosDialog
     ],
-    exports: [MainComponent]
+    exports: [MainComponent],
+    entryComponents: [AvisosDialog]
+
 })
 export class AdminModule { }

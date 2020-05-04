@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Sede } from '../../../models/sede.model';
 import { Responsable } from '../../../models/responsable.model';
 import { ApiService } from '../../../services/api/api.service';
-import { MatDialog, MatSnackBar, MatProgressSpinnerModule } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
@@ -77,9 +77,10 @@ export class SedesComponent implements OnInit {
             duration: 3000
           }).onAction().subscribe(() => {
             this.snackBar.open('Primero se deben eliminar o asignar los talleres registrados en esta sede a otra. Solo se pueden eliminar sedes que no cuentan con talleres.', 'OK', {}
+            );
+            this.loading = false;
           });
-          this.loading = false;
-        });
+        }
       }
     });
   }

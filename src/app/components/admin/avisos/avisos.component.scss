@@ -27,18 +27,31 @@
     margin-top: 15px;
   }
 
-  .mat-expansion-panel-header {
-    background-color: $color-blue;
+  // .mat-expansion-panel-header {
+  //   background-color: $color-blue;
 
-    &:hover {
-      background-color: lighten($color-blue, .3);
-    }
+  //   &:hover {
+  //     background-color: lighten($color-blue, .3);
+  //   }
 
-    &-title,
-    &-description,
-    .mat-expansion-indicator::after {
-      color: $color-white;
-    }
+  //   &-title,
+  //   &-description,
+  //   .mat-expansion-indicator::after {
+  //     color: $color-white;
+  //   }
+  // }
+}
+
+::ng-deep .mainbtns{
+  height:80px !important;
+  width:200px !important;
+  white-space: pre-wrap !important;
+  margin: 10px;
+}
+
+button{
+  .mat-icon{
+    font-size: 30px !important;
   }
 }
 

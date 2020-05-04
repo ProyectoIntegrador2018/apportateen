@@ -2,6 +2,8 @@ export class Aviso {
   id: number = 0;
   titulo: string = '';
   mensaje: string = '';
-  taller: string = '';
+  talleres: number[] = [];
+  sedes: number[] = [];
+  global: boolean = false;
   idtaller: number = 0;
 }
