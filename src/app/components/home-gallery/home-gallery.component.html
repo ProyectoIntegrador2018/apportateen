@@ -3,4 +3,13 @@
     <img src="../../../assets/img/main.jpg" alt="">
     <div class="my-jumbotron-text">Galería</div>
   </div>
+  <section class="home-gallery__gallery" id="Pats">
+    <div class="home-gallery__gallery__list">
+        <mat-grid-list cols="3" rowHeight="300px">
+          <mat-grid-tile *ngFor="let imgs of gallery">
+            <img class="gallery-img" [src]="imgs" alt="Patrocinador">
+          </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+  </section>
 </main>
