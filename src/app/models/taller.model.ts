@@ -17,4 +17,9 @@ export class Taller {
     correo_tutor : string = '';
     nombre_tutor : string = '';
     telefono_tutor : string = '';
+    hora_inicio : string = '';
+    hora_fin : string = '';
+    fecha_inicio : string = '';
+    fecha_fin : string = '';
+    estado: string = '';
 }
