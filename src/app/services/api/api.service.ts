@@ -290,6 +290,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+   //API: GET /inscripciones
+   public getTalleresInscritos(user_id: any): Observable<any> {
+    return this.http
+      .get<any>(`${API_URL}/inscripciones/${user_id}`, httpOptions)
+      .catch(this.handleError);
+  }
+
 
   // API: GET /categorias
   public getAllCategorias(): Observable<Categoria[]> {

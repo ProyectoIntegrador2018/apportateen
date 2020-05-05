@@ -15,6 +15,8 @@ export class TalleresInscritosComponent implements OnInit {
 
   talleres;
   isTalleresInscritos;
+  user: User = new User();
+
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
     public dialog: MatDialog,
@@ -24,7 +26,8 @@ export class TalleresInscritosComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.cargarTalleres();
+    this.user = this.storage.get('@user:data');
+    this.cargarTalleresInscritos();
   }
 
 
@@ -32,6 +35,14 @@ export class TalleresInscritosComponent implements OnInit {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
       console.log(this.talleres);
+    });
+  }
+
+  cargarTalleresInscritos(){
+    this.api.getTalleresInscritos(this.user.id).subscribe(result => {
+      console.log("Talleres insritos");
+      console.log(result);
+      this.talleres = result;
     });
   }
 
