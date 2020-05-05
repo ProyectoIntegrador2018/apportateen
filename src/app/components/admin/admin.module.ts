@@ -21,6 +21,7 @@ import { DocumentosComponent } from './documentos/documentos.component';
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { AdministracionRolesComponent } from './administracion-roles/administracion-roles.component';
 import { PagosComponent } from './pagos/pagos.component';
+import { PendingComponent } from './pending/pending.component';
 
 @NgModule({
     imports: [
@@ -56,7 +57,8 @@ import { PagosComponent } from './pagos/pagos.component';
         UsuariosDetalleComponent,
         DocumentosComponent,
         AdministracionRolesComponent,
-        PagosComponent
+        PagosComponent,
+        PendingComponent
     ],
     exports: [MainComponent]
 })
