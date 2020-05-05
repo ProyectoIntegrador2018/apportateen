@@ -107,12 +107,12 @@ export class DetalleTallerComponent implements OnInit {
   }
 
   
-  obtenerCostos() {
+  /*obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
       console.log(result);
     });
-  }
+  }*/
 
 
   costoTaller(): number {
