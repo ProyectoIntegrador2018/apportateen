@@ -45,6 +45,10 @@
             </mat-form-field>
           </div>
 
+          <div>
+            <mat-checkbox [(ngModel)]="selectedSede.gratis">Hacer todos los talleres gratis en esta sede.</mat-checkbox>
+          </div>
+
           <div *ngIf="!newSede">
             <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
             <button mat-raised-button class="pull-right" color="primary" (click)="save()"
