@@ -190,6 +190,18 @@ export class DetalleTallerComponent implements OnInit {
           });
         }
 
+        let inscripcion = {
+          "tallerId" : taller.id,
+          "userId" : this.user.id
+        }
+
+        this.api.createInscripcion(inscripcion).subscribe(res => {
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        })
+
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           if (res.status == "success") {
@@ -243,6 +255,21 @@ export class DetalleTallerComponent implements OnInit {
         if(index_taller > -1){
           this.user.talleres.splice(index_taller,1);
         }
+
+        let inscripcion = {
+          "taller_id": taller.id,
+          "user_id": this.user.id
+        }
+
+        this.api.removeInscripcion(inscripcion).subscribe(res => {
+          this.snackBar.open(res.message, '', {
+            duration: 1500,
+          });
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        });
 
 
         this.api.updateUser(this.user).subscribe(res => {
