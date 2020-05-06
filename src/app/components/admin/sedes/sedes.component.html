@@ -1,20 +1,22 @@
 <div class="sedes">
   <div class="sedes__container">
+    <mat-spinner [diameter]="50" *ngIf="loading"></mat-spinner>
     <div class="sedes__header lpadfix">
       <h3>Sedes</h3>
       <button mat-icon-button color="primary" (click)="add()">
         <mat-icon aria-label="add_sede">add_circle</mat-icon>
       </button>
     </div>
-    <div class="sedes__item">
-      <div class="col-md-6 sedes__list">
-        <div class="list-group">
-          <a *ngFor="let s of sedes" [class.active]="s.id == selectedSede.id" (click)="select(s)"
-            class="list-group-item list-group-item-action">{{s.nombre}}</a>
+
+    <div *ngIf="initialLoading">
+      <div class="sedes__item">
+        <div class="col-md-6 sedes__list">
+          <div class="list-group">
+            <a *ngFor="let s of sedes" [class.active]="s.id == selectedSede.id" (click)="select(s)"
+              class="list-group-item list-group-item-action">{{s.nombre}}</a>
+          </div>
         </div>
-      </div>
-      <div class="col-md-6 detail con">
-        <div class="fields">
+        <div class="col-md-6 detail con">
           <div>
             <h5>{{ newSede ? 'Nueva sede:' : ' '}} </h5>
           </div>
@@ -42,29 +44,47 @@
               <input matInput [(ngModel)]="selectedSede.correo_responsable" name="correo_responsable">
             </mat-form-field>
           </div>
+
           <div>
-              <mat-checkbox [(ngModel)]="selectedSede.gratis">Hacer todos los talleres gratis en esta sede.</mat-checkbox>
+            <mat-checkbox [(ngModel)]="selectedSede.gratis">Hacer todos los talleres gratis en esta sede.</mat-checkbox>
+          </div>
+
+          <div *ngIf="!newSede">
+            <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
+            <button mat-raised-button class="pull-right" color="primary" (click)="save()"
+              style="margin-right:12px;">Guardar</button>
+          </div>
+          <div *ngIf="newSede">
+            <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
+            <button mat-raised-button class="pull-right" color="primary" (click)="create()"
+              style="margin-right:12px;">Crear</button>
           </div>
         </div>
-        <div *ngIf="!newSede">
-          <button mat-raised-button class="pull-right" color="warn" (click)="delete()">Eliminar</button>
-          <button mat-raised-button class="pull-right" color="primary" (click)="save()"
-            style="margin-right:12px;">Guardar</button>
-        </div>
-        <div *ngIf="newSede">
-          <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
-          <button mat-raised-button class="pull-right" color="primary" (click)="create()"
-            style="margin-right:12px;">Crear</button>
+      </div>
+      <div class="sedes__item">
+        <div class="col-md-6 talleres">
+          <!-- Talleres
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
+          </ul> -->
+
+          <mat-card class="mat-elevation-z2" *ngIf="selectedSede.talleres.length > 0; else SinTalleres">
+            <h6 *ngIf="selectedSede.talleres.length == 1; else VariosTalleres">
+              {{selectedSede.talleres.length + ' '}}Taller registrado:</h6>
+            <ng-template #VariosTalleres>
+              <h6>{{selectedSede.talleres.length + ' '}}Talleres registrados:</h6>
+            </ng-template>
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
+            </ul>
+          </mat-card>
+          <ng-template #SinTalleres>
+            <mat-card class="mat-elevation-z2">No hay talleres registrados en esta sede</mat-card>
+          </ng-template>
+
         </div>
       </div>
     </div>
-    <div class="sedes__item">
-      <div class="col-md-4 talleres">
-        Talleres
-        <ul class="list-group list-group-flush">
-          <li *ngFor="let taller of selectedSede.talleres" class="list-group-item">{{taller.nombre}}</li>
-        </ul>
-      </div>
-    </div>
+
   </div>
 </div>

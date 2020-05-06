@@ -1,37 +1,31 @@
 <div class="avisos">
   <div class="avisos__container">
+    <mat-spinner [diameter]="50" *ngIf="loading"></mat-spinner>
     <h3 class="avisos__title">Avisos</h3>
-    <div class="avisos__item">
-      <form>
-        <mat-form-field>
-          <mat-select placeholder="Enviar mensaje a:" [(value)]="publico">
-            <mat-option value="general">Todos los talleres</mat-option>
-            <mat-option value="especifico">Taller específico</mat-option>
-          </mat-select>
-        </mat-form-field>
+    <div class="avisos__item" *ngIf="!loading">
+      <mat-card>
+        <h5>Enviar nuevo aviso:</h5>
+        <button mat-raised-button color="primary" class="mainbtns" (click)="enviarAviso(1)">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">recent_actors</mat-icon><br />
+          General
+        </button>
 
-        <mat-form-field *ngIf="publico == 'especifico'">
-          <mat-select placeholder="Selecciona el taller" [(ngModel)]="selectedAviso.idtaller" name="tallerselect">
-            <mat-option *ngFor="let taller of talleres" [value]="taller.id">{{taller.nombre}} - {{taller.sedeDesc}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <button mat-raised-button color="primary" class="mainbtns" (click)="enviarAviso(2)">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">supervised_user_circle</mat-icon><br />
+          Por Taller
+        </button>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Título de aviso</mat-label>
-          <input matInput [(ngModel)]="selectedAviso.titulo" name="titulo">
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Mensaje del aviso</mat-label>
-          <textarea matInput [(ngModel)]="selectedAviso.mensaje" name="mensaje"></textarea>
-        </mat-form-field>
-        <button mat-raised-button class="pull-right" color="warn" (click)="resetInputs()">Cancelar</button>
-        <button mat-raised-button class="pull-right" color="primary" (click)="publicar()"
-          style="margin-right:12px;">{{editMode?'Guardar':'Publicar'}}</button>
-      </form>
+        <button mat-raised-button color="primary" class="mainbtns" (click)="enviarAviso(3)">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">location_on</mat-icon><br />
+          Por Sede
+        </button>
+        <button mat-raised-button color="primary" class="mainbtns" (click)="enviarAviso(4)">
+          <mat-icon aria-hidden="false" aria-label="Example home icon">alternate_email</mat-icon><br />
+          A Responsables
+        </button>
+      </mat-card>
     </div>
-    <div class="avisos__item">
+    <div class="avisos__item" *ngIf="!loading">
       <h3 class="avisos__title">Avisos Activos</h3>
       <mat-accordion>
         <mat-expansion-panel *ngFor="let aviso of avisos" class="avisos__single">
@@ -39,9 +33,21 @@
             <mat-panel-title>
               {{aviso.titulo}}
             </mat-panel-title>
-            <mat-panel-description>
-              {{aviso.taller}}
-            </mat-panel-description>
+            <mat-chip-list>
+              <mat-chip *ngFor="let sede of aviso.nombresedes" [disableRipple]="true" [disabled]="true">
+                {{sede}}
+              </mat-chip>
+            </mat-chip-list>
+            <mat-chip-list>
+              <mat-chip *ngFor="let taller of aviso.nombretalleres" [disableRipple]="true" [disabled]="true">
+                {{taller}}
+              </mat-chip>
+            </mat-chip-list>
+            <mat-chip-list *ngIf="aviso.general">
+              <mat-chip [disableRipple]="true" [disabled]="true">
+                GENERAL
+              </mat-chip>
+            </mat-chip-list>
           </mat-expansion-panel-header>
           <p class="avisos__msg">{{aviso.mensaje}}</p>
           <mat-action-row>
