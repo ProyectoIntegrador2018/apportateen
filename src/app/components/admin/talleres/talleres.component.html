@@ -47,11 +47,69 @@
           <mat-label>Descripción</mat-label>
           <textarea matInput [(ngModel)]="selectedTaller.descripcion"></textarea>
         </mat-form-field>
-        <mat-form-field>
-          <mat-select placeholder="Sede" [(ngModel)]="selectedTaller.sede" name="sedeselect">
-            <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+
+        <div class="row">
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>Fecha de inicio</mat-label>
+              <input matInput [matDatepicker]="picker1" [(ngModel)]="selectedTaller.fecha_inicio" [min]="fecha_actual" [max]="selectedTaller.fecha_fin">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          
+        </div>
+
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-label>Fecha de fin</mat-label>
+              <input matInput [matDatepicker]="picker2" [(ngModel)]="selectedTaller.fecha_fin" [min] ="selectedTaller.fecha_inicio">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <mat-form-field>
+            <mat-label>Hora de inicio</mat-label>
+            <input matInput type="time" [(ngModel)] ="selectedTaller.hora_inicio">
+            <mat-hint align="start">24 hrs.</mat-hint>
+          </mat-form-field>
+          
+        </div>
+        <div class="col-md-3">
+          <mat-form-field>
+            <mat-label>Hora de fin</mat-label>
+            <input matInput type="time" [(ngModel)] ="selectedTaller.hora_fin" [min]="hora_temp">
+            <mat-hint align="start">24 hrs.</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col"></div>
+      </div>
+
+      
+        
+      
+      <div class="row" style="margin-top:15px;">
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-select placeholder="Sede" [(ngModel)]="selectedTaller.sede" name="sedeselect">
+              <mat-option *ngFor="let s of sedes" [value]="s.id">{{s.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field>
+            <mat-select placeholder="Estado" [(ngModel)]="selectedTaller.estado">
+              <mat-option *ngFor="let e of estados_data" [value]="e">{{e}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+        
 
           <mat-form-field appearance="outline">
             <mat-label>Tutor</mat-label>
@@ -102,12 +160,12 @@
           </div>
         </div>
 
-        <div *ngIf="!newTaller">
+        <div *ngIf="!newTaller" style="margin-bottom:80px;">
           <button mat-raised-button class="pull-right" color="warn" (click)="newDelete()">Eliminar</button>
           <button mat-raised-button class="pull-right" color="primary" (click)="save()"
             style="margin-right:12px;">Guardar</button>
         </div>
-        <div *ngIf="newTaller">
+        <div *ngIf="newTaller" style="margin-bottom:80px;">
           <button mat-stroked-button class="pull-right" color="primary" (click)="cancel()">Cancelar</button>
           <button mat-raised-button class="pull-right" color="primary" (click)="create()"
             style="margin-right:12px;">Crear</button>

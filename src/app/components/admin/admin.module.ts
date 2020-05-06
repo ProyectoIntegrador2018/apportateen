@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatStepperModule, MatProgressSpinnerModule, MatCheckbox} from '@angular/material';
-import { MatChipsModule,MatAutocompleteModule, MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule,MatCardModule,MatGridListModule} from '@angular/material'
+import { MatStepperModule, MatProgressSpinnerModule, MatCheckbox} from '@angular/material';
+import { MatDatepickerModule, MatChipsModule,MatAutocompleteModule, MatSidenavModule, MatIconModule, MatToolbarModule, MatListModule, MatSlideToggleModule, MatButtonModule, MatInputModule, MatExpansionModule, MatSelectModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatTableModule, MatCheckboxModule,MatCardModule,MatGridListModule} from '@angular/material'
 import { ConvocatoriasComponent } from './convocatorias/convocatorias.component';
 import { SedesComponent } from './sedes/sedes.component';
 import { TalleresComponent } from './talleres/talleres.component';
@@ -50,7 +50,8 @@ import { AvisosDialog } from '../avisos-dialog/avisos-dialog.component';
         MatCardModule,
         MatGridListModule,
         MatChipsModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatDatepickerModule
     ],
     declarations: [MainComponent,
         ConvocatoriasComponent,

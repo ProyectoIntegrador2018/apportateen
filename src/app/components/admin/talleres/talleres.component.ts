@@ -8,6 +8,7 @@ import { Taller } from 'app/models/taller.model';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { discardPeriodicTasks } from '@angular/core/testing';
+import { estados } from './estados';
 
 @Component({
   selector: 'talleres',
@@ -30,20 +31,29 @@ export class TalleresComponent implements OnInit {
   filePathAr;
   fileRefAr;
 
-  nombre_tutor;
-  correo_tutor;
-  telefono_tutor;
+  hora_temp;
+  hora_flag: boolean;
+
+  // nombre_tutor;
+  // correo_tutor;
+  // telefono_tutor;
+
+  estados_data = estados;
+  
 
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
     this.talleres = [];
     this.selectedTaller = {};
     this.sedes = [];
     this.categorias = [];
+    
+    
   }
 
   ngOnInit() {
     this.obtenerTalleres();
     this.obtenerCostos();
+    
   }
 
   obtenerTalleres() {
@@ -53,8 +63,6 @@ export class TalleresComponent implements OnInit {
       this.sedes = result[1];
       this.categorias = result[2];
       this.autoSelect();
-
-      // this.api
     });
   }
 
@@ -154,13 +162,14 @@ export class TalleresComponent implements OnInit {
   }
 
   save() {
-    const dialogRef = this.dialog.open(ConfirmationDialog, {
-      disableClose: true
-    });
-
-
-    dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
-    dialogRef.afterClosed().subscribe(result => {
+    
+    this.checa_horas();
+    if(this.hora_flag){
+      const dialogRef = this.dialog.open(ConfirmationDialog, {
+        disableClose: true
+      });
+      dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
+      dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log(result);
         // Cambiar a updateTutor
@@ -178,12 +187,15 @@ export class TalleresComponent implements OnInit {
               });
             });
 
-        //aqui
         })
-
-
       }
     });
+    } else {
+      this.snackBar.open("Verifica que la hora de fin sea al menos una hora después de la de inicio",'',{
+        duration: 6000
+      });
+    }
+    
   }
 
   cancel() {
@@ -192,31 +204,39 @@ export class TalleresComponent implements OnInit {
   }
 
   create() {
-    Promise.all(
-      Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosCreate(this.fileFotoAr[item], index))).then((url) => {
-        console.log("El taller a crear es:")
-        console.log(this.selectedTaller);
-        // crea tutor nuevo al crear taller... hay que checar con Sonia si conviene entonces tener una interfaz para el manejo de tutores ?
-        this.api.createTutor(this.selectedTaller).subscribe(res => {
-          console.log(res)
-          this.selectedTaller.tutor = res.data.id_tutor;
-          this.api.createTaller(this.selectedTaller).subscribe(res => {
-            this.snackBar.open(res.message, '', {
+    this.checa_horas()
+    if(this.hora_flag){
+      Promise.all(
+        Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosCreate(this.fileFotoAr[item], index))).then((url) => {
+          console.log("El taller a crear es:")
+          console.log(this.selectedTaller);
+          // crea tutor nuevo al crear taller... hay que checar con Sonia si conviene entonces tener una interfaz para el manejo de tutores ?
+          this.api.createTutor(this.selectedTaller).subscribe(res => {
+            console.log(res)
+            this.selectedTaller.tutor = res.data.id_tutor;
+            this.api.createTaller(this.selectedTaller).subscribe(res => {
+              this.snackBar.open(res.message, '', {
+                duration: 1000
+              });
+              this.obtenerTalleres();
+              this.fileFotoAr = [];
+              this.filePathAr = []
+            }, error => {
+              this.snackBar.open(error.error, '', {
               duration: 1000
             });
-            this.obtenerTalleres();
-            this.fileFotoAr = [];
-            this.filePathAr = []
-          }, error => {
-            this.snackBar.open(error.error, '', {
-            duration: 1000
           });
-        });
-      })
-      }).catch((error) => {
-        console.log(error);
-        console.log("Error");
-      })
+        })
+        }).catch((error) => {
+          console.log(error);
+          console.log("Error");
+        })
+    } else {
+      this.snackBar.open("Verifica que la hora de fin sea al menos una hora después de la de inicio",'',{
+        duration: 6000
+      });
+    }
+    
   }
 
   updateImages(){
@@ -320,15 +340,28 @@ export class TalleresComponent implements OnInit {
     this.newTaller = null;
 
     this.getTutor(this.selectedTaller);
+    this.min_horaFin();
+  }
 
+  // función para establecer el valor mínimo de la hora de fin de un taller (una hora después de la hora de inicio)
+  min_horaFin(){
+    let t1:number = parseInt(this.selectedTaller.hora_inicio.substr(0,2)) + 1;
+    this.hora_temp = ('0' + t1.toString()).slice(-2) + ":"+ this.selectedTaller.hora_inicio.substr(3);
+  }
+
+  checa_horas(){
+    if(parseInt(this.hora_temp.substr(0,2)) >= parseInt(this.selectedTaller.hora_fin.substr(0,2))){
+      this.hora_flag = false;
+    } else {
+      this.hora_flag = true;
+    }
   }
 
   autoSelect() {
     if (this.talleres.length != 0) {
       this.selectedTaller = Object.assign({}, this.talleres[0]);
-
       this.getTutor(this.selectedTaller);
-
+      this.min_horaFin();
     }
   }
 
@@ -346,6 +379,8 @@ export class TalleresComponent implements OnInit {
       taller.nombre_tutor = result.nombre_tutor;
       taller.correo_tutor = result.correo_tutor;
       taller.telefono_tutor = result.telefono_tutor;
+
+      
     })
   }
 
