@@ -5,4 +5,6 @@ export class Aviso {
   taller: number[] = null;
   sede: number[] = null;
   general: boolean = false;
+  nombretalleres: string[] = [];
+  nombresedes: string[] = [];
 }
