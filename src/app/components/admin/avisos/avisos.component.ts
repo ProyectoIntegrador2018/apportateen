@@ -18,7 +18,7 @@ export class AvisosComponent implements OnInit {
 
   newAviso: Aviso;
   talleres;
-  selectedAviso;
+  selectedAviso: Aviso = new Aviso();
   avisos;
   mensaje: string;
   titulo: string;
@@ -107,15 +107,17 @@ export class AvisosComponent implements OnInit {
     var dialogRef;
     if (this.selectedAviso.general == true) {
       dialogRef = this.dialog.open(AvisosDialog, {
-        data: { target: 1, edit: true }
+        data: { target: 1, edit: true,titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
       });
     } else if (this.selectedAviso.sede == null) {
       dialogRef = this.dialog.open(AvisosDialog, {
-        data: { destinatariosactuales: this.selectedAviso.talleres, posiblesDestinararios: this.talleres, target: 2, edit: true }
+        data: { destinatariosactuales: this.selectedAviso.taller, posiblesDestinararios: this.talleres, target: 2, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
       });
+      dialogRef.aviso.titulo = this.selectedAviso.titulo;
+      dialogRef.aviso.mensaje = this.selectedAviso.mensaje;
     } else if (this.selectedAviso.taller == null) {
       dialogRef = this.dialog.open(AvisosDialog, {
-        data: { destinatariosactuales: this.selectedAviso.talleres, posiblesDestinararios: this.sedes, target: 3, edit: true }
+        data: { destinatariosactuales: this.selectedAviso.sede, posiblesDestinararios: this.sedes, target: 3, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
       });
     }
 

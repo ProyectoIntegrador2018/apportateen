@@ -76,11 +76,11 @@ export class SedesComponent implements OnInit {
           this.snackBar.open(errMessage, 'Ayuda', {
             duration: 3000
           }).onAction().subscribe(() => {
-            this.snackBar.open('Primero se deben eliminar o asignar los talleres registrados en esta sede a otra. Solo se pueden eliminar sedes que no cuentan con talleres.', 'OK', {}
-            );
+            this.snackBar.open('Primero se deben eliminar o asignar los talleres registrados en esta sede a otra. Solo se pueden eliminar sedes que no cuentan con talleres.', 'OK', {});
             this.loading = false;
           });
         }
+        );
       }
     });
   }

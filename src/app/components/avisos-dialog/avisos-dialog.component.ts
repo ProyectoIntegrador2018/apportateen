@@ -9,9 +9,11 @@ import { ApiService } from '../../services/api/api.service';
 
 export interface AvisosData {
   posiblesDestinararios,
-  destinatariosactuales,
+  destinatariosactuales: any[],
   target: number,
   edit: boolean
+  titulo: string,
+  mensaje: string
 }
 
 /**
@@ -46,13 +48,21 @@ export class AvisosDialog {
     public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<AvisosDialog>,
     @Inject(MAT_DIALOG_DATA) public data: AvisosData) {
-    this.posiblesDestinatarios = this.data.posiblesDestinararios
+    this.posiblesDestinatarios = JSON.parse(JSON.stringify(this.data.posiblesDestinararios)); //Clone object
+    
     this.filteredDestinatarios = this.destinatarioCtrl.valueChanges.pipe(
       startWith(''),
       map((destinatario: string | null) => destinatario ? this._filter(destinatario) : this.posiblesDestinatarios.slice()));
 
-    this.aviso.titulo = "";
-    this.aviso.mensaje = "";
+    if(!this.data.edit){
+      this.aviso.titulo = "";
+      this.aviso.mensaje = "";
+    } else{
+      console.log("CONRUYENDAAA", this.data)
+      this.destinatariosSeleccionados = JSON.parse(JSON.stringify(this.data.destinatariosactuales));
+      this.aviso.titulo = this.data.titulo;
+      this.aviso.mensaje = this.data.mensaje;
+    }
 
     if (this.data.target === 1) {
       this.targetMessage = 'General';
@@ -93,6 +103,7 @@ export class AvisosDialog {
       this.fruitInput.nativeElement.value = '';
       this.destinatarioCtrl.setValue(null);
     }
+    console.log(this.destinatariosSeleccionados)
   }
 
   removeValueFromPossibles(indx) {
@@ -104,33 +115,30 @@ export class AvisosDialog {
   }
 
   onNoClick(): void {
-    this.destinatariosSeleccionados.forEach(destionatario => {
-      this.posiblesDestinatarios.unshift(destionatario)
-    })
     this.aviso = new Aviso
     this.dialogRef.close();
   }
 
   enviar(): void {
     if (this.data.target === 1) {
-      this.aviso.sedes = null;
-      this.aviso.talleres = null;
-      this.aviso.global = true;
+      this.aviso.sede = null;
+      this.aviso.taller = null;
+      this.aviso.general = true;
 
     }
     else if (this.data.target === 2) {
-      this.aviso.sedes = null;
-      this.aviso.talleres = [];
+      this.aviso.sede = null;
+      this.aviso.taller = [];
       this.destinatariosSeleccionados.forEach(taller => {
-        this.aviso.talleres.push(taller.id)
+        this.aviso.taller.push(taller.id)
       });
 
     }
     else if (this.data.target === 3) {
-      this.aviso.talleres = null;
-      this.aviso.sedes = [];
+      this.aviso.taller = null;
+      this.aviso.sede = [];
       this.destinatariosSeleccionados.forEach(sede => {
-        this.aviso.sedes.push(sede.id)
+        this.aviso.sede.push(sede.id)
       });
     }
     else if (this.data.target === 4) {
@@ -145,24 +153,19 @@ export class AvisosDialog {
       this.snackBar.open(result.message, '', {
         duration: 2000
       });
+      this.aviso = new Aviso
       this.dialogRef.close(true)
+
+    }, error => {
+      this.snackBar.open('Error al enviar el aviso, intente nuevamente', '', {
+        duration: 3500
+      });
     });
-
-    this.dialogRef.close(true)
-
-    this.destinatariosSeleccionados.forEach(destionatario => {
-      this.posiblesDestinatarios.unshift(destionatario)
-    })
-
-    this.aviso = new Aviso
   }
 
   guardar(){
-
-    this.dialogRef.close(true)
-    this.destinatariosSeleccionados.forEach(destionatario => {
-      this.posiblesDestinatarios.unshift(destionatario)
-    })
+    console.log(this.aviso)
     this.aviso = new Aviso
+    this.dialogRef.close(true)
   }
 }

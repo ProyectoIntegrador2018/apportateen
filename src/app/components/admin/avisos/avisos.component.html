@@ -57,28 +57,5 @@
         </mat-expansion-panel>
       </mat-accordion>
     </div>
-    <div class="avisos__item" *ngIf="!loading">
-      <div class="list-group">
-        <a *ngFor="let aviso of avisos" [class.active]="aviso.id == selectedAviso.id" (click)="select(aviso)"
-          class="list-group-item list-group-item-action">
-          <p>{{aviso.titulo}}</p>
-          <mat-chip-list>
-            <mat-chip *ngFor="let sede of aviso.nombresedes" [disableRipple]="true" [disabled]="true">
-              {{sede}}
-            </mat-chip>
-          </mat-chip-list>
-          <mat-chip-list>
-            <mat-chip *ngFor="let taller of aviso.nombretalleres" [disableRipple]="true" [disabled]="true">
-              {{taller}}
-            </mat-chip>
-          </mat-chip-list>
-          <mat-chip-list *ngIf="aviso.general">
-            <mat-chip [disableRipple]="true" [disabled]="true">
-              GENERAL
-            </mat-chip>
-          </mat-chip-list>
-        </a>
-      </div>
-    </div>
   </div>
 </div>
