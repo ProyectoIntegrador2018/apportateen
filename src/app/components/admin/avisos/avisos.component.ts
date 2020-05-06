@@ -105,11 +105,18 @@ export class AvisosComponent implements OnInit {
   editar(aviso: Aviso) {
     this.selectedAviso = Object.assign({}, aviso);
     var dialogRef;
+    console.log(this.selectedAviso)
+
     if (this.selectedAviso.general == true) {
+      var myData = { target: 1, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
+      console.log(myData)
       dialogRef = this.dialog.open(AvisosDialog, {
-        data: { target: 1, edit: true,titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
+        data: { target: 1, edit: true,titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje, posiblesDestinararios: null }
       });
     } else if (this.selectedAviso.sede == null) {
+      var myData2 = { destinatariosactuales: this.selectedAviso.taller, posiblesDestinararios: this.talleres, target: 2, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
+      console.log(myData2)
+
       dialogRef = this.dialog.open(AvisosDialog, {
         data: { destinatariosactuales: this.selectedAviso.taller, posiblesDestinararios: this.talleres, target: 2, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
       });

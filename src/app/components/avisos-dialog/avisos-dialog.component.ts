@@ -8,7 +8,7 @@ import { Aviso } from 'app/models/aviso.model';
 import { ApiService } from '../../services/api/api.service';
 
 export interface AvisosData {
-  posiblesDestinararios,
+  posiblesDestinararios: any[],
   destinatariosactuales: any[],
   target: number,
   edit: boolean
@@ -48,18 +48,22 @@ export class AvisosDialog {
     public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<AvisosDialog>,
     @Inject(MAT_DIALOG_DATA) public data: AvisosData) {
-    this.posiblesDestinatarios = JSON.parse(JSON.stringify(this.data.posiblesDestinararios)); //Clone object
-    
+    console.log(this.data.posiblesDestinararios);
+    if (this.data.posiblesDestinararios != null) {
+      this.posiblesDestinatarios = JSON.parse(JSON.stringify(this.data.posiblesDestinararios)); //Clone object if not general
+    }
+
     this.filteredDestinatarios = this.destinatarioCtrl.valueChanges.pipe(
       startWith(''),
       map((destinatario: string | null) => destinatario ? this._filter(destinatario) : this.posiblesDestinatarios.slice()));
 
-    if(!this.data.edit){
+    if (!this.data.edit) {
       this.aviso.titulo = "";
       this.aviso.mensaje = "";
-    } else{
-      console.log("CONRUYENDAAA", this.data)
-      this.destinatariosSeleccionados = JSON.parse(JSON.stringify(this.data.destinatariosactuales));
+    } else {
+      if(this.data.destinatariosactuales != null){
+        this.destinatariosSeleccionados = JSON.parse(JSON.stringify(this.data.destinatariosactuales));
+      }
       this.aviso.titulo = this.data.titulo;
       this.aviso.mensaje = this.data.mensaje;
     }
@@ -163,7 +167,7 @@ export class AvisosDialog {
     });
   }
 
-  guardar(){
+  guardar() {
     console.log(this.aviso)
     this.aviso = new Aviso
     this.dialogRef.close(true)
