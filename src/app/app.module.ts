@@ -39,6 +39,7 @@ import { AvisoInscripcionTallerComponent } from './components/user/avisos/aviso-
 import { AngularFireStorage, AngularFireStorageModule } from '@angular/fire/storage';
 import { WarningDialogComponent } from './components/warning-dialog/warning-dialog.component';
 
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { WarningDialogComponent } from './components/warning-dialog/warning-dial
     ConfirmationDialog,
     AddDialog,
     WarningDialogComponent,
+    MessageDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +83,6 @@ import { WarningDialogComponent } from './components/warning-dialog/warning-dial
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
   }, ExcelService],
   bootstrap: [AppComponent],
-  entryComponents: [AddDialog, ConfirmationDialog, UsuariosDetalleComponent, AvisoInscripcionTallerComponent, WarningDialogComponent]
+  entryComponents: [AddDialog, ConfirmationDialog, UsuariosDetalleComponent, AvisoInscripcionTallerComponent, MessageDialogComponent, WarningDialogComponent]
 })
 export class AppModule { }
