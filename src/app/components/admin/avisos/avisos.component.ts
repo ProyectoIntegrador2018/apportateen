@@ -22,6 +22,7 @@ export class AvisosComponent implements OnInit {
   avisos;
   mensaje: string;
   titulo: string;
+  editMode: boolean;
   publico: string;
   idtaller = 0;
 
@@ -32,6 +33,7 @@ export class AvisosComponent implements OnInit {
     this.talleres = [];
     this.mensaje = '';
     this.titulo = '';
+    this.editMode = false;
     this.publico = '';
   }
 
@@ -90,15 +92,11 @@ export class AvisosComponent implements OnInit {
       if (result) {
         this.api.removeAviso(aviso.id).subscribe(res => {
           if (res.status == 'success') {
-            this.selectedAviso = new Aviso
+            this.resetInputs();
           }
           this.snackBar.open(res.message, '', {
             duration: 900,
           });
-          this.loading = true;
-          this.obtenerAvisos(()=>{
-            this.loading = false;
-          })
         });
       }
     });
@@ -110,16 +108,23 @@ export class AvisosComponent implements OnInit {
     console.log(this.selectedAviso)
 
     if (this.selectedAviso.general == true) {
+      var myData = { target: 1, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
+      console.log(myData)
       dialogRef = this.dialog.open(AvisosDialog, {
-        data: { target: 1, edit: true,aviso: this.selectedAviso, posiblesDestinararios: null }
+        data: { target: 1, edit: true,titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje, posiblesDestinararios: null }
       });
     } else if (this.selectedAviso.sede == null) {
+      var myData2 = { destinatariosactuales: this.selectedAviso.taller, posiblesDestinararios: this.talleres, target: 2, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
+      console.log(myData2)
+
       dialogRef = this.dialog.open(AvisosDialog, {
-        data: { destinatariosactuales: this.selectedAviso.nombretalleres, posiblesDestinararios: this.talleres, target: 2, edit: true, aviso: this.selectedAviso }
+        data: { destinatariosactuales: this.selectedAviso.taller, posiblesDestinararios: this.talleres, target: 2, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
       });
+      dialogRef.aviso.titulo = this.selectedAviso.titulo;
+      dialogRef.aviso.mensaje = this.selectedAviso.mensaje;
     } else if (this.selectedAviso.taller == null) {
       dialogRef = this.dialog.open(AvisosDialog, {
-        data: { destinatariosactuales: this.selectedAviso.nombresedes, posiblesDestinararios: this.sedes, target: 3, edit: true, aviso: this.selectedAviso }
+        data: { destinatariosactuales: this.selectedAviso.sede, posiblesDestinararios: this.sedes, target: 3, edit: true, titulo: this.selectedAviso.titulo, mensaje: this.selectedAviso.mensaje }
       });
     }
 
@@ -128,18 +133,77 @@ export class AvisosComponent implements OnInit {
         this.snackBar.open("Aviso editado con éxito.", null, {
           duration: 2000
         })
-        this.loading = true;
-        this.obtenerAvisos(()=>{
-          this.loading = false;
-        });
       }
     })
+
+    // this.publico = aviso.taller == 'Aviso público general' ? 'general' : 'especifico';
+    // this.editMode = true;
   }
+
+  // publicar() {
+  //   if (this.checkInputs()) {
+  //     if (this.editMode) {
+  //       const dialogRef = this.dialog.open(ConfirmationDialog, {
+  //         disableClose: true
+  //       });
+  //       dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el aviso seleccionado. ¿Desea continuar?`;
+  //       if (this.publico == 'general') {
+  //         this.selectedAviso.idtaller = 0;
+  //       }
+  //       dialogRef.afterClosed().subscribe(result => {
+  //         if (result) {
+  //           this.api.updateAviso(this.selectedAviso).subscribe(res => {
+  //             this.snackBar.open(res.message, '', {
+  //               duration: 900
+  //             });
+  //             this.resetInputs();
+  //           });
+  //         }
+  //       });
+  //     } else {
+  //       this.api.createAviso(this.selectedAviso).subscribe(result => {
+  //         this.snackBar.open(result.message, '', {
+  //           duration: 900
+  //         });
+  //         this.resetInputs();
+  //       });
+  //     }
+  //   } else {
+  //     this.snackBar.open('Revise que todos los campos sean correctos.', '', {
+  //       duration: 1600
+  //     })
+  //   }
+  // }
 
   select(aviso) {
     this.selectedAviso = aviso
     console.log(this.selectedAviso)
   }
+
+  resetInputs() {
+    this.selectedAviso = new Aviso();
+    this.publico = 'general';
+    this.editMode = false;
+    this.obtenerAvisos(() => {
+      this.loading = false;
+    })
+  }
+
+  // checkInputs(): boolean {
+  //   let a = this.selectedAviso;
+  //   if (this.publico == '') {
+  //     return false;
+  //   }
+  //   if (this.publico != 'general') {
+  //     if (this.selectedAviso.idtaller < 1) {
+  //       return false;
+  //     }
+  //   }
+  //   if (!a.mensaje || !a.titulo) {
+  //     return false;
+  //   }
+  //   return true;
+  // }
 
   enviarAviso(option: number) {
     var dialogRef;

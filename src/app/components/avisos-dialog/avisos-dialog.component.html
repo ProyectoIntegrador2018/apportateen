@@ -1,7 +1,7 @@
 <h1 mat-dialog-title>Enviar un nuevo aviso {{targetMessage}}</h1>
 <div mat-dialog-content>
     <form>
-        <mat-form-field *ngIf="data.target != 1 && !data.edit">
+        <mat-form-field *ngIf="data.target != 1">
             <mat-label>Para: </mat-label>
             <mat-chip-list #chipList [required]="true">
                 <mat-chip *ngFor="let destinatario of destinatariosSeleccionados;let indx=index;"
@@ -22,18 +22,6 @@
             </mat-autocomplete>
         </mat-form-field>
 
-        <div *ngIf="data.edit">
-            <mat-chip-list>
-                <mat-chip [disableRipple]="true" [disabled]="true" *ngIf="data.target == 1">
-                    GENERAL
-                    </mat-chip>
-                <mat-chip *ngFor="let taller of destinatariosSeleccionados" [disableRipple]="true" [disabled]="true">
-                    {{taller}}
-                </mat-chip>
-                </mat-chip-list>
-            <p class="note"><i>No se pueden editar los destinatarios del mensaje.</i></p>
-        </div>
-
         <div *ngIf="data.target != 4">
             <mat-form-field>
                 <mat-label>Asunto: </mat-label>
@@ -47,8 +35,8 @@
         </div>
 
         <button mat-button (click)="dialogRef.close(false)" color="warn">Cancelar</button>
-        <button mat-button (click)="enviar()" color="primary" *ngIf="!data.edit">Enviar</button>
-        <button mat-button (click)="guardar()" color="primary" *ngIf="data.edit">Guardar</button>
+        <button mat-button (click)="enviar()" color="primary" *ngIf="!edit">Enviar</button>
+        <button mat-button (click)="duardar()" color="primary" *ngIf="edit">Guardar</button>
 
         <!-- <button mat-raised-button class="pull-right" color="warn" (click)="resetInputs()">Cancelar</button>
     <button mat-raised-button class="pull-right" color="primary" (click)="publicar()"

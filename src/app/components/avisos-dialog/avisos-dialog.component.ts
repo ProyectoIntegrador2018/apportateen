@@ -11,8 +11,9 @@ export interface AvisosData {
   posiblesDestinararios: any[],
   destinatariosactuales: any[],
   target: number,
-  edit: boolean,
-  aviso: Aviso
+  edit: boolean
+  titulo: string,
+  mensaje: string
 }
 
 /**
@@ -60,11 +61,11 @@ export class AvisosDialog {
       this.aviso.titulo = "";
       this.aviso.mensaje = "";
     } else {
-      if (this.data.destinatariosactuales != null) {
+      if(this.data.destinatariosactuales != null){
         this.destinatariosSeleccionados = JSON.parse(JSON.stringify(this.data.destinatariosactuales));
-        console.log(this.data.destinatariosactuales, this.destinatariosSeleccionados)
       }
-      this.aviso = JSON.parse(JSON.stringify(this.data.aviso));
+      this.aviso.titulo = this.data.titulo;
+      this.aviso.mensaje = this.data.mensaje;
     }
 
     if (this.data.target === 1) {
@@ -153,8 +154,12 @@ export class AvisosDialog {
     }
 
     this.api.createAviso(this.aviso).subscribe(result => {
+      this.snackBar.open(result.message, '', {
+        duration: 2000
+      });
       this.aviso = new Aviso
       this.dialogRef.close(true)
+
     }, error => {
       this.snackBar.open('Error al enviar el aviso, intente nuevamente', '', {
         duration: 3500
@@ -164,18 +169,7 @@ export class AvisosDialog {
 
   guardar() {
     console.log(this.aviso)
-    console.log(this.aviso.titulo, this.aviso.mensaje, this.aviso.id)
-    this.api.updateAviso(this.aviso).subscribe(res => {
-      this.snackBar.open(res.message, '', {
-        duration: 3000
-      });
-      this.aviso = new Aviso
-      this.dialogRef.close(true)
-      , error => {
-        this.snackBar.open("Error al guardar el aviso, intente de nuevo", '', {
-          duration: 3000
-        });
-      }
-    });
+    this.aviso = new Aviso
+    this.dialogRef.close(true)
   }
 }
