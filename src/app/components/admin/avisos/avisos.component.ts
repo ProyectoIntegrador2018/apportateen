@@ -3,6 +3,8 @@ import { ApiService } from '../../../services/api/api.service';
 import { Aviso } from '../../../models/aviso.model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
+import { AvisosDialog } from 'app/components/avisos-dialog/avisos-dialog.component';
+import { Sede } from 'app/models/sede.model';
 
 @Component({
   selector: 'avisos',
@@ -11,40 +13,72 @@ import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmat
 })
 
 export class AvisosComponent implements OnInit {
+  sedes: Sede[];
+  sedesById = [{}];
+
   newAviso: Aviso;
   talleres;
   selectedAviso: Aviso = new Aviso();
   avisos;
   mensaje: string;
   titulo: string;
-  editMode: boolean;
   publico: string;
   idtaller = 0;
+
+  loading = true;
 
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar) {
     this.avisos = [];
     this.talleres = [];
     this.mensaje = '';
     this.titulo = '';
-    this.editMode = false;
     this.publico = '';
   }
 
   ngOnInit() {
-    this.obtenerAvisos();
-    this.obtenerTalleres();
+    this.loading = true;
+    this.obtenerAvisos(() => {
+      this.obtenerTalleres(() => {
+        this.obtenersedes(() => {
+          this.loading = false;
+        });
+      });
+    });
+
+
   }
 
-  obtenerAvisos() {
+  obtenerAvisos(callback) {
     this.api.getAllAvisos().subscribe(result => {
+      console.log(result);
       this.avisos = result;
+      callback();
     });
   }
 
-  obtenerTalleres() {
+  obtenerTalleres(callback) {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
+      callback();
     })
+  }
+
+  obtenersedes(callback) {
+    this.api.getAllSedes().subscribe(result => {
+      this.sedes = result;
+      this.procesarSedes()
+      console.log(this.sedes, 'LAS SEDES')
+      callback();
+    });
+  }
+
+  procesarSedes() {
+    this.sedes.forEach(sede => {
+      let id = sede.id;
+      let nombre = sede.nombre;
+      this.sedesById.push({ id: nombre })
+    })
+    console.log(this.sedesById)
   }
 
   eliminar(aviso: Aviso) {
@@ -56,11 +90,15 @@ export class AvisosComponent implements OnInit {
       if (result) {
         this.api.removeAviso(aviso.id).subscribe(res => {
           if (res.status == 'success') {
-            this.resetInputs();
+            this.selectedAviso = new Aviso
           }
           this.snackBar.open(res.message, '', {
             duration: 900,
           });
+          this.loading = true;
+          this.obtenerAvisos(()=>{
+            this.loading = false;
+          })
         });
       }
     });
@@ -68,66 +106,78 @@ export class AvisosComponent implements OnInit {
 
   editar(aviso: Aviso) {
     this.selectedAviso = Object.assign({}, aviso);
-    this.publico = aviso.taller == 'Aviso público general' ? 'general' : 'especifico';
-    this.editMode = true;
-  }
+    var dialogRef;
+    console.log(this.selectedAviso)
 
-  publicar() {
-    if (this.checkInputs()) {
-      if (this.editMode) {
-        const dialogRef = this.dialog.open(ConfirmationDialog, {
-          disableClose: true
-        });
-        dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el aviso seleccionado. ¿Desea continuar?`;
-        if (this.publico == 'general') {
-          this.selectedAviso.idtaller = 0;
-        }
-        dialogRef.afterClosed().subscribe(result => {
-          if (result) {
-            this.api.updateAviso(this.selectedAviso).subscribe(res => {
-              this.snackBar.open(res.message, '', {
-                duration: 900
-              });
-              this.resetInputs();
-            });
-          }
-        });
-      } else {
-        this.api.createAviso(this.selectedAviso).subscribe(result => {
-          this.snackBar.open(result.message, '', {
-            duration: 900
-          });
-          this.resetInputs();
+    if (this.selectedAviso.general == true) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { target: 1, edit: true,aviso: this.selectedAviso, posiblesDestinararios: null }
+      });
+    } else if (this.selectedAviso.sede == null) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { destinatariosactuales: this.selectedAviso.nombretalleres, posiblesDestinararios: this.talleres, target: 2, edit: true, aviso: this.selectedAviso }
+      });
+    } else if (this.selectedAviso.taller == null) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { destinatariosactuales: this.selectedAviso.nombresedes, posiblesDestinararios: this.sedes, target: 3, edit: true, aviso: this.selectedAviso }
+      });
+    }
+
+    dialogRef.afterClosed().subscribe(res => {
+      if (res) {
+        this.snackBar.open("Aviso editado con éxito.", null, {
+          duration: 2000
+        })
+        this.loading = true;
+        this.obtenerAvisos(()=>{
+          this.loading = false;
         });
       }
-    } else {
-      this.snackBar.open('Revise que todos los campos sean correctos.', '', {
-        duration: 1600
+    })
+  }
+
+  select(aviso) {
+    this.selectedAviso = aviso
+    console.log(this.selectedAviso)
+  }
+
+  enviarAviso(option: number) {
+    var dialogRef;
+    if (option === 1) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { target: option },
+        width: "80%"
       })
     }
-  }
-
-  resetInputs() {
-    this.selectedAviso = new Aviso();
-    this.publico = 'general';
-    this.editMode = false;
-    this.obtenerAvisos();
-  }
-
-  checkInputs(): boolean {
-    let a = this.selectedAviso;
-    if (this.publico == '') {
-      return false;
+    else if (option === 2) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { posiblesDestinararios: this.talleres, target: option },
+        width: "80%"
+      })
+      console.log(this.talleres)
     }
-    if (this.publico != 'general') {
-      if (this.selectedAviso.idtaller < 1) {
-        return false;
+    else if (option === 3) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { posiblesDestinararios: this.sedes, target: option },
+        width: "80%"
+      })
+    }
+    else if (option === 4) {
+      dialogRef = this.dialog.open(AvisosDialog, {
+        data: { posiblesDestinararios: this.sedes, target: option },
+        width: "80%"
+      })
+    }
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.loading = true;
+        this.obtenerAvisos(() => {
+          this.loading = false;
+        })
       }
-    }
-    if (!a.mensaje || !a.titulo) {
-      return false;
-    }
-    return true;
+    })
+
   }
 }
 

@@ -14,6 +14,8 @@ import { Aviso } from '../../models/aviso.model';
 import { Taller } from '../../models/taller.model';
 import { Categoria } from 'app/models/categoria.model';
 import { Archivo } from 'app/models/archivo.model';
+import { Responsable } from 'app/models/responsable.model';
+
 const API_URL = environment.apiUrl;
 const httpOptions = {
   headers: new HttpHeaders({
@@ -140,20 +142,20 @@ export class ApiService {
 
   public createTutor(taller: Taller): Observable<any> {
     return this.http
-    .post<any>(`${API_URL}/guardians`, taller, httpOptions)
-    .catch(this.handleError);
+      .post<any>(`${API_URL}/guardians`, taller, httpOptions)
+      .catch(this.handleError);
   }
-  
+
   public getTutor(taller: Taller): Observable<any> {
     return this.http
-    .get<any>(API_URL + '/guardians/' + taller.tutor, httpOptions)
-    .catch(this.handleError);
+      .get<any>(API_URL + '/guardians/' + taller.tutor, httpOptions)
+      .catch(this.handleError);
   }
 
   public updateTutor(taller: Taller): Observable<any> {
     return this.http
-    .put<any>(API_URL + '/guardians/' + taller.tutor, taller, httpOptions)
-    .catch(this.handleError);
+      .put<any>(API_URL + '/guardians/' + taller.tutor, taller, httpOptions)
+      .catch(this.handleError);
   }
 
   // API: GET /sedes
@@ -163,9 +165,15 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  public createResponsable(sede: Sede): Observable<any> {
+  public createResponsable(responsable: Responsable): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/responsable`, sede, httpOptions)
+      .post<any>(`${API_URL}/responsable`, responsable, httpOptions)
+      .catch(this.handleError);
+  }
+
+  public updateResponsable(responsable: Responsable): Observable<any>{
+    return this.http
+      .put<any>(`${API_URL}/responsable/${responsable.id_responsable}`, responsable, httpOptions)
       .catch(this.handleError);
   }
 
@@ -175,7 +183,11 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-
+  public deleteResponsable(id: string): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/responsable/${id}`, httpOptions)
+      .catch(this.handleError);
+  }
 
   // API: POST /sedes
   public createSede(sede: Sede): Observable<any> {
@@ -233,6 +245,20 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  //API: GET /talleres/costos
+  public getCostos(): Observable<any> {
+    return this.http
+      .get<any>(`${API_URL}/talleres/costos`, httpOptions)
+      .catch(this.handleError);
+  }
+
+  //API: PUT /talleres/costos
+  public updateCostos(costos: any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/talleres/costos`, costos, httpOptions)
+      .catch(this.handleError);
+  }
+
   // API: GET /talleres
   public getAllTalleres(): Observable<Taller[]> {
     return this.http
@@ -261,6 +287,28 @@ export class ApiService {
       .delete<any>(`${API_URL}/talleres/${id}`, httpOptions)
       .catch(this.handleError);
   }
+
+  // API: POST /inscripciones
+  public createInscripcion(inscripcion: any): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/inscripciones`, inscripcion, httpOptions)
+      .catch(this.handleError);
+  }
+
+  //API: DELETE /inscripciones
+  public removeInscripcion(inscripcion: any): Observable<any> {
+    return this.http
+      .delete<any>(`${API_URL}/inscripciones/${inscripcion['taller_id']}/${inscripcion['user_id']}`, httpOptions)
+      .catch(this.handleError);
+  }
+
+   //API: GET /inscripciones
+   public getTalleresInscritos(user_id: any): Observable<any> {
+    return this.http
+      .get<any>(`${API_URL}/inscripciones/${user_id}`, httpOptions)
+      .catch(this.handleError);
+  }
+
 
   // API: GET /categorias
   public getAllCategorias(): Observable<Categoria[]> {

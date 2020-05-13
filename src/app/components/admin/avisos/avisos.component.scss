@@ -42,6 +42,31 @@
   }
 }
 
+mat-chip-list{
+  margin-right: 10px !important;
+}
+
+mat-chip{
+  background: #a5cfd6 !important;
+}
+
+::ng-deep .mainbtns{
+  height:80px !important;
+  width:200px !important;
+  white-space: pre-wrap !important;
+  margin: 10px;
+}
+
+button{
+  .mat-icon{
+    font-size: 30px !important;
+  }
+}
+
+mat-spinner {
+  float: right !important;
+}
+
 mat-form-field {
   width: 100%;
 }

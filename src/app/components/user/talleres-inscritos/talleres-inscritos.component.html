@@ -1,0 +1,42 @@
+<div class="container-fluid register">
+  <div class="container">
+    <div class="segmented-control">
+      <div class="row justify-content-center">
+        <div class="col-7">
+          <div class="scContainer">
+            <button [ngClass]="{'leftSc': true, 'enabled': isTalleresInscritos}" (click)="toggleButton('left')">Talleres Inscritos</button>
+            <button [ngClass]="{'rightSc': true, 'enabled': !isTalleresInscritos}" (click)="toggleButton('right')">Talleres por pagar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="isTalleresInscritos" class="instruction">
+        <p>Tu inscripción a los siguientes talleres ha sido completada. Revisa tu correo y tu sección de avisos periodicamente al acercarse la fecha del taller para ponerte al corriente.</p>
+    </div>
+    <div *ngIf="!isTalleresInscritos" class="instruction">
+      <p>Para completar tu inscripción a los siguientes talleres, por favor sube tu comprobante de pago.</p>
+  </div>
+
+    <div class="items">
+      <div class="register__item" *ngFor="let taller of talleres">
+        <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
+          <img [src]="taller.url_array[0]">
+          <div class="text-container">
+            <div class="ciudad">{{taller.estado}}</div>
+            <h3 class="title">{{taller.nombre}}</h3>
+            <p class="desc">{{taller.descripcion}}</p>
+
+          </div>
+        </div>
+        <div class="btn-container">
+          <button mat-button mat-stroked-button class="btn primary card"
+            [routerLink]="['detalleTaller/', taller.id]">Más
+            información</button>
+          <!-- <button mat-button mat-raised-button class="btn reject card" (click)="quitarInscripcion(taller)">Desinscribir
+          </button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

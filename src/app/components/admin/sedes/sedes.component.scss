@@ -22,8 +22,16 @@
   }
 }
 
+.fields{
+  margin-bottom: 20px;
+}
+
 mat-form-field {
   width: 100%;
+}
+
+mat-spinner {
+  float: right !important;
 }
 
 @include media-breakpoint-down(xs) {
