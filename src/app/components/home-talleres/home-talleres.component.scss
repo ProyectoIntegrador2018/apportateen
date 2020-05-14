@@ -185,6 +185,83 @@
 /* Phones */
 @media only screen and (max-width: 600px) {
   .home-talleres {
+    .talleres {
+      padding: 2% 6%;
+      .example-card {
+        overflow: hidden;
+        max-width: 400px;
+        margin: 0 20px;
+        height: 400px !important;
+        border-radius: 20px;
+  
+        padding: 0;
+        .mat-card-content {
+          margin: 0;
+          padding: 10px 10%;
+        }
+        p {
+          font-size: 10px;
+          font-weight: bold;
+        }
+      }
+      .example-img-container {
+        height: 20%;
+        width: calc(100% + 0px);
+        overflow: hidden;
+        margin: 0;
+      }
+      img {
+        position: relative;
+        bottom: 15%;
+        width: 130%;
+      }
+      .taller-title {
+        color: white;
+        height: 15%;
+        background-color: #f7931d;
+        text-transform: uppercase;
+        position: relative;
+        p {
+          position: absolute;
+          top: 30%;
+        }
+      }
+      .taller-fechas {
+        height: 20%;
+        background-color: #6eb7c2;
+        text-transform: uppercase;
+        color: black;
+      }
+      .taller-description {
+        background-color: #545253;
+        color: white;
+        height: 50%;
+        overflow: auto;
+        p {
+          font-size: 10px !important;
+          font-weight: 400 !important;
+        }
+        /* width */
+        &::-webkit-scrollbar {
+          width: 10px;
+        }
+  
+        /* Track */
+        &::-webkit-scrollbar-track {
+          background: #aaaaaa;
+        }
+  
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+          background: rgb(119, 118, 118);
+        }
+  
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+          background: #555;
+        }
+      }
+    }
     &__hero {
       img {
         width: 80%;
