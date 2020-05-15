@@ -23,7 +23,8 @@
   </nav>
 </div>
 <div class="user-container">
-  <section class="hero" *ngIf="router.url !== '/usuario/principal' && !router.url.includes('detalleTaller')" style="background-color:#6eb7c2;">
+  <section class="hero" *ngIf="router.url !== '/usuario/principal' && !router.url.includes('detalleTaller')"
+    style="background-color:#6eb7c2;">
     <h1 class="hero__title" *ngIf="router.url === '/usuario/inicio'"> Hola, {{ user.nombre }} </h1>
     <h1 class="hero__title" *ngIf="router.url === '/usuario/inscripcion'"> Talleres </h1>
     <h1 class="hero__title" *ngIf="router.url === '/usuario/documentos'"> Documentos </h1>
