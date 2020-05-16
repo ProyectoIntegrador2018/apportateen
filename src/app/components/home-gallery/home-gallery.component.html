@@ -7,7 +7,7 @@
     <div class="home-gallery__gallery__list">
         <mat-grid-list cols="3" rowHeight="300px">
           <mat-grid-tile *ngFor="let imgs of gallery">
-            <img class="gallery-img" [src]="imgs" alt="Patrocinador">
+            <img (click)="openDialog(imgs)" class="gallery-img" [src]="imgs" alt="Patrocinador">
           </mat-grid-tile>
         </mat-grid-list>
     </div>
