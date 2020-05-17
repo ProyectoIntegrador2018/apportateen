@@ -35,10 +35,12 @@
             </div>
           </div>
           <div class="btn-container">
-            <button mat-button mat-stroked-button class="btn primary card"
+            <!-- <button mat-button mat-stroked-button class="btn primary card"
               [routerLink]="['detalleTaller/', taller.id]">Más
-              información</button>
-            <button id="btnFicha" mat-button mat-stroked-button class="btn primary card" (click)="imprimirFichaPago()">Ficha de Pago</button>
+              información</button> -->
+            <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
+              (click)="imprimirFichaPago(taller)">Imprimir ficha de pago</button>
+            <button id="btnFicha" mat-button mat-stroked-button class="btn primary card">Subir Comprobante</button>
             <!-- <button mat-button mat-raised-button class="btn reject card" (click)="quitarInscripcion(taller)">Desinscribir
             </button> -->
           </div>
@@ -50,11 +52,18 @@
   <!-- FICHA DE PAGO-->
   <div class="printme" id="fichaPago">
     <img src="../../../../assets/img/csoftcolor.jpeg" alt="csoft">
-    <p>Nombre: Consejo para el Desarrollo de la Industria de Software de Nuevo
+    <p><span class="bold">Nombre:</span> Consejo para el Desarrollo de la Industria de Software de Nuevo
       León, A.C.</p>
-    <p>Banco : BBVA Bancomer</p>
-    <p></p>
-    <p>CLABE : 012580001609472614</p>
-    <p></p>
+    <p><span class="bold">Banco:</span> BBVA Bancomer</p>
+    <p><span class="bold">CLABE:</span> 012580001609472614</p>
+    <p><span class="bold">Monto:</span> {{ currentCost }} </p>
   </div>
+  <!-- <div [ngClass]="{'printme' : print, 'no-printme' : !print}" id="fichaPago">
+    <img src="../../../../assets/img/csoftcolor.jpeg" alt="csoft">
+    <p><span class="bold">Nombre:</span> Consejo para el Desarrollo de la Industria de Software de Nuevo
+      León, A.C.</p>
+    <p><span class="bold">Banco:</span> BBVA Bancomer</p>
+    <p><span class="bold">CLABE:</span> 012580001609472614</p>
+    <p><span class="bold">Monto:</span> {{ currentCost }} </p>
+  </div> -->
 </div>

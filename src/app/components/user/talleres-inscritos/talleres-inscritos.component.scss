@@ -217,8 +217,9 @@
 
 //Para imprimir ficha de pago
 .printme {
-	display: none;
+  display: none;
 }
+
 @media print {
 	.no-printme  {
 		display: none;
@@ -233,8 +234,17 @@
     left: 0;
     margin: 0;
     padding: 15px;
-    font-size: 14px;
-    line-height: 18px;
+    // font-size: 14px;
+    // line-height: 18px;
+
+    p {
+      font-size: 30px;
+      line-height: 35px;
+    }
+
+    .bold{
+      font-weight: bold;
+    }
 	}
 }
 
