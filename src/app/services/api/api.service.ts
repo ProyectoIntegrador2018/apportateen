@@ -412,4 +412,11 @@ export class ApiService {
       .put<any>(`${API_URL}/users/pago/${user.id}`, user, httpOptions)
       .catch(this.handleError);
   }
+
+  // API: GET /avisos
+  public getAllPending(): Observable<Aviso[]> {
+    return this.http
+      .get<any[]>(API_URL + '/pending', httpOptions)
+      .catch(this.handleError);
+  }
 }

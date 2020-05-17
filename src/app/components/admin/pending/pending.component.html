@@ -4,24 +4,19 @@
     <div *ngIf="vouchers.length > 0; else elsepending">
       <table mat-table [dataSource]="vouchers" class="mat-elevation-z8 col-12">
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef>Id Usuario Axt@Teen</th>
-          <td mat-cell *matCellDef="let voucher">{{voucher.id}}</td>
+          <th mat-header-cell *matHeaderCellDef>Nombre del taller</th>
+          <td mat-cell *matCellDef="let voucher">{{voucher.nombretaller}}</td>
         </ng-container>
 
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef>Nombre</th>
-          <td mat-cell *matCellDef="let voucher">{{voucher.nombre}}</td>
-        </ng-container>
-
-        <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Fecha</th>
-          <td mat-cell *matCellDef="let voucher">{{formatDate(voucher.date)}}</td>
+          <td mat-cell *matCellDef="let voucher">{{voucher.nombre + " " +voucher.apellido}}</td>
         </ng-container>
 
         <ng-container matColumnDef="voucherLink">
           <th mat-header-cell *matHeaderCellDef>Comprobante</th>
           <td mat-cell *matCellDef="let voucher">
-            <button type="button" class="btn btn-success" (click)="verComprobante(voucher.voucherLink)">Ver</button>
+            <button type="button" class="btn btn-success" (click)="verComprobante(voucher.comprobante)">Ver</button>
           </td>
         </ng-container>
 
@@ -29,10 +24,10 @@
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td mat-cell *matCellDef="let voucher" (click)="$event.stopPropagation()">
             <!--<button type="button" class="btn btn-success" (click)="agregarPago(voucher)">Editar</button>-->
-            <button mat-icon-button color="#4daf7c" aria-label="Example icon button with a vertical three dot icon">
+            <button mat-icon-button color="#4daf7c" (click)="aceptarComprobante(voucher)" aria-label="Example icon button with a vertical three dot icon">
               <mat-icon style="color: #4daf7c;">done</mat-icon>
             </button>
-            <button mat-icon-button color="#ef0000" aria-label="Example icon button with a vertical three dot icon">
+            <button mat-icon-button color="#ef0000" (click)="rechazarComprobante(voucher)" aria-label="Example icon button with a vertical three dot icon">
               <mat-icon style="color: red;">close</mat-icon>
             </button>
           </td>
