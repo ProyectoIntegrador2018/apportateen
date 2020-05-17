@@ -412,4 +412,24 @@ export class ApiService {
       .put<any>(`${API_URL}/users/pago/${user.id}`, user, httpOptions)
       .catch(this.handleError);
   }
+
+  // API: GET /pending
+  public getAllPending(): Observable<Aviso[]> {
+    return this.http
+      .get<any[]>(API_URL + '/pending', httpOptions)
+      .catch(this.handleError);
+  }
+
+  // API: PUT /pending/aceptar
+  public aceptarComprobante(voucherInformation:any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/pending/aceptar`, voucherInformation, httpOptions)
+      .catch(this.handleError);
+  }
+   // API: PUT /pending/rechazar
+   public rechazarComprobante(voucherInformation:any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/pending/rechazar`, voucherInformation, httpOptions)
+      .catch(this.handleError);
+  }
 }
