@@ -30,6 +30,7 @@ export class PendingComponent implements OnInit {
   }
 
   obtenerPendientes() {
+    this.vouchers = [];
     this.api.getAllPending().subscribe(result => {
       console.log("LOS PENDIENTES SON:")
       console.log(result);
@@ -41,6 +42,22 @@ export class PendingComponent implements OnInit {
     console.log("Aceptando el comprobante que tiene como ids:")
     console.log(voucher.user_id)
     console.log(voucher.taller_id)
+    let voucherInformation ={
+      user_id: voucher.user_id,
+      taller_id: voucher.taller_id
+    }
+    this.api.aceptarComprobante(voucherInformation).subscribe(res => {
+      if (res.status === 'success') {
+        this.snackbar.open(res.message, '', {
+          duration: 5000,
+        });
+        this.obtenerPendientes();
+      }
+    }, error => {
+      this.snackbar.open(error.error, '', {
+        duration: 5000,
+      });
+    });
   }
 
   rechazarComprobante(voucher) {
@@ -75,24 +92,44 @@ export class PendingComponent implements OnInit {
     window.open(url, "_blank");
   }
 
-  rechazarComprobanteBack(mensaje){
+  rechazarComprobanteBack(mensaje) {
     console.log(mensaje)
     console.log(this.todeleteTaller)
     console.log(this.todeleteUser)
+
+    let voucherInformation ={
+      user_id: this.todeleteUser,
+      taller_id: this.todeleteTaller,
+      mensaje: mensaje
+    }
+    this.api.rechazarComprobante(voucherInformation).subscribe(res => {
+      if (res.status === 'success') {
+        this.snackbar.open(res.message, '', {
+          duration: 5000,
+        });
+        this.obtenerPendientes();
+      }
+    }, error => {
+      this.snackbar.open(error.error, '', {
+        duration: 5000,
+      });
+    });
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(PendingDialog, {
-      data: {event: "",
-            mensaje: ""}
+      data: {
+        event: "",
+        mensaje: ""
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'Delete'){
+      if (result.event == 'Delete') {
         this.rechazarComprobanteBack(result.data)
       }
     });
   }
-  
+
 
 }
 
@@ -120,11 +157,11 @@ export class PendingDialog {
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   onNoClick(): void {
-    this.dialogRef.close({event:'Cancel'});
+    this.dialogRef.close({ event: 'Cancel' });
   }
-  
-  doAction(){
-    this.dialogRef.close({event:"Delete",data:this.data.mensaje});
+
+  doAction() {
+    this.dialogRef.close({ event: "Delete", data: this.data.mensaje });
   }
 }
 
