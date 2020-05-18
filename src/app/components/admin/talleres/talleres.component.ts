@@ -141,12 +141,18 @@ export class TalleresComponent implements OnInit {
     return;
   }
   delete() {
+
+   
+
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
+       
+        
         var archivoRef = this.storage.ref(this.selectedTaller.foto_path);
         archivoRef.delete().subscribe(res => {
           this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
@@ -270,6 +276,7 @@ export class TalleresComponent implements OnInit {
         console.log("Error");
       })
   }
+
   newDelete() {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -277,6 +284,21 @@ export class TalleresComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
+
+        this.api.getUsersUsuarios().subscribe(result => {
+          let temp = result.filter(u => u.talleres.includes(this.selectedTaller.id));
+      
+          temp.forEach(obj => {
+            let talleres = obj.talleres
+
+            let i = talleres.indexOf(this.selectedTaller.id);
+            obj.talleres.splice(i,1);
+            this.api.updateUser(obj).subscribe();
+    
+          });
+        });
+
         Promise.all(
           this.selectedTaller.foto_path_array.map(item => this.deleteAllPhotos(item))).then((url) => {
             console.log("success");
