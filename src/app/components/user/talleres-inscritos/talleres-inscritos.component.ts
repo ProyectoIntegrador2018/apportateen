@@ -60,30 +60,31 @@ export class TalleresInscritosComponent implements OnInit {
   }
 
   //sube un archivo el usuario
-  fileInput(files: FileList) {
+  fileInput(files: FileList, taller: Taller) {
     this.comprobante = files.item(0);
     console.log("INPUT FILE");
     console.log(this.comprobante);
     console.log(this.comprobante.name);
-    this.uploadComprobante();
+    console.log(taller);
+    this.uploadComprobante(taller);
 }
 
   //subir a firestorage
-  uploadComprobante() {
-    // return new Promise<any>((resolve, reject) => {
-    //   var fileId = this.comprobante.name + '-' + this.user.id + '_' + Math.random().toString(36).substring(4);
-    //   //la referencia al comprobante esta compuesto por el nombre, id del usuario, y un numero random. AGREGAR FECHA
-    //   const task = this.fireStorage.upload(fileId , this.comprobante);
-    //   let fileRef = this.fireStorage.ref(fileId);
-    //   task.snapshotChanges().pipe(
-    //     finalize(() => {
-    //       fileRef.getDownloadURL().subscribe(url => {
-    //         console.log(url);
-    //         resolve(true)
-    //       })
-    //     })
-    //   ).subscribe()
-    // })
+  uploadComprobante(taller: Taller) {
+    return new Promise<any>((resolve, reject) => {
+      var fileId = this.comprobante.name + '-' + this.user.id + '_' + taller.fecha_inicio.substring(0,4) + Math.random().toString(36).substring(4);
+      //la referencia al comprobante esta compuesto por el nombre, id del usuario, y un numero random. AGREGAR FECHA
+      const task = this.fireStorage.upload(fileId , this.comprobante);
+      let fileRef = this.fireStorage.ref(fileId);
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            console.log(url);
+            resolve(true)
+          })
+        })
+      ).subscribe()
+    })
   }
 
 
