@@ -135,7 +135,7 @@
   color: #6d6d6d;
 }
 
-//=========== ANIMACION
+//=========== Segmented Control
 @keyframes example {
   from {
     background-color: rgb(255, 255, 255);
@@ -215,16 +215,16 @@
 //   width: 300px;
 // }
 
-//Para imprimir ficha de pago
+//Para imprimir ficha de pago ________________________
 .printme {
   display: none;
 }
 
 @media print {
-	.no-printme  {
-		display: none;
-	}
-	.printme  {
+  .no-printme {
+    display: none;
+  }
+  .printme {
     display: block;
     background-color: white;
     height: 100%;
@@ -242,9 +242,30 @@
       line-height: 35px;
     }
 
-    .bold{
+    img {
+      margin-bottom: 20px;
+    }
+
+    .bold {
       font-weight: bold;
     }
-	}
+  }
 }
 
+.pago {
+  font-size: 13px;
+  text-align: center;
+  margin: 10px auto 55px auto;
+}
+
+// choose file
+$custom-file-text: (
+  placeholder: (
+    en: "Choose file...",
+    es: "Seleccionar archivo...",
+  ),
+  button-label: (
+    en: "Browse",
+    es: "Navegar",
+  ),
+);

@@ -3,6 +3,8 @@ import { ApiService } from 'app/services/api/api.service';
 import { Sede } from 'app/models/sede.model';
 import { LOCAL_STORAGE, WebStorageService } from 'angular-webstorage-service';
 import { User } from 'app/models/user.model';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
 import { Taller } from 'app/models/taller.model';
 import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef, MatSelectModule } from '@angular/material';
 
@@ -18,11 +20,13 @@ export class TalleresInscritosComponent implements OnInit {
   user: User = new User();
   currentCost;
   print;
+  comprobante: File = null;
 
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar,
+    private fireStorage: AngularFireStorage) {
     this.talleres = [];
     this.isTalleresInscritos = false;
     this.print = true;
@@ -53,6 +57,33 @@ export class TalleresInscritosComponent implements OnInit {
         this.currentCost = costosPorEscuela["escuela_publica"];
       }
     });
+  }
+
+  //sube un archivo el usuario
+  fileInput(files: FileList) {
+    this.comprobante = files.item(0);
+    console.log("INPUT FILE");
+    console.log(this.comprobante);
+    console.log(this.comprobante.name);
+    this.uploadComprobante();
+}
+
+  //subir a firestorage
+  uploadComprobante() {
+    // return new Promise<any>((resolve, reject) => {
+    //   var fileId = this.comprobante.name + '-' + this.user.id + '_' + Math.random().toString(36).substring(4);
+    //   //la referencia al comprobante esta compuesto por el nombre, id del usuario, y un numero random. AGREGAR FECHA
+    //   const task = this.fireStorage.upload(fileId , this.comprobante);
+    //   let fileRef = this.fireStorage.ref(fileId);
+    //   task.snapshotChanges().pipe(
+    //     finalize(() => {
+    //       fileRef.getDownloadURL().subscribe(url => {
+    //         console.log(url);
+    //         resolve(true)
+    //       })
+    //     })
+    //   ).subscribe()
+    // })
   }
 
 

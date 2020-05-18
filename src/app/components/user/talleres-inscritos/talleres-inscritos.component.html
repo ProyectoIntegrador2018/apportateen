@@ -40,7 +40,12 @@
               información</button> -->
             <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
               (click)="imprimirFichaPago(taller)" *ngIf="taller['estatus'] == 'pendiente'">Imprimir ficha de pago</button>
-            <button id="btnFicha" mat-button mat-stroked-button class="btn primary card" *ngIf="taller['estatus'] == 'pendiente'">Subir Comprobante</button>
+            <!-- class="custom-file-input" class="custom-file-label text-truncate" -->
+            <div class="row">
+              <p class="pago">Sube tu Comprobante de Pago</p>
+              <input type="file" class="custom-file-input" *ngIf="taller['estatus'] == 'pendiente'" id="comprobante" (change)="fileInput($event.target.files)" accept=".pdf">
+              <label for="comprobante" *ngIf="taller['estatus'] == 'pendiente'" class="custom-file-label text-truncate">Escoger Archivo</label>
+            </div>
             <!-- <button mat-button mat-raised-button class="btn reject card" (click)="quitarInscripcion(taller)">Desinscribir
             </button> -->
           </div>
