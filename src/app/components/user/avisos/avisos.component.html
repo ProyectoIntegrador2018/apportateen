@@ -2,7 +2,7 @@
   <div class="container">
     <div *ngIf="avisos.length > 0 && loading != null">
       <div class="ad__item" *ngFor="let a of avisos">
-        <h4 class="ad__title">{{a.titulo}} <span>{{a.taller}}</span></h4>
+        <h4 class="ad__title">{{a.titulo}} <span>{{a.emisor}}</span></h4>
         <p class="ad__desc">{{a.mensaje}}</p>
         <hr>
       </div>
