@@ -125,9 +125,6 @@ export class AvisosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(res => {
       if (res) {
-        this.snackBar.open("Aviso editado con éxito.", null, {
-          duration: 2000
-        })
         this.loading = true;
         this.obtenerAvisos(()=>{
           this.loading = false;
@@ -171,6 +168,11 @@ export class AvisosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
+        this.snackBar.open('Aviso enviado', '', {
+          duration: 2000,
+        });
+
         this.loading = true;
         this.obtenerAvisos(() => {
           this.loading = false;
