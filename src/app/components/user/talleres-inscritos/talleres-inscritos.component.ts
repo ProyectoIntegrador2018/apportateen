@@ -62,24 +62,57 @@ export class TalleresInscritosComponent implements OnInit {
   //sube un archivo el usuario
   fileInput(files: FileList, taller: Taller) {
     this.comprobante = files.item(0);
-    console.log("INPUT FILE");
-    console.log(this.comprobante);
-    console.log(this.comprobante.name);
-    console.log(taller);
     this.uploadComprobante(taller);
-}
+    // console.log("INPUT FILE");
+    // console.log(this.comprobante);
+    // console.log(this.comprobante.name);
+    // console.log(taller);
+  }
 
   //subir a firestorage
   uploadComprobante(taller: Taller) {
     return new Promise<any>((resolve, reject) => {
-      var fileId = this.comprobante.name + '-' + this.user.id + '_' + taller.fecha_inicio.substring(0,4) + Math.random().toString(36).substring(4);
+      var fileId = this.comprobante.name + '-' + this.user.id + '_' + taller.fecha_inicio.substring(0, 4) + Math.random().toString(36).substring(4);
       //la referencia al comprobante esta compuesto por el nombre, id del usuario, y un numero random. AGREGAR FECHA
-      const task = this.fireStorage.upload(fileId , this.comprobante);
+      const task = this.fireStorage.upload(fileId, this.comprobante);
       let fileRef = this.fireStorage.ref(fileId);
       task.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
             console.log(url);
+
+            //si ya tiene un comprobante, borrarlo de firestorage
+            if (taller["ref_comprobante"] != null && taller["ref_comprobante"] != '') {
+              console.log("ENTRA AQUI" + taller["ref_comprobante"]);
+              var archivoRef = this.fireStorage.ref(taller["ref_comprobante"]);
+              archivoRef.delete().subscribe(res => {
+              }, error => {
+                this.snackBar.open('Error', '', {
+                  duration: 1500,
+                });
+              });
+            }
+
+            //Subir a la base de datos
+            var inscripcion = {
+              'user_id': this.user.id,
+              'taller_id': taller.id,
+              'comprobante': url,
+              'ref_comprobante': fileId
+            };
+            this.api.subirComprobante(inscripcion).subscribe(res => {
+              taller["comprobante"] = url;
+              taller["ref_comprobante"] = fileId;
+              taller["estatus"] = 'en revision';
+              this.snackBar.open(res.message, '', {
+                duration: 1500,
+              });
+            }, error => {
+              this.snackBar.open(error.error, '', {
+                duration: 900,
+              });
+            })
+
             resolve(true)
           })
         })

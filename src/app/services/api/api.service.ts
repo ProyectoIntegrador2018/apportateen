@@ -171,7 +171,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  public updateResponsable(responsable: Responsable): Observable<any>{
+  public updateResponsable(responsable: Responsable): Observable<any> {
     return this.http
       .put<any>(`${API_URL}/responsable/${responsable.id_responsable}`, responsable, httpOptions)
       .catch(this.handleError);
@@ -302,12 +302,20 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-   //API: GET /inscripciones
-   public getTalleresInscritos(user_id: any): Observable<any> {
+  //API: GET /inscripciones
+  public getTalleresInscritos(user_id: any): Observable<any> {
     return this.http
       .get<any>(`${API_URL}/inscripciones/${user_id}`, httpOptions)
       .catch(this.handleError);
   }
+
+  //API: PUT /inscripciones/comprobante
+  public subirComprobante(inscripcion: any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/inscripciones/comprobante`, inscripcion , httpOptions)
+      .catch(this.handleError);
+  }
+
 
 
   // API: GET /categorias
