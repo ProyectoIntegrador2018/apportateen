@@ -20,6 +20,9 @@
 
 
   .btn {
+
+    // -webkit-appearance: button;
+
     &:focus {
       box-shadow: none;
     }
@@ -41,6 +44,7 @@
       margin-left: auto;
       margin-right: auto;
       width: 100%;
+      align-items: center;
     }
 
     
@@ -61,6 +65,7 @@
     width: 260px;
     height: 580px;
     position: relative;
+    
 
     img {
       border-radius: 5px 5px 0 0;
@@ -127,4 +132,3 @@
     }
   }
 }
-

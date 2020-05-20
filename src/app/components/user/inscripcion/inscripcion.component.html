@@ -119,7 +119,7 @@
       </button>
     </div>
 
-    <div *ngIf="user.talleres.length === 0 && !muestra_todos">
+    <div *ngIf="user.talleres.length === 0 && !muestra_todos && muestra_tusuario">
       <h1>Sin talleres</h1>
       <p>Por el momento no tienes ningún taller inscrito.</p>
       <button class="btn primary" mat-flat-button matTooltipPosition="after"
