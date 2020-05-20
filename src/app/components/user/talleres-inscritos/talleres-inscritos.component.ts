@@ -6,6 +6,7 @@ import { User } from 'app/models/user.model';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
 import { Taller } from 'app/models/taller.model';
+import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef, MatSelectModule } from '@angular/material';
 
 @Component({
@@ -61,12 +62,30 @@ export class TalleresInscritosComponent implements OnInit {
 
   //sube un archivo el usuario
   fileInput(files: FileList, taller: Taller) {
-    this.comprobante = files.item(0);
-    this.uploadComprobante(taller);
-    // console.log("INPUT FILE");
-    // console.log(this.comprobante);
-    // console.log(this.comprobante.name);
-    // console.log(taller);
+    const message= `Se subira el archivo "${files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
+
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+
+    dialogRef.componentInstance.mensajeConfirmacion = message;
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.comprobante = files.item(0);
+        this.uploadComprobante(taller);
+        console.log("INPUT FILE");
+        console.log(this.comprobante);
+        console.log(this.comprobante.name);
+        console.log(taller);
+      }else{
+        //quitar el archivo seleccionado
+        let idInput = "comprobante" + taller.id.toString();
+        console.log("ID " + idInput);
+        (<HTMLInputElement>document.getElementById(idInput)).value = "";
+        // event.srcElement.value = null;
+      }
+    });
   }
 
   //subir a firestorage

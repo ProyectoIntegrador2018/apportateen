@@ -25,7 +25,7 @@
       <div *ngFor="let taller of talleres">
         <div class="register__item"
           *ngIf="isTalleresInscritos && taller['estatus'] == 'aceptado' || !isTalleresInscritos && taller['estatus'] != 'aceptado'">
-          <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
+          <div [routerLink]="['../inscripcion/detalleTaller/', taller.id]" class="info-container">
             <img [src]="taller.url_array[0]">
             <div class="text-container">
               <div class="ciudad">{{taller.estado}}</div>
@@ -44,8 +44,8 @@
             <div class="row">
               <p class="pago" *ngIf="taller['estatus'] == 'pendiente'">Sube tu Comprobante de Pago</p>
               <p class="pago" *ngIf="taller['estatus'] == 'en revision'">Tu comprobante esta en revisión</p>
-              <input type="file" class="custom-file-input" *ngIf="taller['estatus'] == 'pendiente' || taller['estatus'] == 'en revision'" id="comprobante" (change)="fileInput($event.target.files, taller)" accept=".pdf">
-              <label for="comprobante" *ngIf="taller['estatus'] == 'pendiente' || taller['estatus'] == 'en revision'" class="custom-file-label text-truncate">Escoger Archivo</label>
+              <input type="file"  class="custom-file-input"  *ngIf="taller['estatus'] == 'pendiente' || taller['estatus'] == 'en revision'" id="{{'comprobante' + taller.id}}" (change)="fileInput($event.target.files, taller)" accept=".pdf">
+              <label for="{{'comprobante' + taller.id}}" *ngIf="taller['estatus'] == 'pendiente' || taller['estatus'] == 'en revision'" class="custom-file-label text-truncate">Escoger Archivo</label>
             </div>
             <!-- <button mat-button mat-raised-button class="btn reject card" (click)="quitarInscripcion(taller)">Desinscribir
             </button> -->
