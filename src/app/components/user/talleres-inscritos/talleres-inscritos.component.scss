@@ -3,60 +3,72 @@
 .register {
   margin: 20px 0;
 
-  &__title {
-    color: $text-color;
-    font-size: 38px;
-    font-weight: bold;
-    letter-spacing: 1.28px;
-  }
-
-  // &__actions {
-  //   align-items: center;
-  //   display: flex;
-  //   // justify-content: space-between;
-  //   margin-bottom: 30px;
-  //   width: 100%;
-  // }
-
+  // //botones adentro de las cards
   .btn {
+    -webkit-appearance: none;
     &:focus {
       box-shadow: none;
     }
-
     &.accept {
       background-color: $color-green;
     }
-
     &.primary {
       background-color: $color-blue;
     }
-
     &.reject {
       background-color: $color-red;
     }
-
     &.card {
       margin-top: 10px;
       margin-left: auto;
       margin-right: auto;
       width: 100%;
+      text-align: center;
     }
-
     border: 0;
     color: $color-white;
   }
 
-  .items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .separacion{
+    margin: 20px auto 0px auto;
   }
 
+  //pendiente
+  .pago {
+    font-size: 13px;
+    text-align: center;
+    margin: 10px auto 10px auto;
+  }
+
+  .labelSubirPending {
+    margin: 75px auto 0px auto;
+  }
+
+  //en revision
+  .labelSubirRevision {
+    margin: 85px auto 0px auto;
+  }
+
+  .enRevision{
+    color: #55a0ab;
+    text-align: center;
+  }
+
+  .cambiarRevision{
+    font-size: 13px;
+    text-align: center;
+    margin: 10px auto 10px auto;
+  }
+
+  //rechazado
+
+
+  //__item es toda la card
   &__item {
     border-radius: 5px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
     margin: 20px 0 0 20px;
-    width: 260px;
+    width: 275px; //260
     height: 580px;
     position: relative;
 
@@ -79,14 +91,15 @@
     }
 
     .btn-container {
+      // si no hay descripcion
+      margin: 20px auto 0px auto;
+      //____
       align-items: center;
       position: absolute;
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: 230px;
-      height: 20px;
-      bottom: 10%;
       left: 5%;
     }
 
@@ -103,12 +116,30 @@
       color: white;
       margin-bottom: 5px;
     }
+
+    // // choose file
+    // $custom-file-text: (
+    //   placeholder: (
+    //     en: "Choose file...",
+    //     es: "Seleccionar archivo...",
+    //   ),
+    //   button-label: (
+    //     en: "Browse",
+    //     es: "Navegar",
+    //   ),
+    // );
   }
 
   .mat-option.mat-active,
   .mat-option.mat-selected {
     background: $color-blue !important;
   }
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* Phone */
@@ -251,22 +282,3 @@
     }
   }
 }
-
-.pago {
-  font-size: 13px;
-  text-align: center;
-    // margin: 10px auto 55px auto;
-  margin: 10px auto 10px auto;
-}
-
-// choose file
-$custom-file-text: (
-  placeholder: (
-    en: "Choose file...",
-    es: "Seleccionar archivo...",
-  ),
-  button-label: (
-    en: "Browse",
-    es: "Navegar",
-  ),
-);
