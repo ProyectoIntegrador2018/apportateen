@@ -8,6 +8,8 @@ import { finalize } from 'rxjs/operators';
 import { Taller } from 'app/models/taller.model';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef, MatSelectModule } from '@angular/material';
+import { ViewChild , ViewChildren, QueryList} from '@angular/core';
+import { AfterViewInit,ElementRef } from '@angular/core'
 
 @Component({
   selector: 'app-talleres-inscritos',
@@ -15,6 +17,10 @@ import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef, MatSelectModule 
   styleUrls: ['./talleres-inscritos.component.scss']
 })
 export class TalleresInscritosComponent implements OnInit {
+
+
+  @ViewChildren('comprobantes') inputs: QueryList<ElementRef>;
+  @ViewChildren('labelComprobantes') labels: QueryList<ElementRef>;
 
   talleres;
   isTalleresInscritos;
@@ -61,8 +67,8 @@ export class TalleresInscritosComponent implements OnInit {
   }
 
   //sube un archivo el usuario
-  fileInput(files: FileList, taller: Taller) {
-    const message= `Se subira el archivo "${files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
+  fileInput(event, taller: Taller) {
+    const message= `Se subira el archivo "${event.target.files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -71,21 +77,32 @@ export class TalleresInscritosComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = message;
 
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
       if (result) {
-        this.comprobante = files.item(0);
+        this.comprobante = event.target.files.item(0);
         this.uploadComprobante(taller);
-        console.log("INPUT FILE");
-        console.log(this.comprobante);
-        console.log(this.comprobante.name);
-        console.log(taller);
       }else{
         //quitar el archivo seleccionado
-        let idInput = "comprobante" + taller.id.toString();
-        console.log("ID " + idInput);
-        (<HTMLInputElement>document.getElementById(idInput)).value = "";
-        // event.srcElement.value = null;
+        this.inputs.forEach((input: ElementRef) => {
+          if(input.nativeElement.id == "comprobante" + taller.id.toString()){
+            input.nativeElement.value = "";
+          }
+        });
+        this.labels.forEach((label: ElementRef) => {
+          if(label.nativeElement.id == "label" + taller.id.toString()){
+            label.nativeElement.innerHTML = "Escoger Archivo";
+          }
+        });
+
       }
     });
+  }
+
+  getNombreArchivo(taller: Taller): string {
+    if(taller["ref_comprobante"] != null){
+      return taller["ref_comprobante"].substr(0, taller["ref_comprobante"].lastIndexOf('-'));
+    }
+    return "Escoger Archivo";
   }
 
   //subir a firestorage
@@ -155,6 +172,61 @@ export class TalleresInscritosComponent implements OnInit {
     } else {
       this.isTalleresInscritos = false;
     }
+  }
+
+  quitarInscripcion(taller: Taller) {
+    const dialogRef = this.dialog.open(ConfirmationDialog, {
+      disableClose: true
+    });
+    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará su inscripción a este taller. ¿Desea continuar?`;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // this.user.num_conf_pago = "";
+        // this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
+        // }, error => {
+        //   this.snackBar.open(error.error, '', {
+        //     duration: 900,
+        //   });
+        // });
+
+        // this.user.id_axtuser = ""; // para qué es este id ??
+        // this.cargaTu();
+
+
+        let inscripcion = {
+          "taller_id": taller.id,
+          "user_id": this.user.id
+        }
+
+        this.api.removeInscripcion(inscripcion).subscribe(res => {
+          this.cargarTalleresInscritos();
+          this.snackBar.open(res.message, '', {
+            duration: 1500,
+          });
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        });
+
+
+        const index_taller = this.user.talleres.indexOf(taller.id);
+        if (index_taller > -1) {
+          this.user.talleres.splice(index_taller, 1);
+        }
+        this.api.updateUser(this.user).subscribe(res => {
+          this.storage.set('@user:data', this.user);
+          // this.tallerActual = '';
+          this.snackBar.open(res.message, '', {
+            duration: 1500,
+          });
+        }, error => {
+          this.snackBar.open(error.error, '', {
+            duration: 900,
+          });
+        })
+      }
+    })
   }
 
 }
