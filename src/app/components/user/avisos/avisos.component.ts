@@ -40,12 +40,10 @@ export class AvisosUserComponent {
     }
     cargarAvisos() {
         let userStorage = this.storage.get('@user:data');
-        this.api.getUserById(userStorage.id).subscribe(user => {
-            this.storage.set('@user:data', user);
-            this.api.getAvisosByTaller(user.idtaller).subscribe(result => {
-                this.loading = false;
-                this.avisos = result;
-            })
+        this.api.getAvisosForUser(userStorage.id).subscribe(result => {
+            this.loading = false;
+            this.avisos = result;
+            console.log(this.avisos)
         })
     }
 

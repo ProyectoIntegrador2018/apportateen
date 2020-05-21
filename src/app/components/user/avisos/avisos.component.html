@@ -2,14 +2,25 @@
   <div class="container">
     <div *ngIf="avisos.length > 0 && loading != null">
       <div class="ad__item" *ngFor="let a of avisos">
-        <h4 class="ad__title">{{a.titulo}} <span>{{a.taller}}</span></h4>
-        <p class="ad__desc">{{a.mensaje}}</p>
-        <hr>
+        <mat-card class="mat-elevation-z8 ad">
+          <mat-card-header>
+            <mat-icon mat-card-avatar *ngIf="a.tipoEmisor == 'general'"> public </mat-icon>
+            <mat-icon mat-card-avatar *ngIf="a.tipoEmisor == 'sede'"> domain </mat-icon>
+            <mat-icon mat-card-avatar *ngIf="a.tipoEmisor == 'taller'"> notifications </mat-icon>
+            <mat-card-title class="ad__title">{{a.titulo}}</mat-card-title>
+            <mat-card-subtitle class="ad__sender">{{a.emisor}}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="ad__desc">{{a.mensaje}}</p>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
     <div *ngIf="avisos.length < 1 && loading != null">
-      <h4 class="ad__title">Sin Avisos.</h4>
-      <p class="ad__desc">Por el momento no hay avisos. Revisa nuevamente más tarde.</p>
+      <mat-card class="info">
+        <p>Aun no tienes avisos</p>
+      </mat-card>
     </div>
   </div>
 </div>
