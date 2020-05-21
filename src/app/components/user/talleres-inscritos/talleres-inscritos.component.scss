@@ -57,6 +57,7 @@
     text-align: center;
     color: #f7931e;
     font-size: 14px;
+    margin: 0 auto 3px auto;
   }
 
   .mensajeRechazado {
@@ -79,6 +80,15 @@
       width: 100%;
     }
 
+    .titulo {
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    .title {
+      text-align: center;
+    }
+
     .info-container {
       cursor: pointer;
     }
@@ -88,11 +98,21 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      // padding: 0px 15px 0px 15px;
+    }
+
+    .text-pagado{
       padding: 0px 15px 0px 15px;
     }
 
+    .text-pagar{
+      //fondo azul
+      padding: 0px 0px 0px 0px;
+      background-color: #6eb7c2;
+    }
+
     .btn-container {
-      margin: 20px auto 0px auto;
+      margin: 0px auto 0px auto;
       align-items: center;
       position: absolute;
       display: flex;
@@ -100,19 +120,20 @@
       justify-content: center;
       width: 230px;
       left: 5%;
-      //____ nuevo
+      //____ para centrar verticalmente
       height: 100%;
       top: 0;
       display: table;
     }
 
+    //____ para centrar verticalmente
     .outer {
       // position: relative;
-      margin: 20px auto 0px auto;
-      align-items: center;
+      margin: 65px auto 0px auto;
+      // align-items: center;
       position: absolute;
-      flex-direction: column;
-      justify-content: center;
+      // flex-direction: column;
+      // justify-content: center;
       width: 230px;
       left: 5%;
       height: 100%;
@@ -120,9 +141,25 @@
       display: table;
     }
 
+    //____ para centrar verticalmente
     .middle {
       display: table-cell;
       vertical-align: middle;
+    }
+
+
+    .desc {
+      font-weight: 300;
+      font-size: 14;
+    }
+
+    .ciudad {
+      font-weight: 500;
+      background-color: $color-orange;
+      text-align: center;
+      width: 150px;
+      color: white;
+      margin-bottom: 5px;
     }
 
     .bottom {
@@ -134,7 +171,8 @@
       flex-direction: column !important;
       justify-content: center !important;
       width: 230px !important;
-      left: 5% !important;
+      // left: 5% !important;
+      left: 10% !important;
       bottom: 8px !important;
       background-color: #f7931e !important;
     }

@@ -46,9 +46,9 @@
           <div [routerLink]="['../inscripcion/detalleTaller/', taller.id]" class="info-container">
             <img [src]="taller.url_array[0]">
 
-            <div class="text-container">
-              <!-- <div class="ciudad">{{taller.estado}}</div> -->
-              <h4 class="title">{{taller.nombre}}</h4>
+            <div [ngClass]="{'text-container': true, 'text-pagado': taller['estatus'] == 'aceptado', 'text-pagar': taller['estatus'] != 'aceptado'}">
+              <div *ngIf="taller['estatus'] == 'aceptado'" class="ciudad">{{taller.estado}}</div>
+              <h4 class="titulo">{{taller.nombre}}</h4>
               <p *ngIf="taller['estatus'] == 'aceptado'" class="desc">{{taller.descripcion}}</p>
 
             </div>
@@ -120,17 +120,17 @@
               </button> -->
                 </div>
                 <!-- aceptado -->
-                <div *ngIf="taller['estatus'] == 'aceptado'">
+                <!-- <div *ngIf="taller['estatus'] == 'aceptado'">
                   <button mat-button mat-raised-button class="btn reject card"
                     (click)="quitarInscripcion(taller)">Desinscribir
                   </button>
-                </div>
+                </div> -->
 
               </div>
             </div>
           </div>
           <!-- desinscribir de abajo -->
-          <div *ngIf="taller['estatus'] != 'aceptado'">
+          <div >
             <button mat-button mat-raised-button class="btn reject card bottom"
               (click)="quitarInscripcion(taller)">Desinscribir
             </button>
