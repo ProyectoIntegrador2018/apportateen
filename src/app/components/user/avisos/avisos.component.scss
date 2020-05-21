@@ -1,20 +1,14 @@
 @import '~styles-variables.scss';
 
 .ad {
-  margin-top: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
   &__title {
     color: $text-color;
-    font-size: 38px;
+    font-size: 30px;
     font-weight: bold;
-    letter-spacing: 1.28px;
-    margin-bottom: 25px;
-
-    span {
-      color: $color-blue;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
+    margin-bottom: 5px !important;
   }
 
   &__desc {
@@ -22,4 +16,20 @@
     font-weight: 300;
     letter-spacing: 0.76px;
   }
+
+  &__sender {
+    color: $color-blue;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  
+  mat-icon{
+    font-size: 30px;
+    color: $color-blue;
+    margin-top: 10px !important;
+  }
+}
+
+.info{
+  text-align: center;
 }

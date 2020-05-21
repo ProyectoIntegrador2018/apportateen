@@ -216,7 +216,7 @@ export class ApiService {
   }
 
   // API: GET /avisos/:id
-  public getAvisosByTaller(id: number): Observable<Aviso[]> {
+  public getAvisosForUser(id: string): Observable<Aviso[]> {
     return this.http
       .get<Aviso[]>(`${API_URL}/avisos/${id}`, httpOptions)
       .catch(this.handleError);
