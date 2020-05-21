@@ -16,7 +16,7 @@
       background-color: $color-blue;
     }
     &.reject {
-      background-color: $color-red;
+      background-color: #f7931e;
     }
     &.card {
       margin-top: 10px;
@@ -128,15 +128,11 @@
 
     //____ para centrar verticalmente
     .outer {
-      // position: relative;
-      margin: 65px auto 0px auto;
-      // align-items: center;
+      margin: 195px auto 0px auto; //155px de la img y 40 del titulo 40 del boton
       position: absolute;
-      // flex-direction: column;
-      // justify-content: center;
       width: 230px;
       left: 5%;
-      height: 100%;
+      height: 345px;
       top: 0;
       display: table;
     }
@@ -174,7 +170,6 @@
       // left: 5% !important;
       left: 10% !important;
       bottom: 8px !important;
-      background-color: #f7931e !important;
     }
   }
 
@@ -229,32 +224,32 @@
 }
 
 //=========== Segmented Control
-@keyframes example {
-  from {
-    background-color: rgb(255, 255, 255);
-  }
-  to {
-    background-color: $color-blue;
-  }
-}
+// @keyframes example {
+//   from {
+//     background-color: rgb(255, 255, 255);
+//   }
+//   to {
+//     background-color: $color-blue;
+//   }
+// }
 
-.scButton {
-  margin: 0px 5px 0px 0px;
-  background-color: $color-blue;
-  border-bottom: 2px solid $color-blue;
-  border-width: 0px 0px 2px 0px;
-  animation-name: example;
-  animation-duration: 2s;
-}
+// .scButton {
+//   margin: 0px 5px 0px 0px;
+//   background-color: $color-blue;
+//   border-bottom: 2px solid $color-blue;
+//   border-width: 0px 0px 2px 0px;
+//   animation-name: example;
+//   animation-duration: 2s;
+// }
 
-.scButton1 {
-  margin: 0px 5px 0px 0px;
-  background-color: $color-blue;
-  border-bottom: 2px solid $color-blue;
-  border-width: 0px 0px 2px 0px;
-  animation-name: example;
-  animation-duration: 2s;
-}
+// .scButton1 {
+//   margin: 0px 5px 0px 0px;
+//   background-color: $color-blue;
+//   border-bottom: 2px solid $color-blue;
+//   border-width: 0px 0px 2px 0px;
+//   animation-name: example;
+//   animation-duration: 2s;
+// }
 
 //====================
 
@@ -296,17 +291,6 @@
     color: white;
   }
 }
-
-// .scButton {
-//   width: 100px;
-//   height: 100px;
-//   background-color: rgb(137, 238, 167);
-//   transition: background-color 2s;
-// }
-
-// div:hover {
-//   width: 300px;
-// }
 
 //Para imprimir ficha de pago ________________________
 .printme {

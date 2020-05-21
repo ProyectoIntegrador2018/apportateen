@@ -98,6 +98,15 @@ export class TalleresInscritosComponent implements OnInit {
     // });
   }
 
+  hasTallerWithStatus(estatus: String) {
+    for (let taller of this.talleres) {
+      if (taller["estatus"] == estatus) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   getNombreArchivo(taller: Taller): string {
     if (taller["ref_comprobante"] != null && taller["ref_comprobante"] != "") {
       return taller["ref_comprobante"].substr(0, taller["ref_comprobante"].lastIndexOf('-'));

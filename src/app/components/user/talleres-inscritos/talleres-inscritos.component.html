@@ -14,11 +14,11 @@
     </div>
 
     <div *ngIf="isTalleresInscritos" class="instruction">
-      <p>Tu inscripción a los siguientes talleres ha sido completada. Revisa tu correo y tu sección de avisos
-        periódicamente al acercarse la fecha del taller para ponerte al corriente.</p>
+      <p>{{ this.hasTallerWithStatus('aceptado') ? 'Tu inscripción a los siguientes talleres ha sido completada. Revisa tu correo y tu sección de avisos periódicamente al acercarse la fecha del taller para ponerte al corriente.' : 'Por el momento no tienes talleres inscritos.'}}</p>
     </div>
-    <div *ngIf="!isTalleresInscritos" class="instruction">
-      <p>Para completar tu inscripción a los siguientes talleres, por favor realiza el pago con los siguientes pasos:
+
+    <div *ngIf="!isTalleresInscritos && (this.hasTallerWithStatus('pendiente') || this.hasTallerWithStatus('en revision') || this.hasTallerWithStatus('rechazado'))" class="instruction">
+      <p>Para completar tu inscripción a los siguientes talleres, por favor realiza el pago de cada taller con los siguientes pasos:
       </p>
       <div class="row">
         <div class="col">
@@ -36,6 +36,9 @@
       </div>
       <p class="instruction"><span class="bold">Nota: </span> Si se rechaza tu comprobante, podrás volver a subir otro.
       </p>
+    </div>
+    <div *ngIf="!this.hasTallerWithStatus('pendiente') && !this.hasTallerWithStatus('en revision') && !this.hasTallerWithStatus('rechazado') && !isTalleresInscritos" class="instruction">
+      <p>Por el momento no tienes talleres por pagar.</p>
     </div>
 
     <div class="items">
@@ -130,8 +133,10 @@
             </div>
           </div>
           <!-- desinscribir de abajo -->
-          <div >
-            <button mat-button mat-raised-button class="btn reject card bottom"
+          <div class="bottom">
+            <button *ngIf="taller['estatus'] == 'aceptado'" mat-button mat-stroked-button class="btn primary card"
+                [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+            <button mat-button mat-raised-button class="btn reject card"
               (click)="quitarInscripcion(taller)">Desinscribir
             </button>
           </div>
