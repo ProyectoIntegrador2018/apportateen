@@ -8,8 +8,8 @@ import { finalize } from 'rxjs/operators';
 import { Taller } from 'app/models/taller.model';
 import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmation-dialog.component';
 import { MatDialog, MatSnackBar, MAT_DIALOG_DATA, MatDialogRef, MatSelectModule } from '@angular/material';
-import { ViewChild , ViewChildren, QueryList} from '@angular/core';
-import { AfterViewInit,ElementRef } from '@angular/core'
+import { ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { AfterViewInit, ElementRef } from '@angular/core'
 
 @Component({
   selector: 'app-talleres-inscritos',
@@ -68,7 +68,7 @@ export class TalleresInscritosComponent implements OnInit {
 
   //sube un archivo el usuario
   fileInput(event, taller: Taller) {
-    const message= `Se subira el archivo "${event.target.files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
+    const message = `Se subira el archivo "${event.target.files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
 
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -81,15 +81,15 @@ export class TalleresInscritosComponent implements OnInit {
       if (result) {
         this.comprobante = event.target.files.item(0);
         this.uploadComprobante(taller);
-      }else{
+      } else {
         //quitar el archivo seleccionado
         this.inputs.forEach((input: ElementRef) => {
-          if(input.nativeElement.id == "comprobante" + taller.id.toString()){
+          if (input.nativeElement.id == "comprobante" + taller.id.toString()) {
             input.nativeElement.value = "";
           }
         });
         this.labels.forEach((label: ElementRef) => {
-          if(label.nativeElement.id == "label" + taller.id.toString()){
+          if (label.nativeElement.id == "label" + taller.id.toString()) {
             label.nativeElement.innerHTML = "Escoger Archivo";
           }
         });
@@ -99,7 +99,7 @@ export class TalleresInscritosComponent implements OnInit {
   }
 
   getNombreArchivo(taller: Taller): string {
-    if(taller["ref_comprobante"] != null){
+    if (taller["ref_comprobante"] != null && taller["ref_comprobante"] != "") {
       return taller["ref_comprobante"].substr(0, taller["ref_comprobante"].lastIndexOf('-'));
     }
     return "Escoger Archivo";
@@ -118,16 +118,17 @@ export class TalleresInscritosComponent implements OnInit {
             console.log(url);
 
             //si ya tiene un comprobante, borrarlo de firestorage
-            if (taller["ref_comprobante"] != null && taller["ref_comprobante"] != '') {
-              console.log("ENTRA AQUI" + taller["ref_comprobante"]);
-              var archivoRef = this.fireStorage.ref(taller["ref_comprobante"]);
-              archivoRef.delete().subscribe(res => {
-              }, error => {
-                this.snackBar.open('Error', '', {
-                  duration: 1500,
-                });
-              });
-            }
+            this.borrarComprobanteStorage(taller);
+            // if (taller["ref_comprobante"] != null && taller["ref_comprobante"] != '') {
+            //   console.log("ENTRA AQUI" + taller["ref_comprobante"]);
+            //   var archivoRef = this.fireStorage.ref(taller["ref_comprobante"]);
+            //   archivoRef.delete().subscribe(res => {
+            //   }, error => {
+            //     this.snackBar.open('Error', '', {
+            //       duration: 1500,
+            //     });
+            //   });
+            // }
 
             //Subir a la base de datos
             var inscripcion = {
@@ -156,13 +157,21 @@ export class TalleresInscritosComponent implements OnInit {
     })
   }
 
+  //borrar archivo del comprobante de firestorage
+  borrarComprobanteStorage(taller: Taller) {
+    if (taller["ref_comprobante"] != null && taller["ref_comprobante"] != '') {
+      var archivoRef = this.fireStorage.ref(taller["ref_comprobante"]);
+      archivoRef.delete().subscribe(res => {
+      }, error => {
+        this.snackBar.open('Error', '', {
+          duration: 1500,
+        });
+      });
+    }
+  }
+
 
   imprimirFichaPago(taller: Taller) {
-    //opcion 1 con css
-    // this.print = false;
-    // // this.currentCost = this.costoTaller(taller);
-    // this.currentCost = 500;
-    // this.print = true;
     window.print();
   }
 
@@ -188,18 +197,18 @@ export class TalleresInscritosComponent implements OnInit {
         //     duration: 900,
         //   });
         // });
-
         // this.user.id_axtuser = ""; // para qué es este id ??
         // this.cargaTu();
 
-
-        let inscripcion = {
+        //desinscribir de tabla de inscripciones
+        const inscripcion = {
           "taller_id": taller.id,
           "user_id": this.user.id
         }
-
         this.api.removeInscripcion(inscripcion).subscribe(res => {
           this.cargarTalleresInscritos();
+          //borrar de firestorage el comprobante
+          this.borrarComprobanteStorage(taller);
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
@@ -208,8 +217,7 @@ export class TalleresInscritosComponent implements OnInit {
             duration: 900,
           });
         });
-
-
+        //tabla usuarios inscripcion
         const index_taller = this.user.talleres.indexOf(taller.id);
         if (index_taller > -1) {
           this.user.talleres.splice(index_taller, 1);

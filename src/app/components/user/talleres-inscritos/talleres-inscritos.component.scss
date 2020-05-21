@@ -37,17 +37,17 @@
   .pago {
     font-size: 13px;
     text-align: center;
-    margin: 10px auto 10px auto;
+    margin: 15px auto 0px auto;
   }
 
-  .labelSubirPending {
-    margin: 75px auto 0px auto;
-  }
+  // .labelSubirPending {
+  //   margin: 75px auto 0px auto;
+  // }
 
   //en revision
-  .labelSubirRevision {
-    margin: 85px auto 0px auto;
-  }
+  // .labelSubirRevision {
+  //   margin: 85px auto 0px auto;
+  // }
 
   .enRevision{
     color: #55a0ab;
@@ -57,13 +57,13 @@
   .cambiarRevision{
     font-size: 13px;
     text-align: center;
-    margin: 10px auto 10px auto;
+    margin: 10px auto 0px auto;
   }
 
   //rechazado
-  .labelSubirRechazado{
-    margin: 155px auto 0px auto;
-  }
+  // .labelSubirRechazado{
+  //   margin: 210px auto 0px auto;
+  // }
 
   .rechazado{
     text-align: center;
