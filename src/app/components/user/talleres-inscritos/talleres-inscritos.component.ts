@@ -68,34 +68,34 @@ export class TalleresInscritosComponent implements OnInit {
 
   //sube un archivo el usuario
   fileInput(event, taller: Taller) {
-    const message = `Se subira el archivo "${event.target.files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
+    // const message = `Se subira el archivo "${event.target.files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
 
-    const dialogRef = this.dialog.open(ConfirmationDialog, {
-      disableClose: true
-    });
+    // const dialogRef = this.dialog.open(ConfirmationDialog, {
+    //   disableClose: true
+    // });
 
-    dialogRef.componentInstance.mensajeConfirmacion = message;
+    // dialogRef.componentInstance.mensajeConfirmacion = message;
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result) {
+    // dialogRef.afterClosed().subscribe(result => {
+    //   console.log(result);
+    //   if (result) {
         this.comprobante = event.target.files.item(0);
         this.uploadComprobante(taller);
-      } else {
-        //quitar el archivo seleccionado
-        this.inputs.forEach((input: ElementRef) => {
-          if (input.nativeElement.id == "comprobante" + taller.id.toString()) {
-            input.nativeElement.value = "";
-          }
-        });
-        this.labels.forEach((label: ElementRef) => {
-          if (label.nativeElement.id == "label" + taller.id.toString()) {
-            label.nativeElement.innerHTML = "Escoger Archivo";
-          }
-        });
+    //   } else {
+    //     //quitar el archivo seleccionado
+    //     this.inputs.forEach((input: ElementRef) => {
+    //       if (input.nativeElement.id == "comprobante" + taller.id.toString()) {
+    //         input.nativeElement.value = "";
+    //       }
+    //     });
+    //     this.labels.forEach((label: ElementRef) => {
+    //       if (label.nativeElement.id == "label" + taller.id.toString()) {
+    //         label.nativeElement.innerHTML = "Escoger Archivo";
+    //       }
+    //     });
 
-      }
-    });
+    //   }
+    // });
   }
 
   getNombreArchivo(taller: Taller): string {
