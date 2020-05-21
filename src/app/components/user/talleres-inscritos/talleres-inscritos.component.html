@@ -1,42 +1,157 @@
 <div class="container-fluid register">
-  <div class="container">
+  <div class="container no-printme">
     <div class="segmented-control">
       <div class="row justify-content-center">
         <div class="col-7">
           <div class="scContainer">
-            <button [ngClass]="{'leftSc': true, 'enabled': isTalleresInscritos}" (click)="toggleButton('left')">Talleres Inscritos</button>
-            <button [ngClass]="{'rightSc': true, 'enabled': !isTalleresInscritos}" (click)="toggleButton('right')">Talleres por pagar</button>
+            <button [ngClass]="{'leftSc': true, 'enabled': isTalleresInscritos}" (click)="toggleButton('left')">Talleres
+              Inscritos</button>
+            <button [ngClass]="{'rightSc': true, 'enabled': !isTalleresInscritos}"
+              (click)="toggleButton('right')">Talleres por pagar</button>
           </div>
         </div>
       </div>
     </div>
 
     <div *ngIf="isTalleresInscritos" class="instruction">
-        <p>Tu inscripción a los siguientes talleres ha sido completada. Revisa tu correo y tu sección de avisos periodicamente al acercarse la fecha del taller para ponerte al corriente.</p>
+      <p>{{ this.hasTallerWithStatus('aceptado') ? 'Tu inscripción a los siguientes talleres ha sido completada. Revisa tu correo y tu sección de avisos periódicamente al acercarse la fecha del taller para ponerte al corriente.' : 'Por el momento no tienes talleres inscritos.'}}</p>
     </div>
-    <div *ngIf="!isTalleresInscritos" class="instruction">
-      <p>Para completar tu inscripción a los siguientes talleres, por favor sube tu comprobante de pago.</p>
-  </div>
+
+    <div *ngIf="!isTalleresInscritos && (this.hasTallerWithStatus('pendiente') || this.hasTallerWithStatus('en revision') || this.hasTallerWithStatus('rechazado'))" class="instruction">
+      <p>Para completar tu inscripción a los siguientes talleres, por favor realiza el pago de cada taller con los siguientes pasos:
+      </p>
+      <div class="row">
+        <div class="col">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">print</mat-icon><br />
+          <p class="pasos"> Imprime o descarga la ficha para poder realizar el pago.</p>
+        </div>
+        <div class="col">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">publish</mat-icon><br />
+          <p class="pasos">Sube tu comprobante de pago en formato PDF. Se tardará unos días en revisar.</p>
+        </div>
+        <div class="col">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">check_circle</mat-icon><br />
+          <p class="pasos"> Una vez aprobado el comprobante, ¡quedarás inscrito!</p>
+        </div>
+      </div>
+      <p class="instruction"><span class="bold">Nota: </span> Si se rechaza tu comprobante, podrás volver a subir otro.
+      </p>
+    </div>
+    <div *ngIf="!this.hasTallerWithStatus('pendiente') && !this.hasTallerWithStatus('en revision') && !this.hasTallerWithStatus('rechazado') && !isTalleresInscritos" class="instruction">
+      <p>Por el momento no tienes talleres por pagar.</p>
+    </div>
 
     <div class="items">
-      <div class="register__item" *ngFor="let taller of talleres">
-        <div [routerLink]="['detalleTaller/', taller.id]" class="info-container">
-          <img [src]="taller.url_array[0]">
-          <div class="text-container">
-            <div class="ciudad">{{taller.estado}}</div>
-            <h3 class="title">{{taller.nombre}}</h3>
-            <p class="desc">{{taller.descripcion}}</p>
+      <div *ngFor="let taller of talleres">
+        <div class="register__item"
+          *ngIf="isTalleresInscritos && taller['estatus'] == 'aceptado' || !isTalleresInscritos && taller['estatus'] != 'aceptado'">
+          <!-- info-container -->
+          <div [routerLink]="['../inscripcion/detalleTaller/', taller.id]" class="info-container">
+            <img [src]="taller.url_array[0]">
 
+            <div [ngClass]="{'text-container': true, 'text-pagado': taller['estatus'] == 'aceptado', 'text-pagar': taller['estatus'] != 'aceptado'}">
+              <div *ngIf="taller['estatus'] == 'aceptado'" class="ciudad">{{taller.estado}}</div>
+              <h4 class="titulo">{{taller.nombre}}</h4>
+              <p *ngIf="taller['estatus'] == 'aceptado'" class="desc">{{taller.descripcion}}</p>
+
+            </div>
           </div>
-        </div>
-        <div class="btn-container">
-          <button mat-button mat-stroked-button class="btn primary card"
-            [routerLink]="['detalleTaller/', taller.id]">Más
-            información</button>
-          <!-- <button mat-button mat-raised-button class="btn reject card" (click)="quitarInscripcion(taller)">Desinscribir
-          </button> -->
+          <!-- btn container -->
+          <div class="outer">
+            <div class="btn-container">
+              <div class="middle">
+                <!-- pendiente -->
+                <div *ngIf="taller['estatus'] == 'pendiente'">
+                  <!-- Ficha de pago -->
+                  <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
+                    (click)="imprimirFichaPago(taller)" *ngIf="taller['estatus'] == 'pendiente'">Imprimir ficha de
+                    pago</button>
+                  <!-- Subir comprobante -->
+                  <p class="pago">Sube tu Comprobante de Pago</p>
+                  <div class="custom-file">
+                    <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
+                      (change)="fileInput($event, taller)" accept=".pdf">
+                    <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
+                      class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
+                  </div>
+                  <!-- Desinscribir -->
+                  <!-- <button mat-button mat-raised-button class="btn reject card separacion"
+                (click)="quitarInscripcion(taller)">Desinscribir
+              </button> -->
+                </div>
+                <!-- en revision -->
+                <div *ngIf="taller['estatus'] == 'en revision'">
+                  <p class="enRevision">Tu comprobante de pago esta siendo revisado.</p>
+                  <p class="cambiarRevision">Cambiar comprobante</p>
+                  <!-- Subir comprobante -->
+                  <div class="custom-file">
+                    <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
+                      (change)="fileInput($event, taller)" accept=".pdf">
+                    <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
+                      class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
+                  </div>
+                  <!-- Desinscribir -->
+                  <!-- <button mat-button mat-raised-button class="btn reject card separacion"
+                (click)="quitarInscripcion(taller)">Desinscribir
+              </button> -->
+                </div>
+                <!-- rechazado -->
+                <div *ngIf="taller['estatus'] == 'rechazado'">
+                  <!-- Mensaje -->
+                  <p class="rechazado" *ngIf="taller['mensaje'] != null && taller['mensaje'] != ''">Tu comprobante de
+                    pago
+                    fue rechazado por la siguiente razón:</p>
+                  <p class="rechazado" *ngIf="taller['mensaje'] == null || taller['mensaje'] == ''">Tu comprobante de
+                    pago
+                    fue rechazado, favor de subir uno nuevo.</p>
+                  <p class="mensajeRechazado">{{taller["mensaje"]}}</p>
+                  <!-- Ficha de Pago -->
+                  <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
+                    (click)="imprimirFichaPago(taller)">Imprimir ficha de
+                    pago</button>
+                  <!-- Subir comprobante -->
+                  <p class="pago">Sube un nuevo comprobante</p>
+                  <div class="custom-file">
+                    <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
+                      (change)="fileInput($event, taller)" accept=".pdf">
+                    <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
+                      class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
+                  </div>
+                  <!-- Desinscribir -->
+                  <!-- <button mat-button mat-raised-button class="btn reject card"
+                (click)="quitarInscripcion(taller)">Desinscribir
+              </button> -->
+                </div>
+                <!-- aceptado -->
+                <!-- <div *ngIf="taller['estatus'] == 'aceptado'">
+                  <button mat-button mat-raised-button class="btn reject card"
+                    (click)="quitarInscripcion(taller)">Desinscribir
+                  </button>
+                </div> -->
+
+              </div>
+            </div>
+          </div>
+          <!-- desinscribir de abajo -->
+          <div class="bottom">
+            <button *ngIf="taller['estatus'] == 'aceptado'" mat-button mat-stroked-button class="btn primary card"
+            [routerLink]="['../inscripcion/detalleTaller/', taller.id]">Más información</button>
+            <button mat-button mat-raised-button class="btn reject card"
+              (click)="quitarInscripcion(taller)">Desinscribir
+            </button>
+          </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- FICHA DE PAGO-->
+  <div class="printme" id="fichaPago">
+    <img src="../../../../assets/img/csoftcolor.jpeg" alt="csoft">
+    <p><span class="bold">Nombre:</span> Consejo para el Desarrollo de la Industria de Software de Nuevo
+      León, A.C.</p>
+    <p><span class="bold">Banco:</span> BBVA Bancomer</p>
+    <p><span class="bold">CLABE:</span> 012580001609472614</p>
+    <p><span class="bold">Monto:</span> {{ currentCost }} </p>
   </div>
 </div>

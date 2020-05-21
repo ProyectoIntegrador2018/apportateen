@@ -3,67 +3,90 @@
 .register {
   margin: 20px 0;
 
-  &__title {
-    color: $text-color;
-    font-size: 38px;
-    font-weight: bold;
-    letter-spacing: 1.28px;
-  }
-
-  // &__actions {
-  //   align-items: center;
-  //   display: flex;
-  //   // justify-content: space-between;
-  //   margin-bottom: 30px;
-  //   width: 100%;
-  // }
-
+  // //botones adentro de las cards
   .btn {
+    -webkit-appearance: none;
     &:focus {
       box-shadow: none;
     }
-
     &.accept {
       background-color: $color-green;
     }
-
     &.primary {
       background-color: $color-blue;
     }
-
     &.reject {
-      background-color: $color-red;
+      background-color: #f7931e;
     }
-
     &.card {
       margin-top: 10px;
       margin-left: auto;
       margin-right: auto;
       width: 100%;
+      text-align: center;
     }
-
     border: 0;
     color: $color-white;
   }
 
-  .items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  .separacion {
+    margin: 20px auto 0px auto;
   }
 
+  //pendiente
+  .pago {
+    font-size: 13px;
+    text-align: center;
+    margin: 15px auto 0px auto;
+  }
+
+  //en revision
+  .enRevision {
+    color: #55a0ab;
+    text-align: center;
+  }
+
+  .cambiarRevision {
+    font-size: 13px;
+    text-align: center;
+    margin: 10px auto 0px auto;
+  }
+
+  //rechazado
+  .rechazado {
+    text-align: center;
+    color: #f7931e;
+    font-size: 14px;
+    margin: 0 auto 3px auto;
+  }
+
+  .mensajeRechazado {
+    text-align: center;
+    font-size: 14px;
+  }
+
+  //__item es toda la card
   &__item {
     border-radius: 5px;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
     margin: 20px 0 0 20px;
-    width: 260px;
+    width: 275px; //260
     height: 580px;
     position: relative;
 
     img {
       border-radius: 5px 5px 0 0;
-      height: 160px;
+      height: 155px;
       width: 100%;
+    }
+
+    .titulo {
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    .title {
+      text-align: center;
     }
 
     .info-container {
@@ -75,20 +98,51 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      // padding: 0px 15px 0px 15px;
+    }
+
+    .text-pagado{
       padding: 0px 15px 0px 15px;
     }
 
+    .text-pagar{
+      //fondo azul
+      padding: 0px 0px 0px 0px;
+      background-color: #6eb7c2;
+    }
+
     .btn-container {
+      margin: 0px auto 0px auto;
       align-items: center;
       position: absolute;
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: 230px;
-      height: 20px;
-      bottom: 10%;
       left: 5%;
+      //____ para centrar verticalmente
+      height: 100%;
+      top: 0;
+      display: table;
     }
+
+    //____ para centrar verticalmente
+    .outer {
+      margin: 195px auto 0px auto; //155px de la img y 40 del titulo 40 del boton
+      position: absolute;
+      width: 230px;
+      left: 5%;
+      height: 345px;
+      top: 0;
+      display: table;
+    }
+
+    //____ para centrar verticalmente
+    .middle {
+      display: table-cell;
+      vertical-align: middle;
+    }
+
 
     .desc {
       font-weight: 300;
@@ -103,12 +157,32 @@
       color: white;
       margin-bottom: 5px;
     }
+
+    .bottom {
+      //botones de abajo de desinscribir
+      margin: 20px auto 0px auto !important;
+      align-items: center !important;
+      position: absolute !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      width: 230px !important;
+      // left: 5% !important;
+      left: 10% !important;
+      bottom: 8px !important;
+    }
   }
 
   .mat-option.mat-active,
   .mat-option.mat-selected {
     background: $color-blue !important;
   }
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* Phone */
@@ -135,33 +209,47 @@
   color: #6d6d6d;
 }
 
-//=========== ANIMACION
-@keyframes example {
-  from {
-    background-color: rgb(255, 255, 255);
-  }
-  to {
-    background-color: $color-blue;
-  }
+.pasos {
+  margin: 5px auto 5px auto;
+  font-size: 15px;
 }
 
-.scButton {
-  margin: 0px 5px 0px 0px;
-  background-color: $color-blue;
-  border-bottom: 2px solid $color-blue;
-  border-width: 0px 0px 2px 0px;
-  animation-name: example;
-  animation-duration: 2s;
+.iconStep {
+  font-size: 60px;
+  color: #6eb7c2;
 }
 
-.scButton1 {
-  margin: 0px 5px 0px 0px;
-  background-color: $color-blue;
-  border-bottom: 2px solid $color-blue;
-  border-width: 0px 0px 2px 0px;
-  animation-name: example;
-  animation-duration: 2s;
+.bold {
+  font-weight: bold;
 }
+
+//=========== Segmented Control
+// @keyframes example {
+//   from {
+//     background-color: rgb(255, 255, 255);
+//   }
+//   to {
+//     background-color: $color-blue;
+//   }
+// }
+
+// .scButton {
+//   margin: 0px 5px 0px 0px;
+//   background-color: $color-blue;
+//   border-bottom: 2px solid $color-blue;
+//   border-width: 0px 0px 2px 0px;
+//   animation-name: example;
+//   animation-duration: 2s;
+// }
+
+// .scButton1 {
+//   margin: 0px 5px 0px 0px;
+//   background-color: $color-blue;
+//   border-bottom: 2px solid $color-blue;
+//   border-width: 0px 0px 2px 0px;
+//   animation-name: example;
+//   animation-duration: 2s;
+// }
 
 //====================
 
@@ -204,13 +292,36 @@
   }
 }
 
-// .scButton {
-//   width: 100px;
-//   height: 100px;
-//   background-color: rgb(137, 238, 167);
-//   transition: background-color 2s;
-// }
+//Para imprimir ficha de pago ________________________
+.printme {
+  display: none;
+}
 
-// div:hover {
-//   width: 300px;
-// }
+@media print {
+  .no-printme {
+    display: none;
+  }
+  .printme {
+    display: block;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 15px;
+    // font-size: 14px;
+    // line-height: 18px;
+
+    p {
+      font-size: 30px;
+      line-height: 35px;
+    }
+
+    img {
+      margin-bottom: 30px;
+      width: 70%;
+    }
+  }
+}
