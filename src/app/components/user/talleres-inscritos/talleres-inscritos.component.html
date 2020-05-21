@@ -54,77 +54,84 @@
             </div>
           </div>
           <!-- btn container -->
-          <div class="btn-container">
-            <!-- pendiente -->
-            <div *ngIf="taller['estatus'] == 'pendiente'">
-              <!-- Ficha de pago -->
-              <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
-                (click)="imprimirFichaPago(taller)" *ngIf="taller['estatus'] == 'pendiente'">Imprimir ficha de
-                pago</button>
-              <!-- Subir comprobante -->
-              <p class="pago">Sube tu Comprobante de Pago</p>
-              <div class="custom-file">
-                <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
-                  (change)="fileInput($event, taller)" accept=".pdf">
-                <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
-                  class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
-              </div>
-              <!-- Desinscribir -->
-              <!-- <button mat-button mat-raised-button class="btn reject card separacion"
+          <div class="outer">
+            <div class="btn-container">
+              <div class="middle">
+                <!-- pendiente -->
+                <div *ngIf="taller['estatus'] == 'pendiente'">
+                  <!-- Ficha de pago -->
+                  <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
+                    (click)="imprimirFichaPago(taller)" *ngIf="taller['estatus'] == 'pendiente'">Imprimir ficha de
+                    pago</button>
+                  <!-- Subir comprobante -->
+                  <p class="pago">Sube tu Comprobante de Pago</p>
+                  <div class="custom-file">
+                    <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
+                      (change)="fileInput($event, taller)" accept=".pdf">
+                    <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
+                      class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
+                  </div>
+                  <!-- Desinscribir -->
+                  <!-- <button mat-button mat-raised-button class="btn reject card separacion"
                 (click)="quitarInscripcion(taller)">Desinscribir
               </button> -->
-            </div>
-            <!-- en revision -->
-            <div *ngIf="taller['estatus'] == 'en revision'">
-              <p class="enRevision">Tu comprobante de pago esta siendo revisado.</p>
-              <p class="cambiarRevision">Cambiar comprobante</p>
-              <!-- Subir comprobante -->
-              <div class="custom-file">
-                <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
-                  (change)="fileInput($event, taller)" accept=".pdf">
-                <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
-                  class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
-              </div>
-              <!-- Desinscribir -->
-              <!-- <button mat-button mat-raised-button class="btn reject card separacion"
+                </div>
+                <!-- en revision -->
+                <div *ngIf="taller['estatus'] == 'en revision'">
+                  <p class="enRevision">Tu comprobante de pago esta siendo revisado.</p>
+                  <p class="cambiarRevision">Cambiar comprobante</p>
+                  <!-- Subir comprobante -->
+                  <div class="custom-file">
+                    <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
+                      (change)="fileInput($event, taller)" accept=".pdf">
+                    <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
+                      class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
+                  </div>
+                  <!-- Desinscribir -->
+                  <!-- <button mat-button mat-raised-button class="btn reject card separacion"
                 (click)="quitarInscripcion(taller)">Desinscribir
               </button> -->
-            </div>
-            <!-- rechazado -->
-            <div *ngIf="taller['estatus'] == 'rechazado'">
-              <!-- Mensaje -->
-              <p class="rechazado" *ngIf="taller['mensaje'] != null && taller['mensaje'] != ''">Tu comprobante de pago
-                fue rechazado por la siguiente razón:</p>
-              <p class="rechazado" *ngIf="taller['mensaje'] == null || taller['mensaje'] == ''">Tu comprobante de pago
-                fue rechazado, favor de subir uno nuevo.</p>
-              <p class="mensajeRechazado">{{taller["mensaje"]}}</p>
-              <!-- Ficha de Pago -->
-              <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
-                (click)="imprimirFichaPago(taller)">Imprimir ficha de
-                pago</button>
-              <!-- Subir comprobante -->
-              <p class="pago">Sube un nuevo comprobante</p>
-              <div class="custom-file">
-                <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
-                  (change)="fileInput($event, taller)" accept=".pdf">
-                <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
-                  class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
-              </div>
-              <!-- Desinscribir -->
-              <!-- <button mat-button mat-raised-button class="btn reject card"
+                </div>
+                <!-- rechazado -->
+                <div *ngIf="taller['estatus'] == 'rechazado'">
+                  <!-- Mensaje -->
+                  <p class="rechazado" *ngIf="taller['mensaje'] != null && taller['mensaje'] != ''">Tu comprobante de
+                    pago
+                    fue rechazado por la siguiente razón:</p>
+                  <p class="rechazado" *ngIf="taller['mensaje'] == null || taller['mensaje'] == ''">Tu comprobante de
+                    pago
+                    fue rechazado, favor de subir uno nuevo.</p>
+                  <p class="mensajeRechazado">{{taller["mensaje"]}}</p>
+                  <!-- Ficha de Pago -->
+                  <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
+                    (click)="imprimirFichaPago(taller)">Imprimir ficha de
+                    pago</button>
+                  <!-- Subir comprobante -->
+                  <p class="pago">Sube un nuevo comprobante</p>
+                  <div class="custom-file">
+                    <input type="file" #comprobantes class="custom-file-input" id="{{'comprobante' + taller.id}}"
+                      (change)="fileInput($event, taller)" accept=".pdf">
+                    <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
+                      class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
+                  </div>
+                  <!-- Desinscribir -->
+                  <!-- <button mat-button mat-raised-button class="btn reject card"
                 (click)="quitarInscripcion(taller)">Desinscribir
               </button> -->
-            </div>
-            <!-- aceptado -->
-            <div *ngIf="taller['estatus'] == 'aceptado'">
-              <button mat-button mat-raised-button class="btn reject card"
-                (click)="quitarInscripcion(taller)">Desinscribir
-              </button>
+                </div>
+                <!-- aceptado -->
+                <div *ngIf="taller['estatus'] == 'aceptado'">
+                  <button mat-button mat-raised-button class="btn reject card"
+                    (click)="quitarInscripcion(taller)">Desinscribir
+                  </button>
+                </div>
+
+              </div>
             </div>
           </div>
           <!-- desinscribir de abajo -->
           <div *ngIf="taller['estatus'] != 'aceptado'">
-            <button  mat-button mat-raised-button class="btn reject card bottom"
+            <button mat-button mat-raised-button class="btn reject card bottom"
               (click)="quitarInscripcion(taller)">Desinscribir
             </button>
           </div>

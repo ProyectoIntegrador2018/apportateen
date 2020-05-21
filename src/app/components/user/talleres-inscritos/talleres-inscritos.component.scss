@@ -29,7 +29,7 @@
     color: $color-white;
   }
 
-  .separacion{
+  .separacion {
     margin: 20px auto 0px auto;
   }
 
@@ -41,43 +41,28 @@
   }
 
   //en revision
-  .enRevision{
+  .enRevision {
     color: #55a0ab;
     text-align: center;
   }
 
-  .cambiarRevision{
+  .cambiarRevision {
     font-size: 13px;
     text-align: center;
     margin: 10px auto 0px auto;
   }
 
   //rechazado
-  .rechazado{
+  .rechazado {
     text-align: center;
     color: #f7931e;
     font-size: 14px;
   }
 
-  .mensajeRechazado{
+  .mensajeRechazado {
     text-align: center;
     font-size: 14px;
   }
-
-  .bottom{ //botones de abajo de desinscribir
-    margin: 20px auto 0px auto !important;
-    align-items: center!important;
-    position: absolute!important;
-    display: flex!important;
-    flex-direction: column!important;
-    justify-content: center!important;
-    width: 230px!important;
-    left: 5%!important;
-    bottom: 8px!important;
-    background-color: #f7931e!important;
-  }
-
-
 
   //__item es toda la card
   &__item {
@@ -93,7 +78,6 @@
       height: 155px;
       width: 100%;
     }
-
 
     .info-container {
       cursor: pointer;
@@ -116,34 +100,44 @@
       justify-content: center;
       width: 230px;
       left: 5%;
+      //____ nuevo
+      height: 100%;
+      top: 0;
+      display: table;
     }
 
-
-    .desc {
-      font-weight: 300;
-      font-size: 14;
+    .outer {
+      // position: relative;
+      margin: 20px auto 0px auto;
+      align-items: center;
+      position: absolute;
+      flex-direction: column;
+      justify-content: center;
+      width: 230px;
+      left: 5%;
+      height: 100%;
+      top: 0;
+      display: table;
     }
 
-    .ciudad {
-      font-weight: 500;
-      background-color: $color-orange;
-      text-align: center;
-      width: 150px;
-      color: white;
-      margin-bottom: 5px;
+    .middle {
+      display: table-cell;
+      vertical-align: middle;
     }
 
-    // // choose file
-    // $custom-file-text: (
-    //   placeholder: (
-    //     en: "Choose file...",
-    //     es: "Seleccionar archivo...",
-    //   ),
-    //   button-label: (
-    //     en: "Browse",
-    //     es: "Navegar",
-    //   ),
-    // );
+    .bottom {
+      //botones de abajo de desinscribir
+      margin: 20px auto 0px auto !important;
+      align-items: center !important;
+      position: absolute !important;
+      display: flex !important;
+      flex-direction: column !important;
+      justify-content: center !important;
+      width: 230px !important;
+      left: 5% !important;
+      bottom: 8px !important;
+      background-color: #f7931e !important;
+    }
   }
 
   .mat-option.mat-active,
@@ -182,12 +176,12 @@
   color: #6d6d6d;
 }
 
-.pasos{
- margin: 5px auto 5px auto;
- font-size: 15px;
+.pasos {
+  margin: 5px auto 5px auto;
+  font-size: 15px;
 }
 
-.iconStep{
+.iconStep {
   font-size: 60px;
   color: #6eb7c2;
 }
