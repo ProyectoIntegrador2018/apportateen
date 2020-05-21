@@ -88,8 +88,12 @@
 
     img {
       border-radius: 5px 5px 0 0;
-      height: 160px;
+      height: 155px;
       width: 100%;
+    }
+
+    .nombreTaller{
+
     }
 
     .info-container {
@@ -178,6 +182,20 @@
   width: 80%;
   margin: 15px auto 15px auto;
   color: #6d6d6d;
+}
+
+.pasos{
+ margin: 5px auto 5px auto;
+ font-size: 15px;
+}
+
+.iconStep{
+  font-size: 60px;
+  color: #6eb7c2;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 //=========== Segmented Control
@@ -288,11 +306,8 @@
     }
 
     img {
-      margin-bottom: 20px;
-    }
-
-    .bold {
-      font-weight: bold;
+      margin-bottom: 30px;
+      width: 70%;
     }
   }
 }

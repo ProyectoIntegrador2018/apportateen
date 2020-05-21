@@ -15,10 +15,25 @@
 
     <div *ngIf="isTalleresInscritos" class="instruction">
       <p>Tu inscripción a los siguientes talleres ha sido completada. Revisa tu correo y tu sección de avisos
-        periodicamente al acercarse la fecha del taller para ponerte al corriente.</p>
+        periódicamente al acercarse la fecha del taller para ponerte al corriente.</p>
     </div>
     <div *ngIf="!isTalleresInscritos" class="instruction">
-      <p>Para completar tu inscripción a los siguientes talleres, por favor sube tu comprobante de pago.</p>
+      <p>Para completar tu inscripción a los siguientes talleres, por favor realiza el pago con los siguientes pasos:</p>
+      <div class="row">
+        <div class="col">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">print</mat-icon><br />
+          <p class="pasos"> Imprime o descarga la ficha para poder realizar el pago.</p>
+        </div>
+        <div class="col">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">publish</mat-icon><br />
+          <p class="pasos">Sube tu comprobante de pago en formato PDF. Se tardará unos días en revisar.</p>
+        </div>
+        <div class="col">
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">check_circle</mat-icon><br />
+          <p class="pasos"> Una vez aprobado el comprobante, ¡quedarás inscrito!</p>
+        </div>
+      </div>
+      <p class="instruction"><span class="bold">Nota: </span> Si se rechaza tu comprobante, podrás volver a subir otro.</p>
     </div>
 
     <div class="items">
@@ -28,9 +43,10 @@
           <!-- info-container -->
           <div [routerLink]="['../inscripcion/detalleTaller/', taller.id]" class="info-container">
             <img [src]="taller.url_array[0]">
+
             <div class="text-container">
-              <div class="ciudad">{{taller.estado}}</div>
-              <h3 class="title">{{taller.nombre}}</h3>
+              <!-- <div class="ciudad">{{taller.estado}}</div> -->
+              <h2 class="title">{{taller.nombre}}</h2>
               <p *ngIf="taller['estatus'] == 'aceptado'" class="desc">{{taller.descripcion}}</p>
 
             </div>
