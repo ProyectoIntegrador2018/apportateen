@@ -135,7 +135,7 @@
           <!-- desinscribir de abajo -->
           <div class="bottom">
             <button *ngIf="taller['estatus'] == 'aceptado'" mat-button mat-stroked-button class="btn primary card"
-                [routerLink]="['detalleTaller/', taller.id]">Más información</button>
+            [routerLink]="['../inscripcion/detalleTaller/', taller.id]">Más información</button>
             <button mat-button mat-raised-button class="btn reject card"
               (click)="quitarInscripcion(taller)">Desinscribir
             </button>
