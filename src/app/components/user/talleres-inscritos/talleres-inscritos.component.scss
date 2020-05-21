@@ -40,15 +40,7 @@
     margin: 15px auto 0px auto;
   }
 
-  // .labelSubirPending {
-  //   margin: 75px auto 0px auto;
-  // }
-
   //en revision
-  // .labelSubirRevision {
-  //   margin: 85px auto 0px auto;
-  // }
-
   .enRevision{
     color: #55a0ab;
     text-align: center;
@@ -61,10 +53,6 @@
   }
 
   //rechazado
-  // .labelSubirRechazado{
-  //   margin: 210px auto 0px auto;
-  // }
-
   .rechazado{
     text-align: center;
     color: #f7931e;
@@ -75,6 +63,20 @@
     text-align: center;
     font-size: 14px;
   }
+
+  .bottom{ //botones de abajo de desinscribir
+    margin: 20px auto 0px auto !important;
+    align-items: center!important;
+    position: absolute!important;
+    display: flex!important;
+    flex-direction: column!important;
+    justify-content: center!important;
+    width: 230px!important;
+    left: 5%!important;
+    bottom: 8px!important;
+    background-color: #f7931e!important;
+  }
+
 
 
   //__item es toda la card
@@ -92,9 +94,6 @@
       width: 100%;
     }
 
-    .nombreTaller{
-
-    }
 
     .info-container {
       cursor: pointer;
@@ -109,9 +108,7 @@
     }
 
     .btn-container {
-      // si no hay descripcion
       margin: 20px auto 0px auto;
-      //____
       align-items: center;
       position: absolute;
       display: flex;
@@ -120,6 +117,7 @@
       width: 230px;
       left: 5%;
     }
+
 
     .desc {
       font-weight: 300;

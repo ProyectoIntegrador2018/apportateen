@@ -18,7 +18,8 @@
         periódicamente al acercarse la fecha del taller para ponerte al corriente.</p>
     </div>
     <div *ngIf="!isTalleresInscritos" class="instruction">
-      <p>Para completar tu inscripción a los siguientes talleres, por favor realiza el pago con los siguientes pasos:</p>
+      <p>Para completar tu inscripción a los siguientes talleres, por favor realiza el pago con los siguientes pasos:
+      </p>
       <div class="row">
         <div class="col">
           <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">print</mat-icon><br />
@@ -33,7 +34,8 @@
           <p class="pasos"> Una vez aprobado el comprobante, ¡quedarás inscrito!</p>
         </div>
       </div>
-      <p class="instruction"><span class="bold">Nota: </span> Si se rechaza tu comprobante, podrás volver a subir otro.</p>
+      <p class="instruction"><span class="bold">Nota: </span> Si se rechaza tu comprobante, podrás volver a subir otro.
+      </p>
     </div>
 
     <div class="items">
@@ -46,7 +48,7 @@
 
             <div class="text-container">
               <!-- <div class="ciudad">{{taller.estado}}</div> -->
-              <h2 class="title">{{taller.nombre}}</h2>
+              <h4 class="title">{{taller.nombre}}</h4>
               <p *ngIf="taller['estatus'] == 'aceptado'" class="desc">{{taller.descripcion}}</p>
 
             </div>
@@ -68,9 +70,9 @@
                   class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
               </div>
               <!-- Desinscribir -->
-              <button mat-button mat-raised-button class="btn reject card separacion"
+              <!-- <button mat-button mat-raised-button class="btn reject card separacion"
                 (click)="quitarInscripcion(taller)">Desinscribir
-              </button>
+              </button> -->
             </div>
             <!-- en revision -->
             <div *ngIf="taller['estatus'] == 'en revision'">
@@ -84,9 +86,9 @@
                   class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
               </div>
               <!-- Desinscribir -->
-              <button mat-button mat-raised-button class="btn reject card separacion"
+              <!-- <button mat-button mat-raised-button class="btn reject card separacion"
                 (click)="quitarInscripcion(taller)">Desinscribir
-              </button>
+              </button> -->
             </div>
             <!-- rechazado -->
             <div *ngIf="taller['estatus'] == 'rechazado'">
@@ -109,9 +111,9 @@
                   class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
               </div>
               <!-- Desinscribir -->
-              <button mat-button mat-raised-button class="btn reject card"
+              <!-- <button mat-button mat-raised-button class="btn reject card"
                 (click)="quitarInscripcion(taller)">Desinscribir
-              </button>
+              </button> -->
             </div>
             <!-- aceptado -->
             <div *ngIf="taller['estatus'] == 'aceptado'">
@@ -119,19 +121,12 @@
                 (click)="quitarInscripcion(taller)">Desinscribir
               </button>
             </div>
-            <!-- <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
-              (click)="imprimirFichaPago(taller)" *ngIf="taller['estatus'] == 'pendiente'">Imprimir ficha de
-              pago</button>
-            <p class="pago" *ngIf="taller['estatus'] == 'pendiente'">Sube tu Comprobante de Pago</p>
-            <p class="pago" *ngIf="taller['estatus'] == 'en revision'">Tu comprobante esta en revisión</p>
-            <input type="file" #comprobantes class="custom-file-input"
-              *ngIf="taller['estatus'] == 'pendiente' || taller['estatus'] == 'en revision'"
-              id="{{'comprobante' + taller.id}}" (change)="fileInput($event, taller)" accept=".pdf">
-            <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
-              *ngIf="taller['estatus'] == 'pendiente' || taller['estatus'] == 'en revision'"
-              class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label> -->
-            <!-- <button mat-button mat-raised-button class="btn reject card" (click)="quitarInscripcion(taller)">Desinscribir
-            </button> -->
+          </div>
+          <!-- desinscribir de abajo -->
+          <div *ngIf="taller['estatus'] != 'aceptado'">
+            <button  mat-button mat-raised-button class="btn reject card bottom"
+              (click)="quitarInscripcion(taller)">Desinscribir
+            </button>
           </div>
         </div>
       </div>
