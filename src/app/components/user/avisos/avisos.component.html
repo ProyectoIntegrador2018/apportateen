@@ -1,7 +1,7 @@
 <div class="container-fluid ad">
   <div class="container">
     <div *ngIf="avisos.length > 0 && loading != null">
-      <div class="ad__item" *ngFor="let a of avisos">
+      <div class="ad" *ngFor="let a of avisos">
         <mat-card class="mat-elevation-z8 ad">
           <mat-card-header>
             <mat-icon mat-card-avatar *ngIf="a.tipoEmisor == 'general'"> public </mat-icon>
