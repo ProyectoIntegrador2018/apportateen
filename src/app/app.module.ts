@@ -29,6 +29,7 @@ import 'hammerjs';
 import { ConfirmationDialog } from './components/confirmation-dialog/confirmation-dialog.component';
 import { AddDialog } from './components/add-dialog/add-dialog.component';
 import { GalleryDialog }from './components/home-gallery/home-gallery.component'
+import { PendingDialog }from './components/admin/pending/pending.component'
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
@@ -54,6 +55,7 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
     ConfirmationDialog,
     AddDialog,
     GalleryDialog,
+    PendingDialog,
     WarningDialogComponent,
     MessageDialogComponent
   ],
@@ -85,6 +87,6 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
     provide: MAT_DATE_LOCALE, useValue: 'es-MX'
   }, ExcelService],
   bootstrap: [AppComponent],
-  entryComponents: [AddDialog, ConfirmationDialog, UsuariosDetalleComponent, AvisoInscripcionTallerComponent, MessageDialogComponent, WarningDialogComponent, GalleryDialog]
+  entryComponents: [AddDialog, ConfirmationDialog, UsuariosDetalleComponent, AvisoInscripcionTallerComponent, MessageDialogComponent, WarningDialogComponent, GalleryDialog, PendingDialog]
 })
 export class AppModule { }

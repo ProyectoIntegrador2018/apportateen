@@ -34,26 +34,31 @@ export class TalleresComponent implements OnInit {
   hora_temp;
   hora_flag: boolean;
 
-  // nombre_tutor;
-  // correo_tutor;
-  // telefono_tutor;
-
   estados_data = estados;
   
+  fecha_actual;
 
   constructor(private api: ApiService, public dialog: MatDialog, public snackBar: MatSnackBar, private storage: AngularFireStorage) {
     this.talleres = [];
     this.selectedTaller = {};
     this.sedes = [];
-    this.categorias = [];
-    
-    
+    this.categorias = [];  
   }
 
   ngOnInit() {
     this.obtenerTalleres();
     this.obtenerCostos();
-    
+    this.getFechaActual();
+  }
+
+  getFechaActual(){
+    var hoy = new Date();
+    var dd = String(hoy.getDate()).padStart(2, '0');
+    var mm = String(hoy.getMonth() + 1).padStart(2, '0'); 
+    var yyyy = hoy.getFullYear();
+
+    this.fecha_actual = yyyy + '-' + mm + '-' + dd;
+    console.log(this.fecha_actual);
   }
 
   obtenerTalleres() {
@@ -136,12 +141,18 @@ export class TalleresComponent implements OnInit {
     return;
   }
   delete() {
+
+   
+
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
+       
+        
         var archivoRef = this.storage.ref(this.selectedTaller.foto_path);
         archivoRef.delete().subscribe(res => {
           this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
@@ -204,7 +215,12 @@ export class TalleresComponent implements OnInit {
   }
 
   create() {
-    this.checa_horas()
+    
+    this.min_horaFin();
+
+    this.checa_horas();
+
+    console.log(this.hora_flag);
     if(this.hora_flag){
       Promise.all(
         Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosCreate(this.fileFotoAr[item], index))).then((url) => {
@@ -260,6 +276,7 @@ export class TalleresComponent implements OnInit {
         console.log("Error");
       })
   }
+
   newDelete() {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
@@ -267,6 +284,21 @@ export class TalleresComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+
+
+        this.api.getUsersUsuarios().subscribe(result => {
+          let temp = result.filter(u => u.talleres.includes(this.selectedTaller.id));
+      
+          temp.forEach(obj => {
+            let talleres = obj.talleres
+
+            let i = talleres.indexOf(this.selectedTaller.id);
+            obj.talleres.splice(i,1);
+            this.api.updateUser(obj).subscribe();
+    
+          });
+        });
+
         Promise.all(
           this.selectedTaller.foto_path_array.map(item => this.deleteAllPhotos(item))).then((url) => {
             console.log("success");
@@ -346,11 +378,16 @@ export class TalleresComponent implements OnInit {
   // función para establecer el valor mínimo de la hora de fin de un taller (una hora después de la hora de inicio)
   min_horaFin(){
     let t1:number = parseInt(this.selectedTaller.hora_inicio.substr(0,2)) + 1;
+    console.log(this.selectedTaller
+      .hora_inicio);
+    console.log(this.selectedTaller
+        .hora_fin);
     this.hora_temp = ('0' + t1.toString()).slice(-2) + ":"+ this.selectedTaller.hora_inicio.substr(3);
   }
 
   checa_horas(){
-    if(parseInt(this.hora_temp.substr(0,2)) >= parseInt(this.selectedTaller.hora_fin.substr(0,2))){
+    console.log("temp" + this.hora_temp);
+    if(parseInt(this.hora_temp.substr(0,2)) > parseInt(this.selectedTaller.hora_fin.substr(0,2))){
       this.hora_flag = false;
     } else {
       this.hora_flag = true;

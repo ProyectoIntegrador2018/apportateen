@@ -77,8 +77,6 @@ export class ApiService {
 
   // API: PUT /users/:id TALLER
   public updateUser(user: User): Observable<any> {
-    console.log("hola");
-    console.log(user);
     return this.http
       .put<any>(`${API_URL}/users/${user.id}`, user, httpOptions)
       .catch(this.handleError);
@@ -171,7 +169,7 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-  public updateResponsable(responsable: Responsable): Observable<any>{
+  public updateResponsable(responsable: Responsable): Observable<any> {
     return this.http
       .put<any>(`${API_URL}/responsable/${responsable.id_responsable}`, responsable, httpOptions)
       .catch(this.handleError);
@@ -218,7 +216,7 @@ export class ApiService {
   }
 
   // API: GET /avisos/:id
-  public getAvisosByTaller(id: number): Observable<Aviso[]> {
+  public getAvisosForUser(id: string): Observable<Aviso[]> {
     return this.http
       .get<Aviso[]>(`${API_URL}/avisos/${id}`, httpOptions)
       .catch(this.handleError);
@@ -302,12 +300,20 @@ export class ApiService {
       .catch(this.handleError);
   }
 
-   //API: GET /inscripciones
-   public getTalleresInscritos(user_id: any): Observable<any> {
+  //API: GET /inscripciones
+  public getTalleresInscritos(user_id: any): Observable<any> {
     return this.http
       .get<any>(`${API_URL}/inscripciones/${user_id}`, httpOptions)
       .catch(this.handleError);
   }
+
+  //API: PUT /inscripciones/comprobante
+  public subirComprobante(inscripcion: any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/inscripciones/comprobante`, inscripcion , httpOptions)
+      .catch(this.handleError);
+  }
+
 
 
   // API: GET /categorias
@@ -410,6 +416,26 @@ export class ApiService {
   public updateUsuarioNumConfPago(user: User): Observable<any> {
     return this.http
       .put<any>(`${API_URL}/users/pago/${user.id}`, user, httpOptions)
+      .catch(this.handleError);
+  }
+
+  // API: GET /pending
+  public getAllPending(): Observable<Aviso[]> {
+    return this.http
+      .get<any[]>(API_URL + '/pending', httpOptions)
+      .catch(this.handleError);
+  }
+
+  // API: PUT /pending/aceptar
+  public aceptarComprobante(voucherInformation:any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/pending/aceptar`, voucherInformation, httpOptions)
+      .catch(this.handleError);
+  }
+   // API: PUT /pending/rechazar
+   public rechazarComprobante(voucherInformation:any): Observable<any> {
+    return this.http
+      .put<any>(`${API_URL}/pending/rechazar`, voucherInformation, httpOptions)
       .catch(this.handleError);
   }
 }
