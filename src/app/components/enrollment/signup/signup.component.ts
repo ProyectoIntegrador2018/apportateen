@@ -72,8 +72,6 @@ export class SignupComponent implements OnInit {
 
     isLinear = true;
     firstFormGroup: FormGroup;
-    secondFormGroup: FormGroup;
-    thirdFormGroup: FormGroup;
 
     constructor(private firebaseAuth: AngularFireAuth,
         private api: ApiService,
@@ -97,21 +95,10 @@ export class SignupComponent implements OnInit {
             sexCtrl: ['', Validators.required],
             nameTutCtrl: ['', Validators.required],
             telTutCtrl: ['', Validators.required],
-            emailTutCtrl: ['', Validators.required]
-        });
-
-        this.secondFormGroup = this._formBuilder.group({
+            emailTutCtrl: ['', Validators.required],
             nameSchoolCtrl: ['', Validators.required],
             typeSchoolCtrl: ['', Validators.required],
             gradeCtrl: ['', Validators.required]
-        });
-
-        this.thirdFormGroup = this._formBuilder.group({
-            expCtrl: ['', Validators.required],
-            exAlumnoCtrl: ['', Validators.required],
-            becaCtrl: ['', Validators.required],
-            refCtrl: ['', Validators.required],
-            expDetalleCtrl: ['', Validators.required]
         });
     }
 

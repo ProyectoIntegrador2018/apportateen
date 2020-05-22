@@ -1,6 +1,9 @@
 @import "~styles-variables.scss";
 
 .register {
+  
+  
+
   margin: 20px 0;
 
   &__title {
@@ -20,6 +23,10 @@
 
 
   .btn {
+    
+    // -webkit-appearance: button;
+    -webkit-appearance: none;
+
     &:focus {
       box-shadow: none;
     }
@@ -41,6 +48,8 @@
       margin-left: auto;
       margin-right: auto;
       width: 100%;
+      align-items: center;
+      height: 35px;
     }
 
     
@@ -61,6 +70,7 @@
     width: 260px;
     height: 580px;
     position: relative;
+    
 
     img {
       border-radius: 5px 5px 0 0;
@@ -70,6 +80,7 @@
 
     .info-container{
       cursor: pointer;
+      padding-bottom: 30px;
     }
 
     .text-container {
@@ -87,9 +98,10 @@
       flex-direction: column;
       justify-content: center;
       width: 230px;
-      height: 20px;
-      bottom: 10%;
+      // height: 20px;
+      // bottom: 10%;
       left: 5%;
+      bottom: 3%;
     }
 
     .desc {
@@ -127,4 +139,3 @@
     }
   }
 }
-
