@@ -5,11 +5,11 @@
   </div>
   <section class="home-gallery__gallery" id="Pats">
     <div class="home-gallery__gallery__list">
-        <mat-grid-list cols="3" rowHeight="300px">
-          <mat-grid-tile *ngFor="let imgs of gallery">
+        <div class="row">
+          <div class="col-6 col-md-4" style="margin-bottom:50px;" *ngFor="let imgs of gallery">
             <img (click)="openDialog(imgs)" class="gallery-img" [src]="imgs" alt="Patrocinador">
-          </mat-grid-tile>
-        </mat-grid-list>
+          </div>
+        </div>
     </div>
   </section>
 </main>

@@ -4,9 +4,9 @@
         <img src="../../../../assets/img/logo.svg" class="header__logo" alt="Logo">
         </a>
 
-        <div class="navigation" *ngIf="router.url === '/inicio' || router.url === '/talleres'|| router.url === '/FAQ' || router.url === '/exito'|| router.url === '/gallery' || router.url === '/patrocinadores'">
-            <a pageScroll class="header__link" href="#QueEs">¿Qué es Axt@Teen?</a>
-            <a pageScroll class="header__link" href="#Reqs">Convocatoria</a>
+        <div class="navigation" *ngIf="router.url === '/inicio' || router.url === '/talleres'|| router.url === '/FAQ' || router.url === '/exito'|| router.url === '/gallery' || router.url === '/patrocinadores' || router.url === '/inicio#Reqs' || router.url === '/inicio#QueEs'">
+            <a pageScroll class="header__link" href="/inicio#QueEs">¿Qué es Axt@Teen?</a>
+            <a pageScroll class="header__link" href="/inicio#Reqs">Convocatoria</a>
             <a pageScroll class="header__link" href="/talleres">Talleres</a>
             <a pageScroll class="header__link" href="/exito">Historias de éxito</a>
             <a pageScroll class="header__link" href="/patrocinadores">Patrocinadores</a>

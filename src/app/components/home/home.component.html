@@ -36,7 +36,7 @@
     <p>Axt@Teen 2020 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta
       Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
     <p> <strong> Más información sobre ediciones anteriores <button type="button" class="btn btn-link"
-        (click)="toggleTable()">aquí</button>. </strong></p>
+          (click)="toggleTable()">aquí</button>. </strong></p>
     <table *ngIf="isVisible">
       <tr>
         <th>Año</th>
@@ -133,7 +133,8 @@
         <div class="list--bg">
           <ol class="list">
             <li>Estar estudiando máximo el 3er año de preparatoria.</li>
-            <li>Rango de edad: 12 a 17 años cumplidos al 31 de marzo del año en curso, cursando la primaria, secundaria o
+            <li>Rango de edad: 12 a 17 años cumplidos al 31 de marzo del año en curso, cursando la primaria, secundaria
+              o
               preparatoria al momento del programa.</li>
             <li>Registrarse individualmente.</li>
             <li>Asistir a los talleres.</li>
@@ -141,8 +142,10 @@
               cumplidos al momento del taller.</li>
             <li>Presentar y entregar copia del acta de nacimiento o documento oficial que compruebe la edad como CURP o
               pasaporte, el primer día del evento.</li>
-            <li>Descargar, firmar y escanear el permiso para participar, subirlo a la plataforma o en su defecto entregar
-              el primer día del evento, firmado por padre/madre o tutor. O bien firmarlo el primer día del evento para lo
+            <li>Descargar, firmar y escanear el permiso para participar, subirlo a la plataforma o en su defecto
+              entregar
+              el primer día del evento, firmado por padre/madre o tutor. O bien firmarlo el primer día del evento para
+              lo
               cual alguno de los padres o el tutor deberá llevar al participante y firmar el permiso.</li>
           </ol>
         </div>
@@ -150,16 +153,18 @@
       <div class="col convo-col" style="padding: 0;">
         <div class="importante-text">
           Importante
-            <ol class="list">
-              <li>No es necesario tener experiencia previa programando, sólo ganas de participar.</li>
-              <li>Es para niñas, niños y jóvenes independientemente de la escuela y de las habilidades previas.</li>
-              <li>No se necesita un equipo para participar.</li>
-              <li>No es necesario contar con computadora para participar.</li>
-            </ol>
+          <ol class="list">
+            <li>No es necesario tener experiencia previa programando, sólo ganas de participar.</li>
+            <li>Es para niñas, niños y jóvenes independientemente de la escuela y de las habilidades previas.</li>
+            <li>No se necesita un equipo para participar.</li>
+            <li>No es necesario contar con computadora para participar.</li>
+          </ol>
         </div>
         <div class="ver-frecuentes">
           <a class="button outer-div" mat-flat-button color="primary" href="/FAQ">
-            <span>Preguntas frecuentes</span><mat-icon>chevron_right</mat-icon></a>
+            <span>Preguntas frecuentes</span>
+            <mat-icon>chevron_right</mat-icon>
+          </a>
         </div>
       </div>
     </div>
@@ -172,8 +177,10 @@
           <span>10 al 28 de Junio</span>
         </div>
         <div class="ver-talleres">
-          <a class="button outer-div" mat-raised-button color="primary" href="/talleres"> <mat-icon class="icon-prop">event</mat-icon><br>
-            <span>Ver todos los talleres</span></a>
+          <a class="button outer-div" mat-raised-button color="primary" href="/talleres">
+            <mat-icon class="icon-prop">event</mat-icon><br>
+            <span>Ver todos los talleres</span>
+          </a>
         </div>
       </div>
       <div class="col calendar-col">
@@ -195,15 +202,15 @@
     </div>
   </section>
   <section class="home__sponsors" id="Pats">
-    <div class="home__sponsors__list">
+    <div class="home__sponsors__list" style="padding: 0 10%;">
       <div class="row home__sponsors__title">
-            <p>PATROCINADORES</p>
+        <p>PATROCINADORES</p>
+      </div>
+      <div class="row">
+        <div class="col-6 col-md-3" style="margin-bottom:50px;" *ngFor="let patrocinador of sponsorList">
+          <img class="patro-img" [src]="patrocinador.url" alt="Patrocinador">
         </div>
-        <mat-grid-list cols="5" rowHeight="200px">
-          <mat-grid-tile *ngFor="let patrocinador of sponsorList">
-            <img class="patro-img" [src]="patrocinador.url" alt="Patrocinador">
-          </mat-grid-tile>
-        </mat-grid-list>
+      </div>
     </div>
   </section>
 </main>
