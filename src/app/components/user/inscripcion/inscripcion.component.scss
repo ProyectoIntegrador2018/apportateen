@@ -1,8 +1,8 @@
 @import "~styles-variables.scss";
 
 .register {
-  
-  
+
+
 
   margin: 20px 0;
 
@@ -23,7 +23,7 @@
 
 
   .btn {
-    
+
     // -webkit-appearance: button;
     -webkit-appearance: none;
 
@@ -40,7 +40,7 @@
     }
 
     &.reject{
-      background-color: $color-red;
+      background-color: #f7931e;
     }
 
     &.card {
@@ -52,7 +52,7 @@
       height: 35px;
     }
 
-    
+
     border: 0;
     color: $color-white;
   }
@@ -70,7 +70,7 @@
     width: 260px;
     height: 580px;
     position: relative;
-    
+
 
     img {
       border-radius: 5px 5px 0 0;
@@ -116,7 +116,7 @@
       width: 150px;
       color: white;
       margin-bottom: 5px;
-      
+
     }
 
   }
