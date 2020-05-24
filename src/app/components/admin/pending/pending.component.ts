@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { AddDialog } from 'app/components/add-dialog/add-dialog.component';
 import { MatSnackBar, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-pending',
@@ -15,11 +17,11 @@ export class PendingComponent implements OnInit {
   vouchers: any;
   todeleteUser: string;
   todeleteTaller: string;
-
+  comprobanteRef: string;
 
   constructor(private api: ApiService,
     public snackbar: MatSnackBar,
-    public dialog: MatDialog) {
+    public dialog: MatDialog, private storage: AngularFireStorage) {
     this.vouchers = [];
   }
 
@@ -42,7 +44,7 @@ export class PendingComponent implements OnInit {
     console.log("Aceptando el comprobante que tiene como ids:")
     console.log(voucher.user_id)
     console.log(voucher.taller_id)
-    let voucherInformation ={
+    let voucherInformation = {
       user_id: voucher.user_id,
       taller_id: voucher.taller_id
     }
@@ -64,6 +66,7 @@ export class PendingComponent implements OnInit {
     console.log("Rechazando el comprobante que tiene como ids:")
     this.todeleteUser = voucher.user_id;
     this.todeleteTaller = voucher.taller_id;
+    this.comprobanteRef = voucher.ref_comprobante
     this.openDialog()
   }
   fillVouchers() {
@@ -96,24 +99,34 @@ export class PendingComponent implements OnInit {
     console.log(mensaje)
     console.log(this.todeleteTaller)
     console.log(this.todeleteUser)
+    console.log(this.comprobanteRef)
 
-    let voucherInformation ={
-      user_id: this.todeleteUser,
-      taller_id: this.todeleteTaller,
-      mensaje: mensaje
-    }
-    this.api.rechazarComprobante(voucherInformation).subscribe(res => {
-      if (res.status === 'success') {
-        this.snackbar.open(res.message, '', {
+    var archivoRef = this.storage.ref(this.comprobanteRef);
+    archivoRef.delete().subscribe(res => {
+      let voucherInformation = {
+        user_id: this.todeleteUser,
+        taller_id: this.todeleteTaller,
+        mensaje: mensaje
+      }
+      this.api.rechazarComprobante(voucherInformation).subscribe(res => {
+        if (res.status === 'success') {
+          this.snackbar.open(res.message, '', {
+            duration: 5000,
+          });
+          this.obtenerPendientes();
+        }
+      }, error => {
+        this.snackbar.open(error.error, '', {
           duration: 5000,
         });
-        this.obtenerPendientes();
-      }
+      });
     }, error => {
-      this.snackbar.open(error.error, '', {
-        duration: 5000,
+      this.snackbar.open('Error', '', {
+        duration: 1500,
       });
     });
+
+
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(PendingDialog, {
