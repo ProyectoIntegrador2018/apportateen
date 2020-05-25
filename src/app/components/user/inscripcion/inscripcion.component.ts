@@ -202,8 +202,8 @@ export class InscripcionComponent implements OnInit {
     })
   }
 
-  costoTaller(): number {
-    if (this.selectedSede.gratis) {
+  costoTaller(taller: Taller): number {
+    if (/*this.selectedSede.gratis*/ taller["gratis"]) {
       return 0;
     } else {
       if (this.user.escuela_tipo == "Privada") {
@@ -308,7 +308,7 @@ export class InscripcionComponent implements OnInit {
             const dialogRef = this.dialog.open(MessageDialogComponent, {
               disableClose: true
             });
-            if (this.costoTaller() != 0) {
+            if (this.costoTaller(taller) != 0) {
               let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
               dialogRef.componentInstance.mensaje = message;
               dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
