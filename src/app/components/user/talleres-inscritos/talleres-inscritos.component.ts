@@ -118,7 +118,7 @@ export class TalleresInscritosComponent implements OnInit {
   uploadComprobante(taller: Taller) {
     return new Promise<any>((resolve, reject) => {
       var fileId = this.comprobante.name + '-' + this.user.id + '_' + taller.fecha_inicio.substring(0, 4) + Math.random().toString(36).substring(4);
-      //la referencia al comprobante esta compuesto por el nombre, id del usuario, y un numero random. AGREGAR FECHA
+      //la referencia al comprobante esta compuesto por el nombre, id del usuario, y un numero random y la fecha del evento
       const task = this.fireStorage.upload(fileId, this.comprobante);
       let fileRef = this.fireStorage.ref(fileId);
       task.snapshotChanges().pipe(
