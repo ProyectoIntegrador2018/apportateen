@@ -38,12 +38,12 @@
                 (click)="inscripcion(taller)">Inscribirme</button>
 
               <button mat-button mat-raised-button class="btn reject card"
-                *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
+                *ngIf="user.talleres.includes(taller.id)"
                 (click)="quitarInscripcion(taller)">Desinscribir
                 <!-- <mat-icon>done</mat-icon> -->
               </button>
               <button mat-button color="warn"
-                *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
+                *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos >= taller.cupo">Taller
                 lleno.</button>
             </div>
           </div>
@@ -69,11 +69,11 @@
               (click)="inscripcion(taller)">Inscribirme</button>
 
             <button mat-button mat-raised-button class="btn reject card"
-              *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
+              *ngIf="user.talleres.includes(taller.id)"
               (click)="quitarInscripcion(taller)">Desinscribir
               <!-- <mat-icon>done</mat-icon> -->
             </button>
-            <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
+            <button mat-button color="warn" *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos >= taller.cupo">Taller
               lleno.</button>
           </div>
         </div>
@@ -99,8 +99,6 @@
               (click)="quitarInscripcion(taller)">Desinscribir
               <!-- <mat-icon>done</mat-icon> -->
             </button>
-            <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
-              lleno.</button>
           </div>
         </div>
 
