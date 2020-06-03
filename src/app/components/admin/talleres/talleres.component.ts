@@ -58,13 +58,13 @@ export class TalleresComponent implements OnInit {
     var yyyy = hoy.getFullYear();
 
     this.fecha_actual = yyyy + '-' + mm + '-' + dd;
-    console.log(this.fecha_actual);
+    
   }
 
   obtenerTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
-      console.log(this.talleres)
+      
       this.sedes = result[1];
       this.categorias = result[2];
       this.autoSelect();
@@ -73,7 +73,7 @@ export class TalleresComponent implements OnInit {
 
   obtenerCostos(){
     this.api.getCostos().subscribe(result => {
-      console.log(result);
+      
       this.costos = result;
     });
   }
@@ -111,7 +111,7 @@ export class TalleresComponent implements OnInit {
   }
 
   deleteImage(urlToDelete) {
-    console.log(urlToDelete);
+    
     const index = this.selectedTaller.url_array.indexOf(urlToDelete);
     if (index > -1) {
       const dialogRef = this.dialog.open(ConfirmationDialog, {
@@ -151,10 +151,10 @@ export class TalleresComponent implements OnInit {
       dialogRef.componentInstance.mensajeConfirmacion = `Se modificará el taller seleccionado. ¿Desea continuar?`;
       dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log(result);
+        
         // Cambiar a updateTutor
         this.api.updateTutor(this.selectedTaller).subscribe(res => {
-            console.log(this.selectedTaller);
+            
 
             this.api.updateTaller(this.selectedTaller).subscribe(res => {
               this.snackBar.open(res.message, '', {
@@ -189,15 +189,14 @@ export class TalleresComponent implements OnInit {
 
     this.checa_horas();
 
-    console.log(this.hora_flag);
+    
     if(this.hora_flag){
       Promise.all(
         Object.keys(this.fileFotoAr).map((item, index) => this.uploadPhotosCreate(this.fileFotoAr[item], index))).then((url) => {
-          console.log("El taller a crear es:")
-          console.log(this.selectedTaller);
+         
           // crea tutor nuevo al crear taller... hay que checar con Sonia si conviene entonces tener una interfaz para el manejo de tutores ?
           this.api.createTutor(this.selectedTaller).subscribe(res => {
-            console.log(res)
+            
             this.selectedTaller.tutor = res.data.id_tutor;
             this.api.createTaller(this.selectedTaller).subscribe(res => {
               this.snackBar.open(res.message, '', {
@@ -291,8 +290,7 @@ export class TalleresComponent implements OnInit {
 
   deleteAllPhotos(fotoPath) {
     return new Promise<any>((resolve, reject) => {
-      console.log("FOTO PATH IS:");
-      console.log(fotoPath);
+      
       var archivoRef = this.storage.ref(fotoPath);
       archivoRef.delete().subscribe(res => {
         resolve(true)
@@ -309,8 +307,7 @@ export class TalleresComponent implements OnInit {
           fileRef.getDownloadURL().subscribe(url => {
             this.selectedTaller.url_array.push(url);
             this.selectedTaller.foto_path_array.push(this.filePathAr[index])
-            console.log(this.selectedTaller);
-            console.log("Pushing into local obj");
+            
             resolve(true)
           })
         })
@@ -345,15 +342,12 @@ export class TalleresComponent implements OnInit {
   // función para establecer el valor mínimo de la hora de fin de un taller (una hora después de la hora de inicio)
   min_horaFin(){
     let t1:number = parseInt(this.selectedTaller.hora_inicio.substr(0,2)) + 1;
-    console.log(this.selectedTaller
-      .hora_inicio);
-    console.log(this.selectedTaller
-        .hora_fin);
+   
     this.hora_temp = ('0' + t1.toString()).slice(-2) + ":"+ this.selectedTaller.hora_inicio.substr(3);
   }
 
   checa_horas(){
-    console.log("temp" + this.hora_temp);
+    
     if(parseInt(this.hora_temp.substr(0,2)) > parseInt(this.selectedTaller.hora_fin.substr(0,2))){
       this.hora_flag = false;
     } else {
