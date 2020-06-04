@@ -140,37 +140,6 @@ export class TalleresComponent implements OnInit {
     }
     return;
   }
-  delete() {
-
-   
-
-    const dialogRef = this.dialog.open(ConfirmationDialog, {
-      disableClose: true
-    });
-    dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-
-       
-        
-        var archivoRef = this.storage.ref(this.selectedTaller.foto_path);
-        archivoRef.delete().subscribe(res => {
-          this.api.removeTaller(this.selectedTaller.id).subscribe(res => {
-            if (res.status == 'success') {
-              this.snackBar.open(res.message, '', {
-                duration: 900,
-              });
-              this.obtenerTalleres();
-            }
-          }, error => {
-            this.snackBar.open(error.error, '', {
-              duration: 1500,
-            });
-          });
-        })
-      }
-    });
-  }
 
   save() {
     
@@ -284,8 +253,6 @@ export class TalleresComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará el taller seleccionado. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-
-
         this.api.getUsersUsuarios().subscribe(result => {
           let temp = result.filter(u => u.talleres.includes(this.selectedTaller.id));
       
