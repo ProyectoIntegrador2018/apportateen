@@ -72,35 +72,6 @@
           <button mat-button matStepperNext class="pull-right">Siguiente</button>
         </div>
       </mat-step>
-
-      <mat-step>
-        <ng-template matStepLabel>Info. Experencia</ng-template>
-        <div class="row no-gutters">
-          <mat-form-field class="col-md-6">
-            <input matInput placeholder="¿Ha tenido Experenica?" value="" [(ngModel)]="experenciaUsuario">
-          </mat-form-field>
-          <mat-form-field class="col-md-6">
-            <input matInput placeholder="¿Ha participado en ApportaTeen?" value="" [(ngModel)]="haParticipadoUsuario">
-          </mat-form-field>
-          <mat-form-field class="col-md-6">
-            <input matInput placeholder="¿Requiere Beca?" value="" [(ngModel)]="becaUsuario">
-          </mat-form-field>
-          <mat-form-field class="col-md-12" *ngIf="razonBeca != null">
-              <input matInput placeholder="Razon de Necesidad de Beca" value="" [(ngModel)]="razonBeca">
-            </mat-form-field>
-          <mat-form-field class="col-md-12">
-            <input matInput placeholder="Clases en el área de TI tomadas anteriormente" value=""
-              [(ngModel)]="detalleExperenciaUsuario">
-          </mat-form-field>
-          <mat-form-field class="col-md-12">
-            <input matInput placeholder="Referencias del Evento" value="" [(ngModel)]="referenciaUsuario">
-          </mat-form-field>
-        </div>
-        <div>
-          <button mat-button matStepperNext mat-dialog-close class="edit-button pull-right">Cerrar</button>
-        </div>
-      </mat-step>
-
       <mat-step>
         <ng-template matStepLabel>Documentos</ng-template>
         <div class="row">

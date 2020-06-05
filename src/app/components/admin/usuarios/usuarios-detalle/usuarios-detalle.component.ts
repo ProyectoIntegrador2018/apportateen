@@ -28,13 +28,8 @@ export class UsuariosDetalleComponent implements OnInit {
   tutorTelefonoUsuario : string;
   escuelaTipoUsuario : string;
   escuelaGradoUsuario : string;
-  experenciaUsuario : string;
-  haParticipadoUsuario : string;
-  becaUsuario : string;
-  detalleExperenciaUsuario : string;
-  referenciaUsuario : string;
   numEdicionUsuario : string;
-  razonBeca : string = null;
+  
 
   listaArchivos = [];
 
@@ -65,13 +60,8 @@ export class UsuariosDetalleComponent implements OnInit {
       this.tutorTelefonoUsuario = result.tutor_telefono;
       this.escuelaTipoUsuario = result.escuela_tipo;
       this.escuelaGradoUsuario = result.escuela_grado;
-      this.experenciaUsuario = result.experiencia;
-      this.haParticipadoUsuario = result.exAlumno;
-      this.becaUsuario = result.beca;
-      this.detalleExperenciaUsuario = result.detalle_exp;
-      this.referenciaUsuario = result.referencia;
       this.numEdicionUsuario = null;
-      this.razonBeca = result.razon_beca;
+      
 
       this.getArchivos();
     });
@@ -94,12 +84,8 @@ export class UsuariosDetalleComponent implements OnInit {
     this.usuario.tutor_telefono = this.tutorTelefonoUsuario;
     this.usuario.escuela_tipo = this.escuelaTipoUsuario;
     this.usuario.escuela_grado = this.escuelaGradoUsuario;
-    this.usuario.experiencia = this.experenciaUsuario;
-    this.usuario.ha_participado = this.haParticipadoUsuario;
-    this.usuario.beca = this.becaUsuario;
-    this.usuario.referencia = this.referenciaUsuario;
     this.usuario.num_Edi = this.numEdicionUsuario;
-    this.usuario.razon_beca = this.razonBeca;
+    
 
     this.api.updateUserCompelte(this.usuario).subscribe(res => {
       this.snackBar.open(res.message, '', {
