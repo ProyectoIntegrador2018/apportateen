@@ -25,7 +25,7 @@ export interface DialogData {
 export class InscripcionComponent implements OnInit {
   estatus: boolean;
   user: User = new User();
-  // tallerActual;
+  
   talleres;
   sedes;
   selectedSede: Sede = new Sede();
@@ -44,7 +44,7 @@ export class InscripcionComponent implements OnInit {
     public snackBar: MatSnackBar) {
     this.talleres = [];
     this.sedes = [];
-    // this.tallerActual = '';
+    
     this.estatus = null;
     this.sede_seleccionada = null;
     this.muestra_todos = true;
@@ -69,9 +69,7 @@ export class InscripcionComponent implements OnInit {
       if (this.estatus) {
         this.api.getAllSedes().subscribe(result => {
           this.sedes = result;
-          // if (this.user.idtaller != 0) {
-          //   this.obtenerTallerActual();
-          // }
+     
         })
       }
     })
@@ -84,7 +82,7 @@ export class InscripcionComponent implements OnInit {
       this.muestra_todos = true;
       this.muestra_tusuario = false;
 
-      // this.cargarTalleresUsuario();
+      
       this.sedeselect = undefined;
       this.cargaTu();
     });
@@ -96,8 +94,7 @@ export class InscripcionComponent implements OnInit {
     let t: any;
     this.talleres_usuario = [];
 
-    console.log(this.user.talleres);
-    console.log(this.talleres);
+  
     for (t in this.user.talleres) {
 
       let temp = this.talleres.find(x => x.id === this.user.talleres[t]);
@@ -112,16 +109,6 @@ export class InscripcionComponent implements OnInit {
   cargarTalleresUsuario() {
     let t: any;
 
-    console.log(this.talleres_usuario.length + " " + this.user.talleres.length);
-
-    // if(!(this.talleres_usuario.length === this.user.talleres.length)){
-    //   this.talleres_usuario = [];
-    //   for(t in this.user.talleres){
-
-    //     this.talleres_usuario.push(this.talleres.find(x => x.id === this.user.talleres[t]));
-    //     // console.log("hola "+ this.talleres_usuario);
-    //   }
-    // }
 
     this.cargaTu();
 
@@ -133,7 +120,7 @@ export class InscripcionComponent implements OnInit {
   obtenerCostos(){
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
-      console.log(result);
+      
     });
   }
 
@@ -189,7 +176,7 @@ export class InscripcionComponent implements OnInit {
 
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
-          // this.tallerActual = '';
+          
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });

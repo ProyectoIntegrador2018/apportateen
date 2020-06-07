@@ -68,14 +68,13 @@ export class DetalleTallerComponent implements OnInit {
   cargarTalleres(){
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
-      // this.muestra_todos = true;
-      // console.log(this.talleres);
+      
     })
   }
 
   cargarTaller() {
     this.api.getTaller(this.idTaller).subscribe(result => {
-      console.log(result);
+      
       this.taller = result[0][0];
       this.taller["inscritos"] = result[1][0]["inscritos"];
 
@@ -109,7 +108,7 @@ export class DetalleTallerComponent implements OnInit {
   obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
-      console.log(result);
+      
     });
   }
 
