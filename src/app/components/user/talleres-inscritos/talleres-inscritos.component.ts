@@ -48,13 +48,12 @@ export class TalleresInscritosComponent implements OnInit {
 
   cargarTalleresInscritos() {
     this.api.getTalleresInscritos(this.user.id).subscribe(result => {
-      console.log("Talleres insritos");
-      console.log(result);
       this.talleres = result;
     });
   }
 
-
+  //obtener el costo de un taller
+  //El costo es gratis si la sede del taller tiene especificado todos sus talleres como gratis. Si no es gratis, el costo del taller depende del tipo de la escuela del usuario
   obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       let costosPorEscuela = result;
@@ -68,34 +67,8 @@ export class TalleresInscritosComponent implements OnInit {
 
   //sube un archivo el usuario
   fileInput(event, taller: Taller) {
-    // const message = `Se subira el archivo "${event.target.files.item(0).name}" como comprobante. Podrás subir otro si este es rechazado. ¿Desea continuar?`;
-
-    // const dialogRef = this.dialog.open(ConfirmationDialog, {
-    //   disableClose: true
-    // });
-
-    // dialogRef.componentInstance.mensajeConfirmacion = message;
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(result);
-    //   if (result) {
         this.comprobante = event.target.files.item(0);
         this.uploadComprobante(taller);
-    //   } else {
-    //     //quitar el archivo seleccionado
-    //     this.inputs.forEach((input: ElementRef) => {
-    //       if (input.nativeElement.id == "comprobante" + taller.id.toString()) {
-    //         input.nativeElement.value = "";
-    //       }
-    //     });
-    //     this.labels.forEach((label: ElementRef) => {
-    //       if (label.nativeElement.id == "label" + taller.id.toString()) {
-    //         label.nativeElement.innerHTML = "Escoger Archivo";
-    //       }
-    //     });
-
-    //   }
-    // });
   }
 
   hasTallerWithStatus(estatus: String) {
@@ -128,16 +101,6 @@ export class TalleresInscritosComponent implements OnInit {
 
             //si ya tiene un comprobante, borrarlo de firestorage
             this.borrarComprobanteStorage(taller);
-            // if (taller["ref_comprobante"] != null && taller["ref_comprobante"] != '') {
-            //   console.log("ENTRA AQUI" + taller["ref_comprobante"]);
-            //   var archivoRef = this.fireStorage.ref(taller["ref_comprobante"]);
-            //   archivoRef.delete().subscribe(res => {
-            //   }, error => {
-            //     this.snackBar.open('Error', '', {
-            //       duration: 1500,
-            //     });
-            //   });
-            // }
 
             //Subir a la base de datos
             var inscripcion = {
@@ -199,15 +162,7 @@ export class TalleresInscritosComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará su inscripción a este taller. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // this.user.num_conf_pago = "";
-        // this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
-        // }, error => {
-        //   this.snackBar.open(error.error, '', {
-        //     duration: 900,
-        //   });
-        // });
-        // this.user.id_axtuser = ""; // para qué es este id ??
-        // this.cargaTu();
+        this.user.id_axtuser = "";
 
         //desinscribir de tabla de inscripciones
         const inscripcion = {
@@ -226,14 +181,13 @@ export class TalleresInscritosComponent implements OnInit {
             duration: 900,
           });
         });
-        //tabla usuarios inscripcion
+        //tabla usuarios borrar inscripcion
         const index_taller = this.user.talleres.indexOf(taller.id);
         if (index_taller > -1) {
           this.user.talleres.splice(index_taller, 1);
         }
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
-          // this.tallerActual = '';
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });

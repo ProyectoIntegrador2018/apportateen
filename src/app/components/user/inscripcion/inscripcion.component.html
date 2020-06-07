@@ -71,7 +71,6 @@
             <button mat-button mat-raised-button class="btn reject card"
               *ngIf="user.talleres.includes(taller.id)"
               (click)="quitarInscripcion(taller)">Desinscribir
-              <!-- <mat-icon>done</mat-icon> -->
             </button>
             <button mat-button color="warn" *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos >= taller.cupo">Taller
               lleno.</button>

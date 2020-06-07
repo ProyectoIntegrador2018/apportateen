@@ -58,14 +58,6 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
-  // seleccionarTaller(event: any) {
-  //   if(event.value != 0) {
-  //     this.selected = this.users.filter(x => x.idtaller === event.value);
-  //     this.getNombreTaller(event.value)
-  //   } else {
-  //     this.obtenerUsuarios();
-  //   }
-  // }
 
   deleteUser(id) {
     const dialogRef = this.dialog.open(ConfirmationDialog, {
