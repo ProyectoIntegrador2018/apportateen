@@ -140,7 +140,8 @@
       border-collapse: separate;
       border-spacing: 50px 20px;
       margin: 0 auto 70px;
-      width: 80%;
+      width: 30%;
+      text-align: center;
     }
 
     .course {
@@ -168,6 +169,10 @@
         background: darken($color-orange, 10%);
         text-decoration: none;
       }
+    }
+
+    .btn{
+      font-weight: bold;
     }
   }
 
@@ -313,7 +318,7 @@
       }
 
       &-o{
-        padding: 10px 20px 20px 30px;
+        padding: 10px 30px 20px 35px;
         list-style-type: decimal;
         letter-spacing: 0.61px;
 
