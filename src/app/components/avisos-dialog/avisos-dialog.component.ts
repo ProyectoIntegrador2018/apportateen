@@ -150,16 +150,19 @@ export class AvisosDialog {
         emails.push(sede.correo_responsable)
       });
       window.location.href = `mailto:?bcc=${emails}`;
+      this.dialogRef.close(true);
     }
 
-    this.api.createAviso(this.aviso).subscribe(result => {
-      this.aviso = new Aviso
-      this.dialogRef.close(true)
-    }, error => {
-      this.snackBar.open('Error al enviar el aviso, intente nuevamente', '', {
-        duration: 3500
+    if (this.data.target != 4) {
+      this.api.createAviso(this.aviso).subscribe(result => {
+        this.aviso = new Aviso
+        this.dialogRef.close(true)
+      }, error => {
+        this.snackBar.open('Error al enviar el aviso, intente nuevamente', '', {
+          duration: 3500
+        });
       });
-    });
+    }
   }
 
   guardar() {
@@ -171,11 +174,11 @@ export class AvisosDialog {
       });
       this.aviso = new Aviso
       this.dialogRef.close(true)
-      , error => {
-        this.snackBar.open("Error al guardar el aviso, intente de nuevo", '', {
-          duration: 3000
-        });
-      }
+        , error => {
+          this.snackBar.open("Error al guardar el aviso, intente de nuevo", '', {
+            duration: 3000
+          });
+        }
     });
   }
 }
