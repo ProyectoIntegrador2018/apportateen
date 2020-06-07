@@ -46,7 +46,6 @@ export class DetalleTallerComponent implements OnInit {
 
   ngOnInit() {
     //obtener Id del taller
-
     this.route.paramMap.subscribe(params => {
       this.idTaller = +params.get('id');
     });
@@ -54,35 +53,26 @@ export class DetalleTallerComponent implements OnInit {
     this.cargarTalleres();
     this.obtenerCostos();
 
-
-    //datos del usuario para obtener el costo dependiendod el tipo de escuela
+    //datos del usuario para obtener el costo dependiendo del tipo de escuela
     this.user = this.storage.get('@user:data');
 
     window.scrollTo(0, 0);
-
-
-
   }
 
-
+  //cargar otros talleres para ver si uno se empalma con el taller actual
   cargarTalleres(){
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
-      // this.muestra_todos = true;
-      // console.log(this.talleres);
     })
   }
 
   cargarTaller() {
     this.api.getTaller(this.idTaller).subscribe(result => {
-      console.log(result);
       this.taller = result[0][0];
       this.taller["inscritos"] = result[1][0]["inscritos"];
 
       this.fecha_fin = this.taller.fecha_fin;
       this.fecha_inicio = this.taller.fecha_inicio;
-
-
       this.fecha_inicio = this.formatDate(this.fecha_inicio.slice(0,10));
       this.fecha_fin = this.formatDate(this.fecha_fin.slice(0,10));
 
@@ -109,7 +99,6 @@ export class DetalleTallerComponent implements OnInit {
   obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
-      console.log(result);
     });
   }
 
@@ -176,25 +165,24 @@ export class DetalleTallerComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && this.checa_talleres) {
-        // this.user.idtaller = taller.id;
         this.user.talleres.push(taller.id);
-
         this.user.id_axtuser = taller["sededesc"].toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
-        if (taller["gratis"]) {
-          this.user.num_conf_pago = "BECA";
-          this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
-          }, error => {
-            this.snackBar.open(error.error, '', {
-              duration: 900,
-            });
-          });
-        }
 
+        // if (taller["gratis"]) {
+        //   this.user.num_conf_pago = "BECA";
+        //   this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
+        //   }, error => {
+        //     this.snackBar.open(error.error, '', {
+        //       duration: 900,
+        //     });
+        //   });
+        // }
+
+        //inscripcion a tabla de Inscripciones
         let inscripcion = {
           "tallerId" : taller.id,
           "userId" : this.user.id
         }
-
         this.api.createInscripcion(inscripcion).subscribe(res => {
         }, error => {
           this.snackBar.open(error.error, '', {
@@ -202,6 +190,7 @@ export class DetalleTallerComponent implements OnInit {
           });
         })
 
+        //inscripcion en tabla de usuarios
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           if (res.status == "success") {
@@ -241,14 +230,14 @@ export class DetalleTallerComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará su inscripción a este taller. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.user.num_conf_pago = "";
-        this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 900,
-          });
-        });
-        this.user.idtaller = 0;
+        // this.user.num_conf_pago = "";
+        // this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
+        // }, error => {
+        //   this.snackBar.open(error.error, '', {
+        //     duration: 900,
+        //   });
+        // });
+        // this.user.idtaller = 0;
         this.user.id_axtuser = "";
 
         const index_taller = this.user.talleres.indexOf(taller.id);
@@ -256,11 +245,11 @@ export class DetalleTallerComponent implements OnInit {
           this.user.talleres.splice(index_taller,1);
         }
 
+        //Desinscribir tabla de inscripciones
         let inscripcion = {
           "taller_id": taller.id,
           "user_id": this.user.id
         }
-
         this.api.removeInscripcion(inscripcion).subscribe(res => {
           this.snackBar.open(res.message, '', {
             duration: 1500,
@@ -271,7 +260,7 @@ export class DetalleTallerComponent implements OnInit {
           });
         });
 
-
+        //desinscribir taller de tabla de usuarios
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           this.snackBar.open(res.message, '', {
@@ -284,10 +273,6 @@ export class DetalleTallerComponent implements OnInit {
         })
       }
     })
-    //   let dialogDetalle = this.dialog.open(AvisoInscripcionComponent, {
-    //     width: '800px',
-    //     data: {id : this.user.id}
-    // });
   }
 
 }
