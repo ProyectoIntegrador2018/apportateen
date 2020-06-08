@@ -97,7 +97,6 @@ export class TalleresInscritosComponent implements OnInit {
       task.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
-            console.log(url);
 
             //si ya tiene un comprobante, borrarlo de firestorage
             this.borrarComprobanteStorage(taller);

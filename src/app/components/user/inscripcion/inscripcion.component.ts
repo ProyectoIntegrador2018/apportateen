@@ -130,7 +130,6 @@ export class InscripcionComponent implements OnInit {
   obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
-      console.log(result);
     });
   }
 
