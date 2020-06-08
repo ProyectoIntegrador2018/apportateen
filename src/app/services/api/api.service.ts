@@ -433,6 +433,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+    // API: GET /pending/accepted
+    public getAllAccepted(): Observable<Aviso[]> {
+      return this.http
+        .get<any[]>(API_URL + '/pending/accepted', httpOptions)
+        .catch(this.handleError);
+    }
+  
   // API: PUT /pending/aceptar
   public aceptarComprobante(voucherInformation: any): Observable<any> {
     return this.http

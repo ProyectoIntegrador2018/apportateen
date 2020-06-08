@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'app/services/api/api.service';
 import { AddDialog } from 'app/components/add-dialog/add-dialog.component';
 import { MatDialog, MatSnackBar } from '@angular/material';
+import { AngularFireStorage } from '@angular/fire/storage';
+
 
 @Component({
   selector: 'app-pagos',
@@ -10,52 +12,44 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 })
 export class PagosComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'NumConfPago', 'add'];
+  displayedColumns: string[] = ['id', 'name', 'voucherLink'];
 
-  users: any;
-
+  vouchers: any;
+  todeleteUser: string;
+  todeleteTaller: string;
+  comprobanteRef: string;
 
   constructor(private api: ApiService,
-   public snackbar: MatSnackBar,
-   public dialog: MatDialog) {
-    this.users = [];
-   }
+    public snackbar: MatSnackBar,
+    public dialog: MatDialog, private storage: AngularFireStorage) {
+    this.vouchers = [];
+  }
 
   ngOnInit() {
-    this.fetchDB();
+    //this.fetchDB();
+    //this.fillVouchers();
+    this.obtenerAceptados()
   }
 
-  fetchDB() {
-    this.api.getUsersUsuarios().subscribe(result => {
-      this.users = result;
-      console.log(this.users.length);
+  obtenerAceptados() {
+    this.vouchers = [];
+    this.api.getAllAccepted().subscribe(result => {
+      console.log("LOS PENDIENTES SON:")
+      console.log(result);
+      this.vouchers = result;
     });
   }
 
-  agregarPago(user) {
-    const message = 'Número de confirmación de pago:';
 
-    const dialogRef = this.dialog.open(AddDialog, {
-      data: {mensaje: message, num_de_conf: user.num_conf_pago}
-    });
+  formatDate(date) {
+    let months = ["Ene", "Feb", "Marzo", "Abr", "May", "Jun", "Jul", "Ago", "Sept", "Oct", "Nov", "Dic"]
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        user.num_conf_pago = result;
-        this.api.updateUsuarioNumConfPago(user).subscribe(res => {
-          if (res.status === 'success') {
-            this.snackbar.open(res.message, '', {
-              duration: 5000,
-            });
-            this.fetchDB();
-          }
-        }, error => {
-          this.snackbar.open(error.error, '', {
-            duration: 5000,
-          });
-        });
-      }
-    });
+    return `${date.getDate()}/${months[date.getMonth()]}/${date.getFullYear()}`
+  }
+
+  verComprobante(url: string) {
+    window.open(url, "_blank");
   }
 
 }
+

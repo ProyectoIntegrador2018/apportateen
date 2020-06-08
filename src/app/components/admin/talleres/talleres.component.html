@@ -51,7 +51,7 @@
         <div class="col-md-6">
           <mat-form-field>
             <mat-label>Fecha de inicio</mat-label>
-              <!-- [min]="fecha_actual"  -->
+              
               <input matInput [matDatepicker]="picker1" [(ngModel)]="selectedTaller.fecha_inicio" [min] = "fecha_actual" [max]="selectedTaller.fecha_fin">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>

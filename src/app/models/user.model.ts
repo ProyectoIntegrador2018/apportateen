@@ -19,16 +19,9 @@ export class User {
     escuela: string = '';
     escuela_tipo: string = '';
     escuela_grado: string = '';
-    experiencia: string = '';
-    detalle_exp: string = '';
-    exAlumno: string = '';
-    beca: string = '';
-    referencia: string = '';
     num_Edi: string = "";
-    ha_participado: string = "";
     id_axtuser : string = "";
     num_conf_pago : string = "";
     documentos : number = 0;
-    razon_beca : string = "";
     talleres : number [] = [];
 }

@@ -81,7 +81,7 @@ export class InscripcionComponent implements OnInit {
       this.muestra_todos = true;
       this.muestra_tusuario = false;
 
-      // this.cargarTalleresUsuario();
+      
       this.sedeselect = undefined;
       this.cargaTu();
     });
@@ -93,8 +93,7 @@ export class InscripcionComponent implements OnInit {
     let t: any;
     this.talleres_usuario = [];
 
-    console.log(this.user.talleres);
-    console.log(this.talleres);
+  
     for (t in this.user.talleres) {
 
       let temp = this.talleres.find(x => x.id === this.user.talleres[t]);
@@ -109,16 +108,6 @@ export class InscripcionComponent implements OnInit {
   cargarTalleresUsuario() {
     let t: any;
 
-    console.log(this.talleres_usuario.length + " " + this.user.talleres.length);
-
-    // if(!(this.talleres_usuario.length === this.user.talleres.length)){
-    //   this.talleres_usuario = [];
-    //   for(t in this.user.talleres){
-
-    //     this.talleres_usuario.push(this.talleres.find(x => x.id === this.user.talleres[t]));
-    //     // console.log("hola "+ this.talleres_usuario);
-    //   }
-    // }
 
     this.cargaTu();
 
