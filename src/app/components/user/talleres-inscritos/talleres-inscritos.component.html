@@ -74,10 +74,6 @@
                     <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
                       class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
                   </div>
-                  <!-- Desinscribir -->
-                  <!-- <button mat-button mat-raised-button class="btn reject card separacion"
-                (click)="quitarInscripcion(taller)">Desinscribir
-              </button> -->
                 </div>
                 <!-- en revision -->
                 <div *ngIf="taller['estatus'] == 'en revision'">
@@ -90,10 +86,6 @@
                     <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
                       class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
                   </div>
-                  <!-- Desinscribir -->
-                  <!-- <button mat-button mat-raised-button class="btn reject card separacion"
-                (click)="quitarInscripcion(taller)">Desinscribir
-              </button> -->
                 </div>
                 <!-- rechazado -->
                 <div *ngIf="taller['estatus'] == 'rechazado'">
@@ -117,18 +109,7 @@
                     <label for="{{'comprobante' + taller.id}}" id="{{'label' + taller.id}}" #labelComprobantes
                       class="custom-file-label text-truncate">{{ getNombreArchivo(taller)}}</label>
                   </div>
-                  <!-- Desinscribir -->
-                  <!-- <button mat-button mat-raised-button class="btn reject card"
-                (click)="quitarInscripcion(taller)">Desinscribir
-              </button> -->
                 </div>
-                <!-- aceptado -->
-                <!-- <div *ngIf="taller['estatus'] == 'aceptado'">
-                  <button mat-button mat-raised-button class="btn reject card"
-                    (click)="quitarInscripcion(taller)">Desinscribir
-                  </button>
-                </div> -->
-
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@
         <div class="carousel-item" *ngFor="let patrocinador of sponsorList; let i = index" [ngClass]="i == 0 ? 'active': ''">
           <img class="d-block w-100" [src]="patrocinador.backImg">
           <img class="inner-logo" [src]=patrocinador.url alt="">
-          <p>{{patrocinador.frase}}</p>
+          <!-- <p>{{patrocinador.frase}}</p> -->
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
