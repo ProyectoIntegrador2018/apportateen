@@ -183,7 +183,6 @@ export class InscripcionComponent implements OnInit {
         //quitar taller inscrito de tabla de usuarios
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
-          // this.tallerActual = '';
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
