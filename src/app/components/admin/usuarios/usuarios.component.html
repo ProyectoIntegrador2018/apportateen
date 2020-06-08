@@ -2,13 +2,6 @@
   <div class="usuarios__container">
     <h3 class="usuarios__title">Usuarios Registrados</h3>
     <div class="row justify-content-start col-md-3 pull-right">
-      <mat-form-field>
-        <mat-select placeholder="Selecciona el taller" (selectionChange)="seleccionarTaller($event)"
-          name="tallerselect">
-          <mat-option [value]="0">Todos los Usuarios</mat-option>
-          <mat-option *ngFor="let t of talleres" [value]="t.id">{{t.nombre}} - {{t.sedeDesc}}</mat-option>
-        </mat-select>
-      </mat-form-field>
     </div>
     <div class="usuarios__table" *ngIf="selected.length > 0">
       <table mat-table [dataSource]="selected" class="mat-elevation-z8 col-md-12">
@@ -62,7 +55,7 @@
     </div>
 
     <div *ngIf="selected.length < 1; else elseBlock" class="col-md-12 justify-content-center d-flex">
-      <h4>No existen usuarios registrados en este taller. </h4>
+      <h4>No existen usuarios registrados. </h4>
     </div>
     <ng-template #elseBlock>
       <div class="d-flex justify-content-center">

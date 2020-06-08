@@ -18,7 +18,6 @@
       </div>
       <div class="row talleres button">
         <button mat-raised-button class="talleres buttonSave" color="primary" (click)="guardarCostos()">Guardar Cambios</button>
-        <!-- <button mat-raised-button class="" color="warn" >Revertir</button> -->
       </div>
     </div>
     <div class="talleres__title lpadfix">
@@ -57,7 +56,7 @@
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
-          
+
         </div>
 
         <div class="col-md-6">
@@ -67,7 +66,7 @@
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
-          
+
         </div>
       </div>
 
@@ -78,7 +77,7 @@
             <input matInput type="time" [(ngModel)] ="selectedTaller.hora_inicio">
             <mat-hint align="start">24 hrs.</mat-hint>
           </mat-form-field>
-          
+
         </div>
         <div class="col-md-3">
           <mat-form-field>
@@ -97,9 +96,9 @@
 
       </div>
 
-      
-        
-      
+
+
+
       <div class="row" style="margin-top:15px;">
         <div class="col-md-6">
           <mat-form-field>
@@ -117,11 +116,13 @@
         </div>
 
       </div>
+
       
       <mat-form-field appearance="outline" style="margin-top:15px;">
         <mat-label>Tutor</mat-label>
         <input matInput [(ngModel)]="selectedTaller.nombre_tutor" name="tallerNombre">
       </mat-form-field>
+
 
       <div class="row">
         <div class="col-md-6">
