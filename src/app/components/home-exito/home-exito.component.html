@@ -6,9 +6,12 @@
 
   <section class="faq">
     <div class="historia-exito row" *ngFor="let testimonio of testimonios; let i = index">
-      <div class="col imgcol">
+      
+      
+      <div class="col imgcol" *ngIf="testimonio.urlImg">
         <img [src]="testimonio.urlImg" alt="">
       </div>
+
       <div class="col">
         <p class="nombre">{{testimonio.nombre}}</p>
         <p class="subtitulo">{{testimonio.subtitulo}}</p>
