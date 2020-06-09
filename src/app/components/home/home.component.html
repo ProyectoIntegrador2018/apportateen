@@ -33,15 +33,20 @@
   </section>
   <section class="home__about" id="QueEs">
     <h1>¿Qué es Axt@Teen 2020?</h1>
-    <p>Axt@Teen 2020 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta
+    
+    <p style="color:red;"><strong>Este año, ante la situación que se vive por el COVID-19 y la imposibilidad de llevar a cabo los talleres de manera presencial, se llevará a cabo una edición virtual para la toma de talleres gracias a las sedes y patrocinadores que dieron una respuesta positiva para la adaptación de estos talleres.</strong></p>
+  
+    <p>Axt@Teen 2020 es un programa <strong>virtual</strong> para promover entre estudiantes de México, desde nivel elemental hasta
       Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.</p>
+    
     <p> <strong> Más información sobre ediciones anteriores <button type="button" class="btn btn-link"
-          (click)="toggleTable()">aquí</button>. </strong></p>
+          (click)="toggleTable()">aquí</button>.</strong></p>
     <table *ngIf="isVisible">
       <tr>
-        <th>Año</th>
-        <th>Infográfico</th>
+        <th style="width:50%">Año</th>
+        <th style="width:50%">Infográfico</th>
       </tr>
+
       <tr>
         <td>2019</td>
         <td>
@@ -58,6 +63,7 @@
           </div>
         </td>
       </tr>
+
       <tr>
         <td>2018</td>
         <td>
@@ -74,6 +80,7 @@
           </div>
         </td>
       </tr>
+
       <tr>
         <td>2017</td>
         <td>
@@ -90,7 +97,9 @@
           </div>
         </td>
       </tr>
+
     </table>
+
     <div id="Steps" class="steps-section">
       <h1>¿Cómo participar?</h1>
       <div class="steps-timeline">
@@ -100,7 +109,7 @@
             Regístrate
           </h3>
           <p class="steps-description">
-            Registra tus datos en este portal y te inscribes en uno de los talleres que ofrecemos.
+            Registra tus datos en este portal y accede al portal para inscribir uno o varios talleres.
           </p>
         </div>
         <div class="steps-two">
@@ -109,7 +118,7 @@
             Realiza el pago
           </h3>
           <p class="steps-description">
-            Realiza el pago utilizando la ficha de pago.
+            Realiza el pago utilizando la ficha de pago y subiendo tu comprobante.
           </p>
         </div>
         <div class="steps-three">
@@ -121,17 +130,18 @@
             ¡Ya estás inscrito!
           </p>
         </div>
-      </div><!-- /.steps-timeline -->
+      </div>
     </div>
     <a class="cta" routerLink="/ingresar">Inscríbete Ahora</a>
   </section>
+
   <section class="home__participation" id="Reqs">
     <p class="home__activities__title">Convocatoria</p>
     <div class="row convo-row">
       <div class="col-8" style="padding: 0;">
-        Requisitos
-        <div class="list--bg">
-          <ol class="list">
+        <h3>Requisitos</h3>
+        <div class="list--bg--w">
+          <ol class="list-o">
             <li>Estar estudiando máximo el 3er año de preparatoria.</li>
             <li>Rango de edad: 12 a 17 años cumplidos al 31 de marzo del año en curso, cursando la primaria, secundaria
               o
@@ -152,40 +162,39 @@
       </div>
       <div class="col convo-col" style="padding: 0;">
         <div class="importante-text">
-          Importante
-          <ol class="list">
+          <h3>Importante</h3>
+          <div class="list--bg">
+          <ul class="list">
             <li>No es necesario tener experiencia previa programando, sólo ganas de participar.</li>
             <li>Es para niñas, niños y jóvenes independientemente de la escuela y de las habilidades previas.</li>
-            <li>No se necesita un equipo para participar.</li>
-            <li>No es necesario contar con computadora para participar.</li>
-          </ol>
+            <li>No se necesita un equipo ni computadora para participar.</li>
+          </ul>
+          </div>
         </div>
         <div class="ver-frecuentes">
           <a class="button outer-div" mat-flat-button color="primary" href="/FAQ">
-            <span>Preguntas frecuentes</span>
-            <mat-icon>chevron_right</mat-icon>
+            <span><strong>Preguntas frecuentes &emsp;</strong></span>
           </a>
         </div>
       </div>
     </div>
   </section>
+  
   <section class="home__calendar" id="Cal">
     <p class="home__activities__title">Fechas</p>
-    <div class="row">
-      <div class="col-5" style="padding: 0;">
+    <div class="row fechas">
+      <div class="col-6" style="padding: 0;">
         <div class="fechas-text">
-          <span>10 al 28 de Junio</span>
+          <span>Durante el mes de Julio</span>
         </div>
-        <div class="ver-talleres">
+      </div>
+
+        <div class="ver-talleres col-6">
           <a class="button outer-div" mat-raised-button color="primary" href="/talleres">
             <mat-icon class="icon-prop">event</mat-icon><br>
             <span>Ver todos los talleres</span>
           </a>
         </div>
-      </div>
-      <div class="col calendar-col">
-        <img src="../../../../assets/img/calendario.png">
-      </div>
     </div>
   </section>
   <section class="carousel slide" data-ride="carousel">

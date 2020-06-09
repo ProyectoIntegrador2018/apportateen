@@ -21,44 +21,44 @@ export class HomePatrocinadoresComponent {
         this.isVisible = false;
         this.sponsorList = [
           {
-            frase: "Frase de la UDEM",
+            frase: "",
             url: '../../../../assets/img/sponsors/udem.png',
-            backImg: '../../../../assets/img/main4.jpg'
+            backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Frase del Tec",
+            frase: "",
             url: '../../../../assets/img/sponsors/itesm.png',
-            backImg: '../../../../assets/img/main4.jpg'
+            backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Frase de la UANL",
+            frase: "",
             url: '../../../../assets/img/sponsors/uanl.png',
-            backImg: '../../../../assets/img/main4.jpg'
+            backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Frase de la UERRE",
-            url: '../../../../assets/img/sponsors/uerre.png',
-            backImg: '../../../../assets/img/main4.jpg'
+            frase: "",
+            url: '../../../../assets/img/sponsors/uerre.jpg',
+            backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Frase de Nuvasoft",
+            frase: "",
             url: '../../../../assets/img/sponsors/nuvasoft.png',
-            backImg: '../../../../assets/img/main4.jpg'
+            backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Frase de Sofftek",
+            frase: "",
             url: '../../../../assets/img/sponsors/sofftek.png',
-            backImg: '../../../../assets/img/main4.jpg'
+            backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Frase de NIC",
-            url: '../../../../assets/img/sponsors/nic.png',
-            backImg: '../../../../assets/img/main4.jpg'
+            frase: "",
+            url: '../../../../assets/img/sponsors/nic.jpg',
+            backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Frase de Tecnoap",
-            url: '../../../../assets/img/sponsors/tecnoap.jpeg',
-            backImg: '../../../../assets/img/main4.jpg'
+            frase: "Apoyar a la educación y a la educación en tecnología debe ser estrategia a nivel país y no solo por el gobierno, sino que como empresas debemos invertir en nuestros futuros talentos y mostrarles que hay un país que los está esperando, un país que les muestra que hay futuro y futuro en tecnología. Apoyar a todos estos temas de capital humano nos hace sentir que sumamos un granito de arena al progreso del país, invertirmos en generar el talento que en un futuro será parte de nuestro contenido nacional. - Matías Bertoni",
+            url: '../../../../assets/img/sponsors/tecnoap.jpg',
+            backImg: '../../../../assets/img/main5.JPG'
           }
         ]
     }
