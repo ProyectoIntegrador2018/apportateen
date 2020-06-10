@@ -1,20 +1,11 @@
 <div class="usuarios">
   <div class="usuarios__container">
     <h3 class="usuarios__title">Usuarios Registrados</h3>
+    <p>Da clic en la fila para ver el detalle de los datos del alumno.</p>
     <div class="row justify-content-start col-md-3 pull-right">
     </div>
     <div class="usuarios__table" *ngIf="selected.length > 0">
       <table mat-table [dataSource]="selected" class="mat-elevation-z8 col-md-12">
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef> No. </th>
-          <td mat-cell *matCellDef="let user; let i=index"> {{i+1}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="id_Axt@Teen">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
-          <td mat-cell *matCellDef="let user"> {{user.id_axtuser}} </td>
-        </ng-container>
-
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Nombre </th>
           <td mat-cell *matCellDef="let user"> {{user.nombre}} {{user.apellido}}</td>
@@ -25,14 +16,14 @@
           <td mat-cell *matCellDef="let user"> {{user.correo}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="school">
-          <th mat-header-cell *matHeaderCellDef> Escuela </th>
-          <td mat-cell *matCellDef="let user"> {{user.escuela}} </td>
+        <ng-container matColumnDef="curp">
+          <th mat-header-cell *matHeaderCellDef> CURP </th>
+          <td mat-cell *matCellDef="let user"> {{user.curp}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="grade">
-          <th mat-header-cell *matHeaderCellDef> Grado </th>
-          <td mat-cell *matCellDef="let user"> {{user.escuela_grado}} </td>
+        <ng-container matColumnDef="talleres">
+          <th mat-header-cell *matHeaderCellDef> Talleres inscritos </th>
+          <td mat-cell *matCellDef="let user"> {{user.talleres}} </td>
         </ng-container>
 
         <ng-container matColumnDef="documentos">
@@ -41,9 +32,11 @@
         </ng-container>
 
         <ng-container matColumnDef="delete">
-          <th mat-header-cell *matHeaderCellDef>Delete</th>
+          <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td mat-cell *matCellDef="let user" (click)="$event.stopPropagation()">
-            <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Borrar</button>
+            <button mat-icon-button color="warn" (click)="deleteUser(user.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
           </td>
         </ng-container>
 
