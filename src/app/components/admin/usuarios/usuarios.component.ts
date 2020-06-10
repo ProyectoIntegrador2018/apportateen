@@ -15,7 +15,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 
 export class UsuariosComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'id_Axt@Teen','name', 'email','school', 'grade', 'documentos', 'delete'];
+  displayedColumns: string[] = ['name', 'email', 'curp', 'talleres', 'documentos', 'delete'];
   users: any;
   talleres: any;
   selected: any;
@@ -38,7 +38,8 @@ export class UsuariosComponent implements OnInit {
   }
 
   obtenerUsuarios() {
-    this.api.getAllUsers().subscribe(result => {
+    this.api.getEnrollmentList().subscribe(result => {
+      console.log(result)
       this.users = result;
       this.selected= result;
     });

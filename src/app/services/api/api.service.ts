@@ -39,6 +39,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+    // API: GET /users/listaInscripciones
+    public getEnrollmentList(): Observable<User[]> {
+      return this.http
+        .get<User[]>(API_URL + '/users/listaInscripciones', httpOptions)
+        .catch(this.handleError);
+    }
+
   // API: GET /users/usuarios
   public getUsersUsuarios(): Observable<User[]> {
     return this.http
