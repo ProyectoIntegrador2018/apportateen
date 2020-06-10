@@ -46,16 +46,22 @@ export class SedesComponent implements OnInit {
   }
 
   delete() {
+    // Delete the selected Sede
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará la información de la sede: ${this.selectedSede.nombre.toUpperCase()}. ¿Desea continuar?`;
+    
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        // If the admin confirmed the deletion of the Sede, then proceed
         this.loading = true;
+        
+        // First delete the Sede
         this.api.removeSede(this.selectedSede.id).subscribe(res => {
           if (res.status == 'success') {
             if (this.originalInfoSede.responsable != null) {
+              // If the Sede has a Responsable, then delete the Responsable
               this.api.deleteResponsable(this.selectedSede.responsable).subscribe(_ => { }, _ => {
                 this.snackBar.open("Error al eliminar el responsable de la sede.", '', {
                   duration: 3000
@@ -104,11 +110,14 @@ export class SedesComponent implements OnInit {
   }
 
   save() {
+    // Save the selected sede with the new changes.
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
     dialogRef.componentInstance.mensajeConfirmacion = `Se modificará la sede seleccionada. ¿Desea continuar?`;
+
     dialogRef.afterClosed().subscribe(result => {
+      // If the admin confirmed the save action, then proceed to save the selected Sede changes
       if (result) {
         this.loading = true;
         if (this.originalInfoSede.correo_responsable != null) {
@@ -186,6 +195,7 @@ export class SedesComponent implements OnInit {
   }
 
   create() {
+    // Create a new Sede
     this.loading = true;
     this.newSede = null;
 
