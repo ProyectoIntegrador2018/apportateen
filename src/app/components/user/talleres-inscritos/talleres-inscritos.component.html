@@ -4,8 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-7">
           <div class="scContainer">
-            <button [ngClass]="{'leftSc': true, 'enabled': isTalleresInscritos}" (click)="toggleButton('left')">Talleres
-              Inscritos</button>
+            <button [ngClass]="{'leftSc': true, 'enabled': isTalleresInscritos}" (click)="toggleButton('left')">Talleres inscritos</button>
             <button [ngClass]="{'rightSc': true, 'enabled': !isTalleresInscritos}"
               (click)="toggleButton('right')">Talleres por pagar</button>
           </div>
@@ -34,7 +33,7 @@
           <p class="pasos"> Una vez aprobado el comprobante, ¡quedarás inscrito!</p>
         </div>
       </div>
-      <p class="instruction"><span class="bold">Nota: </span> Si se rechaza tu comprobante, podrás volver a subir otro.
+      <p class="instruction"><span class="bold">Nota: </span> Puedes cambiar tu comprobante de pago en cualquier momento. De igual manera, si se rechaza tu comprobante, podrás volver a subir otro.
       </p>
     </div>
     <div *ngIf="!this.hasTallerWithStatus('pendiente') && !this.hasTallerWithStatus('en revision') && !this.hasTallerWithStatus('rechazado') && !isTalleresInscritos" class="instruction">

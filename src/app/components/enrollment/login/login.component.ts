@@ -48,7 +48,7 @@ export class LoginComponent {
             }).catch(err => {
                 this.loading = false;
                 this.snackBar.open('El usuario o la contraseña pueden ser incorrectos.', '', {
-                    duration: 1850,
+                    duration: 2500,
                 });
             })
     }
