@@ -123,6 +123,15 @@ export class AvisosDialog {
   }
 
   enviar(): void {
+    /* 
+    Dependieng on the target is the type of announcement to crate:
+    1 -> General
+    2 -> Taller
+    3 -> Sede
+    4 -> Responsables (By the email client)
+    */
+
+    // Processing the data depending in the announcement type
     if (this.data.target === 1) {
       this.aviso.sede = null;
       this.aviso.taller = null;
@@ -153,6 +162,7 @@ export class AvisosDialog {
       this.dialogRef.close(true);
     }
 
+    // If this is not a Responsables type of message, call the endpoint to create an announcement in the Database
     if (this.data.target != 4) {
       this.api.createAviso(this.aviso).subscribe(result => {
         this.aviso = new Aviso
