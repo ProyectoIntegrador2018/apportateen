@@ -24,7 +24,7 @@ export class HomeFAQComponent {
         },
         {
           pregunta:'¿Cómo puedo pagar un taller?',
-          respuesta:'En la sección de Talleres Inscritos puedes imprimir la ficha de pago de cada taller y subir el comprobante una vez realizado el pago. Cualquier duda favor de contactar a angelica.cisneros@csoftmty.org'
+          respuesta:'En la sección de Talleres Inscritos puedes imprimir la ficha de pago de cada taller y subir el comprobante una vez realizado el pago. Una vez aprobado por el administrador, quedarás automáticamente inscrito. Si se rechaza el comprobante puedes volver a subir otro. Cualquier duda favor de contactar a angelica.cisneros@csoftmty.org'
         },
         {
           pregunta:'¿Cuál es el costo de un taller?',

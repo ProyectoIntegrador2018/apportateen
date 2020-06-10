@@ -47,7 +47,7 @@
 
         <div class="sideBox">
           <h5 class="">Costo</h5>
-          <p>{{costoTaller() == 0 ? 'Gratis' : costoTaller()}}</p>
+          <p>{{costoTaller() == 0 ? 'Gratis' : '$' + costoTaller()}}</p>
         </div>
         <div class="sideBox">
           <h5>Sede</h5>
@@ -64,7 +64,7 @@
         </div>
         <div class="sideBox">
           <h5>Cupo</h5>
-          <p>{{taller["cupo"]}}</p>
+          <p>{{'Máximo ' + taller["cupo"] + ' personas'}}</p>
         </div>
         <div class="sideBox">
           <h5>Ubicación</h5>
