@@ -28,8 +28,8 @@ export class HomeExitoComponent {
         },
         {
           nombre:'Eugenio Treviño, Jorge Salvans, Jesús Garza y Ángel Salvans',
-          subtitulo:'Integrantes del equipo ABC aprende',
-          testimonio:'Participantes del taller App Inventor de Axt@teen 2019 y creadores de una app educativa que participó en la Feria de Ciencia y Tecnología 2019.',
+          subtitulo:'Participantes del taller App Inventor de Axt@teen 2019 y creadores de una app educativa que participó en la Feria de Ciencia y Tecnología 2019.',
+          testimonio:'"La experiencia de participar en axt@teen nos llevó a la feria de ciencias estatal y nacional y nos contactó con expertos de desarrollo de software, aprendimos cómo hacer aplicaciones móviles y sobre todo a documentar toda nuestra experiencia."',
           urlImg: '../../../assets/img/h-exito/he-3.jpg'
         },
       ];

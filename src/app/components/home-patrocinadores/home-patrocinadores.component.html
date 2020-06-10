@@ -9,7 +9,6 @@
 
       <div class="carousel-inner" >
         <div class="carousel-item" *ngFor="let patrocinador of sponsorList; let i = index" [ngClass]="i == 0 ? 'active': ''">
-          <img class="d-block w-100" [src]="patrocinador.backImg" style="-webkit-filter: blur(5px);">
           <img class="inner-logo" [src]=patrocinador.url alt="">
           <p>{{patrocinador.frase}}</p>
         </div>
