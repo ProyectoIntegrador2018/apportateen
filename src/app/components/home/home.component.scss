@@ -1,5 +1,6 @@
 @import "~styles-variables.scss";
 
+
 .home {
   .row {
     margin: 0;
@@ -129,13 +130,19 @@
       letter-spacing: 0.76px;
       text-align: center;
       width: 70%;
+
+      strong {
+        font-weight: 900;
+      }
+
     }
 
     table {
       border-collapse: separate;
       border-spacing: 50px 20px;
       margin: 0 auto 70px;
-      width: 80%;
+      width: 30%;
+      text-align: center;
     }
 
     .course {
@@ -164,6 +171,10 @@
         text-decoration: none;
       }
     }
+
+    .btn{
+      font-weight: bold;
+    }
   }
 
   &__activities {
@@ -177,6 +188,8 @@
       padding: 30px 0;
       text-align: center;
     }
+
+    
 
     .text-container {
       align-items: center;
@@ -208,6 +221,8 @@
   }
 
   &__participation {
+
+
     .details-container {
       cursor: pointer;
       display: flex;
@@ -231,6 +246,7 @@
           }
         }
         .ver-frecuentes {
+          font-family: $base-font;
           height: 20%;
           background-color: #545253;
           align-items: center;
@@ -238,15 +254,54 @@
           flex-direction: column;
           justify-content: center;
           .outer-div {
+            transition: all 0.4s;
             display: flex;
             padding: 10px 20px;
             flex-direction: column;
             align-items: center;
             font-size: 20px;
             background-color: #545253;
+            text-decoration: none;
+
+            span {
+              font-family: $base-font;
+
+              
+              display: inline-block;
+              position: relative;
+              transition: 0.4s;
+            }
+
+            span:after {
+              content: '\2192';
+              
+              // 2192
+              // 00bb
+              
+              position: absolute;
+              opacity: 0;
+              top: 0;
+              right: -20px;
+              transition: 0.5s;
+            }
+            &:hover span {
+              padding-right: 27px;
+            }
+            
+            &:hover span:after {
+              opacity: 1;
+              right: 0;
+            }
           }
+
         }
       }
+    }
+
+    h3{
+      padding: 20px 0 0 20px;
+      // margin-top: 15px;
+      font-weight: 600;
     }
 
     .subtitle {
@@ -268,6 +323,7 @@
         transform: rotate(-90deg);
         width: 35px;
       }
+      
     }
 
     .list {
@@ -275,19 +331,38 @@
       font-size: 18px;
       font-weight: 300;
       letter-spacing: 0.61px;
-      list-style-type: decimal;
+      
       margin: 0 auto;
       width: 90%;
+      padding: 5px 0 30px 0;
+      
+      
 
       &--bg {
-        background-color: white;
-        padding: 30px 0;
+        // background-color: white;
+        padding-left: 20px;
         width: 100%;
+        &--w{
+          background-color: white;
+        }
       }
+
 
       li + li {
         margin-top: 5px;
       }
+
+      &-o{
+        padding: 10px 30px 20px 35px;
+        list-style-type: decimal;
+        letter-spacing: 0.61px;
+
+        li + li {
+          margin-top: 5px;
+        }
+
+      }
+
     }
     &__faq,
     &__details,
@@ -318,7 +393,7 @@
       width: 45%;
     }
     .fechas-text {
-      height: 50%;
+      height: 100%;
       background-color: #545253;
       align-items: center;
       display: flex;
@@ -329,24 +404,41 @@
         font-size: 25px;
       }
     }
+
+    .fechas{
+      height: 200px;
+    }
+
     .ver-talleres {
-      height: 50%;
-      background-color: #f7931d;
+      background-color: #6eb7c2;
       align-items: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
+
       .outer-div {
         display: flex;
         padding: 10px 20px;
         flex-direction: column;
         align-items: center;
         font-size: 20px;
-        background-color: #f7931d;
+        background-color:white;
+
+        &:hover {
+          box-shadow: 5px 5px gray;
+          font-size: 20.5px;
+        }
+
         .icon-prop {
           font-size: 60px;
           width: auto;
           height: auto;
+          color:#f7931d ;
+        }
+        span{
+          color: #f7931d;
+          font-family: $base-font;
+          font-weight: 400;
         }
       }
       .outer-div > span {
@@ -521,6 +613,7 @@
             }
           }
           .ver-frecuentes {
+            
             height: 20%;
             background-color: #545253;
             align-items: center;
@@ -534,7 +627,13 @@
               align-items: center;
               font-size: 20px;
               background-color: #545253;
+
+              span {
+                font-family: $base-font;
+              }
+
             }
+            
           }
         }
       }
@@ -853,6 +952,8 @@
     &-section {
       display: none;
     }
+
+    
   }
 }
 
@@ -1012,7 +1113,6 @@ $break-point: 500px;
     }
   }
 
-  &-name,
   &-description {
     margin: 0;
   }
@@ -1022,6 +1122,7 @@ $break-point: 500px;
   }
 
   &-name {
+    margin-top: 5px;
     color: $color-blue;
     font-size: 1.4em;
     font-weight: 400;

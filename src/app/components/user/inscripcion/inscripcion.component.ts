@@ -9,6 +9,7 @@ import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmat
 import { WarningDialogComponent } from 'app/components/warning-dialog/warning-dialog.component';
 import { TalleresComponent } from 'app/components/admin/talleres/talleres.component';
 import { MessageDialogComponent } from './../../message-dialog/message-dialog.component';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 export interface DialogData {
 
@@ -25,7 +26,6 @@ export interface DialogData {
 export class InscripcionComponent implements OnInit {
   estatus: boolean;
   user: User = new User();
-  // tallerActual;
   talleres;
   sedes;
   selectedSede: Sede = new Sede();
@@ -41,10 +41,10 @@ export class InscripcionComponent implements OnInit {
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar,
+    private fireStorage: AngularFireStorage) {
     this.talleres = [];
     this.sedes = [];
-    // this.tallerActual = '';
     this.estatus = null;
     this.sede_seleccionada = null;
     this.muestra_todos = true;
@@ -69,22 +69,19 @@ export class InscripcionComponent implements OnInit {
       if (this.estatus) {
         this.api.getAllSedes().subscribe(result => {
           this.sedes = result;
-          // if (this.user.idtaller != 0) {
-          //   this.obtenerTallerActual();
-          // }
         })
       }
     })
 
   }
 
-  cargarTalleres(){
+  cargarTalleres() {
     this.api.getAllTalleres().subscribe(result => {
       this.talleres = result[0];
       this.muestra_todos = true;
       this.muestra_tusuario = false;
 
-      // this.cargarTalleresUsuario();
+      
       this.sedeselect = undefined;
       this.cargaTu();
     });
@@ -96,8 +93,7 @@ export class InscripcionComponent implements OnInit {
     let t: any;
     this.talleres_usuario = [];
 
-    console.log(this.user.talleres);
-    console.log(this.talleres);
+  
     for (t in this.user.talleres) {
 
       let temp = this.talleres.find(x => x.id === this.user.talleres[t]);
@@ -112,16 +108,6 @@ export class InscripcionComponent implements OnInit {
   cargarTalleresUsuario() {
     let t: any;
 
-    console.log(this.talleres_usuario.length + " " + this.user.talleres.length);
-
-    // if(!(this.talleres_usuario.length === this.user.talleres.length)){
-    //   this.talleres_usuario = [];
-    //   for(t in this.user.talleres){
-
-    //     this.talleres_usuario.push(this.talleres.find(x => x.id === this.user.talleres[t]));
-    //     // console.log("hola "+ this.talleres_usuario);
-    //   }
-    // }
 
     this.cargaTu();
 
@@ -130,10 +116,9 @@ export class InscripcionComponent implements OnInit {
     this.sedeselect = undefined;
   }
 
-  obtenerCostos(){
+  obtenerCostos() {
     this.api.getCostos().subscribe(result => {
       this.costosPorEscuela = result;
-      console.log(result);
     });
   }
 
@@ -152,15 +137,8 @@ export class InscripcionComponent implements OnInit {
     dialogRef.componentInstance.mensajeConfirmacion = `Se eliminará su inscripción a este taller. ¿Desea continuar?`;
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.user.num_conf_pago = "";
-        this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
-        }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 900,
-          });
-        });
 
-        this.user.id_axtuser = ""; // para qué es este id ??
+        this.user.id_axtuser = "";
 
         const index_taller = this.user.talleres.indexOf(taller.id);
 
@@ -170,26 +148,29 @@ export class InscripcionComponent implements OnInit {
 
         this.cargaTu();
 
-
+        //quitar de tabla de inscripciones
         let inscripcion = {
           "taller_id": taller.id,
           "user_id": this.user.id
         }
-
-        this.api.removeInscripcion(inscripcion).subscribe(res => {
-          this.snackBar.open(res.message, '', {
-            duration: 1500,
+        //obtener referencia al comprobante de pago
+        this.api.getRefComprobante(inscripcion).subscribe(res1 => {
+          //quitar inscripcion
+          this.api.removeInscripcion(inscripcion).subscribe(res => {
+            //borrar archivo del comprobante
+            this.borrarComprobanteStorage(res1["ref_comprobante"]);
+          }, error => {
+            this.snackBar.open(error.error, '', {
+              duration: 900,
+            });
           });
         }, error => {
-          this.snackBar.open(error.error, '', {
-            duration: 900,
-          });
+          console.log("Error al obtener referencia del comprobante.");
         });
 
-
+        //quitar taller inscrito de tabla de usuarios
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
-          // this.tallerActual = '';
           this.snackBar.open(res.message, '', {
             duration: 1500,
           });
@@ -202,8 +183,23 @@ export class InscripcionComponent implements OnInit {
     })
   }
 
+  //borrar archivo del comprobante de firestorage
+  borrarComprobanteStorage(refComprobante: string) {
+    if (refComprobante != null && refComprobante != '') {
+      var archivoRef = this.fireStorage.ref(refComprobante);
+      archivoRef.delete().subscribe(res => {
+      }, error => {
+        this.snackBar.open('Error', '', {
+          duration: 1500,
+        });
+      });
+    }
+  }
+
+  //obtener el costo de un taller
+  //El costo es gratis si la sede del taller tiene especificado todos sus talleres como gratis. Si no es gratis, el costo del taller depende del tipo de la escuela del usuario
   costoTaller(taller: Taller): number {
-    if (/*this.selectedSede.gratis*/ taller["gratis"]) {
+    if (taller["gratis"]) {
       return 0;
     } else {
       if (this.user.escuela_tipo == "Privada") {
@@ -268,28 +264,17 @@ export class InscripcionComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result && this.checa_talleres) {
-        // this.user.idtaller = taller.id;
+
         this.user.talleres.push(taller.id);
 
         this.cargaTu();
 
-
-
         this.user.id_axtuser = (this.selectedSede.nombre).toUpperCase() + "-" + (taller.nombre) + taller.inscritos;
-        if (this.selectedSede.gratis) {
-          this.user.num_conf_pago = "BECA";
-          this.api.updateUsuarioNumConfPago(this.user).subscribe(res => {
-          }, error => {
-            this.snackBar.open(error.error, '', {
-              duration: 900,
-            });
-          });
-        }
 
-        ///======== inscribir a tabla de Inscripciones,lo comente por mientras porque falta el query para quitar inscripcion y marcaria error si tratas de inscribir dos veces el mismo
+        ///======== inscribir a tabla de Inscripciones
         let inscripcion = {
-          "tallerId" : taller.id,
-          "userId" : this.user.id
+          "tallerId": taller.id,
+          "userId": this.user.id
         }
 
         this.api.createInscripcion(inscripcion).subscribe(res => {
@@ -300,6 +285,7 @@ export class InscripcionComponent implements OnInit {
         })
         // =============
 
+        //inscribir taller en tabla de usuarios
         this.api.updateUser(this.user).subscribe(res => {
           this.storage.set('@user:data', this.user);
           // this.obtenerTallerActual();

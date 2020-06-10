@@ -1,14 +1,8 @@
 @import '~styles-variables.scss';
 
 
-// img {
-//   border-radius: 5px 5px 0 0;
-//   height: 70vh;
-//   width: 100%;
-// }
-
 .hero {
-  
+
   align-items: center;
   background-position: center center;
   background-repeat: no-repeat;
@@ -19,7 +13,7 @@
   background-color: $color-blue;
 
   &__title {
-    
+
     color: $color-white;
     font-size: 50px;
     font-weight: bold;
@@ -33,26 +27,10 @@
 .description{
   h4 {
     color: $text-color;
-    // font-size: 38px;
     font-weight: bold;
     letter-spacing: 1.28px;
   }
 }
-
-// .btn{
-
-//   &.accept{
-//     margin-bottom: 20px;
-//     width: 100%;
-//     background-color: $color-green;
-//   }
-
-//   &.reject{
-//     margin-bottom: 20px;
-//     width: 100%;
-//     background-color: $color-red;
-//   }
-// }
 
 .btn-primary{
   margin-bottom: 20px;
@@ -65,11 +43,21 @@
 .btn-reject{
   margin-bottom: 20px;
   width: 100%;
-  background-color: $color-red;
+  background-color:  #f7931e;
   color: $color-white;
   font-size: 15px;
 }
 
+
+#lleno{
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+  color: #f7931e;
+  border: 1px solid #f7931e;
+  padding: 4px 0px;
+}
 
 
 .sideBox{
@@ -113,8 +101,6 @@
 
 //carousel
 .gallery{
-  // width: 100vh;
-  // height: 70vh;
   margin-left: auto !important;
   margin-right: auto !important;
 }

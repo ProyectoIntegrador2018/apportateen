@@ -39,11 +39,11 @@
     max-height: 500px;
     overflow: hidden;
     img{
-      height: 100%;
+      max-width: 100%;
     }
-    .imgcol{
-      max-height:400px;
-    }
+    // .imgcol{
+    //   max-height:300px;
+    // }
     .nombre{
       font-size: 36px;
       text-transform: uppercase;
@@ -61,10 +61,12 @@
   .row {
     margin: 0;
     width: 100%;
+    display: flex;
+    align-items: center;
   }
 
-  .col-6 {
-    padding: 0;
+  .col{
+    flex: 50%;
   }
 
   .carousel-item {

@@ -1,6 +1,5 @@
 <div class="container-fluid register">
   <div class="container">
-    <!-- <h3 class="register__title">Sede</h3> -->
 
     <div class="register__actions" *ngIf="estatus">
       <button class="btn btn-primary" (click)="cargarTalleres()">Todos</button>
@@ -38,12 +37,11 @@
                 (click)="inscripcion(taller)">Inscribirme</button>
 
               <button mat-button mat-raised-button class="btn reject card"
-                *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
+                *ngIf="user.talleres.includes(taller.id)"
                 (click)="quitarInscripcion(taller)">Desinscribir
-                <!-- <mat-icon>done</mat-icon> -->
               </button>
               <button mat-button color="warn"
-                *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
+                *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos >= taller.cupo">Taller
                 lleno.</button>
             </div>
           </div>
@@ -69,11 +67,10 @@
               (click)="inscripcion(taller)">Inscribirme</button>
 
             <button mat-button mat-raised-button class="btn reject card"
-              *ngIf="user.talleres.includes(taller.id) && taller.inscritos < taller.cupo"
+              *ngIf="user.talleres.includes(taller.id)"
               (click)="quitarInscripcion(taller)">Desinscribir
-              <!-- <mat-icon>done</mat-icon> -->
             </button>
-            <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
+            <button mat-button color="warn" *ngIf="!(user.talleres.includes(taller.id)) && taller.inscritos >= taller.cupo">Taller
               lleno.</button>
           </div>
         </div>
@@ -97,10 +94,7 @@
 
             <button mat-button mat-raised-button class="btn reject card"
               (click)="quitarInscripcion(taller)">Desinscribir
-              <!-- <mat-icon>done</mat-icon> -->
             </button>
-            <button mat-button color="warn" *ngIf="taller.id != user.idtaller && taller.inscritos >= taller.cupo">Taller
-              lleno.</button>
           </div>
         </div>
 
