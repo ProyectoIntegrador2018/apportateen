@@ -29,7 +29,6 @@ export class HomeFAQComponent {
         {
           pregunta:'¿Cuál es el costo de un taller?',
           respuesta:'En la sección de Inscripciones puedes dar click en cualquier taller para saber toda la información del costo, fecha, lugar, etc.',
-          extra:'*Los talleres en las sedes Softtek y UDEM son totalmente gratuitos.'
         },
         {
           pregunta:'¿Cuándo es la fecha limite para pagar los talleres?',
