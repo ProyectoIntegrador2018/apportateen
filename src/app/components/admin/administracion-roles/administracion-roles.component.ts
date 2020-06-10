@@ -11,8 +11,8 @@ import { ConfirmationDialog } from 'app/components/confirmation-dialog/confirmat
 })
 export class AdministracionRolesComponent implements OnInit {
 
-  displayColumns1 : string [] = ['position', 'id', 'name', 'add'];
-  displayColumns2 : string[] = ['position', 'id', 'name', 'remove'];
+  displayColumns1 : string [] = ['position', 'name', 'email', 'add'];
+  displayColumns2 : string[] = ['position', 'name', 'email', 'remove'];
 
   users : any;
   usersAdmn : any;
@@ -22,7 +22,7 @@ export class AdministracionRolesComponent implements OnInit {
     public snackBar: MatSnackBar) {
       this.users = [];
       this.usersAdmn = [];
-     }
+    }
 
   ngOnInit() {
     this.fetchDB();
@@ -37,6 +37,7 @@ export class AdministracionRolesComponent implements OnInit {
     this.api.getUsersUsuarios().subscribe(result => {
       this.users=[];
       this.users = result;
+      console.log(result)
     });
   }
 

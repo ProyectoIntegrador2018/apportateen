@@ -24,15 +24,11 @@ export class HomeFAQComponent {
         },
         {
           pregunta:'¿Cómo puedo pagar un taller?',
-          respuesta:'Se puede pagar un taller si se genera la ficha de pago correspondiente, se realiza un pago y se manda un correo con el comprobante de pago y los datos de la persona inscrita al correo: angelica.cisneros@csoftmty.org'
+          respuesta:'En la sección de Talleres Inscritos puedes imprimir la ficha de pago de cada taller y subir el comprobante una vez realizado el pago. Una vez aprobado por el administrador, quedarás automáticamente inscrito. Si se rechaza el comprobante puedes volver a subir otro. Cualquier duda favor de contactar a angelica.cisneros@csoftmty.org'
         },
         {
           pregunta:'¿Cuál es el costo de un taller?',
-          respuesta:'Los costos de los talleres son: $1,500 si el alumno es proveniente de una escuela privada y $500 si proviene de una escuela publica.'
-        },
-        {
-          pregunta:'¿Cuál es el costo de un taller?',
-          respuesta:'Los costos de los talleres son: $1,500 si el alumno es proveniente de una escuela privada y $500 si proviene de una escuela publica.',
+          respuesta:'En la sección de Inscripciones puedes dar click en cualquier taller para saber toda la información del costo, fecha, lugar, etc.',
           extra:'*Los talleres en las sedes Softtek y UDEM son totalmente gratuitos.'
         },
         {
@@ -42,5 +38,5 @@ export class HomeFAQComponent {
       ];
     }
 
-    
+
 }

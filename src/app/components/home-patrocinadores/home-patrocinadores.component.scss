@@ -35,7 +35,7 @@
   &__sponsors {
     .carousel {
       padding: 5%;
-      background-color: #6eb7c2;
+      background-color: #61a5af;
     }
     &__title {
       align-items: center;
@@ -97,14 +97,15 @@
         left: 0;
         height: 100%;
         content: "";
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+        background-color: #ffffff;
+        background: linear-gradient(90deg, rgba(97,165,175,1) 0%, rgba(255,255,255,1) 11%, rgba(255,255,255,1) 90%, rgba(97,165,175,1) 100%);
       }
       p {
         z-index: 2;
-        color: white;
-        font-size: 40px;
+        color: rgb(27, 27, 27);
+        font-size: 18px;
         position: absolute;
-        top: 50%;
+        top: 65%;
         left: 50%;
         transform: translate(-50%, -50%);
       }
@@ -191,7 +192,7 @@
   }
 
   .carousel-item {
-    height: 80vh;
+    height: 90vh;
   }
 
   .carousel-caption {

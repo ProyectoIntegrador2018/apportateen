@@ -42,16 +42,18 @@
         <button mat-button mat-raised-button class="btn-reject"
           *ngIf="user.talleres.includes(taller['id'])"
           (click)="quitarInscripcion(taller)">Desinscribir</button>
+          <p id="lleno" *ngIf="!(user.talleres.includes(taller['id'])) && taller['inscritos'] >= taller['cupo']">Taller
+            lleno.</p>
 
         <div class="sideBox">
           <h5 class="">Costo</h5>
-          <p>{{costoTaller() == 0 ? 'Gratis' : costoTaller()}}</p>
+          <p>{{costoTaller() == 0 ? 'Gratis' : '$' + costoTaller()}}</p>
         </div>
         <div class="sideBox">
           <h5>Sede</h5>
           <p>{{taller["sededesc"]}} - {{taller["estado"]}} </p>
         </div>
-        
+
         <div class="sideBox">
           <h5 class="">Horario</h5>
           <p>{{taller["hora_inicio"]}} - {{taller["hora_fin"]}}</p>
@@ -61,7 +63,8 @@
           <p>{{fecha_inicio}} al {{fecha_fin}}</p>
         </div>
         <div class="sideBox">
-          <!-- <p>{{taller["cupo"]}}</p> -->
+          <h5>Cupo</h5>
+          <p>{{'Máximo ' + taller["cupo"] + ' personas'}}</p>
         </div>
         <div class="sideBox">
           <h5>Ubicación</h5>
@@ -73,8 +76,8 @@
     </div>
   </div>
 
-  
 
-  
+
+
 
 </div>

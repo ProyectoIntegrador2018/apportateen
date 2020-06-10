@@ -18,7 +18,6 @@
       </div>
       <div class="row talleres button">
         <button mat-raised-button class="talleres buttonSave" color="primary" (click)="guardarCostos()">Guardar Cambios</button>
-        <!-- <button mat-raised-button class="" color="warn" >Revertir</button> -->
       </div>
     </div>
     <div class="talleres__title lpadfix">
@@ -52,12 +51,12 @@
         <div class="col-md-6">
           <mat-form-field>
             <mat-label>Fecha de inicio</mat-label>
-              <!-- [min]="fecha_actual"  -->
+              
               <input matInput [matDatepicker]="picker1" [(ngModel)]="selectedTaller.fecha_inicio" [min] = "fecha_actual" [max]="selectedTaller.fecha_fin">
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
-          
+
         </div>
 
         <div class="col-md-6">
@@ -67,7 +66,7 @@
               <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
               <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
-          
+
         </div>
       </div>
 
@@ -78,7 +77,7 @@
             <input matInput type="time" [(ngModel)] ="selectedTaller.hora_inicio">
             <mat-hint align="start">24 hrs.</mat-hint>
           </mat-form-field>
-          
+
         </div>
         <div class="col-md-3">
           <mat-form-field>
@@ -87,12 +86,19 @@
             <mat-hint align="start">24 hrs.</mat-hint>
           </mat-form-field>
         </div>
-        <div class="col"></div>
+        
+        <div class="col-md-6">
+        <mat-form-field appearance="outline">
+          <mat-label>Cupo máximo</mat-label>
+          <input matInput type="number" [(ngModel)]="selectedTaller.cupo" name="cupoTaller">
+        </mat-form-field>
       </div>
 
-      
-        
-      
+      </div>
+
+
+
+
       <div class="row" style="margin-top:15px;">
         <div class="col-md-6">
           <mat-form-field>
@@ -110,32 +116,40 @@
         </div>
 
       </div>
-        
 
+      
+      <mat-form-field appearance="outline" style="margin-top:15px;">
+        <mat-label>Tutor</mat-label>
+        <input matInput [(ngModel)]="selectedTaller.nombre_tutor" name="tallerNombre">
+      </mat-form-field>
+
+
+      <div class="row">
+        <div class="col-md-6">
           <mat-form-field appearance="outline">
-            <mat-label>Tutor</mat-label>
-            <input matInput [(ngModel)]="selectedTaller.nombre_tutor" name="tallerNombre">
+            <mat-label>Teléfono del tutor</mat-label>
+            <input matInput type="number" [(ngModel)]="selectedTaller.telefono_tutor" name="telefono_tutor">
           </mat-form-field>
-
+        </div>
+          <div class="col-md-6">
           <mat-form-field appearance="outline">
             <mat-label>E-mail del Tutor</mat-label>
             <input matInput [(ngModel)]="selectedTaller.correo_tutor" name="correo_tutor">
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Teléfono del tutor</mat-label>
-            <input matInput type="number" [(ngModel)]="selectedTaller.telefono_tutor" name="telefono_tutor">
-          </mat-form-field>
+        </div>
+        </div>
+
+        
+        
+
 
         <mat-form-field [hidden]="true">
           <mat-select placeholder="Categoría" [(ngModel)]="selectedTaller.categoria" name="cetselect">
             <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Cupo máximo</mat-label>
-          <input matInput type="number" [(ngModel)]="selectedTaller.cupo" name="cupoTaller">
-        </mat-form-field>
+        
 
         <div class="form-group col-md-12">
           <label for="archivoInput">Seleccionar Foto de Taller:</label>

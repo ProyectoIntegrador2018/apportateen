@@ -8,5 +8,5 @@ export const environment = {
     storageBucket: 'apportateen.appspot.com',
     messagingSenderId: '558841100052'
   },
-  apiUrl: 'https://apportateen.herokuapp.com'
+  apiUrl: 'https://apportateen-v2.herokuapp.com'
 };

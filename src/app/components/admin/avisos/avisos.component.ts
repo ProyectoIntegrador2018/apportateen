@@ -50,7 +50,6 @@ export class AvisosComponent implements OnInit {
 
   obtenerAvisos(callback) {
     this.api.getAllAvisos().subscribe(result => {
-      console.log(result);
       this.avisos = result;
       callback();
     });
@@ -67,21 +66,24 @@ export class AvisosComponent implements OnInit {
     this.api.getAllSedes().subscribe(result => {
       this.sedes = result;
       this.procesarSedes()
-      console.log(this.sedes, 'LAS SEDES')
       callback();
     });
   }
 
   procesarSedes() {
+    /*
+    In order to get the get the Sedes name easier for the modal chips, 
+    a dictionary is created with the Sede ID as key.
+    */
     this.sedes.forEach(sede => {
       let id = sede.id;
       let nombre = sede.nombre;
       this.sedesById.push({ id: nombre })
     })
-    console.log(this.sedesById)
   }
 
   eliminar(aviso: Aviso) {
+    // Open a confirmation dialog to delete the selected Aviso
     const dialogRef = this.dialog.open(ConfirmationDialog, {
       disableClose: true
     });
@@ -105,10 +107,11 @@ export class AvisosComponent implements OnInit {
   }
 
   editar(aviso: Aviso) {
+    // Opens a dialog to edit the announcement.
     this.selectedAviso = Object.assign({}, aviso);
     var dialogRef;
-    console.log(this.selectedAviso)
 
+    // Depending on the type of message is the data that is going to be givven to the dialog
     if (this.selectedAviso.general == true) {
       dialogRef = this.dialog.open(AvisosDialog, {
         data: { target: 1, edit: true,aviso: this.selectedAviso, posiblesDestinararios: null }
@@ -135,10 +138,16 @@ export class AvisosComponent implements OnInit {
 
   select(aviso) {
     this.selectedAviso = aviso
-    console.log(this.selectedAviso)
   }
 
   enviarAviso(option: number) {
+    /* 
+    Dependieng on the target is the type of announcement to crate:
+    1 -> General
+    2 -> Taller
+    3 -> Sede
+    4 -> Responsables (By the email client)
+    */
     var dialogRef;
     if (option === 1) {
       dialogRef = this.dialog.open(AvisosDialog, {
@@ -151,7 +160,6 @@ export class AvisosComponent implements OnInit {
         data: { posiblesDestinararios: this.talleres, target: option },
         width: "80%"
       })
-      console.log(this.talleres)
     }
     else if (option === 3) {
       dialogRef = this.dialog.open(AvisosDialog, {
@@ -168,6 +176,7 @@ export class AvisosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        // If the announcement was created successfully the dialog returns True.
 
         this.snackBar.open('Aviso enviado', '', {
           duration: 2000,

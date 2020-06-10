@@ -39,6 +39,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+    // API: GET /users/listaInscripciones
+    public getEnrollmentList(): Observable<User[]> {
+      return this.http
+        .get<User[]>(API_URL + '/users/listaInscripciones', httpOptions)
+        .catch(this.handleError);
+    }
+
   // API: GET /users/usuarios
   public getUsersUsuarios(): Observable<User[]> {
     return this.http
@@ -300,6 +307,13 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+  //API: GET /inscripciones/comprobante
+  public getRefComprobante(inscripcion: any): Observable<any> {
+    return this.http
+      .get<any>(`${API_URL}/inscripciones/comprobante/${inscripcion['taller_id']}/${inscripcion['user_id']}`, httpOptions)
+      .catch(this.handleError);
+  }
+
   //API: GET /inscripciones
   public getTalleresInscritos(user_id: any): Observable<any> {
     return this.http
@@ -310,7 +324,7 @@ export class ApiService {
   //API: PUT /inscripciones/comprobante
   public subirComprobante(inscripcion: any): Observable<any> {
     return this.http
-      .put<any>(`${API_URL}/inscripciones/comprobante`, inscripcion , httpOptions)
+      .put<any>(`${API_URL}/inscripciones/comprobante`, inscripcion, httpOptions)
       .catch(this.handleError);
   }
 
@@ -426,14 +440,21 @@ export class ApiService {
       .catch(this.handleError);
   }
 
+    // API: GET /pending/accepted
+    public getAllAccepted(): Observable<Aviso[]> {
+      return this.http
+        .get<any[]>(API_URL + '/pending/accepted', httpOptions)
+        .catch(this.handleError);
+    }
+  
   // API: PUT /pending/aceptar
-  public aceptarComprobante(voucherInformation:any): Observable<any> {
+  public aceptarComprobante(voucherInformation: any): Observable<any> {
     return this.http
       .put<any>(`${API_URL}/pending/aceptar`, voucherInformation, httpOptions)
       .catch(this.handleError);
   }
-   // API: PUT /pending/rechazar
-   public rechazarComprobante(voucherInformation:any): Observable<any> {
+  // API: PUT /pending/rechazar
+  public rechazarComprobante(voucherInformation: any): Observable<any> {
     return this.http
       .put<any>(`${API_URL}/pending/rechazar`, voucherInformation, httpOptions)
       .catch(this.handleError);
