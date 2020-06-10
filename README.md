@@ -71,11 +71,18 @@ Framework to build web applications for desktops and cellphones. Its main charac
 #### FIREBASE DATABASE
 * LINK: https://firebase.google.com/?hl=es-419
 Plataform to store data in a json-like structure. Firebase Real Time Database is a cloud-hosted, No-SQL database. Its main characteristic is that the data is in sync in realtime, this provide a great functionality for the application. 
+* Used for Authentication and Storage only
+
+#### POSTGRESQL DATABASE
+* LINK: https://www.postgresql.org/
+PostgreSQL is a relational database that is widely used across the world. One must host the database either locally or in the server and it is SQL-database.
 
 #### HEROKU
 * LINK: https://www.heroku.com/
 
-Platoform used to deploy and host the application.
+* API URL: https://apportateen-v2.herokuapp.com
+
+Platform used to deploy and host the application.
 
 ### Management tools
 
