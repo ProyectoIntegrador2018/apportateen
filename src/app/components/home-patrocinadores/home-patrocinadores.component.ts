@@ -21,13 +21,18 @@ export class HomePatrocinadoresComponent {
         this.isVisible = false;
         this.sponsorList = [
           {
-            frase: "Ser parte de Axt@teen es una experiencia mágica de compañerismo, creatividad y mucho aprendizaje no solo para los teens, también para los que los acompañamos en este proceso, Axt@teen cambia vidas, es recordarlo y sonreír",
+            frase: "Ax@teen, es uno de los esfuerzos más exitosos que se han realizado para enamorar a los chicos de la tecnología, les abre puertas y posibilidades al futuro. Ax@teen, crea un ambiente colaborativo, de desarrollo y de crecimiento, no solo para los “teens” si no para quienes participan como instructores y hacer posible el programa. En Softtek tenemos claro que la industria de la información tiene un potencial enorme de exportación de soluciones y de servicios, y que impulsa el desarrollo de México; es por esto que necesitamos que más jóvenes consideren la industria de TI como su opción de desarrollo profesional;  es ahí donde Ax@teen abona, y es ahí donde como empresa mexicana de TI nos importa participar.",
             url: '../../../../assets/img/sponsors/sofftek.png',
             backImg: '../../../../assets/img/main5.JPG'
           },
           {
-            frase: "Apoyar a la educación y a la educación en tecnología debe ser estrategia a nivel país y no solo por el gobierno, sino que como empresas debemos invertir en nuestros futuros talentos y mostrarles que hay un país que los está esperando, un país que les muestra que hay futuro y futuro en tecnología. Apoyar a todos estos temas de capital humano nos hace sentir que sumamos un granito de arena al progreso del país, invertirmos en generar el talento que en un futuro será parte de nuestro contenido nacional. - Matías Bertoni",
+            frase: "Apoyar a la educación y a la educación en tecnología debe ser estrategia a nivel país y no solo por el gobierno, sino que como empresas debemos invertir en nuestros futuros talentos y mostrarles que hay un país que los está esperando, un país que les muestra que hay futuro y futuro en tecnología. Apoyar a todos estos temas de capital humano nos hace sentir que sumamos un granito de arena al progreso del país, invertirmos en generar el talento que en un futuro será parte de nuestro contenido nacional. - Matías Bertoni.",
             url: '../../../../assets/img/sponsors/tecnoap.jpg',
+            backImg: '../../../../assets/img/main5.JPG'
+          },
+          {
+            frase: "Ser parte de Axt@teen es una experiencia mágica de compañerismo, creatividad y mucho aprendizaje no solo para los teens, también para los que los acompañamos en este proceso, Axt@teen cambia vidas, es recordarlo y sonreír.",
+            url: '../../../../assets/img/sponsors/sofftek.png',
             backImg: '../../../../assets/img/main5.JPG'
           },
           {
