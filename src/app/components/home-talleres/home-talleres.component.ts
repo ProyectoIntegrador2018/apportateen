@@ -33,8 +33,8 @@ export class HomeTalleresComponent {
           let months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
           let iniMonth = inicial.getMonth();
           let finMonth = final.getMonth();
-          let iniDay = inicial.getDate()
-          let finDay = final.getDate();
+          let iniDay = inicial.getDate() + 1;
+          let finDay = final.getDate() + 1;
           if(iniMonth == finMonth){
               return `${iniDay} - ${finDay} de ${months[iniMonth]}`
           }
