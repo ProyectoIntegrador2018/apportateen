@@ -31,6 +31,7 @@ import { PendingComponent } from '../admin/pending/pending.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/inicio', pathMatch: 'full' },
+    // { path: '', redirectTo: 'https://www.ventanaindustriadesoftware.org/axtateen', pathMatch: 'full' },
     { path: 'inicio', component: HomeComponent },
     { path: 'talleres', component: HomeTalleresComponent },
     { path: 'FAQ', component: HomeFAQComponent },
@@ -90,4 +91,4 @@ const routes: Routes = [
     exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule  { }
