@@ -62,6 +62,15 @@ This project consist on a web platform for ApportaTeen, where they will manage a
 | Jonathan Cárdenas | A00818821@itesm.mx | Project Manager |
 | Valeria Rocha | A01193039@itesm.mx | Configuration Manager |
 
+### Team version 5.0
+
+| Name           | Email             | Role        |
+| -------------- | ----------------- | ----------- |
+| Manuel Eduardo Torres Magdaleno | A01066869@itesm.mx | Scrum Master |
+| Edgar López Villarreal | A01039505@itesm.mx | Product Owner |
+| Marving Bryan Robles Angeles | A01651377@itesm.mx | Administrador |
+
+
 ### Technology Used for Development
 
 #### ANGULAR
