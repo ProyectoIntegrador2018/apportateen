@@ -107,7 +107,7 @@ export class UsuariosDetalleComponent implements OnInit {
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
     return [day, month, year].join('-');
-}
+  }
 
   deleteArchivo(path) {
     var archivoRef = this.storage.ref(path);
@@ -134,7 +134,7 @@ export class UsuariosDetalleComponent implements OnInit {
         })
       }
     })
-}
+  }
 
 getArchivos() {
   this.listaArchivos = [];
