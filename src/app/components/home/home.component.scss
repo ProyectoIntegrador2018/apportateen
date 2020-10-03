@@ -177,6 +177,92 @@
     }
   }
 
+  //      SOCIAL BTNS STYLES --------------
+  .socials{
+    padding-top: 1%;
+  }
+  .social-sharing {
+    display: block;
+    //position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+  .social-item{
+    padding-left: 2%;
+    width: 10%;
+        margin-right: 1%;
+  }
+  .pSocial{
+    color: red;
+    font-size: larger;
+    font-weight: 600;
+  }
+  #facebook-item{
+    background-color: #4c69a9;
+    color: white;
+  }
+  #facebook-item:hover{
+    background-color: #395693;
+    width: 13%;
+  }
+  #twitter-item{
+    background-color: #55acee;
+    color: white!important;
+  }
+  #twitter-item:hover{
+    background-color: #1e93ec;
+    width: 13%;
+  }
+  #twitter-item2{
+    color: white!important;
+  }
+  #ig-item{
+    background-color: #ed6032;
+    color: white;
+  }
+  #ig-item:hover{
+    background-color: #e61d4f;
+    width: 13%;
+  }
+
+  .social-sharing .menu-social {
+    list-style: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrapwrap;
+    flex-wrap: nowrap;
+  }
+  
+
+  .menu-social  a::before {
+    content: "\f135";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-size: 20px;
+    vertical-align: middle;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 40px;
+  }
+  .menu-social  a[href*="facebook.com"]::before {
+    content: "\f09a";
+  }
+  .menu-social  a[href*="twitter.com"]::before {
+    content: "\f099";
+  }
+  .menu-social  a[href*="instagram.com"]::before {
+    content: "\f16d";
+  }
+
+  // FIN SOCIAL BTNS     -------------------
+
   &__activities {
     &__title {
       background-color: $color-orange;
