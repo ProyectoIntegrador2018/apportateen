@@ -1,7 +1,7 @@
 @import '~styles-variables.scss';
 
 .header {
-  background: rgba(95, 95, 95, 0.57);
+  background: rgba(0, 0, 0, 0.72);
   display: flex;
   justify-content: space-between;
   position: absolute;
@@ -40,6 +40,17 @@
 a + button {
   margin-left: 15px;
 }
+.navbar .navbar-collapse .navbar-nav{
+ // background-color: rgba(95, 95, 95, 0.57);
+  width: 100%;
+}
+.navbar-expand-lg{
+  width: 100%;
+}
+
+.navbar-nav{
+  justify-content: space-evenly;
+}
 
 button {
   background-color: $color-blue;
@@ -56,9 +67,16 @@ button {
     background-color: $color-red;
   }
 }
+.fixed-top{
+  display: flex;
+}
+
+
+
+
 
 /* Phone */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 603px) {
   .header {
     &__content {
       padding: 0 0 0 20px;
@@ -71,14 +89,21 @@ button {
     button {
       padding: 20px 30px;
     }
+    
   }
 }
 
 /* Tablet Portrait */
-@media only screen and (min-device-width: 768px) and (orientation: portrait) {
+@media only screen and (min-device-width: 604px) and (max-width: 767px) and (orientation: portrait) {
   .header {
     .navigation {
       display: none;
     }
+    .header__content2{
+      display: none;
+    }
   }
+  
 }
+
+

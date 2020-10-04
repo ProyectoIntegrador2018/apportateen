@@ -2,9 +2,10 @@
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 @import '~styles-overrides.scss';
 
+
 * {
     &:active,
-     :focus {
+    :focus {
         outline: none !important;
     }
 }
@@ -61,12 +62,12 @@ $theme-colors: ("primary": $color-blue, );
 .mat-list-item:hover {
     text-decoration: none !important;
 }
-
+/*
 .container-fluid {
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
-
+*/
 .lpadfix {
     padding-left: 15px;
 }

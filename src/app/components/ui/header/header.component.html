@@ -1,10 +1,16 @@
 <div class="header">
-    <div class="header__content">
+    <nav class="navbar navbar-expand-lg navbar-light ">
         <a class="navbar-brand" routerLink="inicio">
-        <img src="../../../../assets/img/logo.svg" class="header__logo" alt="Logo">
+            <img src="../../../../assets/img/logo.svg" class="header__logo" alt="Logo">
         </a>
 
-        <div class="navigation" *ngIf="router.url === '/inicio' || router.url === '/talleres'|| router.url === '/FAQ' || router.url === '/exito'|| router.url === '/gallery' || router.url === '/patrocinadores' || router.url === '/inicio#Reqs' || router.url === '/inicio#QueEs'">
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
             <a pageScroll class="header__link" href="/inicio#QueEs">¿Qué es Axt@Teen?</a>
             <a pageScroll class="header__link" href="/inicio#Reqs">Convocatoria</a>
             <a pageScroll class="header__link" href="/talleres">Talleres</a>
@@ -12,19 +18,19 @@
             <a pageScroll class="header__link" href="/patrocinadores">Patrocinadores</a>
             <a pageScroll class="header__link" href="/gallery">Galería</a>
             <a pageScroll class="header__link" href="/FAQ">FAQ</a>
-        </div>
-        <div class="navigation" *ngIf="router.url === '/ingresar'">
-            <a routerLink="/inicio">Página Prinicipal</a>
-        </div>
-    </div>
 
-    <div *ngIf="router.url !== '/ingresar'">
-        <button routerLink="/ingresar" *ngIf="!user">
-            Registrar/Ingresar
-        </button>
-        <a class="header__link" *ngIf="user" (click)="userRedirect()">Preferencias</a>
-        <button *ngIf="user" (click)="logout()" class="logout">
-            Cerrar sesión
-        </button>
-    </div>
+            <button routerLink="/ingresar" *ngIf="!user">
+                Registrar/Ingresar
+            </button>
+            <a class="header__link" id="prefID" *ngIf="user" (click)="userRedirect()">Preferencias</a>
+            <button *ngIf="user" (click)="logout()" class="logout">
+                Cerrar sesión
+            </button>
+            
+            
+          </div>
+        }
+        </div>
+      </nav>
+   
 </div>
