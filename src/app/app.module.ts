@@ -10,6 +10,7 @@ import { HomeFAQComponent } from './components/home-faq/home-faq.component';
 import { HomeExitoComponent } from './components/home-exito/home-exito.component';
 import { HomePatrocinadoresComponent } from './components/home-patrocinadores/home-patrocinadores.component';
 import { HomeGalleryComponent } from './components/home-gallery/home-gallery.component';
+import { HomeContactComponent } from './components/home-contact/home-contact.component';
 import { AppRoutingModule } from './components/app/app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UiModule } from './components/ui/ui.module';
@@ -52,6 +53,7 @@ import { MessageDialogComponent } from './components/message-dialog/message-dial
     HomeExitoComponent,
     HomePatrocinadoresComponent,
     HomeGalleryComponent,
+    HomeContactComponent,
     ConfirmationDialog,
     AddDialog,
     GalleryDialog,

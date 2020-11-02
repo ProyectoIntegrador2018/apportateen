@@ -6,6 +6,7 @@ import { HomeFAQComponent } from '../home-faq/home-faq.component'
 import { HomeExitoComponent } from '../home-exito/home-exito.component'
 import { HomePatrocinadoresComponent } from '../home-patrocinadores/home-patrocinadores.component'
 import { HomeGalleryComponent } from '../home-gallery/home-gallery.component'
+import { HomeContactComponent } from '../home-contact/home-contact.component'
 import { EnrollmentComponent } from '../enrollment/enrollment-selector/enrollment-selector.component'
 import { MainComponent } from '../admin/main/main.component';
 import { ConvocatoriasComponent } from '../admin/convocatorias/convocatorias.component';
@@ -37,6 +38,7 @@ const routes: Routes = [
     { path: 'exito', component: HomeExitoComponent },
     { path: 'patrocinadores', component: HomePatrocinadoresComponent },
     { path: 'gallery', component: HomeGalleryComponent },
+    { path: 'contact', component: HomeContactComponent },
     {
         path: 'ingresar', component: EnrollmentComponent
     },
