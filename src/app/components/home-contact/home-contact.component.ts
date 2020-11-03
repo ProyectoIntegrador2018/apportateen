@@ -15,7 +15,10 @@ export class HomeContactComponent {
 
     constructor(public snackBar: MatSnackBar, private api: ApiService) {
         this.contact = [{
-          contacto:'Contacto general: capitalhumano@csoftmty.org'
+          correo:'Contacto general: capitalhumano@csoftmty.org', 
+          facebook: 'Página de Facebook: https://www.facebook.com/search/top?q=apportateen', 
+          telefono: '+52 8183433128', 
+          direccion: 'CSOFTMTY. Miguel Hidalgo PTE, Piso 38, SUITE/OFICINA 38-115. Monterrey Nuevo León. CP. 64060'
         }]
     }
 }
