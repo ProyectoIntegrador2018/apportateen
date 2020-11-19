@@ -58,8 +58,6 @@ export class InscripcionComponent implements OnInit {
     this.user = this.storage.get('@user:data');
     this.cargarSedes();
     this.cargarTalleres();
-
-
     this.obtenerCostos();
   }
 
@@ -89,7 +87,6 @@ export class InscripcionComponent implements OnInit {
   }
 
   cargaTu() {
-
     let t: any;
     this.talleres_usuario = [];
 
@@ -99,7 +96,6 @@ export class InscripcionComponent implements OnInit {
       let temp = this.talleres.find(x => x.id === this.user.talleres[t]);
 
       this.talleres_usuario.push(temp);
-
 
     }
 
@@ -124,7 +120,7 @@ export class InscripcionComponent implements OnInit {
 
   seleccionarSede(event: any) {
     this.selectedSede = this.sedes.find(x => x.id === event.value);
-    this.selectedSede.talleres = this.selectedSede.talleres.filter(x => x.categoria === this.user.idcategoria);
+    //this.selectedSede.talleres = this.selectedSede.talleres.filter(x => x.categoria === this.user.idcategoria);
     this.sede_seleccionada = true;
     this.muestra_todos = false;
     this.muestra_tusuario = false;
