@@ -4,8 +4,7 @@
     <div class="register__actions" *ngIf="estatus">
       <button class="btn btn-primary" (click)="cargarTalleres()">Todos</button>
       <mat-form-field style="margin-left:10px;">
-
-        <mat-select [disabled]="sedes.length < 1" placeholder="Selecciona la Sede"
+        <mat-select placeholder="Selecciona la Sede"
           (selectionChange)="seleccionarSede($event)" name="sedeselect" [(ngModel)]="sedeselect">
           <mat-option *ngFor="let sede of sedes" [value]="sede.id">{{sede.nombre}}</mat-option>
         </mat-select>
@@ -103,24 +102,24 @@
 
     </div>
 
-    <div
-      *ngIf="selectedSede.id != 0 && selectedSede.talleres.length < 1 && estatus && !muestra_todos && !muestra_tusuario">
+    <!--<div
+      *ngIf="selectedSede.id = 0 && selectedSede.talleres.length < 1 && estatus && !muestra_todos && !muestra_tusuario">
       <h1>Sin talleres</h1>
       <p>Por el momento no existen talleres de tu categoría en esta sede.</p>
       <button class="btn primary" mat-flat-button matTooltipPosition="after"
         matTooltip="La categoría es asignada de manera automática por el sistema según tu edad. Actualmente perteneces a la categoría {{user.categoria}}.">
         Más información
       </button>
-    </div>
+    </div>-->
 
-    <div *ngIf="user.talleres.length === 0 && !muestra_todos && muestra_tusuario">
+    <!--<div *ngIf="user.talleres.length === 0 && !muestra_todos && muestra_tusuario">
       <h1>Sin talleres</h1>
       <p>Por el momento no tienes ningún taller inscrito.</p>
       <button class="btn primary" mat-flat-button matTooltipPosition="after"
         matTooltip="Para inscribir un taller puedes seleccionar el botón de Todos y ver todos los talleres disponibles, o bien, seleccionar una sede específica y ver sus talleres.">
         Más información
       </button>
-    </div>
+    </div>-->
 
     <div *ngIf="!estatus && estatus != null">
       <h1>Convocatoria inhabilitada.</h1>
