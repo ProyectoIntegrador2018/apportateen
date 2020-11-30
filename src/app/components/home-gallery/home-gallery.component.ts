@@ -15,11 +15,11 @@ export class HomeGalleryComponent {
 
     constructor(public snackBar: MatSnackBar, private api: ApiService, public dialog: MatDialog) {
         this.gallery = [
-        '../../../assets/img/main.JPG',
+        '../../../assets/img/main.jpg',
          '../../../assets/img/main2.jpeg',
           '../../../assets/img/main3.jpg',
            '../../../assets/img/main4.jpeg',
-            '../../../assets/img/main5.jpg',
+            '../../../assets/img/main5.JPG',
             '../../../assets/img/main6.jpeg',
             '../../../assets/img/main7.jpg',
             '../../../assets/img/main8.jpeg',
@@ -47,6 +47,8 @@ export class HomeGalleryComponent {
             '../../../assets/img/gallery/galeria20.jpg',
             '../../../assets/img/gallery/galeria21.jpg',
             '../../../assets/img/gallery/galeria22.jpg',
+            '../../../assets/img/gallery/galeria23.jpeg',
+            '../../../assets/img/gallery/galeria24.jpeg'
       ];
     }
 
