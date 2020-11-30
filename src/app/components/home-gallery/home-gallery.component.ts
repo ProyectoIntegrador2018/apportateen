@@ -15,7 +15,7 @@ export class HomeGalleryComponent {
 
     constructor(public snackBar: MatSnackBar, private api: ApiService, public dialog: MatDialog) {
         this.gallery = [
-        '../../../assets/img/main.JPG',
+        '../../../assets/img/main.jpg',
          '../../../assets/img/main2.jpeg',
           '../../../assets/img/main3.jpg',
            '../../../assets/img/main4.jpeg',
