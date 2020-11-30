@@ -16,7 +16,7 @@ export class HomeFAQComponent {
     constructor(public snackBar: MatSnackBar, private api: ApiService) {
         this.preguntas = [{
           pregunta:'¿Qué es Apportateen?',
-          respuesta:'Axt@Teen 2020 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.'
+          respuesta:'Axt@Teen 2021 es un programa intensivo para promover entre estudiantes de México, desde nivel elemental hasta Preparatoria, el gusto por las Tecnologías de Información y el desarrollo del pensamiento computacional.'
         },
         {
           pregunta:'¿Cómo puedo inscribir un taller?',

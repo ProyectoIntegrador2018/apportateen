@@ -14,7 +14,39 @@ export class HomeGalleryComponent {
     gallery;
 
     constructor(public snackBar: MatSnackBar, private api: ApiService, public dialog: MatDialog) {
-        this.gallery = ['../../../assets/img/main.jpg', '../../../assets/img/main2.jpg', '../../../assets/img/main3.jpg', '../../../assets/img/main4.jpg', '../../../assets/img/main5.JPG'
+        this.gallery = [
+        '../../../assets/img/main.JPG',
+         '../../../assets/img/main2.jpeg',
+          '../../../assets/img/main3.jpg',
+           '../../../assets/img/main4.jpeg',
+            '../../../assets/img/main5.jpg',
+            '../../../assets/img/main6.jpeg',
+            '../../../assets/img/main7.jpg',
+            '../../../assets/img/main8.jpeg',
+            '../../../assets/img/main9.jpeg',
+
+            '../../../assets/img/gallery/galeria1.JPG',
+            '../../../assets/img/gallery/galeria2.JPG',
+            '../../../assets/img/gallery/galeria3.JPG',
+            '../../../assets/img/gallery/galeria4.JPG',
+            '../../../assets/img/gallery/galeria5.JPG',
+            '../../../assets/img/gallery/galeria6.JPG',
+            '../../../assets/img/gallery/galeria7.JPG',
+            '../../../assets/img/gallery/galeria8.JPG',
+            '../../../assets/img/gallery/galeria9.jpg',
+            '../../../assets/img/gallery/galeria10.jpg',
+            '../../../assets/img/gallery/galeria11.jpg',
+            '../../../assets/img/gallery/galeria12.jpg',
+            '../../../assets/img/gallery/galeria13.jpg',
+            '../../../assets/img/gallery/galeria14.jpg',
+            '../../../assets/img/gallery/galeria15.jpg',
+            '../../../assets/img/gallery/galeria16.jpg',
+            '../../../assets/img/gallery/galeria17.jpg',
+            '../../../assets/img/gallery/galeria18.jpg',
+            '../../../assets/img/gallery/galeria19.jpg',
+            '../../../assets/img/gallery/galeria20.jpg',
+            '../../../assets/img/gallery/galeria21.jpg',
+            '../../../assets/img/gallery/galeria22.jpg',
       ];
     }
 
