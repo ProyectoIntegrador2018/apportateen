@@ -5,6 +5,7 @@
   </div>
 
   <section class="talleres">
+
     <mat-grid-list cols="2" rowHeight="700px">
       <mat-grid-tile *ngFor="let taller of talleres">
         <mat-card class="example-card">
@@ -26,9 +27,6 @@
             <p>
               {{taller.descripcion}}
             </p>
-            <button class="taller-btn">
-              Mas información
-            </button>
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>

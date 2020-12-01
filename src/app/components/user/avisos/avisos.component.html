@@ -1,5 +1,10 @@
 <div class="container-fluid ad">
   <div class="container">
+    <div class="gotoTalleres" routerLink="/usuario/inscripcion" >
+      <div class="gotoTalleres2">
+        Ver talleres 
+      </div>
+    </div>
     <div *ngIf="avisos.length > 0 && loading != null">
       <div class="ad" *ngFor="let a of avisos">
         <mat-card class="mat-elevation-z8 ad">

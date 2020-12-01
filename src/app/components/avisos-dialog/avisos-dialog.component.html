@@ -1,6 +1,7 @@
 <h1 mat-dialog-title>Enviar un nuevo aviso {{targetMessage}}</h1>
 <div mat-dialog-content>
     <form>
+        
         <mat-form-field *ngIf="data.target != 1 && !data.edit">
             <mat-label>Para: </mat-label>
             <mat-chip-list #chipList [required]="true">
