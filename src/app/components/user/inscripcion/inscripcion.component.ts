@@ -10,6 +10,7 @@ import { WarningDialogComponent } from 'app/components/warning-dialog/warning-di
 import { TalleresComponent } from 'app/components/admin/talleres/talleres.component';
 import { MessageDialogComponent } from './../../message-dialog/message-dialog.component';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 export interface DialogData {
 
@@ -41,6 +42,7 @@ export class InscripcionComponent implements OnInit {
   constructor(private api: ApiService,
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
     public dialog: MatDialog,
+    public router: Router,
     public snackBar: MatSnackBar,
     private fireStorage: AngularFireStorage) {
     this.talleres = [];
@@ -291,9 +293,13 @@ export class InscripcionComponent implements OnInit {
               disableClose: true
             });
             if (this.costoTaller(taller) != 0) {
-              let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+              let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás encontrar los pasos para pagar.`;
               dialogRef.componentInstance.mensaje = message;
               dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+              dialogRef.afterClosed().subscribe(result => {
+                console.log(result)
+                this.router.navigate(['usuario/inscritos']);
+              })
             } else {
               let message = `Te has inscrito exitosamente al taller "${taller.nombre}".`;
               dialogRef.componentInstance.mensaje = message;
