@@ -8,7 +8,7 @@ export class User {
     fecha_nacimiento: string = '';
     telefono: string = '';
     curp: string = '';
-    sexo: string = '';
+    sexo: string = ''; 
     isAdmin: boolean = false;
     idtaller: number = 0;
     idcategoria: number = 0;
