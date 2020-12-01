@@ -35,6 +35,7 @@ export class DetalleTallerComponent implements OnInit {
     @Inject(LOCAL_STORAGE) private storage: WebStorageService,
 
     private route: ActivatedRoute,
+    public router: Router,
     public dialog: MatDialog,
     public snackBar: MatSnackBar,
     private fireStorage: AngularFireStorage) {
@@ -191,9 +192,13 @@ export class DetalleTallerComponent implements OnInit {
               disableClose: true
             });
             if (this.costoTaller() != 0) {
-              let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás descargar la ficha de pago y subir el comprobante una vez realizado.`;
+              let message = `Para terminar tu inscripción al taller ${taller.nombre}, necesitarás completar el pago. En tu sección de talleres inscritos, podrás encontrar los pasos para pagar.`;
               dialogRef.componentInstance.mensaje = message;
               dialogRef.componentInstance.titulo = "¡Ya casi estas inscrito!";
+              dialogRef.afterClosed().subscribe(result => {
+                console.log(result)
+                this.router.navigate(['usuario/inscritos']);
+              })
             } else {
               let message = `Te has inscrito exitosamente al taller "${taller.nombre}".`;
               dialogRef.componentInstance.mensaje = message;
