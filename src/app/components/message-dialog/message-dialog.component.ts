@@ -24,7 +24,7 @@ import { MatDialogRef } from '@angular/material';
       <p>{{mensaje}}</p>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="dialogRef.close()" color="primary" cdkFocusInitial>Aceptar</button>
+      <button mat-button (click)="dialogRef.close(true)" color="primary" cdkFocusInitial>Aceptar</button>
     </div>`
 })
 export class MessageDialogComponent  {
