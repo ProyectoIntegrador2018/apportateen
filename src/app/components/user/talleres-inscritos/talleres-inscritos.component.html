@@ -21,8 +21,8 @@
       </p>
       <div class="row">
         <div class="col">
-          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">print</mat-icon><br />
-          <p class="pasos"> Imprime o descarga la ficha para poder realizar el pago.</p>
+          <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep"><a href="https://boletia.com/">payment</a></mat-icon><br />
+          <p class="pasos"> Dirigite a la siguiente pagina para realizar el pago. <a href="https://boletia.com/">Realizar pago</a></p>
         </div>
         <div class="col">
           <mat-icon aria-hidden="false" aria-label="Example home icon" class="iconStep">publish</mat-icon><br />
@@ -62,9 +62,9 @@
                 <!-- pendiente -->
                 <div *ngIf="taller['estatus'] == 'pendiente'">
                   <!-- Ficha de pago -->
-                  <button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
+                  <!--<button id="btnFicha" mat-button mat-stroked-button class="btn primary card"
                     (click)="imprimirFichaPago(taller)" *ngIf="taller['estatus'] == 'pendiente'">Imprimir ficha de
-                    pago</button>
+                    pago</button> -->
                   <!-- Subir comprobante -->
                   <p class="pago">Sube tu Comprobante de Pago</p>
                   <div class="custom-file">

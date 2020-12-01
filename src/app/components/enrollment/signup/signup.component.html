@@ -4,7 +4,7 @@
       <ng-template matStepLabel class="step-header"><span class="step-header">Datos</span> </ng-template>
       
       <div class="row no-gutters">
-        <p class="subt">Tu información</p>
+        <p class="subt">Información del alumno</p>
       </div>
       <div class="row no-gutters">
         
@@ -41,7 +41,7 @@
         </mat-form-field>
         
         <div class="row no-gutters">
-          <p class="subt">Educación</p>
+          <p class="subt">Educación del alumno</p>
         </div>
         <mat-form-field class="col-md-12" style="padding-right: 8px;">
           <input matInput placeholder="Nombre de la escuela" [(ngModel)]="usuario.escuela" formControlName="nameSchoolCtrl"
@@ -63,7 +63,7 @@
           </mat-select>
         </mat-form-field>
         <div class="row no-gutters">
-          <p class="subt">Información del tutor</p>
+          <p class="subt">Información del padre o tutor</p>
         </div>
         <div class="row no-gutters">
         <mat-form-field class="col-md-6" style="padding-right: 8px;">
@@ -97,8 +97,9 @@
   <mat-step>
     <ng-template matStepLabel><span class="step-header">Finalizar</span></ng-template>
     <div class="row no-gutters">
+      <span style="text-align: center;">Con este correo y contraseña podras ingresar a la pagina.</span>
       <mat-form-field class="col-12">
-        <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico" [formControl]="emailFormControl"
+        <input matInput (change)="usuario.correo=emailFormControl.value" placeholder="Correo electrónico a registrar" [formControl]="emailFormControl"
           [errorStateMatcher]="matcher">
         <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
           Por favor introduzca una dirección de correo válida
