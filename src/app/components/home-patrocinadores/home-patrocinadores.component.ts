@@ -57,12 +57,7 @@ export class HomePatrocinadoresComponent {
           },
           {
             frase: "",
-            url: '../../../../assets/img/sponsors/nuvasoft.png',
-            backImg: '../../../../assets/img/main5.JPG'
-          },
-          {
-            frase: "",
-            url: '../../../../assets/img/sponsors/nic.jpg',
+            url: '../../../../assets/img/sponsors/logo_accenture.png',
             backImg: '../../../../assets/img/main5.JPG'
           }
         ]

@@ -256,6 +256,53 @@
   }
 }
 
+
+/* Phones */
+@media only screen and (min-width: 319px) and (max-width: 348px) {
+  .inner-Data{
+    display: none;
+  }
+
+  .home-faq {
+    &__hero {
+      img {
+        width: 80%;
+      }
+    }
+
+    .col-4,
+    .col-6 {
+      flex: unset;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .row {
+      &.mobile-arrangement {
+        flex-direction: column-reverse;
+      }
+    }
+
+    .text-container {
+      padding: 25px 0;
+    }
+
+    .form {
+      width: 90%;
+
+      &__title {
+        font-size: 36px;
+      }
+    }
+  }
+
+  .steps {
+    &-section {
+      display: none;
+    }
+  }
+}
+
 /* Phones */
 @media only screen and (max-width: 600px) {
   .home-faq {

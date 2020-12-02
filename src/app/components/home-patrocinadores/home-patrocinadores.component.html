@@ -9,8 +9,14 @@
 
       <div class="carousel-inner" >
         <div class="carousel-item" *ngFor="let patrocinador of sponsorList; let i = index" [ngClass]="i == 0 ? 'active': ''">
-          <img class="inner-logo" [src]=patrocinador.url alt="">
-          <p>{{patrocinador.frase}}</p>
+          <div style="height: 15%; position: relative;"
+          >
+            <img class="inner-logo" [src]=patrocinador.url alt="" style="margin-top: 14%;" >
+          </div>
+          <div class="inner-Data" style="height: 80%; position: relative;"
+          >
+            <p style="overflow: hidden; position: relative;" >{{patrocinador.frase}}</p>
+          </div>
         </div>
       </div>
       <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">

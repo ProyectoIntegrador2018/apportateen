@@ -50,24 +50,19 @@ export class HomeComponent {
               backImg: '../../../../assets/img/main4.jpeg'
             },
             {
-              frase: "Frase de Nuvasoft",
-              url: '../../../../assets/img/sponsors/nuvasoft.png',
-              backImg: '../../../../assets/img/main4.jpeg'
-            },
-            {
               frase: "Frase de Sofftek",
               url: '../../../../assets/img/sponsors/sofftek.png',
-              backImg: '../../../../assets/img/main4.jpeg'
-            },
-            {
-              frase: "Frase de NIC",
-              url: '../../../../assets/img/sponsors/nic.png',
               backImg: '../../../../assets/img/main4.jpeg'
             },
             {
               frase: "Frase de Tecnoap",
               url: '../../../../assets/img/sponsors/tecnoap.jpeg',
               backImg: '../../../../assets/img/main4.jpeg'
+            }, 
+            {
+                frase: "Frase de Accenture",
+                url: '../../../../assets/img/sponsors/logo_accenture.png',
+                backImg: '../../../../assets/img/main4.jpeg'
             }
           ]
     }
