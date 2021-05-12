@@ -30,7 +30,7 @@
     "firebase": "^5.11.1",
     "firebase-admin": "^7.0.0",
     "font-awesome": "^4.7.0",
-    "grpc": "^1.24.3",
+    "grpc": "^1.24.9",
     "hammerjs": "^2.0.8",
     "ngx-page-scroll": "^5.0.0",
     "ngx-permissions": "^6.0.4",
